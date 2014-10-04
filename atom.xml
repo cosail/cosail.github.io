@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[cosail's Blog]]></title>
+  <link href="http://cosail.github.io/atom.xml" rel="self"/>
+  <link href="http://cosail.github.io/"/>
+  <updated>2014-10-04T17:34:52+08:00</updated>
+  <id>http://cosail.github.io/</id>
+  <author>
+    <name><![CDATA[cosail]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Title]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/04/title/"/>
+    <updated>2014-10-04T16:41:42+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/04/title</id>
+    <content type="html"><![CDATA[<h2>你好,测试页!</h2>
+
+<blockquote><p>test test</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[New Post]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/04/new-post/"/>
+    <updated>2014-10-04T16:35:07+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/04/new-post</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+</feed>
