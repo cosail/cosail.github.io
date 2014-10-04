@@ -32,6 +32,17 @@ Oct 04 2014 Recent Posts 使用octopress部署github博客 New Post ">
 <link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
+function addBlankTargetForLinks () {
+  $(&#8216;a[href^=&#8221;http&#8221;]&#8217;).each(function(){
+      $(this).attr(&#8216;target&#8217;, &#8216;_blank&#8217;);
+  });
+}
+
+$(document).bind(&#8216;DOMNodeInserted&#8217;, function(event) {
+  addBlankTargetForLinks();
+});
+
+
   
 
 </head>
