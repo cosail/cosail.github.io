@@ -32,16 +32,7 @@ gem install bundler 为了使后面的rake &hellip;">
 <link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
-function addBlankTargetForLinks () {
-  $(&#8216;a[href^=&#8221;http&#8221;]&#8217;).each(function(){
-      $(this).attr(&#8216;target&#8217;, &#8216;_blank&#8217;);
-  });
-}
-
-$(document).bind(&#8216;DOMNodeInserted&#8217;, function(event) {
-  addBlankTargetForLinks();
-});
-
+<base target="_blank">
 
   
 
@@ -100,7 +91,9 @@ $(document).bind(&#8216;DOMNodeInserted&#8217;, function(event) {
   </header>
 
 
-  <div class="entry-content"><h3>在github创建自己的Web站点</h3>
+  <div class="entry-content"><hr />
+
+<h3>在github创建自己的Web站点</h3>
 
 <p><a href="https://pages.github.com/">看官方示例</a></p>
 
@@ -168,8 +161,10 @@ git push origin source
 
 <pre><code>添加页面cosail.github.io/new-page/ :
 rake new_page[new-page] //creates /source/new-page/index.markdown
-rake new_page[new-page/page.markdown] //creates /source/new-page/page.markdown
+rake new_page[new-page/page.markdown] //creates /source/new-page/page.markdown  
 </code></pre>
+
+<p>访问试试: <a href="http://cosail.github.io/new-page/">cosail.github.io/new-page/</a></p>
 
 <h3>使用octopress: 创建,编辑,生成并发布文章</h3>
 
@@ -183,11 +178,20 @@ rake generate     //生成
 rake deploy     //发布
 </code></pre>
 
+<h3>另外一点小改动:</h3>
+
+<p>为了点击链接在新标签页中打开, <br/>
+在source/_include/custom/head.html文件末尾添加一行 :<br/>
+   <code>&lt;base target=”_ blank”&gt;</code><br/>
+点击试试: <a href="http://www.baidu.com">百度</a></p>
+
 <h3>参考:</h3>
 
 <p><a href="http://www.itzhoulin.com/category/wordpress/">利用octopress部署博客到github</a><br/>
 <a href="https://ruby-china.org/topics/1605">执行 rails server 报错 Could not find a JavaScript runtime</a><br/>
-<a href="http://jingyan.baidu.com/album/afd8f4de4595ac34e386e969.html?picindex=1">解决WP加载谷歌ajax.googleapis.com缓慢问题</a></p>
+<a href="http://jingyan.baidu.com/album/afd8f4de4595ac34e386e969.html?picindex=1">解决WP加载谷歌ajax.googleapis.com缓慢问题</a><br/>
+<a href="http://zhidao.baidu.com/link?url=688qT_eBlOJIcHrFM1wmHFYBLWozjH1cE1FUW8ezjOyT6l4kxnlndXu1Uy_-5mZr6G54eES8NtkJfihDPXkovq">在html中怎么设置全部链接在新标签打开</a><br/>
+<a href="http://www.oschina.net/question/218617_66108">markdown 如何显示html标签</a></p>
 </div>
   
   
