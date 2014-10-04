@@ -1,0 +1,10 @@
+---
+layout: post
+title: "title"
+date: 2014-10-04 16:41:42 +0800
+comments: true
+categories: 
+---
+
+## 你好,测试页!
+> test test
