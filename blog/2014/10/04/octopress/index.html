@@ -5,13 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>使用octopress部署github博客 - cosail&#8217;s Blog</title>
+  <title>使用octopress部署github博客 - cosail&#8217;s blog</title>
   <meta name="author" content="cosail">
 
   
-  <meta name="description" content="在github创建自己的Web站点 看官方示例 安装octopress: git clone git://github.com/imathis/octopress.git octopress //下载源码
-cd octopress 切换gem源为国内源，方法如下： **删除官方源**
-gem &hellip;">
+  <meta name="description" content="使用octopress部署github博客 Oct 4th, 2014 4:41 pm 在github创建自己的Web站点 看官方示例 安装octopress: git clone git://github.com/imathis/octopress.git octopress //下载源码 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,10 +18,10 @@ gem &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cosail.github.io/blog/2014/10/04/title">
+  <link rel="canonical" href="http://cosail.github.io/blog/2014/10/04/octopress">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="cosail's Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="cosail's blog" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.useso.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
@@ -32,7 +30,8 @@ gem &hellip;">
 <link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
-<base target="_blank">
+<!-- wuwei: 链接在新标签中打开 -->
+<!-- base target="_blank" --> 
 
   
 
@@ -40,10 +39,15 @@ gem &hellip;">
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">cosail&#8217;s Blog</a></h1>
-  
-    <h2>Something should be recorded for myself.</h2>
-  
+  <a href="/">	 
+	<h1>
+		<font color="white">cosail&#8217;s blog</font>
+		&nbsp;&nbsp;&nbsp;
+		
+		<font color="white" size="-1">—— Some Learning Notes.</font>
+		
+	</h1>	 
+  </a>
 </hgroup>
 
 </header>
@@ -52,7 +56,7 @@ gem &hellip;">
   
 </ul>
   
-<form action="http://www.baidu.com" method="get">
+<form action="https://www.google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:cosail.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -60,8 +64,9 @@ gem &hellip;">
 </form>
   
 <ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/">最新文章</a></li>
+  <li><a href="/blog/archives">所有文章</a></li>
+  <li><a href="/new-page/about_me.html">关于</a></li>
 </ul>
 
 </nav>
@@ -69,11 +74,15 @@ gem &hellip;">
     <div id="content">
       <div>
 <article class="hentry" role="article">
-  
+  <!-- wuwei,2014.10.7: 标记顶部,为了后面返回顶部-->
+<a name="top" id="top"></a>
+
+
   <header>
     
       <h1 class="entry-title">使用octopress部署github博客</h1>
     
+
     
       <p class="meta">
         
@@ -86,6 +95,7 @@ gem &hellip;">
       </p>
     
   </header>
+
 
 
 <div class="entry-content"><hr />
@@ -205,6 +215,44 @@ rake deploy     //发布
 </div>
 
 
+
+<!-- wuwei,2014.10.7: 分割线一条-->
+<HR style="FILTER: alpha(opacity=60,finishopacity=0,style=2)" width="100%" color=#888888 SIZE=3>
+<!-- 返回顶部: 左右各一个 -->
+<span style="float:left"><a href="#top" target="_self">返回顶部</a></span>
+<span style="float:right"><a href="#top" target="_self">返回顶部</a></span>
+
+<!-- wuwei,2014.10.7: duoshuo -->
+
+		<!-- 我在octopress/目录的_config.yml中定义了duoshuo_enable -->
+	
+		<!-- 多说评论框 start -->
+<p>&#8220;http://cosail.github.io/blog/2014/10/04/octopress/&#8221;</p> 
+			<div class="ds-thread"  data-thread-key="/blog/2014/10/04/octopress"   data-title="使用octopress部署github博客"   data-url="http://cosail.github.io/blog/2014/10/04/octopress/" ></div>
+		<!-- 多说评论框 end -->
+		<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+		<script type="text/javascript">
+		var duoshuoQuery = {short_name:"cosail"};
+			(function() {
+				var ds = document.createElement('script');
+				ds.type = 'text/javascript';ds.async = true;
+				ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+				ds.charset = 'UTF-8';
+				(document.getElementsByTagName('head')[0] 
+				 || document.getElementsByTagName('body')[0]).appendChild(ds);
+			})();
+			</script>
+		<!-- 多说公共JS代码 end -->
+	
+	<!-- wuwei,2014.10.7 -->
+
+
+
+
+
+
+
+
   <footer>
     <p class="meta">
       
@@ -220,6 +268,12 @@ rake deploy     //发布
 <time class='entry-date' datetime='2014-10-04T16:41:42+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:41 pm</span></time>
       
 
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/git/'>git</a>
+  
+</span>
+
 
     </p>
     
@@ -232,7 +286,7 @@ rake deploy     //发布
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/10/04/new-post/" title="Previous Post: 生成SSH key,并设置github">&laquo; 生成SSH key,并设置github</a>
+        <a class="basic-alignment left" href="/blog/2014/10/04/ssh_key_for_github/" title="Previous Post: 生成SSH key,并设置github">&laquo; 生成SSH key,并设置github</a>
       
       
     </p>
@@ -244,23 +298,54 @@ rake deploy     //发布
 <aside class="sidebar">
   
     <section>
-  <h1>Recent Posts</h1>
+    <h1><a href="/new-page/about_me.html"><img src="/images/wuwei1.jpg"></a></h1>		
+</section>
+<section>
+    <h1>分类目录</h1>
+    <ul id="categories">
+        <li class='category'><a href='/blog/categories/git/'>git (2)</a></li>
+
+    </ul>
+</section>
+<section>
+  <h1>最近发布</h1>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/10/04/title/">使用octopress部署github博客</a>
+        <a href="/blog/2014/10/04/octopress/">使用octopress部署github博客</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/10/04/new-post/">生成SSH Key,并设置github</a>
+        <a href="/blog/2014/10/04/ssh_key_for_github/">生成SSH Key,并设置github</a>
       </li>
     
   </ul>
 </section>
 
 
-
-
+<!-- wuwei,2014.10.7: -->
+<section>
+	<!-- 我在octopress/目录的_config.yml中定义了duoshuo_short_name -->
+	
+	<h1>最近评论</h1>
+	<ul class="ds-recent-comments" data-num-items="10">
+	</ul>
+	<!--多说js加载开始，一个页面只需要加载一次 -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"cosail"};
+	(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';
+	ds.async = true;
+	ds.src = 'http://static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!--多说js加载结束，一个页面只需要加载一次 -->
+	
+</section>
+<!-- wuwei,2014.10.7 -->
 
   
 </aside>

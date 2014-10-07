@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[cosail's blog]]></title>
-  <link href="http://cosail.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Git | cosail's blog]]></title>
+  <link href="http://cosail.github.io/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://cosail.github.io/"/>
   <updated>2014-10-07T17:58:53+08:00</updated>
   <id>http://cosail.github.io/</id>
