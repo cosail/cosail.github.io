@@ -1,6 +1,11 @@
 <hgroup>
-  <h1><a href="{{ root_url }}/">{{ site.title }}</a></h1>
-  {% if site.subtitle %}
-    <h2>{{ site.subtitle }}</h2>
-  {% endif %}
+  <a href="{{ root_url }}/">	 
+	<h1>
+		<font color="white">{{ site.title }}</font>
+		&nbsp;&nbsp;&nbsp;
+		{% if site.subtitle %}
+		<font color="white" size="-1">{{ site.subtitle }}</font>
+		{% endif %}
+	</h1>	 
+  </a>
 </hgroup>

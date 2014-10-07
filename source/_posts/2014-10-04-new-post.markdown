@@ -1,7 +1,0 @@
----
-layout: post
-title: "New Post"
-date: 2014-10-04 16:35:07 +0800
-comments: true
-categories: 
----

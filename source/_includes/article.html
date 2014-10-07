@@ -1,3 +1,6 @@
+<!-- wuwei,2014.10.7: 标记顶部,为了后面返回顶部-->
+<a name="top" id="top"></a>
+
 {% unless page.no_header %}
   <header>
     {% if index %}
@@ -5,6 +8,7 @@
     {% else %}
       <h1 class="entry-title">{% if site.titlecase %}{{ page.title | titlecase }}{% else %}{{ page.title }}{% endif %}</h1>
     {% endif %}
+
     {% unless page.meta == false %}
       <p class="meta">
         {% include post/date.html %}{{ time }}
@@ -16,6 +20,7 @@
     {% endunless %}
   </header>
 {% endunless %}
+
 {% if index %}
   <div class="entry-content">{{ content | excerpt }}</div>
   {% capture excerpted %}{{ content | has_excerpt }}{% endcapture %}
@@ -27,3 +32,17 @@
 {% else %}
 <div class="entry-content">{{ content }}</div>
 {% endif %}
+
+
+<!-- wuwei,2014.10.7: 分割线一条-->
+<HR style="FILTER: alpha(opacity=60,finishopacity=0,style=2)" width="100%" color=#888888 SIZE=3>
+<!-- 返回顶部: 左右各一个 -->
+<span style="float:left"><a href="#top" target="_self">返回顶部</a></span>
+<span style="float:right"><a href="#top" target="_self">返回顶部</a></span>
+
+<!-- wuwei,2014.10.7: duoshuo -->
+{% include duoshuo.html %}
+
+
+
+

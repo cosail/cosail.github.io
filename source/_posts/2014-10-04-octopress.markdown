@@ -3,7 +3,7 @@ layout: post
 title: "使用octopress部署github博客"
 date: 2014-10-04 16:41:42 +0800
 comments: true
-categories: 
+categories: git
 ---
 ---------------------------------
 ### 在github创建自己的Web站点
@@ -12,9 +12,21 @@ categories:
 ### 安装octopress:
 	git clone git://github.com/imathis/octopress.git octopress  //下载源码
 	cd octopress
-	gem install bundler
+	
+	切换gem源为国内源，方法如下：  
+    **删除官方源**
+    gem source -r https://rubygems.org/
+    **添加淘宝源**
+    gem source -a http://ruby.taobao.org/
+    **查看当前源**
+    gem source -l
+    
+    **安装bundler**
+    	gem install bundler
 
-	为了使后面的rake generate不出错, 在Gemfile末尾添加: 
+	为了使后面的rake generate不出错, 在octopress/下的Gemfile文件首行:  
+	https://rubygems.org/替换为http://ruby.taobao.org/  
+	并在文件末尾添加: 
 	gem 'execjs'    //安装execjs
 	gem 'therubyracer'     //execjs还需要后端才能处理，想简单解决可以加上这个 Gem
 
@@ -24,7 +36,8 @@ categories:
 ### 配置Octopress:
     修改文件 _config.yml:
     按自己情况填写url,title,subtitle,author,email等信息,
-    其中url为在github创建的仓库地址,如: https://github.com/cosail/cosail.github.io。
+    其中url为在github创建的仓库地址,如:  
+     git@github.com:cosail/cosail.github.io或https://github.com/cosail/cosail.github.io。
     
     为了避免网页加载太慢, 在source/目录中执行:
     grep "googleapis" ./ -r     //查找需要修改的文件
