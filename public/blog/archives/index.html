@@ -128,6 +128,37 @@
   
 </article>
 
+
+<!-- wuwei,2014.10.8: duoshuo -->
+
+  <section>
+	<div id="duoshuo_thread" aria-live="polite"><!-- wuwei,2014.10.7 -->
+<section>
+	<!-- 我在octopress/目录的_config.yml中定义了duoshuo_enable -->
+	
+	<!-- 多说评论框 start -->
+	<div class="ds-thread"  data-title="Blog Archive" ></div>
+		<!-- 多说评论框 end -->
+		<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+		<script type="text/javascript">
+		var duoshuoQuery = {short_name:"cosail"};
+			(function() {
+				var ds = document.createElement('script');
+				ds.type = 'text/javascript';ds.async = true;
+				ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+				ds.charset = 'UTF-8';
+				(document.getElementsByTagName('head')[0] 
+				 || document.getElementsByTagName('body')[0]).appendChild(ds);
+			})();
+		</script>
+		<!-- 多说公共JS代码 end -->
+	
+<section>
+
+</div>
+  </section>
+
+
 </div>
 
 <aside class="sidebar">
@@ -163,7 +194,13 @@
 	<!-- 我在octopress/目录的_config.yml中定义了duoshuo_short_name -->
 	
 	<h1>最近评论</h1>
-	<ul class="ds-recent-comments" data-num-items="10">
+	<ul class="ds-recent-comments" 
+		data-num-items="10" 
+		data-show-avatars="1" 
+		data-show-time="1" 
+		data-show-title="1" 
+		data-show-admin="1" 
+		data-excerpt-length="18">
 	</ul>
 	<!--多说js加载开始，一个页面只需要加载一次 -->
 	<script type="text/javascript">

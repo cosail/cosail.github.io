@@ -9,7 +9,9 @@
   <meta name="author" content="cosail">
 
   
-  <meta name="description" content="使用octopress部署github博客 Oct 4th, 2014 4:41 pm 在github创建自己的Web站点 看官方示例 安装octopress: git clone git://github.com/imathis/octopress.git octopress //下载源码 &hellip;">
+  <meta name="description" content="在github创建自己的Web站点 看官方示例 安装octopress: git clone git://github.com/imathis/octopress.git octopress //下载源码
+cd octopress 切换gem源为国内源，方法如下： **删除官方源**
+gem &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -74,9 +76,7 @@
     <div id="content">
       <div>
 <article class="hentry" role="article">
-  <!-- wuwei,2014.10.7: 标记顶部,为了后面返回顶部-->
-<a name="top" id="top"></a>
-
+  
 
   <header>
     
@@ -91,6 +91,11 @@
 
 
 <time class='entry-date' datetime='2014-10-04T16:41:42+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:41 pm</span></time>
+        
+		<!-- wuwei,2014.10.7: duoshuo -->
+        
+           | <a href="#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io">评论此文章</a>
         
       </p>
     
@@ -216,44 +221,6 @@ rake deploy     //发布
 
 
 
-<!-- wuwei,2014.10.7: 分割线一条-->
-<HR style="FILTER: alpha(opacity=60,finishopacity=0,style=2)" width="100%" color=#888888 SIZE=3>
-<!-- 返回顶部: 左右各一个 -->
-<span style="float:left"><a href="#top" target="_self">返回顶部</a></span>
-<span style="float:right"><a href="#top" target="_self">返回顶部</a></span>
-
-<!-- wuwei,2014.10.7: duoshuo -->
-
-		<!-- 我在octopress/目录的_config.yml中定义了duoshuo_enable -->
-	
-		<!-- 多说评论框 start -->
-<p>&#8220;http://cosail.github.io/blog/2014/10/04/octopress/&#8221;</p> 
-			<div class="ds-thread"  data-thread-key="/blog/2014/10/04/octopress" data-title="使用octopress部署github博客" data-url="http://cosail.github.io/blog/2014/10/04/octopress/" ></div>
-<!--
-<div class="ds-thread"   data-title="使用octopress部署github博客"   data-url="http://cosail.github.io/blog/2014/10/04/octopress/" ></div>
-&#8211;>
-		<!-- 多说评论框 end -->
-		<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-		<script type="text/javascript">
-		var duoshuoQuery = {short_name:"cosail"};
-			(function() {
-				var ds = document.createElement('script');
-				ds.type = 'text/javascript';ds.async = true;
-				ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-				ds.charset = 'UTF-8';
-				(document.getElementsByTagName('head')[0] 
-				 || document.getElementsByTagName('body')[0]).appendChild(ds);
-			})();
-			</script>
-		<!-- 多说公共JS代码 end -->
-	
-	<!-- wuwei,2014.10.7 -->
-
-
-
-
-
-
 
 
   <footer>
@@ -261,7 +228,10 @@ rake deploy     //发布
       
   
 
+
+
 <span class="byline author vcard">Posted by <span class="fn">cosail</span></span>
+
 
       
 
@@ -295,6 +265,35 @@ rake deploy     //发布
     </p>
   </footer>
 </article>
+
+<!-- wuwei,2014.10.8: duoshuo -->
+
+  <section>
+    <div id="duoshuo_thread" aria-live="polite"><!-- wuwei,2014.10.7 -->
+<section>
+	<!-- 我在octopress/目录的_config.yml中定义了duoshuo_enable -->
+	
+	<!-- 多说评论框 start -->
+	<div class="ds-thread"  data-title="使用octopress部署github博客" ></div>
+		<!-- 多说评论框 end -->
+		<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+		<script type="text/javascript">
+		var duoshuoQuery = {short_name:"cosail"};
+			(function() {
+				var ds = document.createElement('script');
+				ds.type = 'text/javascript';ds.async = true;
+				ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+				ds.charset = 'UTF-8';
+				(document.getElementsByTagName('head')[0] 
+				 || document.getElementsByTagName('body')[0]).appendChild(ds);
+			})();
+		</script>
+		<!-- 多说公共JS代码 end -->
+	
+<section>
+
+</div>
+  </section>
 
 </div>
 
@@ -331,7 +330,13 @@ rake deploy     //发布
 	<!-- 我在octopress/目录的_config.yml中定义了duoshuo_short_name -->
 	
 	<h1>最近评论</h1>
-	<ul class="ds-recent-comments" data-num-items="10">
+	<ul class="ds-recent-comments" 
+		data-num-items="10" 
+		data-show-avatars="1" 
+		data-show-time="1" 
+		data-show-title="1" 
+		data-show-admin="1" 
+		data-excerpt-length="18">
 	</ul>
 	<!--多说js加载开始，一个页面只需要加载一次 -->
 	<script type="text/javascript">

@@ -1,5 +1,3 @@
-<!-- wuwei,2014.10.7: 标记顶部,为了后面返回顶部-->
-<a name="top" id="top"></a>
 
 {% unless page.no_header %}
   <header>
@@ -15,6 +13,11 @@
         {% if site.disqus_short_name and page.comments != false and post.comments != false and site.disqus_show_comment_count == true %}
            | <a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#disqus_thread"
              data-disqus-identifier="{% if post.meta.disqus_id %}{{ post.meta.disqus_id }}{% else %}{{ site.url }}{{ post.url }}{% endif %}">Comments</a>
+        {% endif %}
+		<!-- wuwei,2014.10.7: duoshuo -->
+        {% if site.duoshuo_short_name and page.comments != false %}
+           | <a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#duoshuo_thread"
+             data-disqus-identifier="{% if post.meta.disqus_id %}{{ post.meta.disqus_id }}{% else %}{{ site.url }}{{ post.url }}{% endif %}">评论此文章</a>
         {% endif %}
       </p>
     {% endunless %}
@@ -32,17 +35,6 @@
 {% else %}
 <div class="entry-content">{{ content }}</div>
 {% endif %}
-
-
-<!-- wuwei,2014.10.7: 分割线一条-->
-<HR style="FILTER: alpha(opacity=60,finishopacity=0,style=2)" width="100%" color=#888888 SIZE=3>
-<!-- 返回顶部: 左右各一个 -->
-<span style="float:left"><a href="#top" target="_self">返回顶部</a></span>
-<span style="float:right"><a href="#top" target="_self">返回顶部</a></span>
-
-<!-- wuwei,2014.10.7: duoshuo -->
-{% include duoshuo.html %}
-
 
 
 
