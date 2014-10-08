@@ -3,9 +3,9 @@ layout: post
 title: "使用octopress部署github博客"
 date: 2014-10-04 16:41:42 +0800
 comments: true
-categories: git
+categories: github
 ---
----------------------------------
+
 ### 在github创建自己的Web站点
 [看官方示例](https://pages.github.com/)  
     

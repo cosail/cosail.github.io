@@ -4,7 +4,7 @@
   <title><![CDATA[cosail's blog]]></title>
   <link href="http://cosail.github.io/atom.xml" rel="self"/>
   <link href="http://cosail.github.io/"/>
-  <updated>2014-10-08T10:15:35+08:00</updated>
+  <updated>2014-10-08T11:49:08+08:00</updated>
   <id>http://cosail.github.io/</id>
   <author>
     <name><![CDATA[cosail]]></name>
@@ -14,13 +14,147 @@
 
   
   <entry>
+    <title type="html"><![CDATA[添加duoshuo评论到octopress]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress/"/>
+    <updated>2014-10-08T10:25:36+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress</id>
+    <content type="html"><![CDATA[<p>octopress本身已经有disqus评论,但是在国内加载速度太慢，所以还是以国内的duoshuo评论替代之。</p>
+
+<h3>主要涉及的文件</h3>
+
+<p>下面根目录“/”为octopress/目录</p>
+
+<pre><code>/_config.ymlz ：添加多说相关设置变量  
+/source/_layouts/post.html ：为博文页添加duoshuo评论  
+/source/_include/post/duoshuo.html ：duoshuo评论框  
+/source/_include/article.html ：文章上面加一个评论链接  
+/source/_include/asides/duoshuo.html ：duoshuo最新评论显示  
+/source/index.html ：  
+/source/_layouts/page.html ：  
+</code></pre>
+
+<p>  <code>多说评论框把评论提交到多说服务器，多说最新评论显示从服务器拉取评论以显示在我们的页面上。  
+下面一个文件一个文件地添加代码：</code></p>
+
+<h3>/_config.ymlz</h3>
+
+<p>添加如下几行：</p>
+
+<pre><code>duoshuo_short_name: yourname #用你自己duoshuo名（需要去多说网站获取）  
+duoshuo_asides_num: 10      # 侧边栏评论显示条目数  
+duoshuo_asides_avatars: 1   # 侧边栏评论是否显示头像  
+duoshuo_asides_time: 1      # 侧边栏评论是否显示时间  
+duoshuo_asides_title: 1     # 侧边栏评论是否显示标题  
+duoshuo_asides_admin: 1     # 侧边栏评论是否显示作者评论  
+duoshuo_asides_length: 18   # 侧边栏评论截取的长度  
+</code></pre>
+
+<h3>/source/_layouts/post.html</h3>
+
+<p>在disqus代码：</p>
+
+<p>下方添加多说评论框（在文件/source/_include/post/duoshuo.html中实现）：</p>
+
+<pre><code>  &lt;section&gt;
+    &lt;h3&gt;多说评论：&lt;/h3&gt;
+    &lt;div id="comments" aria-live="polite"&gt;&lt;!-- wuwei,2014.10.7 --&gt;
+</code></pre>
+
+<p><section>
+    <!-- 我在octopress/目录的_config.yml中定义了duoshuo_enable --></p>
+
+<pre><code>&lt;!-- 多说评论框 start --&gt;
+&lt;div class="ds-thread"  data-title="添加duoshuo评论到octopress" &gt;&lt;/div&gt;
+    &lt;!-- 多说评论框 end --&gt;
+    &lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;
+    &lt;script type="text/javascript"&gt;
+    var duoshuoQuery = {short_name:"cosail"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+             || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    &lt;/script&gt;
+    &lt;!-- 多说公共JS代码 end --&gt;
+</code></pre>
+
+<p><section></p>
+
+<p></div>
+      </section></p>
+
+<p><code>上面是为了使rake new_post["..."]产生的文章页面下包含评论框；若要使用rake new_page["..."]产生的页面下也包含评论框，可以在/source/_layouts/page.html做同样添加。</code></p>
+
+<h3>/source/_include/post/duoshuo.html</h3>
+
+<p>这个文件需要你新建，然后复制粘贴以下代码：</p>
+
+<pre><code>&lt;section&gt;
+    &lt;!-- 在octopress/目录的_config.yml中已经定义了duoshuo_short_name --&gt;
+
+    &lt;!-- 多说评论框 start --&gt;
+    &lt;div class="ds-thread"  data-title="添加duoshuo评论到octopress" &gt;&lt;/div&gt;
+        &lt;!-- 多说评论框 end --&gt;
+        &lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;
+        &lt;script type="text/javascript"&gt;
+        var duoshuoQuery = {short_name:"cosail"};
+            (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+            })();
+        &lt;/script&gt;
+        &lt;!-- 多说公共JS代码 end --&gt;
+
+&lt;section&gt;
+</code></pre>
+
+<p><code>上面就是duoshuo评论框模块了。</code></p>
+
+<h3>/source/_include/article.html</h3>
+
+<p>在disqus代码：</p>
+
+<p>下方添加duoshuo代码：</p>
+
+<pre><code>      | &lt;a href="#comments"&gt;Comments&lt;/a&gt;
+</code></pre>
+
+<p><code>这样就在文章上面加上了一个评论链接。</code></p>
+
+<h3>/source/_include/asides/duoshuo.html</h3>
+
+<p>这个文件需要你新建，然后复制粘贴以下代码：</p>
+
+<pre><code>&lt;section&gt;
+&lt;h1&gt;最新评论&lt;/h1&gt;
+&lt;ul class="ds-recent-comments" data-num-items="10" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="18"&gt;&lt;/ul&gt;
+
+&lt;/section&gt;
+
+`上面的代码是为了在侧边栏里显示最新评论，为了把它添加到侧边栏，还需在_config.yml 文件中的 blog_index_asides 行或 page_asides 行或 post_asides 行中添加：`  
+
+asides/duoshuo.html
+</code></pre>
+
+<h3>/source/index.html ：</h3>
+
+<h3>/source/_layouts/page.html ：</h3>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[使用octopress部署github博客]]></title>
     <link href="http://cosail.github.io/blog/2014/10/04/octopress/"/>
     <updated>2014-10-04T16:41:42+08:00</updated>
     <id>http://cosail.github.io/blog/2014/10/04/octopress</id>
-    <content type="html"><![CDATA[<hr />
-
-<h3>在github创建自己的Web站点</h3>
+    <content type="html"><![CDATA[<h3>在github创建自己的Web站点</h3>
 
 <p><a href="https://pages.github.com/">看官方示例</a></p>
 
@@ -140,13 +274,13 @@ rake deploy     //发布
     <link href="http://cosail.github.io/blog/2014/10/04/ssh_key_for_github/"/>
     <updated>2014-10-04T16:35:07+08:00</updated>
     <id>http://cosail.github.io/blog/2014/10/04/ssh_key_for_github</id>
-    <content type="html"><![CDATA[<h2>生成SSH key, 设置github</h2>
+    <content type="html"><![CDATA[<h3>生成SSH key, 设置github</h3>
 
 <p><a href="https://help.github.com/articles/generating-ssh-keys/">见github帮助:Generating SSH keys</a></p>
 
 <p><code>注意最下面一行有个链接,说明如何改变一个已存在仓库的URL,如我们要使用SSH访问方式,这样就可以避免老是要输入帐户名和密码了:</code><a href="https://help.github.com/articles/changing-a-remote-s-url/">Changing a remote&rsquo;s URL.</a></p>
 
-<h2>如果通过HTTPS访问,也可以让github记住你的用户名和密码(记住一段时间)</h2>
+<h3>如果通过HTTPS访问,也可以让github记住你的用户名和密码(记住一段时间)</h3>
 
 <p><a href="https://help.github.com/articles/caching-your-github-password-in-git/">Caching your GitHub password in Git</a><br/>
 <code>比较: SSH访问是通过SSH key, 而不是用户名和密码来认证.</code></p>

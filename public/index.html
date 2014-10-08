@@ -9,9 +9,7 @@
   <meta name="author" content="cosail">
 
   
-  <meta name="description" content="在github创建自己的Web站点 看官方示例 安装octopress: git clone git://github.com/imathis/octopress.git octopress //下载源码
-cd octopress 切换gem源为国内源，方法如下： **删除官方源**
-gem &hellip;">
+  <meta name="description" content="octopress本身已经有disqus评论,但是在国内加载速度太慢，所以还是以国内的duoshuo评论替代之。 主要涉及的文件 下面根目录“/”为octopress/目录 /_config.ymlz ：添加多说相关设置变量 /source/_layouts/post.html ： &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +19,7 @@ gem &hellip;">
 
   
   <link rel="canonical" href="http://cosail.github.io">
-  <link href="/favicon.png" rel="icon">
+  <link href="/wuwei1.jpg" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="cosail's blog" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -83,7 +81,7 @@ gem &hellip;">
 
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/10/04/octopress/">使用octopress部署github博客</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress/">添加duoshuo评论到octopress</a></h1>
     
 
     
@@ -93,12 +91,12 @@ gem &hellip;">
 
 
 
-<time class='entry-date' datetime='2014-10-04T16:41:42+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:41 pm</span></time>
+<time class='entry-date' datetime='2014-10-08T10:25:36+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:25 am</span></time>
         
 		<!-- wuwei,2014.10.7: duoshuo -->
         
-           | <a href="/blog/2014/10/04/octopress/#duoshuo_thread"
-             data-disqus-identifier="http://cosail.github.io/blog/2014/10/04/octopress/">评论此文章</a>
+           | <a href="/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress/#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress/">评论此文章</a>
         
       </p>
     
@@ -106,120 +104,134 @@ gem &hellip;">
 
 
 
-  <div class="entry-content"><hr />
+  <div class="entry-content"><p>octopress本身已经有disqus评论,但是在国内加载速度太慢，所以还是以国内的duoshuo评论替代之。</p>
 
-<h3>在github创建自己的Web站点</h3>
+<h3>主要涉及的文件</h3>
 
-<p><a href="https://pages.github.com/">看官方示例</a></p>
+<p>下面根目录“/”为octopress/目录</p>
 
-<h3>安装octopress:</h3>
-
-<pre><code>git clone git://github.com/imathis/octopress.git octopress  //下载源码
-cd octopress
-
-切换gem源为国内源，方法如下：  
-**删除官方源**
-gem source -r https://rubygems.org/
-**添加淘宝源**
-gem source -a http://ruby.taobao.org/
-**查看当前源**
-gem source -l
-
-**安装bundler**
-    gem install bundler
-
-为了使后面的rake generate不出错, 在octopress/下的Gemfile文件首行:  
-https://rubygems.org/替换为http://ruby.taobao.org/  
-并在文件末尾添加: 
-gem 'execjs'    //安装execjs
-gem 'therubyracer'     //execjs还需要后端才能处理，想简单解决可以加上这个 Gem
-
-bundle install  //安装octopress
-rake install    //安装octopress默认主题
+<pre><code>/_config.ymlz ：添加多说相关设置变量  
+/source/_layouts/post.html ：为博文页添加duoshuo评论  
+/source/_include/post/duoshuo.html ：duoshuo评论框  
+/source/_include/article.html ：文章上面加一个评论链接  
+/source/_include/asides/duoshuo.html ：duoshuo最新评论显示  
+/source/index.html ：  
+/source/_layouts/page.html ：  
 </code></pre>
 
-<h3>配置Octopress:</h3>
+<p>  <code>多说评论框把评论提交到多说服务器，多说最新评论显示从服务器拉取评论以显示在我们的页面上。  
+下面一个文件一个文件地添加代码：</code></p>
 
-<pre><code>修改文件 _config.yml:
-按自己情况填写url,title,subtitle,author,email等信息,
-其中url为在github创建的仓库地址,如:  
- git@github.com:cosail/cosail.github.io或https://github.com/cosail/cosail.github.io。
+<h3>/_config.ymlz</h3>
 
-为了避免网页加载太慢, 在source/目录中执行:
-grep "googleapis" ./ -r     //查找需要修改的文件
-替换文件中fonts.googleapis.com为fonts.useso.com(360提供的谷歌字库)，
-替换文件中ajax.googleapis.com为ajax.useso.com(360提供的谷歌公用库)，
-这样你调用这些文件的时候就快多了。
+<p>添加如下几行：</p>
 
-在octopress根目录执行 :
-rake setup_github_pages    //按照要求输入仓库地址等，这个命令会在根目录下新建_deploy目录，
-这个会push到仓库的master分支，也就是访问博客的文件。
-    rake generate  //这个会按照既定规则生成静态文件的博客。
-rake deploy    //将前一步生成的文件拷贝到_deploy目录,并push到github
-
-第一次执行 rake deploy 的时候可能会报错,解决方法是进入_deploy目录执行:
-git pull origin +master
-
-然后再次尝试部署:
-cd ..
-rake deploy
+<pre><code>duoshuo_short_name: yourname #用你自己duoshuo名（需要去多说网站获取）  
+duoshuo_asides_num: 10      # 侧边栏评论显示条目数  
+duoshuo_asides_avatars: 1   # 侧边栏评论是否显示头像  
+duoshuo_asides_time: 1      # 侧边栏评论是否显示时间  
+duoshuo_asides_title: 1     # 侧边栏评论是否显示标题  
+duoshuo_asides_admin: 1     # 侧边栏评论是否显示作者评论  
+duoshuo_asides_length: 18   # 侧边栏评论截取的长度  
 </code></pre>
 
-<p><code>现在就应该可以正常显示博客页面了!让我们预览一下:</code></p>
+<h3>/source/_layouts/post.html</h3>
 
-<h3>配置完成后, 进行本地预览:</h3>
+<p>在disqus代码：</p>
 
-<pre><code>rake preview //在浏览器中进行本地预览了,访问http://localhost:4000
+<p>下方添加多说评论框（在文件/source/_include/post/duoshuo.html中实现）：</p>
+
+<pre><code>  &lt;section&gt;
+    &lt;h3&gt;多说评论：&lt;/h3&gt;
+    &lt;div id="comments" aria-live="polite"&gt;&lt;!-- wuwei,2014.10.7 --&gt;
 </code></pre>
 
-<h3>提交源码用于备份:</h3>
+<p><section>
+    <!-- 我在octopress/目录的_config.yml中定义了duoshuo_enable --></p>
 
-<pre><code>可以将当前octopress的源码备份到github的source分支下,在octopress目录下执行:
-git add .
-git commit -m 'Initial source commit'
-git push origin source
+<pre><code>&lt;!-- 多说评论框 start --&gt;
+&lt;div class="ds-thread"  data-title="添加duoshuo评论到octopress" &gt;&lt;/div&gt;
+    &lt;!-- 多说评论框 end --&gt;
+    &lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;
+    &lt;script type="text/javascript"&gt;
+    var duoshuoQuery = {short_name:"cosail"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+             || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    &lt;/script&gt;
+    &lt;!-- 多说公共JS代码 end --&gt;
 </code></pre>
 
-<h3>新建文章:</h3>
+<p><section></p>
 
-<pre><code>rake new_post["文章名"] //文章文件将存储在source/_posts目录下，按照Jekyll的命名规范命名：YYYY-MM-DD-post-文章名.markdown。
+<p></div>
+      </section></p>
+
+<p><code>上面是为了使rake new_post["..."]产生的文章页面下包含评论框；若要使用rake new_page["..."]产生的页面下也包含评论框，可以在/source/_layouts/page.html做同样添加。</code></p>
+
+<h3>/source/_include/post/duoshuo.html</h3>
+
+<p>这个文件需要你新建，然后复制粘贴以下代码：</p>
+
+<pre><code>&lt;section&gt;
+    &lt;!-- 在octopress/目录的_config.yml中已经定义了duoshuo_short_name --&gt;
+
+    &lt;!-- 多说评论框 start --&gt;
+    &lt;div class="ds-thread"  data-title="添加duoshuo评论到octopress" &gt;&lt;/div&gt;
+        &lt;!-- 多说评论框 end --&gt;
+        &lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;
+        &lt;script type="text/javascript"&gt;
+        var duoshuoQuery = {short_name:"cosail"};
+            (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+            })();
+        &lt;/script&gt;
+        &lt;!-- 多说公共JS代码 end --&gt;
+
+&lt;section&gt;
 </code></pre>
 
-<h3>新建页面:</h3>
+<p><code>上面就是duoshuo评论框模块了。</code></p>
 
-<pre><code>添加页面cosail.github.io/new-page/ :
-rake new_page[new-page] //creates /source/new-page/index.markdown
-rake new_page[new-page/page.markdown] //creates /source/new-page/page.markdown  
+<h3>/source/_include/article.html</h3>
+
+<p>在disqus代码：</p>
+
+<p>下方添加duoshuo代码：</p>
+
+<pre><code>      | &lt;a href="#comments"&gt;Comments&lt;/a&gt;
 </code></pre>
 
-<p>访问试试: <a href="http://cosail.github.io/new-page/">cosail.github.io/new-page/</a></p>
+<p><code>这样就在文章上面加上了一个评论链接。</code></p>
 
-<h3>使用octopress: 创建,编辑,生成并发布文章</h3>
+<h3>/source/_include/asides/duoshuo.html</h3>
 
-<pre><code>rake new_post["文章名"]  //新建文章
-编辑文章: 编辑source/_posts/下的相应markdown文件
-rake generate     //生成
-可选择备份一下:
-        git add .
-        git commit -am "back up for source/." 
-        git push origin source
-rake deploy     //发布
+<p>这个文件需要你新建，然后复制粘贴以下代码：</p>
+
+<pre><code>&lt;section&gt;
+&lt;h1&gt;最新评论&lt;/h1&gt;
+&lt;ul class="ds-recent-comments" data-num-items="10" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="18"&gt;&lt;/ul&gt;
+
+&lt;/section&gt;
+
+`上面的代码是为了在侧边栏里显示最新评论，为了把它添加到侧边栏，还需在_config.yml 文件中的 blog_index_asides 行或 page_asides 行或 post_asides 行中添加：`  
+
+asides/duoshuo.html
 </code></pre>
 
-<h3>另外一点小改动:</h3>
+<h3>/source/index.html ：</h3>
 
-<p>为了点击链接在新标签页中打开, <br/>
-在source/_include/custom/head.html文件末尾添加一行 :<br/>
-   <code>&lt;base target=”_ blank”&gt;</code><br/>
-点击试试: <a href="http://www.baidu.com">百度</a></p>
-
-<h3>参考:</h3>
-
-<p><a href="http://www.itzhoulin.com/category/wordpress/">利用octopress部署博客到github</a><br/>
-<a href="https://ruby-china.org/topics/1605">执行 rails server 报错 Could not find a JavaScript runtime</a><br/>
-<a href="http://jingyan.baidu.com/album/afd8f4de4595ac34e386e969.html?picindex=1">解决WP加载谷歌ajax.googleapis.com缓慢问题</a><br/>
-<a href="http://zhidao.baidu.com/link?url=688qT_eBlOJIcHrFM1wmHFYBLWozjH1cE1FUW8ezjOyT6l4kxnlndXu1Uy_-5mZr6G54eES8NtkJfihDPXkovq">在html中怎么设置全部链接在新标签打开</a><br/>
-<a href="http://www.oschina.net/question/218617_66108">markdown 如何显示html标签</a></p>
+<h3>/source/_layouts/page.html ：</h3>
 </div>
   
   
@@ -281,13 +293,17 @@ rake deploy     //发布
 <section>
     <h1>分类目录</h1>
     <ul id="categories">
-        <li class='category'><a href='/blog/categories/git/'>git (2)</a></li>
+        <li class='category'><a href='/blog/categories/github/'>github (3)</a></li>
 
     </ul>
 </section>
 <section>
   <h1>最近发布</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress/">添加duoshuo评论到octopress</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/10/04/octopress/">使用octopress部署github博客</a>
