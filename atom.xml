@@ -4,7 +4,7 @@
   <title><![CDATA[cosail's blog]]></title>
   <link href="http://cosail.github.io/atom.xml" rel="self"/>
   <link href="http://cosail.github.io/"/>
-  <updated>2014-10-10T10:58:30+08:00</updated>
+  <updated>2014-10-10T10:59:33+08:00</updated>
   <id>http://cosail.github.io/</id>
   <author>
     <name><![CDATA[cosail]]></name>
@@ -270,11 +270,17 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
     <content type="html"><![CDATA[<h3>依赖</h3>
 
 <ul>
-<li><p>octopress依赖ruby, 可能你得先执行:</p>
+<li>octopress依赖ruby, 可能你得先执行:</li>
+</ul>
 
-<p>  sudo apt-get install ruby ruby-dev</p></li>
-<li><p>在github创建自己的Web站点:<br/>
-<a href="https://pages.github.com/">看官方示例</a></p></li>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install ruby ruby-dev</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>在github创建自己的Web站点:<br/>
+<a href="https://pages.github.com/">看官方示例</a></li>
 </ul>
 
 
