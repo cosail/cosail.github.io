@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Github | cosail's blog]]></title>
   <link href="http://cosail.github.io/blog/categories/github/atom.xml" rel="self"/>
   <link href="http://cosail.github.io/"/>
-  <updated>2014-10-09T11:41:24+08:00</updated>
+  <updated>2014-10-10T10:59:33+08:00</updated>
   <id>http://cosail.github.io/</id>
   <author>
     <name><![CDATA[cosail]]></name>
@@ -224,9 +224,17 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
     <link href="http://cosail.github.io/blog/2014/10/04/octopress/"/>
     <updated>2014-10-04T16:41:42+08:00</updated>
     <id>http://cosail.github.io/blog/2014/10/04/octopress</id>
-    <content type="html"><![CDATA[<h3>在github创建自己的Web站点</h3>
+    <content type="html"><![CDATA[<h3>依赖</h3>
 
-<p><a href="https://pages.github.com/">看官方示例</a></p>
+<ul>
+<li><p>octopress依赖ruby, 可能你得先执行:<br/>
+<code>
+sudo apt-get install ruby ruby-dev
+</code></p></li>
+<li><p>在github创建自己的Web站点:<br/>
+<a href="https://pages.github.com/">看官方示例</a></p></li>
+</ul>
+
 
 <h3>安装octopress:</h3>
 
@@ -234,12 +242,12 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
 cd octopress
 
 切换gem源为国内源，方法如下：  
-**删除官方源**
-gem source -r https://rubygems.org/
+**先查看当前源(默认为官方源)**
+gem source -l
+**删除官方源**,如
+gem source -r http://rubygems.org/
 **添加淘宝源**
 gem source -a http://ruby.taobao.org/
-**查看当前源**
-gem source -l
 
 **安装bundler**
     gem install bundler
@@ -250,7 +258,7 @@ https://rubygems.org/替换为http://ruby.taobao.org/
 gem 'execjs'    //安装execjs
 gem 'therubyracer'     //execjs还需要后端才能处理，想简单解决可以加上这个 Gem
 
-bundle install  //安装octopress
+bundle install  //安装octopress (若安装过程中出现问题-例如需要root权限来安装某些依赖,请根据提示处理之)
 rake install    //安装octopress默认主题
 </code></pre>
 
