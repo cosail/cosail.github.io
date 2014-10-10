@@ -1,0 +1,4 @@
+<div class="highlight"><pre><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">duoshuo_short_name</span> <span class="nx">and</span> <span class="nx">page</span><span class="p">.</span><span class="nx">comments</span> <span class="o">!=</span> <span class="kc">false</span> <span class="o">%</span><span class="p">}</span>
+<span class="o">|</span> <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;{% if index %}{{ root_url }}{{ post.url }}{% endif %}#comments&quot;</span><span class="o">&gt;</span><span class="nx">Comments</span><span class="o">&lt;</span><span class="err">/a&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>

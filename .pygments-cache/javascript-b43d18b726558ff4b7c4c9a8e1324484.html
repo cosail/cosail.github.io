@@ -1,0 +1,7 @@
+<div class="highlight"><pre><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">disqus_short_name</span> <span class="nx">and</span> <span class="nx">page</span><span class="p">.</span><span class="nx">comments</span> <span class="o">==</span> <span class="kc">true</span> <span class="o">%</span><span class="p">}</span>  
+  <span class="o">&lt;</span><span class="nx">section</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Comments</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;disqus_thread&quot;</span> <span class="nx">aria</span><span class="o">-</span><span class="nx">live</span><span class="o">=</span><span class="s2">&quot;polite&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="o">%</span> <span class="nx">include</span> <span class="nx">post</span><span class="o">/</span><span class="nx">disqus_thread</span><span class="p">.</span><span class="nx">html</span> <span class="o">%</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+  <span class="o">&lt;</span><span class="err">/section&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
