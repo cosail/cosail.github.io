@@ -6,7 +6,13 @@ comments: true
 categories: github
 ---
 
-### 在github创建自己的Web站点
+### 依赖
++ octopress依赖ruby, 可能你得先执行:  
+```
+sudo apt-get install ruby ruby-dev
+```
+
++ 在github创建自己的Web站点:  
 [看官方示例](https://pages.github.com/)  
     
 ### 安装octopress:
@@ -14,12 +20,12 @@ categories: github
 	cd octopress
 	
 	切换gem源为国内源，方法如下：  
-    **删除官方源**
-    gem source -r https://rubygems.org/
+	**先查看当前源(默认为官方源)**
+	gem source -l
+    **删除官方源**,如
+    gem source -r http://rubygems.org/
     **添加淘宝源**
     gem source -a http://ruby.taobao.org/
-    **查看当前源**
-    gem source -l
     
     **安装bundler**
     	gem install bundler
@@ -30,7 +36,7 @@ categories: github
 	gem 'execjs'    //安装execjs
 	gem 'therubyracer'     //execjs还需要后端才能处理，想简单解决可以加上这个 Gem
 
-	bundle install	//安装octopress
+	bundle install	//安装octopress (若安装过程中出现问题-例如需要root权限来安装某些依赖,请根据提示处理之)
 	rake install	//安装octopress默认主题
 
 ### 配置Octopress:

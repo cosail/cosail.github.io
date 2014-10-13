@@ -23,13 +23,13 @@ layout: default
     <a class="next" href="{{paginator.previous_page_path}}">后一篇文章 &rarr;</a>
     {% endif %}</font>
   </div>
-  
+
 	<!-- wuwei,2014.10.8: duoshuo -->
-	{% if site.duoshuo_short_name and page.comments != true %}
+	{% if site.duoshuo_short_name and page.comments != false %}
 	  <section>
 		<div id="duoshuo_thread" aria-live="polite">{% include post/duoshuo.html %}</div>
 	  </section>
-	{% endif %}
+	{% endif %}  
 
 </div>
 
