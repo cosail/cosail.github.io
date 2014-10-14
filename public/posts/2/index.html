@@ -9,7 +9,28 @@
   <meta name="author" content="cosail">
 
   
-  <meta name="description" content="octopress本身已经有disqus评论,但是在国内加载速度太慢，所以还是以国内的duoshuo评论替代之。 主要涉及的文件 下面根目录“/”为octopress/目录 /_config.ymlz ：添加多说相关设置变量 /source/_layouts/post.html ： &hellip;">
+  <meta name="description" content="下面只是“《Linux程序设计》第二章 Shell程序设计” 中的示例代码，我把它们写在若干个文件里： 0 . list.txt 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+1. variable.sh：
+2. condition.sh：
+3. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,7 +102,7 @@
 
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress/">添加duoshuo评论到octopress</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/10/13/shellyu-fa/">Shell语法</a></h1>
     
 
     
@@ -91,12 +112,12 @@
 
 
 
-<time class='entry-date' datetime='2014-10-08T10:25:36+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:25 am</span></time>
+<time class='entry-date' datetime='2014-10-13T23:32:17+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:32 pm</span></time>
         
 		<!-- wuwei,2014.10.7: duoshuo -->
         
-           | <a href="/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress/#duoshuo_thread"
-             data-disqus-identifier="http://cosail.github.io/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress/">评论此文章</a>
+           | <a href="/blog/2014/10/13/shellyu-fa/#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io/blog/2014/10/13/shellyu-fa/">评论此文章</a>
         
       </p>
     
@@ -104,84 +125,53 @@
 
 
 
-  <div class="entry-content"><p>octopress本身已经有disqus评论,但是在国内加载速度太慢，所以还是以国内的duoshuo评论替代之。</p>
+  <div class="entry-content"><p>下面只是“《Linux程序设计》第二章 Shell程序设计” 中的示例代码，我把它们写在若干个文件里：</p>
 
-<h3>主要涉及的文件</h3>
+<h4>0 . list.txt</h4>
 
-<p>下面根目录“/”为octopress/目录</p>
-
-<pre><code>/_config.ymlz ：添加多说相关设置变量  
-/source/_layouts/post.html ：为博文页添加duoshuo评论  
-/source/_layouts/page.html ：为普通页面添加duoshuo评论  
-/source/_include/post/duoshuo.html ：duoshuo评论框  
-/source/_include/article.html ：文章上面加一个评论链接  
-/source/_include/asides/duoshuo.html ：duoshuo最新评论显示  
-/source/index.html ：  为首页添加duoshuo评论  
-</code></pre>
-
-<p>  <code>多说评论框把评论提交到多说服务器，多说最新评论显示从服务器拉取评论以显示在我们的页面上。  
-下面一个文件一个文件地添加代码：</code></p>
-
-<h3>编辑文件/_config.ymlz</h3>
-
-<p>添加如下几行：</p>
-
-<pre><code>duoshuo_short_name: yourname #用你自己duoshuo名（需要去多说网站获取）  
-duoshuo_asides_num: 10      # 侧边栏评论显示条目数  
-duoshuo_asides_avatars: 1   # 侧边栏评论是否显示头像  
-duoshuo_asides_time: 1      # 侧边栏评论是否显示时间  
-duoshuo_asides_title: 1     # 侧边栏评论是否显示标题  
-duoshuo_asides_admin: 1     # 侧边栏评论是否显示作者评论  
-duoshuo_asides_length: 18   # 侧边栏评论截取的长度  
-</code></pre>
-
-<h3>编辑文件/source/_layouts/post.html</h3>
-
-<p>在disqus代码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">disqus_short_name</span> <span class="nx">and</span> <span class="nx">page</span><span class="p">.</span><span class="nx">comments</span> <span class="o">==</span> <span class="kc">true</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">section</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Comments</span><span class="o">&lt;</span><span class="err">/h1&gt;  </span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;disqus_thread&quot;</span> <span class="nx">aria</span><span class="o">-</span><span class="nx">live</span><span class="o">=</span><span class="s2">&quot;polite&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="o">%</span> <span class="nx">include</span> <span class="nx">post</span><span class="o">/</span><span class="nx">disqus_thread</span><span class="p">.</span><span class="nx">html</span> <span class="o">%</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;  </span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/section&gt;  </span>
-</span><span class='line'><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1. variable.sh：
+</span><span class='line'>2. condition.sh：
+</span><span class='line'>3. control.sh：
+</span><span class='line'>4. AndOr.sh：
+</span><span class='line'>5. statementBlock.sh：
+</span><span class='line'>6. function.sh：
+</span><span class='line'>7. command_1.sh：
+</span><span class='line'>8. old_version_set.sh：
+</span><span class='line'>9. new_version_set.sh：
+</span><span class='line'>10. command_2.sh：
+</span><span class='line'>11. command_3.sh：
+</span><span class='line'>12. another.sh：
+</span><span class='line'>13. command_4.sh：
+</span><span class='line'>14. command_5.sh：
+</span><span class='line'>15. command_6.sh：
+</span><span class='line'>16. command_7.sh：
+</span><span class='line'>17. command_8.sh：
+</span><span class='line'>18. dialog.sh：
+</span><span class='line'>19. merge.sh：</span></code></pre></td></tr></table></div></figure>
 
 
-<p>下方添加多说评论框（在文件/source/_include/post/duoshuo.html中实现）：</p>
+<h4>1 . variable.sh</h4>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">duoshuo_short_name</span> <span class="nx">and</span> <span class="nx">page</span><span class="p">.</span><span class="nx">comments</span> <span class="o">!=</span> <span class="kc">false</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'>  <span class="o">&lt;</span><span class="nx">section</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="nx">h3</span><span class="o">&gt;</span><span class="err">多说评论：</span><span class="o">&lt;</span><span class="err">/h3&gt;  </span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;comments&quot;</span> <span class="nx">aria</span><span class="o">-</span><span class="nx">live</span><span class="o">=</span><span class="s2">&quot;polite&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="o">%</span> <span class="nx">include</span> <span class="nx">post</span><span class="o">/</span><span class="nx">duoshuo</span><span class="p">.</span><span class="nx">html</span> <span class="o">%</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;  </span>
-</span><span class='line'>  <span class="o">&lt;</span><span class="err">/section&gt;  </span>
-</span><span class='line'><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>上面是为了使rake new_post["..."]产生的文章页面下包含评论框；若要使用rake new_page["..."]产生的页面下也包含评论框，可以在/source/_layouts/page.html做同样添加。如下：</code></p>
-
-<h3>编辑文件/source/_layouts/page.html</h3>
-
-<p>就如前面index.html中的添加一样，在disqus代码后添加相应代码，这里不赘述了。</p>
-
-<h3>编辑文件/source/_include/post/duoshuo.html</h3>
-
-<p>这个文件需要你新建，然后复制粘贴以下代码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -202,63 +192,54 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
 <span class='line-number'>19</span>
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">section</span><span class="o">&gt;</span>
-</span><span class='line'>  <span class="c">&lt;!--</span> <span class="err">在</span><span class="nx">octopress</span><span class="o">/</span><span class="err">目录的</span><span class="nx">_config</span><span class="p">.</span><span class="nx">yml</span><span class="err">中已经定义了</span><span class="nx">duoshuo_short_name</span> <span class="o">--&gt;</span>
-</span><span class='line'>  <span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">duoshuo_short_name</span> <span class="o">!=</span> <span class="kc">false</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'>  <span class="c">&lt;!--</span> <span class="err">多说评论框</span> <span class="nx">start</span> <span class="o">--&gt;</span>
-</span><span class='line'>  <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;ds-thread&quot;</span>  <span class="nx">data</span><span class="o">-</span><span class="nx">title</span><span class="o">=</span><span class="s2">&quot;添加duoshuo评论到octopress&quot;</span> <span class="o">&gt;&lt;</span><span class="err">/div&gt;</span>
-</span><span class='line'>      <span class="c">&lt;!--</span> <span class="err">多说评论框</span> <span class="nx">end</span> <span class="o">--&gt;</span>
-</span><span class='line'>      <span class="c">&lt;!--</span> <span class="err">多说公共</span><span class="nx">JS</span><span class="err">代码</span> <span class="nx">start</span> <span class="p">(</span><span class="err">一个网页只需插入一次</span><span class="p">)</span> <span class="o">--&gt;</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span><span class="o">&gt;</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">duoshuoQuery</span> <span class="o">=</span> <span class="p">{</span><span class="nx">short_name</span><span class="o">:</span><span class="s2">&quot;cosail&quot;</span><span class="p">};</span>
-</span><span class='line'>          <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>              <span class="kd">var</span> <span class="nx">ds</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
-</span><span class='line'>              <span class="nx">ds</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span><span class="nx">ds</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-</span><span class='line'>              <span class="nx">ds</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">==</span> <span class="s1">&#39;https:&#39;</span> <span class="o">?</span> <span class="s1">&#39;https:&#39;</span> <span class="o">:</span> <span class="s1">&#39;http:&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;//static.duoshuo.com/embed.js&#39;</span><span class="p">;</span>
-</span><span class='line'>              <span class="nx">ds</span><span class="p">.</span><span class="nx">charset</span> <span class="o">=</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">;</span>
-</span><span class='line'>              <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-</span><span class='line'>               <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">ds</span><span class="p">);</span>
-</span><span class='line'>          <span class="p">})();</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="err">/script&gt;</span>
-</span><span class='line'>      <span class="c">&lt;!--</span> <span class="err">多说公共</span><span class="nx">JS</span><span class="err">代码</span> <span class="nx">end</span> <span class="o">--&gt;</span>
-</span><span class='line'>  <span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">section</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/sh
+</span><span class='line'>
+</span><span class='line'># Shell变量,环境变量
+</span><span class='line'># 运行时带几个参数： ./variable.sh you me her him them it
+</span><span class='line'>
+</span><span class='line'>echo ---------普通变量------------
+</span><span class='line'>myvar="Hi there!"   
+</span><span class='line'>echo $myvar         #打印变量值
+</span><span class='line'>echo "$myvar"       #双引号可避免空格问题，但不抑制变量解析
+</span><span class='line'>echo '$myvar'       #单引号抑制变量解析
+</span><span class='line'>echo \$myvar        #'$'被'\'转义
+</span><span class='line'>
+</span><span class='line'>echo Please enter some text:
+</span><span class='line'>read myvar          #键盘输入
+</span><span class='line'>echo '$myvar' now equals : $myvar
+</span><span class='line'>
+</span><span class='line'>echo ---------环境变量------------
+</span><span class='line'>echo [$IFS]         #Input Field Separator
+</span><span class='line'>
+</span><span class='line'>echo '$0:' $0        #shell程序文件名
+</span><span class='line'>echo '$$:' $$        #进程ID
+</span><span class='line'>echo '$?:' $?        #最后运行的命令的结束代码（返回值）
+</span><span class='line'>
+</span><span class='line'>echo '$*:'$*        #所有参数
+</span><span class='line'>echo '$@:'$@        #所有参数，但不使用$IFS
+</span><span class='line'>echo '$#:'$#        #参数个数
+</span><span class='line'>echo args: $1,$2,$3,$4,$5   #第1到第5个参数
+</span><span class='line'>
+</span><span class='line'>set -o verbose      #在命令执行前在屏幕上回显命令
+</span><span class='line'>echo '$-:'$-        #使用Set命令设定的Flag一览
+</span><span class='line'>
+</span><span class='line'>exit 0</span></code></pre></td></tr></table></div></figure>
 
 
-<p><code>上面就是duoshuo评论框模块了。</code></p>
+<h4>2 . condition.sh</h4>
 
-<h3>编辑文件/source/_include/article.html</h3>
-
-<p>在disqus代码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">disqus_short_name</span> <span class="nx">and</span> <span class="nx">page</span><span class="p">.</span><span class="nx">comments</span> <span class="o">!=</span> <span class="kc">false</span> <span class="nx">and</span> <span class="nx">post</span><span class="p">.</span><span class="nx">comments</span> <span class="o">!=</span> <span class="kc">false</span> <span class="nx">and</span> <span class="nx">site</span><span class="p">.</span><span class="nx">disqus_show_comment_count</span> <span class="o">==</span> <span class="kc">true</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'><span class="o">|</span> <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;#disqus_thread&quot;</span><span class="o">&gt;</span><span class="nx">Comments</span><span class="o">&lt;</span><span class="err">/a&gt;</span>
-</span><span class='line'><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>下方添加duoshuo代码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">duoshuo_short_name</span> <span class="nx">and</span> <span class="nx">page</span><span class="p">.</span><span class="nx">comments</span> <span class="o">!=</span> <span class="kc">false</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'><span class="o">|</span> <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;#comments&quot;</span><span class="o">&gt;</span><span class="nx">Comments</span><span class="o">&lt;</span><span class="err">/a&gt;</span>
-</span><span class='line'><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>这样就在文章上面加上了一个评论链接。</code></p>
-
-<h3>编辑文件/source/_include/asides/duoshuo.html</h3>
-
-<p>这个文件需要你新建，然后复制粘贴以下代码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -276,50 +257,107 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">section</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="err">最新评论</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">ul</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;ds-recent-comments&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">num</span><span class="o">-</span><span class="nx">items</span><span class="o">=</span><span class="s2">&quot;10&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">show</span><span class="o">-</span><span class="nx">avatars</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">show</span><span class="o">-</span><span class="nx">time</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">show</span><span class="o">-</span><span class="nx">title</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">show</span><span class="o">-</span><span class="nx">admin</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">excerpt</span><span class="o">-</span><span class="nx">length</span><span class="o">=</span><span class="s2">&quot;18&quot;</span><span class="o">&gt;&lt;</span><span class="err">/ul&gt;</span>
-</span><span class='line'><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">index</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'><span class="c">&lt;!--</span><span class="err">多说</span><span class="nx">js</span><span class="err">加载开始，一个页面只需要加载一次</span> <span class="o">--&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span><span class="o">&gt;</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">duoshuoQuery</span> <span class="o">=</span> <span class="p">{</span><span class="nx">short_name</span><span class="o">:</span><span class="s2">&quot;cosail&quot;</span><span class="p">};</span>
-</span><span class='line'>  <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">ds</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="nx">ds</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span><span class="nx">ds</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-</span><span class='line'>    <span class="nx">ds</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;http://static.duoshuo.com/embed.js&#39;</span><span class="p">;</span>
-</span><span class='line'>    <span class="nx">ds</span><span class="p">.</span><span class="nx">charset</span> <span class="o">=</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">ds</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">})();</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/script&gt;</span>
-</span><span class='line'><span class="c">&lt;!--</span><span class="err">多说</span><span class="nx">js</span><span class="err">加载结束，一个页面只需要加载一次</span> <span class="o">--&gt;</span>
-</span><span class='line'><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/section&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</span><span class='line'>
+</span><span class='line'>#
+</span><span class='line'># Shell脚本条件测试:用test或[都可  ('['也是一个命令，位于/usr/bin/)
+</span><span class='line'>#
+</span><span class='line'>
+</span><span class='line'>#字符串比较
+</span><span class='line'>if [ "you" = "me" ]     #'!='表字符串判不等
+</span><span class='line'>then
+</span><span class='line'>    echo "you = me"
+</span><span class='line'>else
+</span><span class='line'>    echo "you != me"
+</span><span class='line'>fi
+</span><span class='line'>
+</span><span class='line'>if [ -z "" ]            #'-n'表不为空
+</span><span class='line'>then
+</span><span class='line'>    echo "string is NULL"
+</span><span class='line'>else
+</span><span class='line'>    echo "string is not NULL"
+</span><span class='line'>fi
+</span><span class='line'>
+</span><span class='line'>#算术比较
+</span><span class='line'>if test 3 -eq 4         #-ne (这里的3,4可以是更复杂的表达式)
+</span><span class='line'>then
+</span><span class='line'>    echo "3 = 4"
+</span><span class='line'>else
+</span><span class='line'>    echo "3 != 4"
+</span><span class='line'>fi
+</span><span class='line'>
+</span><span class='line'>if [ 5 -gt 6 ]          #-ge, -lt, -le, !
+</span><span class='line'>then
+</span><span class='line'>    echo "5 &gt; 6"
+</span><span class='line'>else
+</span><span class='line'>    echo "5 &lt;= 6"
+</span><span class='line'>fi
+</span><span class='line'>
+</span><span class='line'>#文件条件测试
+</span><span class='line'>#文件存在:通常用'-f'代替，因为'-e'可能不可移植
+</span><span class='line'>if test -e fred.c; then     #then也可以放在这，但要';'分隔
+</span><span class='line'>    echo "fred.c is exist"
+</span><span class='line'>else
+</span><span class='line'>    echo "no file fred.c"
+</span><span class='line'>fi
+</span><span class='line'>
+</span><span class='line'>#是普通文件
+</span><span class='line'>if [ -f fred.c ]            #'['与测试内容之间必须有空格，因为'['是个命令名
+</span><span class='line'>then
+</span><span class='line'>    echo "fred.c is a general file"
+</span><span class='line'>else
+</span><span class='line'>    echo "fred.c is not a general file"
+</span><span class='line'>fi
+</span><span class='line'>
+</span><span class='line'># -d 是一个目录
+</span><span class='line'># -r,-w,-x 文件可读，写，执行
+</span><span class='line'># -u,-g 文件的SUID，SGID被设置
+</span><span class='line'># -s 文件的长度不为0
+</span><span class='line'>exit 0</span></code></pre></td></tr></table></div></figure>
 
 
-<p><code>上面的代码是为了在侧边栏里显示最新评论，为了把它添加到侧边栏，还需在_config.yml 文件中的 blog_index_asides 行或 page_asides 行或 post_asides 行中添加：</code></p>
+<h4>3 . control.sh</h4>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">asides</span><span class="o">/</span><span class="nx">duoshuo</span><span class="p">.</span><span class="nx">html</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>编辑文件/source/index.html</h3>
-
-<p>在代码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;blog-index&quot;</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="p">...</span><span class="err">省略</span><span class="p">...</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>的<code>&lt;/div&gt;</code>之前添加一段，像下面这样：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -330,21 +368,1260 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;blog-index&quot;</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="p">...</span><span class="err">省略</span><span class="p">...</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
 </span><span class='line'>
-</span><span class='line'>    <span class="c">&lt;!--</span> <span class="err">增加评论框</span> <span class="o">--&gt;</span>
-</span><span class='line'>    <span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">duoshuo_short_name</span> <span class="nx">and</span> <span class="nx">page</span><span class="p">.</span><span class="nx">comments</span> <span class="o">!=</span> <span class="kc">false</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="nx">section</span><span class="o">&gt;</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;duoshuo_thread&quot;</span> <span class="nx">aria</span><span class="o">-</span><span class="nx">live</span><span class="o">=</span><span class="s2">&quot;polite&quot;</span><span class="o">&gt;</span> <span class="p">{</span><span class="o">%</span> <span class="nx">include</span> <span class="nx">post</span><span class="o">/</span><span class="nx">duoshuo</span><span class="p">.</span><span class="nx">html</span> <span class="o">%</span><span class="p">}</span> <span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="err">/section&gt;</span>
-</span><span class='line'>    <span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
+</span><span class='line'>#
+</span><span class='line'># Shell的控制语句
+</span><span class='line'>#
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>#if
+</span><span class='line'>echo "Is it morning? Please answer yes or no:"
+</span><span class='line'>read timeofday
+</span><span class='line'>
+</span><span class='line'>if [ "$timeofday" = "yes" ]  #若$timeofday不加双引号，且为空(未输入，直接按回车)的话,会产生语法错误：if [ = "yes" ]
+</span><span class='line'>then
+</span><span class='line'>    echo "Good morning!"
+</span><span class='line'>elif [ "$timeofday" = "no" ]
+</span><span class='line'>then
+</span><span class='line'>    echo "Good afternoon!"
+</span><span class='line'>else
+</span><span class='line'>    echo "Sorry, it's not recognized: \"$timeofday\""
+</span><span class='line'>    exit 1
+</span><span class='line'>fi
+</span><span class='line'>
+</span><span class='line'>#for
+</span><span class='line'>for var in bar fud 45 "hehe you sob"      #Shell认为所有变量包含的都是字符串，如这里的45
+</span><span class='line'>do
+</span><span class='line'>    echo $var
+</span><span class='line'>done
+</span><span class='line'>
+</span><span class='line'>for file in $(ls *.sh); do      #$(cmd)
+</span><span class='line'>    echo $file
+</span><span class='line'>done
+</span><span class='line'>
+</span><span class='line'>#while
+</span><span class='line'>foo=1
+</span><span class='line'>while [ "$foo" -le 20 ]
+</span><span class='line'>do
+</span><span class='line'>    echo -n "foo = $foo,"        #-n是bash的echo带的去换行参数,不是所有shell都有
+</span><span class='line'>    foo=$(($foo+1))         #$(())结构为算数扩展，替换会里面的表达式的值
+</span><span class='line'>done
+</span><span class='line'>
+</span><span class='line'>#until
+</span><span class='line'>#若是该shell脚本的第一个参数指定的用户登录，则发警报
+</span><span class='line'>until who | grep "$1" &gt; /dev/null   #who列出已登陆的用户
+</span><span class='line'>do
+</span><span class='line'>    sleep 5
+</span><span class='line'>done
+</span><span class='line'>
+</span><span class='line'>echo -e \\a         #响铃(我机器上没有声音?)
+</span><span class='line'>echo "**** $1 has just logged in ! ****"
+</span><span class='line'>
+</span><span class='line'>#case: case结构会使用第一个匹配的模式,即使后面的模式更精确
+</span><span class='line'>echo "is it morning ? Please answer yes or no:"
+</span><span class='line'>read timeofday
+</span><span class='line'>
+</span><span class='line'>case "$timeofday" in
+</span><span class='line'>    [Yy][Ee][Ss] | [Yy])    echo "Good morning";;       #每个模式之后以";;"结尾,可放置多条语句
+</span><span class='line'>    no | n)    
+</span><span class='line'>        echo "you say no or n"
+</span><span class='line'>        echo "Good afternoon";;
+</span><span class='line'>    *)  echo "Soory, answer not recognized"  #*通配符匹配所有
+</span><span class='line'>        echo "please answer yes or no"
+</span><span class='line'>        exit 1
+</span><span class='line'>        ;;      #esac前的;;可省略
+</span><span class='line'>esac
+</span><span class='line'>
+</span><span class='line'>exit 0</span></code></pre></td></tr></table></div></figure>
 
 
-<p><code>这样就在Blog的开始页面index.html上加入了评论功能。</code></p>
+<h4>4 . AndOr.sh</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</span><span class='line'>
+</span><span class='line'>touch file_one
+</span><span class='line'>rm -f file_two
+</span><span class='line'>
+</span><span class='line'>#AND列表:&&
+</span><span class='line'>#[ -f file_two ]测试失败,echo " two"不会执行
+</span><span class='line'>if [ -f file_one ] && echo "one" && [ -f file_two ] && echo " two"
+</span><span class='line'>then
+</span><span class='line'>    echo "true"
+</span><span class='line'>else
+</span><span class='line'>    echo "false"
+</span><span class='line'>fi
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>#OR列表:||
+</span><span class='line'>rm -f file_one
+</span><span class='line'>
+</span><span class='line'>if [ -f file_one ] || echo "one" || echo "One"
+</span><span class='line'>then
+</span><span class='line'>    echo "true"
+</span><span class='line'>else
+</span><span class='line'>    echo "false"
+</span><span class='line'>fi
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>#混用AND和OR列表: 这里没有用if
+</span><span class='line'>#如果测试为真执行命令1, 为假执行命令2
+</span><span class='line'>[ -f file_one ] && echo "test for true: cmd1" || echo "test for false: cmd2"
+</span><span class='line'>
+</span><span class='line'>exit 0</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>5 . statementBlock.sh</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</span><span class='line'>
+</span><span class='line'>#语句块: {}
+</span><span class='line'>if {
+</span><span class='line'>    echo "We in block"
+</span><span class='line'>    echo "You in block"
+</span><span class='line'>    echo "They in block"
+</span><span class='line'>}
+</span><span class='line'>then {
+</span><span class='line'>    echo "true"
+</span><span class='line'>    echo "I said true"
+</span><span class='line'>}
+</span><span class='line'>else
+</span><span class='line'>    echo "false"
+</span><span class='line'>fi</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>6 . function.sh</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</span><span class='line'>
+</span><span class='line'>#
+</span><span class='line'>#Shell函数
+</span><span class='line'>#
+</span><span class='line'>
+</span><span class='line'>func() {
+</span><span class='line'>    echo "this"
+</span><span class='line'>    echo "that"
+</span><span class='line'>    ls /bin/ls
+</span><span class='line'>    echo "result"
+</span><span class='line'>
+</span><span class='line'>    return 0
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>#直接调用函数
+</span><span class='line'>func
+</span><span class='line'>
+</span><span class='line'>echo "-----------------------------"
+</span><span class='line'>
+</span><span class='line'>#res会捕获func()函数echo的字符串
+</span><span class='line'>res="$(func)"   #调用函数就跟使用其他命令一样
+</span><span class='line'>
+</span><span class='line'>echo "func() executed completely:"
+</span><span class='line'>echo $res
+</span><span class='line'>
+</span><span class='line'>echo "-----------------------------"
+</span><span class='line'>
+</span><span class='line'>#函数内局部变量
+</span><span class='line'>func2() {
+</span><span class='line'>    local res="local res"               #local声明局部变量
+</span><span class='line'>    echo "Inside func2(): res=$res"
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>func2
+</span><span class='line'>echo "Outside func2(): res=$res"
+</span><span class='line'>
+</span><span class='line'>echo "-----------------------------"
+</span><span class='line'>
+</span><span class='line'>#从函数返回一个值
+</span><span class='line'>yes_or_no() {
+</span><span class='line'>    echo "Is your name $* ?"        #这里的$*是传给函数的所有参数,不是传给shell程序的参数
+</span><span class='line'>    while true
+</span><span class='line'>    do
+</span><span class='line'>        echo -n "Enter yes or no: "
+</span><span class='line'>        read x
+</span><span class='line'>        
+</span><span class='line'>        case "$x" in
+</span><span class='line'>            y | yes)    return 0;;
+</span><span class='line'>            n | no)     return 1;;
+</span><span class='line'>            *)          echo "Answer yes or no please."
+</span><span class='line'>        esac
+</span><span class='line'>    done
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>if yes_or_no "$1"   #调用函数并传递参数,根据return值判断执行成功还是失败
+</span><span class='line'>then
+</span><span class='line'>    echo "Hi, $1"   #仅当return 0时执行这句
+</span><span class='line'>else
+</span><span class='line'>    echo "Who you are"
+</span><span class='line'>fi
+</span><span class='line'>
+</span><span class='line'>exit 0</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>7 . command_1.sh</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</span><span class='line'>
+</span><span class='line'>#
+</span><span class='line'># Shell命令
+</span><span class='line'>#
+</span><span class='line'>
+</span><span class='line'>#命令1:"break"
+</span><span class='line'>echo ----------------break----------------
+</span><span class='line'>rm -rf fred*
+</span><span class='line'>echo &gt; fred1    #new file
+</span><span class='line'>echo &gt; fred2
+</span><span class='line'>mkdir fred3     #new directory
+</span><span class='line'>echo &gt; fred4
+</span><span class='line'>
+</span><span class='line'>for file in fred*
+</span><span class='line'>do
+</span><span class='line'>    if [ -d "$file" ]; then
+</span><span class='line'>        break;                  #是目录则跳出
+</span><span class='line'>    fi
+</span><span class='line'>done
+</span><span class='line'>
+</span><span class='line'>echo I got a directory: $file
+</span><span class='line'>
+</span><span class='line'>rm -rf fred*
+</span><span class='line'>
+</span><span class='line'>#命令2:"continue"
+</span><span class='line'>echo ---------------continue--------------
+</span><span class='line'>rm -rf fred*
+</span><span class='line'>echo &gt; fred1    #new file
+</span><span class='line'>echo &gt; fred2
+</span><span class='line'>mkdir fred3     #new directory
+</span><span class='line'>echo &gt; fred4
+</span><span class='line'>
+</span><span class='line'>for file in fred*
+</span><span class='line'>do
+</span><span class='line'>    if [ -d "$file" ]; then
+</span><span class='line'>        continue;                  #是目录则马上进入下一次循环
+</span><span class='line'>    fi
+</span><span class='line'>    echo I got a file: $file
+</span><span class='line'>done
+</span><span class='line'>
+</span><span class='line'>rm -rf fred*
+</span><span class='line'>
+</span><span class='line'>echo ---------------:-------------------
+</span><span class='line'>#命令3:":"        //一个空命令,相当于true
+</span><span class='line'>if [ -f fred ]; then
+</span><span class='line'>    :
+</span><span class='line'>else
+</span><span class='line'>    echo "file fred did not exist"
+</span><span class='line'>fi
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>echo -------------.---------------------
+</span><span class='line'>#命令4:"."      //在当前shell中执行命令,而不是在子shell中执行(正如source命令,会改变当前环境)
+</span><span class='line'>echo 请在shell下用". ./old_version_set.sh",". ./new_version_set.sh"来查看效果
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>exit 0</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>8 . old_version_set.sh</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</span><span class='line'>
+</span><span class='line'>version=Old_version
+</span><span class='line'>PS1="Old&gt; "
+</span><span class='line'>PATH=/bin:/usr/bin:/usr/local/Old_bin:.</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>9 . new_version_set.sh</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</span><span class='line'>
+</span><span class='line'>version=New_version
+</span><span class='line'>PS1="New&gt; "
+</span><span class='line'>PATH=/bin:/usr/bin:/usr/local/New_bin:.</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>10 . command_2.sh</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</span><span class='line'>
+</span><span class='line'>#
+</span><span class='line'>#   shell命令
+</span><span class='line'>#
+</span><span class='line'>
+</span><span class='line'>echo ------------echo----------------
+</span><span class='line'>#命令5:"echo"
+</span><span class='line'>#不换行显示
+</span><span class='line'>echo -n "string to output."     #-n代表不输出换行
+</span><span class='line'>echo -e "string to output.\c"   #开启转义,\c代表结束输出(请看:man echo)
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>echo    #换行
+</span><span class='line'>echo ------------eval--------------
+</span><span class='line'>#命令6:"eval"           //对参数求值:像另一个$,它给出一个变量的值的值
+</span><span class='line'>foo=10
+</span><span class='line'>x=foo
+</span><span class='line'>y='$'$x         #y='$foo'
+</span><span class='line'>echo $y
+</span><span class='line'>
+</span><span class='line'>eval y='$'$x    #y=$foo=10
+</span><span class='line'>echo $y
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>echo ------------exec-------------
+</span><span class='line'>#命令7:"exec"   //exec命令在执行时会把当前的shell进程关闭，然后换到后面的命令继续执行。
+</span><span class='line'>#如:"exec touch afile"      //会关闭shell,并创建文件afile.
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>echo -------------exit-------------
+</span><span class='line'>#命令8:"exit"
+</span><span class='line'>exit 0  #成功
+</span><span class='line'>exit 1  # 1-125表错误码
+</span><span class='line'>#126表文件不可执行,127表命令未找到,128及以上表出现一个信号</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>11 . command_3.sh</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</span><span class='line'>
+</span><span class='line'>#
+</span><span class='line'># shell命令
+</span><span class='line'>#
+</span><span class='line'>
+</span><span class='line'>echo -------------export--------------
+</span><span class='line'>#命令9:"export"
+</span><span class='line'>foo="The first var"
+</span><span class='line'>export bar="The second var" #被导出
+</span><span class='line'>foo12="The 1.5th var"
+</span><span class='line'>
+</span><span class='line'>#或set -allexport,表示导出后面声明的所有变量
+</span><span class='line'>set -a  
+</span><span class='line'>foo2="The third var"    #被导出
+</span><span class='line'>bar2="The fourth var"   #被导出
+</span><span class='line'>
+</span><span class='line'>./another.sh        #调用另一个shell脚本,它只能看见导出的bar变量,而看不到foo
+</span><span class='line'>
+</span><span class='line'>echo -----------expr------------
+</span><span class='line'>#命令10:"expr"      //将它的参数作为一个表达式来求值
+</span><span class='line'>x=3
+</span><span class='line'>echo "$x"
+</span><span class='line'>x=`expr $x + 1`     #可替换为$((...))语法,更有效
+</span><span class='line'>echo "$x"
+</span><span class='line'>x=$(expr $x + 1)
+</span><span class='line'>echo "$x"
+</span><span class='line'>
+</span><span class='line'>echo -------------printf------------
+</span><span class='line'>#命令11:"printf"        //较新的版本shell提供该命令产生格式化输出,用来代替echo
+</span><span class='line'>y="you are not you."
+</span><span class='line'>printf "%s:x=%d,y=\"%s\"\n" "info" "$x" "$y"    #$y要用""包围
+</span><span class='line'>
+</span><span class='line'>echo -----------set--------------
+</span><span class='line'>#命令12:"set"           //为shell设置参数变量,就像脚本的参数(命令9用法不太一样)
+</span><span class='line'>set $(date)     #设置参数为date命令的输出(空格分隔的)
+</span><span class='line'>echo $0,$1,$2,$3
+</span><span class='line'>set 1 "go you" 5000
+</span><span class='line'>echo $1,$2,$3
+</span><span class='line'>
+</span><span class='line'>echo -----------shift-----------
+</span><span class='line'>#命令12:"shift"         //将所有的参数变量左移一个位置:$2变为$1...,注意$0不变
+</span><span class='line'>while [ "$1" != "" ]; do
+</span><span class='line'>    echo "$1"
+</span><span class='line'>    shift
+</span><span class='line'>done
+</span><span class='line'>
+</span><span class='line'>exit 0</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>12 . another.sh</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</span><span class='line'>
+</span><span class='line'>echo "$foo"
+</span><span class='line'>echo "$bar"
+</span><span class='line'>
+</span><span class='line'>echo "$foo12"
+</span><span class='line'>
+</span><span class='line'>echo "$foo2"
+</span><span class='line'>echo "$bar2"</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>13 . command_4.sh</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</span><span class='line'>
+</span><span class='line'>#
+</span><span class='line'># shell命令
+</span><span class='line'>#
+</span><span class='line'>
+</span><span class='line'>echo --------------unset---------------
+</span><span class='line'>#命令14:"unset"     //从环境中删除变量或函数,但不能删除shell本身定义的只读变量如PATH
+</span><span class='line'>foo="Oh I'am here"
+</span><span class='line'>echo $foo
+</span><span class='line'>
+</span><span class='line'>foo=        #将foo设为空,变量仍存在
+</span><span class='line'>echo $foo
+</span><span class='line'>
+</span><span class='line'>foo="Oh i am here again"
+</span><span class='line'>echo $foo
+</span><span class='line'>unset foo   #将foo变量删除掉
+</span><span class='line'>echo $foo
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>echo --------------trap------------------
+</span><span class='line'>#命令15:"trap"          
+</span><span class='line'>#   trap cmd signal: 当信号signal出现时,执行命令cmd(该命令之后有效)
+</span><span class='line'>#   trap signal: 忽略信号signal
+</span><span class='line'>#   trap - signal: 恢复signal的默认处理
+</span><span class='line'>trap 'rm -f /tmp/my_tmp_file_$$' INT    #可以用trap -l看到INT信号
+</span><span class='line'>echo createing file /tmp/my_tmp_file_$$
+</span><span class='line'>date &gt; /tmp/my_tmp_file_$$
+</span><span class='line'>
+</span><span class='line'>echo "press CTRL+C to interrupt ..."
+</span><span class='line'>while [ -f /tmp/my_tmp_file_$$ ]; do
+</span><span class='line'>    echo File exists
+</span><span class='line'>    sleep 1
+</span><span class='line'>done
+</span><span class='line'>echo "File no longer exists"
+</span><span class='line'>
+</span><span class='line'>#设置回CTRL+C信号的默认处理:终止程序
+</span><span class='line'>trap INT
+</span><span class='line'>echo createing file /tmp/my_tmp_file_$$
+</span><span class='line'>date &gt; /tmp/my_tmp_file_$$
+</span><span class='line'>
+</span><span class='line'>echo "press CTRL+C to interrupt ..."
+</span><span class='line'>while [ -f /tmp/my_tmp_file_$$ ]; do
+</span><span class='line'>    echo File exists
+</span><span class='line'>    sleep 1
+</span><span class='line'>done
+</span><span class='line'>echo "should not reach here"                 </span></code></pre></td></tr></table></div></figure>
+
+
+<h4>14 . command_5.sh</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</span><span class='line'>
+</span><span class='line'>#
+</span><span class='line'># shell
+</span><span class='line'>#
+</span><span class='line'>
+</span><span class='line'>echo -----------find------------
+</span><span class='line'>#命令16:"find"
+</span><span class='line'>#find [path] [options] [test] [actions]
+</span><span class='line'>find . -name fun*.sh -print
+</span><span class='line'>echo -------
+</span><span class='line'>
+</span><span class='line'>find / -mount -name wish    #-mount不去搜索挂载的其他文件系统
+</span><span class='line'>echo -------
+</span><span class='line'>
+</span><span class='line'>find . -newer command_2.sh -type f     #搜索比command_2.sh要新的文件,不是目录
+</span><span class='line'>echo -------
+</span><span class='line'>
+</span><span class='line'>find . -newer command_2.sh -o -name "v*.sh"   #-o表示或者,-a表示并且,!表非
+</span><span class='line'>echo -------
+</span><span class='line'>
+</span><span class='line'>find . -newer command_2.sh -or -name "v*.sh"   #-or表示或者,-and表示并且,-not表非
+</span><span class='line'>echo -------
+</span><span class='line'>
+</span><span class='line'>#用圆括号来组合测试(不用也是成功的)
+</span><span class='line'>find . \( -newer command_2.sh -o -name "v*.sh" \) -type f -print
+</span><span class='line'>echo -------
+</span><span class='line'>
+</span><span class='line'>#找到匹配的文件后,可以执行指定的动作:
+</span><span class='line'>find . -name "c*" -exec ls -l {} \;     #-exec或-ok命令将后续参数作为他们的参数直到被"\;"终止,魔串"{}"会被当前文件的完整路径取代</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>15 . command_6.sh</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</span><span class='line'>
+</span><span class='line'>#
+</span><span class='line'># shell命令
+</span><span class='line'>#
+</span><span class='line'>
+</span><span class='line'>echo ----grep: General Regular Expression Parser----
+</span><span class='line'>#grep [option] pattern [files]
+</span><span class='line'>grep "if" ./condition.sh
+</span><span class='line'>
+</span><span class='line'>echo ----------
+</span><span class='line'>grep -c "if" ./condition.sh ./command_1.sh  #搜索多个文件,只输出匹配行数
+</span><span class='line'>
+</span><span class='line'>echo ----------
+</span><span class='line'>grep -v "i" ./condition.sh      #匹配不出现"i"的行
+</span><span class='line'>
+</span><span class='line'>echo ---------
+</span><span class='line'>grep ^# ./condition.sh      #行首为用'^',行尾用'$'
+</span><span class='line'>
+</span><span class='line'>echo -----------
+</span><span class='line'>grep [[:blank:]]echo[[:blank:]] ./condition.sh      #[]中可以使用特殊匹配模式,[:blank:]表示空格或制表符
+</span><span class='line'>
+</span><span class='line'>echo ------------
+</span><span class='line'>grep -E [a-z]\{5\} ./condition.sh   #-E开启扩展匹配:? * + {n} {n,} {n,m}  //匹配0或1次,0或多次,1或多次,n次,n次及以上,n到m次</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>16 . command_7.sh</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</span><span class='line'>
+</span><span class='line'>#
+</span><span class='line'># shell命令的执行
+</span><span class='line'>#
+</span><span class='line'>
+</span><span class='line'># $(cmd)的结果就是cmd命令的输出     //只有需要脚本可移植时才应该用`cmd`(当命令中有特殊字符时要转义)
+</span><span class='line'>echo '------------$(cmd)-------------'
+</span><span class='line'>echo Current user: $(who)
+</span><span class='line'>whoisthere=`who`
+</span><span class='line'>echo Current user: $whoisthere
+</span><span class='line'>
+</span><span class='line'>echo --------------${var}------------
+</span><span class='line'># 参数扩展: ${var}      //如${i}_tmp会扩展变量i,而$i_tmp会扩展变量i_tmp
+</span><span class='line'>for i in 1 3 5
+</span><span class='line'>do
+</span><span class='line'>    echo cmd_${i}_cmd
+</span><span class='line'>    echo CMD_$i_CMD     #$i_CMD会被扩展为空,不会报错!
+</span><span class='line'>done
+</span><span class='line'>
+</span><span class='line'>echo --------
+</span><span class='line'># ${param:-default}     若param为空,则把扩展为default
+</span><span class='line'># ${#param}             扩展为param的长度
+</span><span class='line'># ${param%word}         在param的尾部删除与word匹配的最短串,返回剩余部分
+</span><span class='line'># ${param%%word}        尾部,删最长匹配
+</span><span class='line'># ${param#word}         头部,删最短匹配
+</span><span class='line'># ${param##word}        头部,删最长匹配
+</span><span class='line'>unset foo
+</span><span class='line'>echo ${foo:-hello you}  #foo为空,扩展为hello you
+</span><span class='line'>
+</span><span class='line'>foo=something
+</span><span class='line'>echo ${foo:-Hello}      #foo不为空,扩展为something
+</span><span class='line'>
+</span><span class='line'>foo=/usr/bin/X11/startx
+</span><span class='line'>echo ${foo#*/}          #删去头部/
+</span><span class='line'>echo ${foo##*/}         #删去头部/usr/bin/x11/
+</span><span class='line'>
+</span><span class='line'>bar=/usr/local/etc/local/networks
+</span><span class='line'>echo ${bar%local*}      #删去尾部local/networks
+</span><span class='line'>echo ${bar%%local*}     #删去尾部local/etc/local/networks
+</span><span class='line'>
+</span><span class='line'>echo '-----example for ${ }------'
+</span><span class='line'>touch 1.gif 2.gif 3.gif
+</span><span class='line'>ls *.gif *.jpg
+</span><span class='line'>
+</span><span class='line'>for image in *.gif
+</span><span class='line'>do
+</span><span class='line'>    mv $image ${image%%gif}jpg      #效果如: mv 1.gif 1.jpg
+</span><span class='line'>done
+</span><span class='line'>ls *.gif *.jpg
+</span><span class='line'>rm *.jpg
+</span><span class='line'>
+</span><span class='line'>#另外:
+</span><span class='line'># ${param:+default}     若param不为空,则返回default
+</span><span class='line'># ${param:=default}     若param为空,则赋值为default,再返回;否则直接返回param的值
+</span><span class='line'># ${param:?default}     若param为空,则输出param: default;否则返回param</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>17 . command_8.sh</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</span><span class='line'>
+</span><span class='line'># &lt;&lt;TAG 和 TAG中间的内容就好象是标准输入的内容
+</span><span class='line'>echo '--------------&lt;&lt;TAG--------------'
+</span><span class='line'>cat &lt;&lt;!SomeText!
+</span><span class='line'>hello you little boy.
+</span><span class='line'>hello you boy.
+</span><span class='line'>hello you.
+</span><span class='line'>hello.
+</span><span class='line'>!SomeText!
+</span><span class='line'>
+</span><span class='line'>echo -------------
+</span><span class='line'>echo "hello." &gt; hei.txt
+</span><span class='line'>echo "hello you." &gt;&gt; hei.txt
+</span><span class='line'>echo "hello you boy." &gt;&gt; hei.txt
+</span><span class='line'>echo "hello you little boy." &gt;&gt; hei.txt
+</span><span class='line'>cat ./hei.txt
+</span><span class='line'>
+</span><span class='line'>echo -------------
+</span><span class='line'>#用ed编辑文件hei.txt,编辑命令为1,d,2,...
+</span><span class='line'>#  下面的'$'用'\'转义,为了防止shell对其做解释,因为要解释它的应该是ed
+</span><span class='line'>ed ./hei.txt &lt;&lt;!SomeOperations!
+</span><span class='line'>1
+</span><span class='line'>d
+</span><span class='line'>2
+</span><span class='line'>\$s/you/me/
+</span><span class='line'>w
+</span><span class='line'>q
+</span><span class='line'>!SomeOperations!
+</span><span class='line'>cat ./hei.txt
+</span><span class='line'>rm ./hei.txt
+</span><span class='line'>
+</span><span class='line'>#调试shell程序
+</span><span class='line'># set -o noexec, 简写set -n, 命令行sh -n foo.sh         //只检查语法,不执行
+</span><span class='line'># set -o verbose, 简写set -v, 命令行sh -v foo.sh        //执行命令前先回显
+</span><span class='line'># set -o xtrace, 简写set -x, 命令行sh -x foo.sh         //执行命令后回显
+</span><span class='line'># set -o nounset, 简写set -u                            //若使用了未定义的变量,给出出错信息
+</span><span class='line'>echo '----------set -v---------'
+</span><span class='line'>set -v
+</span><span class='line'>ls
+</span><span class='line'>set +v          #+v表示关闭verbose选项
+</span><span class='line'>
+</span><span class='line'>echo '----------set -u---------'
+</span><span class='line'>set -u
+</span><span class='line'>#echo $nodefine  #使用了为定义的变量,给出错误信息
+</span><span class='line'>
+</span><span class='line'>#捕获退出信号,输出变量值
+</span><span class='line'>echo ------------trap handler signal-----------
+</span><span class='line'>foovar="i'm something important."
+</span><span class='line'>trap 'echo Exiting: foovar= $foovar' EXIT</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>18 . dialog.sh</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</span><span class='line'>
+</span><span class='line'>#dialog命令: linux控制台下的简单GUI程序
+</span><span class='line'>#对话框   标题                  消息框
+</span><span class='line'>dialog --title "Message you" --msgbox "Tell you something you do not know." 8 40
+</span><span class='line'>if [ $? = 0 ]; then
+</span><span class='line'>    dialog --infobox "your choose: OK" 5 20
+</span><span class='line'>    sleep 1
+</span><span class='line'>    dialog --clear
+</span><span class='line'>fi
+</span><span class='line'>
+</span><span class='line'>#对话框   标题                       复选列表    提示        高  宽 选项数 选项编号,文本,状态....                      标准错误重定向(dialog的输出)
+</span><span class='line'>dialog --title "Check box example" --checklist "Pick Number" 15  25   3     1 "one" "off" 2 "two" "on" 3 "three" "off"  2&gt; /tmp/tmp_file_$$.txt
+</span><span class='line'>ret=$?                                  #保存dialog的返回值
+</span><span class='line'>res=$(cat /tmp/tmp_file_$$.txt)         #保存dialog的输出值(用户选择的选项)
+</span><span class='line'>if [ $ret = 0 ]; then
+</span><span class='line'>    dialog --infobox "Your choise: $res" 10 30
+</span><span class='line'>else
+</span><span class='line'>    dialog --infobox "Bad, you canceled!" 10 30
+</span><span class='line'>fi
+</span><span class='line'>
+</span><span class='line'>echo "$res"</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>19. merge.sh : 合并list.txt中列出的当前目录下的文件</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</span><span class='line'>
+</span><span class='line'>if [ -f list2.txt ]
+</span><span class='line'>then
+</span><span class='line'>    rm -f list2.txt
+</span><span class='line'>fi
+</span><span class='line'>
+</span><span class='line'>cat ./list.txt | while read line　　　　　　#读取list.txt的每一行
+</span><span class='line'>do
+</span><span class='line'>    echo ${line#*[[:blank:]]} &gt;&gt; list2.txt      #去掉行首的序号和空白字符
+</span><span class='line'>done
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>x=0         #文件序号
+</span><span class='line'>if [ -f merged.txt ]
+</span><span class='line'>then
+</span><span class='line'>    rm -r merged.txt
+</span><span class='line'>fi
+</span><span class='line'>
+</span><span class='line'>cat ./list2.txt | while read line
+</span><span class='line'>do
+</span><span class='line'>    x=$(($x + 1))
+</span><span class='line'>    echo "************** $x . $line : start ************" &gt;&gt; merged.txt
+</span><span class='line'>    cat ./$line &gt;&gt; merged.txt
+</span><span class='line'>    echo "************** $x . $line : end **************" &gt;&gt; merged.txt
+</span><span class='line'>    echo "                                               " &gt;&gt; merged.txt
+</span><span class='line'>    echo "                  @ @                       " &gt;&gt; merged.txt
+</span><span class='line'>    echo "                 ( V )                       " &gt;&gt; merged.txt
+</span><span class='line'>    echo "                  ^ ^                       " &gt;&gt; merged.txt
+</span><span class='line'>    echo "                       .=.=.0             " &gt;&gt; merged.txt
+</span><span class='line'>    echo "                                             " &gt;&gt; merged.txt
+</span><span class='line'>done
+</span><span class='line'>
+</span><span class='line'>if [ -f list2.txt ]
+</span><span class='line'>then
+</span><span class='line'>    rm -f list2.txt
+</span><span class='line'>fi                                       </span></code></pre></td></tr></table></div></figure>
+
 </div>
   
   
@@ -408,14 +1685,24 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
 <section>
     <h1>分类目录</h1>
     <ul id="categories">
-        <li class='category'><a href='/blog/categories/git/'>git (1)</a></li>
+        <li class='category'><a href='/blog/categories/emacs/'>emacs (1)</a></li>
+<li class='category'><a href='/blog/categories/git/'>git (1)</a></li>
 <li class='category'><a href='/blog/categories/github/'>github (3)</a></li>
+<li class='category'><a href='/blog/categories/shell/'>shell (1)</a></li>
 
     </ul>
 </section>
 <section>
   <h1>最近发布</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/10/14/emacskuai-jie-jian/">Emacs快捷键</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/13/shellyu-fa/">Shell语法</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/10/12/git-start/">Git概述</a>

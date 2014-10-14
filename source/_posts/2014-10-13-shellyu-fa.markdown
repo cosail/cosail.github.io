@@ -1,0 +1,829 @@
+---
+layout: post
+title: "shell语法"
+date: 2014-10-13 23:32:17 +0800
+comments: true
+categories: shell
+---
+
+下面只是“《Linux程序设计》第二章 Shell程序设计” 中的示例代码，我把它们写在若干个文件里：
+
+#### 0 . list.txt
+
+```
+1. variable.sh：
+2. condition.sh：
+3. control.sh：
+4. AndOr.sh：
+5. statementBlock.sh：
+6. function.sh：
+7. command_1.sh：
+8. old_version_set.sh：
+9. new_version_set.sh：
+10. command_2.sh：
+11. command_3.sh：
+12. another.sh：
+13. command_4.sh：
+14. command_5.sh：
+15. command_6.sh：
+16. command_7.sh：
+17. command_8.sh：
+18. dialog.sh：
+19. merge.sh：
+```
+
+#### 1 . variable.sh 
+
+```
+#!/bin/sh
+
+# Shell变量,环境变量
+# 运行时带几个参数： ./variable.sh you me her him them it
+
+echo ---------普通变量------------
+myvar="Hi there!"   
+echo $myvar         #打印变量值
+echo "$myvar"       #双引号可避免空格问题，但不抑制变量解析
+echo '$myvar'       #单引号抑制变量解析
+echo \$myvar        #'$'被'\'转义
+
+echo Please enter some text:
+read myvar          #键盘输入
+echo '$myvar' now equals : $myvar
+
+echo ---------环境变量------------
+echo [$IFS]         #Input Field Separator
+
+echo '$0:' $0        #shell程序文件名
+echo '$$:' $$        #进程ID
+echo '$?:' $?        #最后运行的命令的结束代码（返回值）
+
+echo '$*:'$*        #所有参数
+echo '$@:'$@        #所有参数，但不使用$IFS
+echo '$#:'$#        #参数个数
+echo args: $1,$2,$3,$4,$5   #第1到第5个参数
+
+set -o verbose      #在命令执行前在屏幕上回显命令
+echo '$-:'$-        #使用Set命令设定的Flag一览
+
+exit 0
+```
+                                              
+#### 2 . condition.sh 
+
+```
+#!/bin/bash
+
+#
+# Shell脚本条件测试:用test或[都可  ('['也是一个命令，位于/usr/bin/)
+#
+
+#字符串比较
+if [ "you" = "me" ]     #'!='表字符串判不等
+then
+    echo "you = me"
+else
+    echo "you != me"
+fi
+
+if [ -z "" ]            #'-n'表不为空
+then
+    echo "string is NULL"
+else
+    echo "string is not NULL"
+fi
+
+#算术比较
+if test 3 -eq 4         #-ne (这里的3,4可以是更复杂的表达式)
+then
+    echo "3 = 4"
+else
+    echo "3 != 4"
+fi
+
+if [ 5 -gt 6 ]          #-ge, -lt, -le, !
+then
+    echo "5 > 6"
+else
+    echo "5 <= 6"
+fi
+
+#文件条件测试
+#文件存在:通常用'-f'代替，因为'-e'可能不可移植
+if test -e fred.c; then     #then也可以放在这，但要';'分隔
+    echo "fred.c is exist"
+else
+    echo "no file fred.c"
+fi
+
+#是普通文件
+if [ -f fred.c ]            #'['与测试内容之间必须有空格，因为'['是个命令名
+then
+    echo "fred.c is a general file"
+else
+    echo "fred.c is not a general file"
+fi
+
+# -d 是一个目录
+# -r,-w,-x 文件可读，写，执行
+# -u,-g 文件的SUID，SGID被设置
+# -s 文件的长度不为0
+exit 0
+```
+            
+                                              
+#### 3 . control.sh 
+
+```
+#!/bin/bash
+
+#
+# Shell的控制语句
+#
+
+#if
+echo "Is it morning? Please answer yes or no:"
+read timeofday
+
+if [ "$timeofday" = "yes" ]  #若$timeofday不加双引号，且为空(未输入，直接按回车)的话,会产生语法错误：if [ = "yes" ]
+then
+    echo "Good morning!"
+elif [ "$timeofday" = "no" ]
+then
+    echo "Good afternoon!"
+else
+    echo "Sorry, it's not recognized: \"$timeofday\""
+    exit 1
+fi
+
+#for
+for var in bar fud 45 "hehe you sob"      #Shell认为所有变量包含的都是字符串，如这里的45
+do
+    echo $var
+done
+
+for file in $(ls *.sh); do      #$(cmd)
+    echo $file
+done
+
+#while
+foo=1
+while [ "$foo" -le 20 ]
+do
+    echo -n "foo = $foo,"        #-n是bash的echo带的去换行参数,不是所有shell都有
+    foo=$(($foo+1))         #$(())结构为算数扩展，替换会里面的表达式的值
+done
+
+#until
+#若是该shell脚本的第一个参数指定的用户登录，则发警报
+until who | grep "$1" > /dev/null   #who列出已登陆的用户
+do
+    sleep 5
+done
+
+echo -e \\a         #响铃(我机器上没有声音?)
+echo "**** $1 has just logged in ! ****"
+
+#case: case结构会使用第一个匹配的模式,即使后面的模式更精确
+echo "is it morning ? Please answer yes or no:"
+read timeofday
+
+case "$timeofday" in
+    [Yy][Ee][Ss] | [Yy])    echo "Good morning";;       #每个模式之后以";;"结尾,可放置多条语句
+    no | n)    
+        echo "you say no or n"
+        echo "Good afternoon";;
+    *)  echo "Soory, answer not recognized"  #*通配符匹配所有
+        echo "please answer yes or no"
+        exit 1
+        ;;      #esac前的;;可省略
+esac
+
+exit 0
+```
+
+          
+#### 4 . AndOr.sh  
+
+```
+#!/bin/bash
+
+touch file_one
+rm -f file_two
+
+#AND列表:&&
+#[ -f file_two ]测试失败,echo " two"不会执行
+if [ -f file_one ] && echo "one" && [ -f file_two ] && echo " two"
+then
+    echo "true"
+else
+    echo "false"
+fi
+
+
+#OR列表:||
+rm -f file_one
+
+if [ -f file_one ] || echo "one" || echo "One"
+then
+    echo "true"
+else
+    echo "false"
+fi
+
+
+#混用AND和OR列表: 这里没有用if
+#如果测试为真执行命令1, 为假执行命令2
+[ -f file_one ] && echo "test for true: cmd1" || echo "test for false: cmd2"
+
+exit 0
+```
+
+                                              
+#### 5 . statementBlock.sh  
+
+```
+#!/bin/bash
+
+#语句块: {}
+if {
+    echo "We in block"
+    echo "You in block"
+    echo "They in block"
+}
+then {
+    echo "true"
+    echo "I said true"
+}
+else
+    echo "false"
+fi
+```
+
+                                              
+#### 6 . function.sh  
+
+```
+#!/bin/bash
+
+#
+#Shell函数
+#
+
+func() {
+    echo "this"
+    echo "that"
+    ls /bin/ls
+    echo "result"
+
+    return 0
+}
+
+#直接调用函数
+func
+
+echo "-----------------------------"
+
+#res会捕获func()函数echo的字符串
+res="$(func)"   #调用函数就跟使用其他命令一样
+
+echo "func() executed completely:"
+echo $res
+
+echo "-----------------------------"
+
+#函数内局部变量
+func2() {
+    local res="local res"               #local声明局部变量
+    echo "Inside func2(): res=$res"
+}
+
+func2
+echo "Outside func2(): res=$res"
+
+echo "-----------------------------"
+
+#从函数返回一个值
+yes_or_no() {
+    echo "Is your name $* ?"        #这里的$*是传给函数的所有参数,不是传给shell程序的参数
+    while true
+    do
+        echo -n "Enter yes or no: "
+        read x
+        
+        case "$x" in
+            y | yes)    return 0;;
+            n | no)     return 1;;
+            *)          echo "Answer yes or no please."
+        esac
+    done
+}
+
+if yes_or_no "$1"   #调用函数并传递参数,根据return值判断执行成功还是失败
+then
+    echo "Hi, $1"   #仅当return 0时执行这句
+else
+    echo "Who you are"
+fi
+
+exit 0
+```
+
+#### 7 . command_1.sh
+
+```
+#!/bin/bash
+
+#
+# Shell命令
+#
+
+#命令1:"break"
+echo ----------------break----------------
+rm -rf fred*
+echo > fred1    #new file
+echo > fred2
+mkdir fred3     #new directory
+echo > fred4
+
+for file in fred*
+do
+    if [ -d "$file" ]; then
+        break;                  #是目录则跳出
+    fi
+done
+
+echo I got a directory: $file
+
+rm -rf fred*
+
+#命令2:"continue"
+echo ---------------continue--------------
+rm -rf fred*
+echo > fred1    #new file
+echo > fred2
+mkdir fred3     #new directory
+echo > fred4
+
+for file in fred*
+do
+    if [ -d "$file" ]; then
+        continue;                  #是目录则马上进入下一次循环
+    fi
+    echo I got a file: $file
+done
+
+rm -rf fred*
+
+echo ---------------:-------------------
+#命令3:":"        //一个空命令,相当于true
+if [ -f fred ]; then
+    :
+else
+    echo "file fred did not exist"
+fi
+
+
+echo -------------.---------------------
+#命令4:"."      //在当前shell中执行命令,而不是在子shell中执行(正如source命令,会改变当前环境)
+echo 请在shell下用". ./old_version_set.sh",". ./new_version_set.sh"来查看效果
+
+
+exit 0
+```
+
+                                              
+#### 8 . old_version_set.sh
+
+```
+#!/bin/bash
+
+version=Old_version
+PS1="Old> "
+PATH=/bin:/usr/bin:/usr/local/Old_bin:.
+```
+
+                                              
+#### 9 . new_version_set.sh
+
+```
+#!/bin/bash
+
+version=New_version
+PS1="New> "
+PATH=/bin:/usr/bin:/usr/local/New_bin:.
+```
+
+                                              
+#### 10 . command_2.sh 
+
+```
+#!/bin/bash
+
+#
+#   shell命令
+#
+
+echo ------------echo----------------
+#命令5:"echo"
+#不换行显示
+echo -n "string to output."     #-n代表不输出换行
+echo -e "string to output.\c"   #开启转义,\c代表结束输出(请看:man echo)
+
+
+echo    #换行
+echo ------------eval--------------
+#命令6:"eval"           //对参数求值:像另一个$,它给出一个变量的值的值
+foo=10
+x=foo
+y='$'$x         #y='$foo'
+echo $y
+
+eval y='$'$x    #y=$foo=10
+echo $y
+
+
+echo ------------exec-------------
+#命令7:"exec"   //exec命令在执行时会把当前的shell进程关闭，然后换到后面的命令继续执行。
+#如:"exec touch afile"      //会关闭shell,并创建文件afile.
+
+
+echo -------------exit-------------
+#命令8:"exit"
+exit 0  #成功
+exit 1  # 1-125表错误码
+#126表文件不可执行,127表命令未找到,128及以上表出现一个信号
+```
+
+                                              
+#### 11 . command_3.sh
+
+```
+#!/bin/bash
+
+#
+# shell命令
+#
+
+echo -------------export--------------
+#命令9:"export"
+foo="The first var"
+export bar="The second var" #被导出
+foo12="The 1.5th var"
+
+#或set -allexport,表示导出后面声明的所有变量
+set -a  
+foo2="The third var"    #被导出
+bar2="The fourth var"   #被导出
+
+./another.sh        #调用另一个shell脚本,它只能看见导出的bar变量,而看不到foo
+
+echo -----------expr------------
+#命令10:"expr"      //将它的参数作为一个表达式来求值
+x=3
+echo "$x"
+x=`expr $x + 1`     #可替换为$((...))语法,更有效
+echo "$x"
+x=$(expr $x + 1)
+echo "$x"
+
+echo -------------printf------------
+#命令11:"printf"        //较新的版本shell提供该命令产生格式化输出,用来代替echo
+y="you are not you."
+printf "%s:x=%d,y=\"%s\"\n" "info" "$x" "$y"    #$y要用""包围
+
+echo -----------set--------------
+#命令12:"set"           //为shell设置参数变量,就像脚本的参数(命令9用法不太一样)
+set $(date)     #设置参数为date命令的输出(空格分隔的)
+echo $0,$1,$2,$3
+set 1 "go you" 5000
+echo $1,$2,$3
+
+echo -----------shift-----------
+#命令12:"shift"         //将所有的参数变量左移一个位置:$2变为$1...,注意$0不变
+while [ "$1" != "" ]; do
+    echo "$1"
+    shift
+done
+
+exit 0
+```
+
+#### 12 . another.sh 
+
+```
+#!/bin/bash
+
+echo "$foo"
+echo "$bar"
+
+echo "$foo12"
+
+echo "$foo2"
+echo "$bar2"
+```
+
+                                              
+#### 13 . command_4.sh 
+
+```
+#!/bin/bash
+
+#
+# shell命令
+#
+
+echo --------------unset---------------
+#命令14:"unset"     //从环境中删除变量或函数,但不能删除shell本身定义的只读变量如PATH
+foo="Oh I'am here"
+echo $foo
+
+foo=        #将foo设为空,变量仍存在
+echo $foo
+
+foo="Oh i am here again"
+echo $foo
+unset foo   #将foo变量删除掉
+echo $foo
+
+
+echo --------------trap------------------
+#命令15:"trap"          
+#   trap cmd signal: 当信号signal出现时,执行命令cmd(该命令之后有效)
+#   trap signal: 忽略信号signal
+#   trap - signal: 恢复signal的默认处理
+trap 'rm -f /tmp/my_tmp_file_$$' INT    #可以用trap -l看到INT信号
+echo createing file /tmp/my_tmp_file_$$
+date > /tmp/my_tmp_file_$$
+
+echo "press CTRL+C to interrupt ..."
+while [ -f /tmp/my_tmp_file_$$ ]; do
+    echo File exists
+    sleep 1
+done
+echo "File no longer exists"
+
+#设置回CTRL+C信号的默认处理:终止程序
+trap INT
+echo createing file /tmp/my_tmp_file_$$
+date > /tmp/my_tmp_file_$$
+
+echo "press CTRL+C to interrupt ..."
+while [ -f /tmp/my_tmp_file_$$ ]; do
+    echo File exists
+    sleep 1
+done
+echo "should not reach here"                 
+```
+                                        
+#### 14 . command_5.sh
+
+```
+#!/bin/bash
+
+#
+# shell
+#
+
+echo -----------find------------
+#命令16:"find"
+#find [path] [options] [test] [actions]
+find . -name fun*.sh -print
+echo -------
+
+find / -mount -name wish    #-mount不去搜索挂载的其他文件系统
+echo -------
+
+find . -newer command_2.sh -type f     #搜索比command_2.sh要新的文件,不是目录
+echo -------
+
+find . -newer command_2.sh -o -name "v*.sh"   #-o表示或者,-a表示并且,!表非
+echo -------
+
+find . -newer command_2.sh -or -name "v*.sh"   #-or表示或者,-and表示并且,-not表非
+echo -------
+
+#用圆括号来组合测试(不用也是成功的)
+find . \( -newer command_2.sh -o -name "v*.sh" \) -type f -print
+echo -------
+
+#找到匹配的文件后,可以执行指定的动作:
+find . -name "c*" -exec ls -l {} \;     #-exec或-ok命令将后续参数作为他们的参数直到被"\;"终止,魔串"{}"会被当前文件的完整路径取代
+```
+
+#### 15 . command_6.sh
+
+```
+#!/bin/bash
+
+#
+# shell命令
+#
+
+echo ----grep: General Regular Expression Parser----
+#grep [option] pattern [files]
+grep "if" ./condition.sh
+
+echo ----------
+grep -c "if" ./condition.sh ./command_1.sh  #搜索多个文件,只输出匹配行数
+
+echo ----------
+grep -v "i" ./condition.sh      #匹配不出现"i"的行
+
+echo ---------
+grep ^# ./condition.sh      #行首为用'^',行尾用'$'
+
+echo -----------
+grep [[:blank:]]echo[[:blank:]] ./condition.sh      #[]中可以使用特殊匹配模式,[:blank:]表示空格或制表符
+
+echo ------------
+grep -E [a-z]\{5\} ./condition.sh   #-E开启扩展匹配:? * + {n} {n,} {n,m}  //匹配0或1次,0或多次,1或多次,n次,n次及以上,n到m次
+```
+
+                                              
+#### 16 . command_7.sh 
+
+```
+#!/bin/bash
+
+#
+# shell命令的执行
+#
+
+# $(cmd)的结果就是cmd命令的输出     //只有需要脚本可移植时才应该用`cmd`(当命令中有特殊字符时要转义)
+echo '------------$(cmd)-------------'
+echo Current user: $(who)
+whoisthere=`who`
+echo Current user: $whoisthere
+
+echo --------------${var}------------
+# 参数扩展: ${var}      //如${i}_tmp会扩展变量i,而$i_tmp会扩展变量i_tmp
+for i in 1 3 5
+do
+    echo cmd_${i}_cmd
+    echo CMD_$i_CMD     #$i_CMD会被扩展为空,不会报错!
+done
+
+echo --------
+# ${param:-default}     若param为空,则把扩展为default
+# ${#param}             扩展为param的长度
+# ${param%word}         在param的尾部删除与word匹配的最短串,返回剩余部分
+# ${param%%word}        尾部,删最长匹配
+# ${param#word}         头部,删最短匹配
+# ${param##word}        头部,删最长匹配
+unset foo
+echo ${foo:-hello you}  #foo为空,扩展为hello you
+
+foo=something
+echo ${foo:-Hello}      #foo不为空,扩展为something
+
+foo=/usr/bin/X11/startx
+echo ${foo#*/}          #删去头部/
+echo ${foo##*/}         #删去头部/usr/bin/x11/
+
+bar=/usr/local/etc/local/networks
+echo ${bar%local*}      #删去尾部local/networks
+echo ${bar%%local*}     #删去尾部local/etc/local/networks
+
+echo '-----example for ${ }------'
+touch 1.gif 2.gif 3.gif
+ls *.gif *.jpg
+
+for image in *.gif
+do
+    mv $image ${image%%gif}jpg      #效果如: mv 1.gif 1.jpg
+done
+ls *.gif *.jpg
+rm *.jpg
+
+#另外:
+# ${param:+default}     若param不为空,则返回default
+# ${param:=default}     若param为空,则赋值为default,再返回;否则直接返回param的值
+# ${param:?default}     若param为空,则输出param: default;否则返回param
+```
+
+    
+#### 17 . command_8.sh 
+
+```
+#!/bin/bash
+
+# <<TAG 和 TAG中间的内容就好象是标准输入的内容
+echo '--------------<<TAG--------------'
+cat <<!SomeText!
+hello you little boy.
+hello you boy.
+hello you.
+hello.
+!SomeText!
+
+echo -------------
+echo "hello." > hei.txt
+echo "hello you." >> hei.txt
+echo "hello you boy." >> hei.txt
+echo "hello you little boy." >> hei.txt
+cat ./hei.txt
+
+echo -------------
+#用ed编辑文件hei.txt,编辑命令为1,d,2,...
+#  下面的'$'用'\'转义,为了防止shell对其做解释,因为要解释它的应该是ed
+ed ./hei.txt <<!SomeOperations!
+1
+d
+2
+\$s/you/me/
+w
+q
+!SomeOperations!
+cat ./hei.txt
+rm ./hei.txt
+
+#调试shell程序
+# set -o noexec, 简写set -n, 命令行sh -n foo.sh         //只检查语法,不执行
+# set -o verbose, 简写set -v, 命令行sh -v foo.sh        //执行命令前先回显
+# set -o xtrace, 简写set -x, 命令行sh -x foo.sh         //执行命令后回显
+# set -o nounset, 简写set -u                            //若使用了未定义的变量,给出出错信息
+echo '----------set -v---------'
+set -v
+ls
+set +v          #+v表示关闭verbose选项
+
+echo '----------set -u---------'
+set -u
+#echo $nodefine  #使用了为定义的变量,给出错误信息
+
+#捕获退出信号,输出变量值
+echo ------------trap handler signal-----------
+foovar="i'm something important."
+trap 'echo Exiting: foovar= $foovar' EXIT
+```
+
+       
+#### 18 . dialog.sh
+
+```
+#!/bin/bash
+
+#dialog命令: linux控制台下的简单GUI程序
+#对话框   标题                  消息框
+dialog --title "Message you" --msgbox "Tell you something you do not know." 8 40
+if [ $? = 0 ]; then
+    dialog --infobox "your choose: OK" 5 20
+    sleep 1
+    dialog --clear
+fi
+
+#对话框   标题                       复选列表    提示        高  宽 选项数 选项编号,文本,状态....                      标准错误重定向(dialog的输出)
+dialog --title "Check box example" --checklist "Pick Number" 15  25   3     1 "one" "off" 2 "two" "on" 3 "three" "off"  2> /tmp/tmp_file_$$.txt
+ret=$?                                  #保存dialog的返回值
+res=$(cat /tmp/tmp_file_$$.txt)         #保存dialog的输出值(用户选择的选项)
+if [ $ret = 0 ]; then
+    dialog --infobox "Your choise: $res" 10 30
+else
+    dialog --infobox "Bad, you canceled!" 10 30
+fi
+
+echo "$res"
+```
+
+#### 19. merge.sh : 合并list.txt中列出的当前目录下的文件 
+
+```
+#!/bin/bash
+
+if [ -f list2.txt ]
+then
+    rm -f list2.txt
+fi
+
+cat ./list.txt | while read line　　　　　　#读取list.txt的每一行
+do
+    echo ${line#*[[:blank:]]} >> list2.txt      #去掉行首的序号和空白字符
+done
+
+
+x=0         #文件序号
+if [ -f merged.txt ]
+then
+    rm -r merged.txt
+fi
+
+cat ./list2.txt | while read line
+do
+    x=$(($x + 1))
+    echo "************** $x . $line : start ************" >> merged.txt
+    cat ./$line >> merged.txt
+    echo "************** $x . $line : end **************" >> merged.txt
+    echo "                                               " >> merged.txt
+    echo "                  @ @                       " >> merged.txt
+    echo "                 ( V )                       " >> merged.txt
+    echo "                  ^ ^                       " >> merged.txt
+    echo "                       .=.=.0             " >> merged.txt
+    echo "                                             " >> merged.txt
+done
+
+if [ -f list2.txt ]
+then
+    rm -f list2.txt
+fi                                       
+```
