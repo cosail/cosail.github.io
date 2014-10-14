@@ -4,7 +4,11 @@
   <title><![CDATA[Category: Git | cosail's blog]]></title>
   <link href="http://cosail.github.io/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://cosail.github.io/"/>
+<<<<<<< HEAD
   <updated>2014-10-14T22:15:29+08:00</updated>
+=======
+  <updated>2014-10-14T11:51:36+08:00</updated>
+>>>>>>> fafdcaf979c90211e949a119c69e3cdecb01c62b
   <id>http://cosail.github.io/</id>
   <author>
     <name><![CDATA[cosail]]></name>
@@ -14,14 +18,151 @@
 
   
   <entry>
+<<<<<<< HEAD
     <title type="html"><![CDATA[Git概述]]></title>
+=======
+    <title type="html"><![CDATA[Git基础操作]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/14/gitji-chu-cao-zuo/"/>
+    <updated>2014-10-14T10:34:40+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/14/gitji-chu-cao-zuo</id>
+    <content type="html"><![CDATA[<blockquote><p>以下是阅读《Pro Git》时的记录<br/>
+《Pro Git》Scott Chacon 2010, licensed under the Creative Commons Attribution-Non Commercial-Share Alike 3.0 license.</p></blockquote>
+
+<h3>1. 取得项目的 Git 仓库</h3>
+
+<p>有两种取得Git仓库的方法：1.对已有项目创建新的Git仓库；2.克隆已有的Git仓库。</p>
+
+<h5>1.1 从项目目录初始化</h5>
+
+<ul>
+<li><p>开始用Git管理当前项目，在项目目录下执行：
+<code>
+$ git init
+</code>
+<code>初始化后会在当前目录下增加 .git 目录，但还没有跟踪项目任何文件。</code></p></li>
+<li><p>将几个文件纳入版本控制
+<code>
+$ git add *.c
+$ git add README
+$ git commit -m 'initial project version'
+</code></p></li>
+</ul>
+
+
+<h5>1.2 从已有仓库克隆</h5>
+
+<pre><code>$ git clone git://github.com/user/repo.git
+</code></pre>
+
+<p><code>在当前目录下创建repo目录，里面装着克隆过来的项目仓库。</code></p>
+
+<pre><code>$ git clone git://github.com/user/repo.git myrepo
+</code></pre>
+
+<p><code>和上一条命令一样，但明确指定创建的目录名为myrepo。</code></p>
+
+<p>另外 Git 还支持其他传输协议，如http,https,SSH：
+<code>
+$ git clone http://github.com/user/repo.git
+$ git clone user@server:/path/repo.git
+</code></p>
+
+<h3>2. 更新记录到仓库</h3>
+
+<h5>2.1 检查当前文件状态</h5>
+
+<pre><code>$ git status
+</code></pre>
+
+<p><code>它会告诉你哪些文件当前处于什么状态。</code></p>
+
+<h5>2.2 跟踪新文件</h5>
+
+<pre><code>$ git add file
+</code></pre>
+
+<p><code>使file文件或目录开始被跟踪；它可以接受通配符，如 git add *.c 。</code></p>
+
+<h5>2.3 暂存已修改文件</h5>
+
+<pre><code>$ git add file
+</code></pre>
+
+<p><code>被跟踪文件发生变化后，把它放到暂存区还是使用 git add，它是个多用途的命令。</code><br/>
+<code>注意：若文件已暂存后又修改了文件，则提交时不会纳入修改，你需要重新执行 git add 将文件放到暂存区！</code></p>
+
+<h5>2.4 忽略某些无需跟踪的文件</h5>
+
+<p>在项目目录下建立 .gitignore 文件，添加过滤规则：</p>
+
+<pre><code># 此为注释 
+*.a             # 忽略所有 .a 结尾的文件
+!lib.a      # 但 lib.a 除外
+/TODO   # 仅仅忽略项目根目录下的 TODO 文件,不包括 subdir/TODO
+build/      # 忽略 build/ 目录下的所有文件
+doc/*.txt   # 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt
+</code></pre>
+
+<h5>2.5 查看未暂存和已暂存的更新</h5>
+
+<p>git status 仅仅列出了修改过的文件，若要查看工作目录中当前文件和暂存区快照之间的差异：</p>
+
+<pre><code>$ git diff
+</code></pre>
+
+<p><code>git diff 会使用文件补丁的格式显示具体添加和删除的行。</code></p>
+
+<p>若要看已经暂存起来的文件和上次提交时的快照之间的差异：</p>
+
+<pre><code>$ git diff --cached
+</code></pre>
+
+<p><code>Git 1.6.1及以上版本还可使用 git diff --staged，效果相同但更好记。</code></p>
+
+<h5>2.6 提交更新</h5>
+
+<p><strong><em>在提交前请一定 git status，确认还有什么新建或修改过的文件没有 git add 进来！</em></strong></p>
+
+<p>Git 会调用文本编辑器让你填写“提交说明”（编辑器中显示的注释中会显示更新内容，可用 -v 选项显示修改差异）：</p>
+
+<pre><code>$ git commit
+</code></pre>
+
+<p>也直接在命令行带上“提交说明”：</p>
+
+<pre><code>$ git commit -m “提交说明”
+</code></pre>
+
+<p>若想自动把所有已经跟踪过的文件暂存起来一并提交,从而跳过 git add 步骤，可以加上 -a 选项：</p>
+
+<pre><code>$ git commit -am “提交说明”
+</code></pre>
+
+<h5>2.7 移除文件</h5>
+
+<p><strong><em>在提交前请一定 git status，确认还有什么新建或修改过的文件没有 git add 进来！</em></strong></p>
+
+<p>Git 会调用文本编辑器让你填写“提交说明”（编辑器中显示的注释中会显示更新内容，可用 -v 选项显示修改差异）：</p>
+
+<pre><code>$ git commit
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Git概述及初配置]]></title>
+>>>>>>> fafdcaf979c90211e949a119c69e3cdecb01c62b
     <link href="http://cosail.github.io/blog/2014/10/12/git-start/"/>
     <updated>2014-10-12T20:16:46+08:00</updated>
     <id>http://cosail.github.io/blog/2014/10/12/git-start</id>
     <content type="html"><![CDATA[<blockquote><p>以下是阅读《Pro Git》时的记录<br/>
 《Pro Git》Scott Chacon 2010, licensed under the Creative Commons Attribution-Non Commercial-Share Alike 3.0 license.</p></blockquote>
 
+<<<<<<< HEAD
 <h3>版本控制系统（VCS）</h3>
+=======
+<h3>1. 版本控制系统（VCS）</h3>
+>>>>>>> fafdcaf979c90211e949a119c69e3cdecb01c62b
 
 <p>VCS的主要作用：记录文件的变化，保存项目过去某些时间点的状态，回溯到之前的状态。<br/>
 <code>即保存和恢复数据。</code></p>
@@ -37,7 +178,11 @@
 </ul>
 
 
+<<<<<<< HEAD
 <h3>Git的特点</h3>
+=======
+<h3>2. Git的特点</h3>
+>>>>>>> fafdcaf979c90211e949a119c69e3cdecb01c62b
 
 <ul>
 <li><p>直接给更新的文件作快照，并保存快照的索引。<br/>
@@ -71,7 +216,11 @@
 </ol>
 
 
+<<<<<<< HEAD
 <h3>初次配置Git</h3>
+=======
+<h3>3. 初次配置Git</h3>
+>>>>>>> fafdcaf979c90211e949a119c69e3cdecb01c62b
 
 <p>Git 有专门用来配置和读取相应工作环境变量的工具： git config 命令（实际调用 git-config 命令）。</p>
 
@@ -120,7 +269,11 @@ git config --list
 $ git config user.name
 </code></p>
 
+<<<<<<< HEAD
 <h3>Git 帮助命令</h3>
+=======
+<h3>4. Git 帮助命令</h3>
+>>>>>>> fafdcaf979c90211e949a119c69e3cdecb01c62b
 
 <pre><code>$ git help &lt;verb&gt;
 $ git &lt;verb&gt; --help
