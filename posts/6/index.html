@@ -9,7 +9,9 @@
   <meta name="author" content="cosail">
 
   
-  <meta name="description" content="生成SSH key, 设置github 见github帮助:Generating SSH keys 注意最下面一行有个链接,说明如何改变一个已存在仓库的URL,如我们要使用SSH访问方式,这样就可以避免老是要输入帐户名和密码了:Changing a remote&rsquo;s URL. &hellip;">
+  <meta name="description" content="依赖 octopress依赖ruby, 可能你得先执行: 1
+sudo apt-get install ruby ruby-dev 在github创建自己的Web站点:
+看官方示例 安装octopress: git clone git://github.com/imathis/octopress. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,7 +83,7 @@
 
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/10/04/ssh_key_for_github/">生成SSH Key,并设置github</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/10/04/octopress/">使用octopress部署github博客</a></h1>
     
 
     
@@ -91,12 +93,12 @@
 
 
 
-<time class='entry-date' datetime='2014-10-04T16:35:07+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:35 pm</span></time>
+<time class='entry-date' datetime='2014-10-04T16:41:42+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:41 pm</span></time>
         
 		<!-- wuwei,2014.10.7: duoshuo -->
         
-           | <a href="/blog/2014/10/04/ssh_key_for_github/#duoshuo_thread"
-             data-disqus-identifier="http://cosail.github.io/blog/2014/10/04/ssh_key_for_github/">评论此文章</a>
+           | <a href="/blog/2014/10/04/octopress/#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io/blog/2014/10/04/octopress/">评论此文章</a>
         
       </p>
     
@@ -104,16 +106,131 @@
 
 
 
-  <div class="entry-content"><h3>生成SSH key, 设置github</h3>
+  <div class="entry-content"><h3>依赖</h3>
 
-<p><a href="https://help.github.com/articles/generating-ssh-keys/">见github帮助:Generating SSH keys</a></p>
+<ul>
+<li>octopress依赖ruby, 可能你得先执行:</li>
+</ul>
 
-<p><code>注意最下面一行有个链接,说明如何改变一个已存在仓库的URL,如我们要使用SSH访问方式,这样就可以避免老是要输入帐户名和密码了:</code><a href="https://help.github.com/articles/changing-a-remote-s-url/">Changing a remote&rsquo;s URL.</a></p>
 
-<h3>如果通过HTTPS访问,也可以让github记住你的用户名和密码(记住一段时间)</h3>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install ruby ruby-dev</span></code></pre></td></tr></table></div></figure>
 
-<p><a href="https://help.github.com/articles/caching-your-github-password-in-git/">Caching your GitHub password in Git</a><br/>
-<code>比较: SSH访问是通过SSH key, 而不是用户名和密码来认证.</code></p>
+
+<ul>
+<li>在github创建自己的Web站点:<br/>
+<a href="https://pages.github.com/">看官方示例</a></li>
+</ul>
+
+
+<h3>安装octopress:</h3>
+
+<pre><code>git clone git://github.com/imathis/octopress.git octopress  //下载源码
+cd octopress
+
+切换gem源为国内源，方法如下：  
+**先查看当前源(默认为官方源)**
+gem source -l
+**删除官方源**,如
+gem source -r http://rubygems.org/
+**添加淘宝源**
+gem source -a http://ruby.taobao.org/
+
+**安装bundler**
+    gem install bundler
+
+为了使后面的rake generate不出错, 在octopress/下的Gemfile文件首行:  
+https://rubygems.org/替换为http://ruby.taobao.org/  
+并在文件末尾添加: 
+gem 'execjs'    //安装execjs
+gem 'therubyracer'     //execjs还需要后端才能处理，想简单解决可以加上这个 Gem
+
+bundle install  //安装octopress (若安装过程中出现问题-例如需要root权限来安装某些依赖,请根据提示处理之)
+rake install    //安装octopress默认主题
+</code></pre>
+
+<h3>配置Octopress:</h3>
+
+<pre><code>修改文件 _config.yml:
+按自己情况填写url,title,subtitle,author,email等信息,
+其中url为在github创建的仓库地址,如:  
+ git@github.com:cosail/cosail.github.io或https://github.com/cosail/cosail.github.io。
+
+为了避免网页加载太慢, 在source/目录中执行:
+grep "googleapis" ./ -r     //查找需要修改的文件
+替换文件中fonts.googleapis.com为fonts.useso.com(360提供的谷歌字库)，
+替换文件中ajax.googleapis.com为ajax.useso.com(360提供的谷歌公用库)，
+这样你调用这些文件的时候就快多了。
+
+在octopress根目录执行 :
+rake setup_github_pages    //按照要求输入仓库地址等，这个命令会在根目录下新建_deploy目录，
+这个会push到仓库的master分支，也就是访问博客的文件。
+    rake generate  //这个会按照既定规则生成静态文件的博客。
+rake deploy    //将前一步生成的文件拷贝到_deploy目录,并push到github
+
+第一次执行 rake deploy 的时候可能会报错,解决方法是进入_deploy目录执行:
+git pull origin +master
+
+然后再次尝试部署:
+cd ..
+rake deploy
+</code></pre>
+
+<p><code>现在就应该可以正常显示博客页面了!让我们预览一下:</code></p>
+
+<h3>配置完成后, 进行本地预览:</h3>
+
+<pre><code>rake preview //在浏览器中进行本地预览了,访问http://localhost:4000
+</code></pre>
+
+<h3>提交源码用于备份:</h3>
+
+<pre><code>可以将当前octopress的源码备份到github的source分支下,在octopress目录下执行:
+git add .
+git commit -m 'Initial source commit'
+git push origin source
+</code></pre>
+
+<h3>新建文章:</h3>
+
+<pre><code>rake new_post["文章名"] //文章文件将存储在source/_posts目录下，按照Jekyll的命名规范命名：YYYY-MM-DD-post-文章名.markdown。
+</code></pre>
+
+<h3>新建页面:</h3>
+
+<pre><code>添加页面cosail.github.io/new-page/ :
+rake new_page[new-page] //creates /source/new-page/index.markdown
+rake new_page[new-page/page.markdown] //creates /source/new-page/page.markdown  
+</code></pre>
+
+<p>访问试试: <a href="http://cosail.github.io/new-page/">cosail.github.io/new-page/</a></p>
+
+<h3>使用octopress: 创建,编辑,生成并发布文章</h3>
+
+<pre><code>rake new_post["文章名"]  //新建文章
+编辑文章: 编辑source/_posts/下的相应markdown文件
+rake generate     //生成
+可选择备份一下:
+        git add .
+        git commit -am "back up for source/." 
+        git push origin source
+rake deploy     //发布
+</code></pre>
+
+<h3>另外一点小改动:</h3>
+
+<p>为了点击链接在新标签页中打开, <br/>
+在source/_include/custom/head.html文件末尾添加一行 :<br/>
+   <code>&lt;base target=”_ blank”&gt;</code><br/>
+点击试试: <a href="http://www.baidu.com">百度</a></p>
+
+<h3>参考:</h3>
+
+<p><a href="http://www.itzhoulin.com/category/wordpress/">利用octopress部署博客到github</a><br/>
+<a href="https://ruby-china.org/topics/1605">执行 rails server 报错 Could not find a JavaScript runtime</a><br/>
+<a href="http://jingyan.baidu.com/album/afd8f4de4595ac34e386e969.html?picindex=1">解决WP加载谷歌ajax.googleapis.com缓慢问题</a><br/>
+<a href="http://zhidao.baidu.com/link?url=688qT_eBlOJIcHrFM1wmHFYBLWozjH1cE1FUW8ezjOyT6l4kxnlndXu1Uy_-5mZr6G54eES8NtkJfihDPXkovq">在html中怎么设置全部链接在新标签打开</a><br/>
+<a href="http://www.oschina.net/question/218617_66108">markdown 如何显示html标签</a></p>
 </div>
   
   
@@ -128,6 +245,8 @@
 
   
   <div class="pagination"><font color="green">
+    
+      <a class="prev" href="/posts/7">&larr; 前一篇文章</a>
     
     <a href="/blog/archives">博客所有文章</a>
     
@@ -176,7 +295,7 @@
     <h1>分类目录</h1>
     <ul id="categories">
         <li class='category'><a href='/blog/categories/emacs/'>emacs (1)</a></li>
-<li class='category'><a href='/blog/categories/git/'>git (1)</a></li>
+<li class='category'><a href='/blog/categories/git/'>git (2)</a></li>
 <li class='category'><a href='/blog/categories/github/'>github (3)</a></li>
 <li class='category'><a href='/blog/categories/shell/'>shell (1)</a></li>
 
@@ -187,6 +306,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/10/14/gitji-chu-cao-zuo/">Git基础操作</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/10/14/emacskuai-jie-jian/">Emacs快捷键</a>
       </li>
     
@@ -195,7 +318,7 @@
       </li>
     
       <li class="post">
-        <a href="/blog/2014/10/12/git-start/">Git概述</a>
+        <a href="/blog/2014/10/12/git-start/">Git概述及初配置</a>
       </li>
     
       <li class="post">
