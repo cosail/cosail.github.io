@@ -247,15 +247,394 @@
 
 <h5>2.7 移除文件</h5>
 
-<p><strong><em>在提交前请一定 git status，确认还有什么新建或修改过的文件没有 git add 进来！</em></strong></p>
-
-<p>Git 会调用文本编辑器让你填写“提交说明”（编辑器中显示的注释中会显示更新内容，可用 -v 选项显示修改差异）：</p>
+<p>若想从 Git 仓库中移除文件(即从暂存区中移除)，但仍然在工作目录中保留该文件（也许想稍后将文件加入 .gitignore 文件中）：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git commit</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git rm --cached log/\*.log     #移除 log/ 目录下所有 .log 文件</span></code></pre></td></tr></table></div></figure>
 
 
+<p><code>**注意：** Git 有自己的文件模式扩展方式，当我们使用其自己的扩展方式（而不是让Shell来扩展）时，应在特殊字符前加 ’\‘ 。</code></p>
 
+<p>若想从 Git 仓库中移除文件，并且从工作目录中移除该文件：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ rm file                    #从工作目录中移除，但仍然被git跟踪着
+</span><span class='line'>$ git rm file             #从 Git 仓库中移除(不再跟踪)
+</span><span class='line'>或 $ git rm -f file      #若file已被修改且放到暂存区，则需强制选项（防止因误删除文件而丢失修改内容）</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>**注意：** Git 有自己的文件模式扩展方式，当我们使用其自己的扩展方式（而不是让Shell来扩展）时，应在特殊字符前加 ’\‘ 。</code></p>
+
+<h5>2.8 移动(重命名)文件</h5>
+
+<p>若要对 Git 中的文件改名：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git mv file_a file_b</span></code></pre></td></tr></table></div></figure>
+
+
+<p>实际上，上面的命令相当于：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ mv file_a file_b
+</span><span class='line'>$ git rm file_a
+</span><span class='line'>$ git add file_b</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>3. 查看提交历史</h3>
+
+<p>最常用的提交历史输出格式：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git log                #按提交时间列出所有的更新
+</span><span class='line'>$ git log -p          #-p：展开显示每次提交的内容差异（看看别人改了啥）
+</span><span class='line'>$ git log -4          #-4：仅显示最近的4次更新
+</span><span class='line'>$ git log --stat      #--stat：仅显示简要的增改行数统计</span></code></pre></td></tr></table></div></figure>
+
+
+<p>你可能想要更特殊的输出格式：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git log --pretty=oneline（或short,full,fuller） #oneline表示每个提交显示为一行
+</span><span class='line'>$ git log --pretty=format:"%h - %an, %ar : %s"  #定制显示格式(输出便于后期编程提取分析)
+</span><span class='line'>常用的格式占位符及其意义:
+</span><span class='line'>      %H 提交对象(commit)的完整哈希字串
+</span><span class='line'>      %h 提交对象的简短哈希字串
+</span><span class='line'>      %T 树对象(tree)的完整哈希字串
+</span><span class='line'>      %t 树对象的简短哈希字串
+</span><span class='line'>      %P 父对象(parent)的完整哈希字串
+</span><span class='line'>      %p 父对象的简短哈希字串
+</span><span class='line'>      %an 作者(author)的名字
+</span><span class='line'>      %ae 作者的电子邮件地址
+</span><span class='line'>      %ad 作者修订日期(可以用 -date= 选项定制格式)
+</span><span class='line'>      %ar 作者修订日期,按多久以前的方式显示
+</span><span class='line'>      %cn 提交者(committer)的名字
+</span><span class='line'>      %ce 提交者的电子邮件地址
+</span><span class='line'>      %cd 提交日期
+</span><span class='line'>      %cr 提交日期,按多久以前的方式显示
+</span><span class='line'>      %s 提交说明</span></code></pre></td></tr></table></div></figure>
+
+
+<p>也可以用简单的字符图形, 形象地展示了每个提交所在的分支及其分化衍合情况：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git log --pretty=format:"%h %s" --graph</span></code></pre></td></tr></table></div></figure>
+
+
+<p>一些其他常用的选项及其释义:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>--stat 显示每次更新的文件修改统计信息。
+</span><span class='line'>--shortstat 只显示 --stat 中最后的行数修改添加移除统计。
+</span><span class='line'>--name-only 仅在提交信息后显示已修改的文件清单。
+</span><span class='line'>--name-status 显示新增、修改、删除的文件清单。
+</span><span class='line'>--abbrev-commit 仅显示 SHA-1 的前几个字符,而非所有的 40 个字符。
+</span><span class='line'>--relative-date 使用较短的相对时间显示(比如,“2 weeks ago”)。</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong><em>还可以限制输出的历史记录所在时间段：</em></strong></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git log --since=2.weeks
+</span><span class='line'>$ git log --since=“2008-01-15”</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其他常用的类似选项及说明：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>-(n) 仅显示最近的 n 条提交
+</span><span class='line'>--since, --after 仅显示指定时间之后的提交。
+</span><span class='line'>--until, --before 仅显示指定时间之前的提交。
+</span><span class='line'>--author 仅显示指定作者相关的提交。
+</span><span class='line'>--committer 仅显示指定提交者相关的提交</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>综合示例：</code>查看 Git 仓库中,2008年10月期间, Junio提交的但未合并的测试脚本(位于项目的 t/ 目录下的文件)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git log --pretty="%h:%s" --author=“Junio” --since="2008-10-01" \
+</span><span class='line'>--before="2008-11-01" --no-merges  --  t/</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>4. 撤销操作</h3>
+
+<p><code>注意：有些操作并不总是能撤销的！</code></p>
+
+<h5>4.1 修改最后一次提交</h5>
+
+<p>如果刚才提交时忘了暂存某些修改,可以先补上暂存操作,然后再运行 &ndash;amend 提交:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git commit -m 'initial commit'     #修改提交说明
+</span><span class='line'>$ git add forgotten_file                  #补上暂存操作
+</span><span class='line'>$ git commit --amend</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>--amend提交命令修正了前一个的提交内容。</code></p>
+
+<h5>4.2 取消已暂存的文件</h5>
+
+<p>使已暂存的文件(当然是已修改的文件)回到已修改但未暂存状态:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git reset HEAD &lt;file&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>4.3 取消对文件的修改</h5>
+
+<p>使已修改的文件回到修改前(上一次提交后)状态:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git checkout --  &lt;file&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>其实是把之前版本文件拷贝过来覆盖了当前文件，请慎重！</code></p>
+
+<h3>5. 远程仓库的使用</h3>
+
+<h5>5.1 查看当前远程库</h5>
+
+<p>克隆某个项目后，会有名为origin的远程库，用来表示所克隆的远程仓库。列出远程仓库：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git remote
+</span><span class='line'>$ git remote -v       #-v：显示对应的仓库地址</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>5.2 添加远程仓库</h5>
+
+<p>添加一个新的远程仓库,指定一个简单的名字xiaoming,以便将来引用：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git remote
+</span><span class='line'>$ git remote add xiaoming git://github.com/xiaoming/repo.git</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>5.3 从远程仓库抓取数据</h5>
+
+<p>从远程仓库抓取数据到本地:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git fetch origin master</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>fetch只是将远端的数据拉到本地仓库,并不自动合并到当前工作分支,当你需要是可手工合并。</code></p>
+
+<p>如果想从远程仓库抓取数据，并自动合并到本地仓库当前分支:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git pull origin master</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>5.4 推送数据到远程仓库</h5>
+
+<p><code>如果有其他人在你之前推送了若干更新，那你得先抓取，合并，然后再推送。</code><br/>
+和别人分享劳动成果啦:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git push origin master</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>成功条件：在服务器上有写权限；同一时刻没有别人在推送数据。</code></p>
+
+<h5>5.5 查看远程仓库信息</h5>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git remote show origin</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>它会告诉我们，运行 git pull/push 时缺省拉取/推送的分支是什么，以及分支的同步情况。</code></p>
+
+<h5>5.6 远程仓库的删除和重命名</h5>
+
+<p>修改某个远程仓库的简短名称，如把xiaoming改为xm:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git remote rename xiaoming xm</span></code></pre></td></tr></table></div></figure>
+
+
+<p>若要移除远程仓库xiaoming(仅仅是添加远程仓库的逆操作):</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git remote rm xiaoming xm</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>6. 打标签</h3>
+
+<p>Git 可以对某一时间点的版本打上标签，人们在发布某个软件版本(比如 v1.0)的时候，经常这么做。</p>
+
+<h5>6.1 列出和查看已有的标签</h5>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git tag</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>显示的标签按字母顺序排列。</code></p>
+
+<p>也可以用特定的搜索模式列出符合条件的标签：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git tag -l 'v1.4.2.*'</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>列出 v1.4.2 系列的版本。</code></p>
+
+<p>可以查看某个标签的信息：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git show  v1.4.2.0</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>6.2 新建标签</h5>
+
+<p><code>一般建议使用含附注型的标签，以便保留相关信息；但若只是临时性加注标签或不需要旁注信息，用轻量级标签也行。</code></p>
+
+<ul>
+<li><code>轻量级标签</code>就像是个不会变化的分支，其实只是个指向特定提交对象的引用。新建轻量级标签：</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git tag v1.0-LW</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><code>含附注标签</code>实际上是存储在仓库中的一个独立对象，有自身的校验和，包含着标签的名字，电子邮件地址和日期，以及标签说明，标签本身也允许使用 GNU Privacy Guard (GPG) 来签署或验证。</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git tag -a v1.4 -m 'my version 1.4'    #-m 指定了对应的标签说明</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>签署一个标签：如果你有自己的私钥，还可以用 GPG 来签署标签，只需要把之前的 -a 改为 -s 。</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git tag -s v1.5 -m 'my signed 1.5 tag'</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>这可能会提示你输入密码啥的。</code></p>
+
+<ul>
+<li>验证一个标签：以下命令会调用 GPG 来验证签名，所以你需要有签署者的公钥，存放在 keyring 中，才能验证。</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git tag  -v  v1.5</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>后期加注标签</li>
+</ul>
+
+
+<p>你甚至可以在后期对早先的某次提交加注标签，跟上对应提交对象的校验和(或前几位字符)：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git tag -a v1.2 9fceb02</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>分享标签</li>
+</ul>
+
+
+<p>默认情况下，git push 并不会把标签传送到远端服务器上，只有通过显式命令才能分享标签到远端仓库：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git push origin v1.2       #仅推送标签 v1.2
+</span><span class='line'>$ git push origin --tags   #一次推送所有标签上去</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>这样别人也能看到这些标签了。</code></p>
+
+<h3>7. Git 命令别名</h3>
+
+<p>可以为命令设置别名：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git config --global alias.co checkout
+</span><span class='line'>$ git config --global alias.br branch
+</span><span class='line'>$ git config --global alias.ci commit
+</span><span class='line'>$ git config --global alias.st status
+</span><span class='line'>$ git config --global alias.unstage 'reset HEAD --'
+</span><span class='line'>$ git config --global alias.last 'log -1 HEAD'</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>现在若想输入 git commit，只需键入 git ci 即可。</code></p>
+
+<p>若想运行某个外部命令，而非 Git 的附属工具，只需在命令前加上<code>!</code> 就行：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git config --global alias.visual "!gitk"</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>8 命令自动补全</h3>
+
+<p>如果你用的是 Bash shell，可以试试看 Git 提供的<code>自动完成脚本</code>：</p>
+
+<p>下载 Git 的源代码，将contrib/completion/git-completion.bash 文件复制到你自己的用户主目录中：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cp git-completion.bash ∼/.git-completion.bash  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>并把下行添加到你的 .bashrc 文件中:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>source ~/.git-completion.bash</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>要为系统上所有用户都设置默认使用此脚本，Linux 上复制到 /etc/bash_completion.d/ 目录中即可。</code></p>
 </div>
   
   
