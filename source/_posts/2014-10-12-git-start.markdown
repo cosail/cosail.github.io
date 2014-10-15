@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "git概述"
+title: "git概述及初配置"
 date: 2014-10-12 20:16:46 +0800
 comments: true
 categories: git
@@ -9,7 +9,7 @@ categories: git
 > 以下是阅读《Pro Git》时的记录  
 > 《Pro Git》Scott Chacon 2010, licensed under the Creative Commons Attribution-Non Commercial-Share Alike 3.0 license.
 
-### 版本控制系统（VCS）
+### 1. 版本控制系统（VCS）
 
 VCS的主要作用：记录文件的变化，保存项目过去某些时间点的状态，回溯到之前的状态。  
 `即保存和恢复数据。`
@@ -24,7 +24,7 @@ VCS的主要作用：记录文件的变化，保存项目过去某些时间点�
 - 分布式版本控制系统（DVCS）：  客户端有代码仓库的完整镜像，和服务器一样掌握所有必要信息。  
 `大家可以在自己电脑上提交（异步），必要时推到服务器（同步）。` 
 	
-### Git的特点
+### 2. Git的特点
 
 - 直接给更新的文件作快照，并保存快照的索引。  
 `而不是像其他CVS一样每次仅仅记录变化的部分`
@@ -54,7 +54,7 @@ VCS的主要作用：记录文件的变化，保存项目过去某些时间点�
 3. 提交更新,将保存在暂存区域的文件快照转储到 git 目录中。	  
 `每个项目有一个.git/目录，是保存元数据和对象数据库的地方。克隆仓库时拷贝的就是里边的数据。`
 
-### 初次配置Git
+### 3. 初次配置Git
 
 Git 有专门用来配置和读取相应工作环境变量的工具： git config 命令（实际调用 git-config 命令）。
 
@@ -102,7 +102,7 @@ git config --list
 $ git config user.name
 ```
 
-### Git 帮助命令
+### 4. Git 帮助命令
 
 ```
 $ git help <verb>
