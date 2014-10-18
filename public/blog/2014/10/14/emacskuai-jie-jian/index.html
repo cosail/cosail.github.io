@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Emacs快捷键 - cosail&#8217;s blog</title>
+  <title>Emacs快捷键及命令 - cosail&#8217;s blog</title>
   <meta name="author" content="cosail">
 
   
-  <meta name="description" content="按键缩写:
+  <meta name="description" content="主要内容来自：这里，由 CC BY-NC-SA 3.0协议 授权 按键缩写:
 C = Ctrl
 M = Meta = Alt | Esc
 Del = Backspace 基本快捷键(Basic) 1
@@ -22,9 +22,7 @@ Del = Backspace 基本快捷键(Basic) 1
 8
 9
 10
-C-x C-f "find"文件, 即在缓冲区打开/新建一个文件
-C-x C-s 保存文件
-C-x C-w &hellip;">
+C-x C-f "find"文件, 即在缓冲区打开/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -93,7 +91,7 @@ C-x C-w &hellip;">
 
   <header>
     
-      <h1 class="entry-title">Emacs快捷键</h1>
+      <h1 class="entry-title">Emacs快捷键及命令</h1>
     
 
     
@@ -116,7 +114,9 @@ C-x C-w &hellip;">
 
 
 
-<div class="entry-content"><p><strong><em>按键缩写:</em></strong><br/>
+<div class="entry-content"><blockquote><p>主要内容来自：<a href="http://aifreedom.com/technology/112">这里</a>，由 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.zh"><code>CC BY-NC-SA 3.0协议</code></a> 授权</p></blockquote>
+
+<p><strong><em>按键缩写:</em></strong><br/>
 <code>C</code> = Ctrl<br/>
 <code>M</code> = Meta = Alt | Esc<br/>
 <code>Del</code> = Backspace</p>
@@ -159,7 +159,15 @@ C-x C-w &hellip;">
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>C-f 后一个字符
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>M-g g 或 M-x goto-line 跳到指定行
+</span><span class='line'>M-x goto-char 跳到指定字符
+</span><span class='line'>M-{ 上一段
+</span><span class='line'>M-} 下一段
+</span><span class='line'>C-f 后一个字符
 </span><span class='line'>C-b 前一个字符
 </span><span class='line'>C-p 上一行
 </span><span class='line'>C-n 下一行
@@ -198,6 +206,8 @@ C-x C-w &hellip;">
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>M-n 重复执行后一个命令n次
 </span><span class='line'>C-u 重复执行后一个命令4次
 </span><span class='line'>C-u n 重复执行后一个命令n次
@@ -207,8 +217,10 @@ C-x C-w &hellip;">
 </span><span class='line'>M-Del 删除前一个单词
 </span><span class='line'>C-k 移除(kill)一行
 </span><span class='line'>  
-</span><span class='line'>C-Space 设置开始标记 (例如标记区域)
-</span><span class='line'>C-@ 功能同上, 用于C-Space被操作系统拦截的情况
+</span><span class='line'>C-Space 或 C-@ 开始标记
+</span><span class='line'>M-h 标记整个段落
+</span><span class='line'>C-x h 全选
+</span><span class='line'>
 </span><span class='line'>C-w 移除(kill)标记区域的内容
 </span><span class='line'>M-w 复制标记区域的内容
 </span><span class='line'>C-y 召回(yank)复制/移除的区域/行
@@ -230,8 +242,16 @@ C-x C-w &hellip;">
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>C-g 停止当前运行/输入的命令
 </span><span class='line'>C-x u 撤销前一个命令
+</span><span class='line'>M-x global-linum-mode 显示行号
+</span><span class='line'>M-x linum-mode 只在当前buffer显示行号
+</span><span class='line'>C-u M-! date 插入当前日期和时间
+</span><span class='line'>C-u M-! &lt;cmd&gt; 插入&lt;cmd&gt;命令结果
 </span><span class='line'>M-x revert-buffer RETURN (照着这个输入)撤销上次存盘后所有改动
 </span><span class='line'>M-x recover-file RETURN 从自动存盘文件恢复
 </span><span class='line'>M-x recover-session RETURN 如果你编辑了几个文件, 用这个恢复</span></code></pre></td></tr></table></div></figure>
@@ -318,8 +338,8 @@ C-x C-w &hellip;">
 </span><span class='line'>\&gt; 单词结尾
 </span><span class='line'>[] 括号中的任意一个字符(例如[a-z]表示所有的小写字母)
 </span><span class='line'>  
-</span><span class='line'>M C-s RETURN 使用正则表达式向后搜索
-</span><span class='line'>M C-r RETURN 使用正则表达式向前搜索
+</span><span class='line'>C-M-s 使用正则表达式向后搜索(可能和ubuntu下快捷键冲突)
+</span><span class='line'>C-M-r 使用正则表达式向前搜索
 </span><span class='line'>C-s 增量搜索
 </span><span class='line'>C-s 重复增量搜索
 </span><span class='line'>C-r 向前增量搜索
@@ -343,7 +363,8 @@ C-x C-w &hellip;">
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>C-x 2 水平分割窗格
+</pre></td><td class='code'><pre><code class=''><span class='line'>C-x o 切换至其他窗口
+</span><span class='line'>C-x 2 水平分割窗格
 </span><span class='line'>C-x 3 垂直分割窗格
 </span><span class='line'>C-x o 切换至其他窗格
 </span><span class='line'>C-x 0 关闭窗格
@@ -354,9 +375,8 @@ C-x C-w &hellip;">
 </span><span class='line'>C-x 4 f 在其他窗格中打开文件
 </span><span class='line'>C-x 4 0 关闭当前缓冲区和窗格
 </span><span class='line'>C-x 5 2 新建窗口(frame)
-</span><span class='line'>C-x 5 f 在新窗口中打开文件
-</span><span class='line'>C-x 5 o 切换至其他窗口
-</span><span class='line'>C-x 5 0 关闭当前窗口</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>C-x 5 1 删除其它所有窗口
+</span><span class='line'>C-x 5 f 在新窗口中打开文件</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>书签命令(Bookmark commands)</h4>
@@ -387,22 +407,32 @@ C-x C-w &hellip;">
 </span><span class='line'>M-x bookmark-rename 重命名书签
 </span><span class='line'>M-x bookmark-delete 删除书签
 </span><span class='line'>M-x bookmark-save 保存书签
+</span><span class='line'>
 </span><span class='line'>C-x r l 列出书签清单
-</span><span class='line'>  
-</span><span class='line'>d 标记等待删除
-</span><span class='line'>Del 取消删除标记
-</span><span class='line'>x 删除被标记的书签
-</span><span class='line'>r 重命名
-</span><span class='line'>s 保存列表内所有书签
-</span><span class='line'>f 转到当前书签指向的位置
-</span><span class='line'>m 标记在多窗口中打开
-</span><span class='line'>v 显示被标记的书签(或者光标当前位置的书签)
-</span><span class='line'>t 切换是否显示路径列表
-</span><span class='line'>w 显示当前文件路径
-</span><span class='line'>q 退出书签列表
-</span><span class='line'>  
+</span><span class='line'>    d 标记等待删除
+</span><span class='line'>    Del 取消删除标记
+</span><span class='line'>    x 删除被标记的书签
+</span><span class='line'>    r 重命名
+</span><span class='line'>    s 保存列表内所有书签
+</span><span class='line'>    f 转到当前书签指向的位置
+</span><span class='line'>    m 标记在多窗口中打开
+</span><span class='line'>    v 显示被标记的书签(或者光标当前位置的书签)
+</span><span class='line'>    t 切换是否显示路径列表
+</span><span class='line'>    w 显示当前文件路径
+</span><span class='line'>    q 退出书签列表
+</span><span class='line'>      
 </span><span class='line'>M-x bookmark-write 将所有书签导出至指定文件
 </span><span class='line'>M-x bookmark-load 从指定文件导入书签</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>输入特殊字符</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>C-x 8 C-h 得到特殊字符列表，如
+</span><span class='line'>C-x 8 R 输入字符®
+</span><span class='line'>C-x 8 o 输入字符°</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>Shell</h4>
@@ -414,13 +444,13 @@ C-x C-w &hellip;">
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>M-x shell 打开shell模式
-</span><span class='line'>C-c C-c 类似unix里的C-c(停止正在运行的程序)
-</span><span class='line'>C-d 删除光标后一个字符
-</span><span class='line'>C-c C-d 发送EOF
-</span><span class='line'>C-c C-z 挂起程序(unix下的C-z)
-</span><span class='line'>M-p 显示前一条命令
-</span><span class='line'>M-n 显示后一条命令</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>M-x shell/esh 打开shell模式
+</span><span class='line'>    C-c C-c 类似unix里的C-c(停止正在运行的程序)
+</span><span class='line'>    C-d 删除光标后一个字符
+</span><span class='line'>    C-c C-d 发送EOF
+</span><span class='line'>    C-c C-z 挂起程序(unix下的C-z)
+</span><span class='line'>    M-p 显示前一条命令
+</span><span class='line'>    M-n 显示后一条命令</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>DIRectory EDitor (dired)</h4>
@@ -462,44 +492,42 @@ C-x C-w &hellip;">
 <span class='line-number'>35</span>
 <span class='line-number'>36</span>
 <span class='line-number'>37</span>
-<span class='line-number'>38</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>C-x d 打开dired
-</span><span class='line'>C(大写C) 复制
-</span><span class='line'>d 标记等待删除
-</span><span class='line'>D 立即删除
-</span><span class='line'>e或f 打开文件或目录
-</span><span class='line'>g 刷新当前目录
-</span><span class='line'>G 改变文件所属组(chgrp)
-</span><span class='line'>k 从屏幕上的列表里删除一行(不是真的删除)
-</span><span class='line'>m 用*标记
-</span><span class='line'>n 光标移动到下一行
-</span><span class='line'>o 在另一个窗格打开文件并移动光标
-</span><span class='line'>C-o 在另一个窗格打开文件但不移动光标
-</span><span class='line'>P 打印文件
-</span><span class='line'>q 退出dired
-</span><span class='line'>Q 在标记的文件中替换
-</span><span class='line'>R 重命名文件
-</span><span class='line'>u 移除标记
-</span><span class='line'>v 显示文件内容
-</span><span class='line'>x 删除有D标记的文件
-</span><span class='line'>Z 压缩/解压缩文件
-</span><span class='line'>M-Del 移除标记(默认为所有类型的标记)
-</span><span class='line'>~ 标记备份文件(文件名有~的文件)等待删除
-</span><span class='line'># 标记自动保存文件(文件名形如#name#)等待删除
-</span><span class='line'>*/ 用*标记所有文件夹(用C-u */n移除标记)
-</span><span class='line'>= 将当前文件和标记文件(使用C-@标记而不是dired的m标记)比较
-</span><span class='line'>M-= 将当前文件和它的备份比较
-</span><span class='line'>! 对当前文件应用shell命令
-</span><span class='line'>M-} 移动光标至下一个用*或D标记的文件
-</span><span class='line'>M-{ 移动光标至上一个用*或D标记的文件
-</span><span class='line'>% d 使用正则表达式标记文件等待删除
-</span><span class='line'>% m 使用正则表达式标记文件为*
-</span><span class='line'>+ 新建文件夹
-</span><span class='line'>&gt; 移动光标至后一个文件夹
-</span><span class='line'>&lt; 移动光标至前一个文件夹
-</span><span class='line'>s 切换排序模式(按文件名/日期)
-</span><span class='line'>  
-</span><span class='line'>或许把这个命令归入这一类也很合适:
+</span><span class='line'>    C(大写C) 复制
+</span><span class='line'>    d 标记等待删除
+</span><span class='line'>    D 立即删除
+</span><span class='line'>    e或f 打开文件或目录
+</span><span class='line'>    g 刷新当前目录
+</span><span class='line'>    G 改变文件所属组(chgrp)
+</span><span class='line'>    k 从屏幕上的列表里删除一行(不是真的删除)
+</span><span class='line'>    m 用*标记
+</span><span class='line'>    n 光标移动到下一行
+</span><span class='line'>    o 在另一个窗格打开文件并移动光标
+</span><span class='line'>    C-o 在另一个窗格打开文件但不移动光标
+</span><span class='line'>    P 打印文件
+</span><span class='line'>    q 退出dired
+</span><span class='line'>    Q 在标记的文件中替换
+</span><span class='line'>    R 重命名文件
+</span><span class='line'>    u 移除标记
+</span><span class='line'>    v 显示文件内容
+</span><span class='line'>    x 删除有D标记的文件
+</span><span class='line'>    Z 压缩/解压缩文件
+</span><span class='line'>    M-Del 移除标记(默认为所有类型的标记)
+</span><span class='line'>    ~ 标记备份文件(文件名有~的文件)等待删除
+</span><span class='line'>    # 标记自动保存文件(文件名形如#name#)等待删除
+</span><span class='line'>    */ 用*标记所有文件夹(用C-u */n移除标记)
+</span><span class='line'>    = 将当前文件和标记文件(使用C-@标记而不是dired的m标记)比较
+</span><span class='line'>    M-= 将当前文件和它的备份比较
+</span><span class='line'>    ! 对当前文件应用shell命令
+</span><span class='line'>    M-} 移动光标至下一个用*或D标记的文件
+</span><span class='line'>    M-{ 移动光标至上一个用*或D标记的文件
+</span><span class='line'>    % d 使用正则表达式标记文件等待删除
+</span><span class='line'>    % m 使用正则表达式标记文件为*
+</span><span class='line'>    + 新建文件夹
+</span><span class='line'>    &gt; 移动光标至后一个文件夹
+</span><span class='line'>    &lt; 移动光标至前一个文件夹
+</span><span class='line'>    s 切换排序模式(按文件名/日期)
+</span><span class='line'>      
 </span><span class='line'>M-x speedbar 打开一个独立的目录显示窗口</span></code></pre></td></tr></table></div></figure>
 
 
@@ -514,25 +542,29 @@ C-x C-w &hellip;">
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>M-x telnet 打开telnet模式
-</span><span class='line'>C-d 删除后一个字符或发送EOF
-</span><span class='line'>C-c C-c 停止正在运行的程序(和unix下的C-c类似)
-</span><span class='line'>C-c C-d 发送EOF
-</span><span class='line'>C-c C-o 清除最后一个命令的输出
-</span><span class='line'>C-c C-z 挂起正在运行的命令
-</span><span class='line'>C-c C-u 移除前一行
-</span><span class='line'>M-p 显示前一条命令</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>    C-d 删除后一个字符或发送EOF
+</span><span class='line'>    C-c C-c 停止正在运行的程序(和unix下的C-c类似)
+</span><span class='line'>    C-c C-d 发送EOF
+</span><span class='line'>    C-c C-o 清除最后一个命令的输出
+</span><span class='line'>    C-c C-z 挂起正在运行的命令
+</span><span class='line'>    C-c C-u 移除前一行
+</span><span class='line'>    M-p 显示前一条命令</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>Text</h4>
+<h4>emacs daemon</h4>
+
+<p><code>关于Emacs有一个很著名的笑话，就是Emacs = Emacs Makes A Computer Slow。如何为Emacs加速？在后台运行一个emacs daemon服务端，然后你就可以在使用emacsclient打开任何文件，由emacsclient交给emacs daemon编辑，再把结果返回。只要在启动服务器时运行初始化脚本，客户端启动无需运行脚本，不必每次打开一次Emacs，都要加载半天插件了。</code></p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>只能在text模式里使用
-</span><span class='line'>M-s 使当前行居中
-</span><span class='line'>M-S 使当前段落居中
-</span><span class='line'>M-x center-region 使被选中的区域居中</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>先启动emacs deamon：
+</span><span class='line'>    $ emacs --deamon
+</span><span class='line'>然后运行emacs：
+</span><span class='line'>    $ emacsclient -t   #从终端启动
+</span><span class='line'>    $ emacsclient -c   #从X启动</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>宏命令(Macro-commands)</h4>
@@ -685,7 +717,7 @@ C-x C-w &hellip;">
 	<!-- 我在octopress/目录的_config.yml中定义了duoshuo_enable -->
 	
 	<!-- 多说评论框 start -->
-	<div class="ds-thread"  data-title="emacs快捷键" ></div>
+	<div class="ds-thread"  data-title="emacs快捷键及命令" ></div>
 		<!-- 多说评论框 end -->
 		<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 		<script type="text/javascript">
@@ -728,7 +760,7 @@ C-x C-w &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/10/14/emacskuai-jie-jian/">Emacs快捷键</a>
+        <a href="/blog/2014/10/14/emacskuai-jie-jian/">Emacs快捷键及命令</a>
       </li>
     
       <li class="post">
