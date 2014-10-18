@@ -255,7 +255,8 @@ M-x telnet 打开telnet模式
 ```
   
 #### emacs daemon
-`关于Emacs有一个很著名的笑话，就是Emacs = Emacs Makes A Computer Slow。如何为Emacs加速？在后台运行一个emacs daemon服务端，然后你就可以在使用emacsclient打开任何文件，由emacsclient交给emacs daemon编辑，再把结果返回。只要在启动服务器时运行初始化脚本，客户端启动无需运行脚本，不必每次打开一次Emacs，都要加载半天插件了。`  
+关于Emacs有一个很著名的笑话，就是Emacs = Emacs Makes A Computer Slow。  
+如何为Emacs加速？在后台运行一个emacs daemon服务端，然后你就可以在使用emacsclient打开任何文件，真正的处理交给emacs daemon。  
 ```
 先启动emacs deamon：
     $ emacs --deamon
@@ -263,6 +264,7 @@ M-x telnet 打开telnet模式
     $ emacsclient -t   #从终端启动
     $ emacsclient -c   #从X启动
 ```
+`只要在启动服务器时运行初始化脚本，客户端启动无需运行脚本；不必每次打开一次Emacs，都要加载半天插件了。`  
   
 #### 宏命令(Macro-commands)
 ```

@@ -553,7 +553,8 @@ C-x C-f "find"文件, 即在缓冲区打开/ &hellip;">
 
 <h4>emacs daemon</h4>
 
-<p><code>关于Emacs有一个很著名的笑话，就是Emacs = Emacs Makes A Computer Slow。如何为Emacs加速？在后台运行一个emacs daemon服务端，然后你就可以在使用emacsclient打开任何文件，由emacsclient交给emacs daemon编辑，再把结果返回。只要在启动服务器时运行初始化脚本，客户端启动无需运行脚本，不必每次打开一次Emacs，都要加载半天插件了。</code></p>
+<p>关于Emacs有一个很著名的笑话，就是Emacs = Emacs Makes A Computer Slow。<br/>
+如何为Emacs加速？在后台运行一个emacs daemon服务端，然后你就可以在使用emacsclient打开任何文件，真正的处理交给emacs daemon。</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -566,6 +567,8 @@ C-x C-f "find"文件, 即在缓冲区打开/ &hellip;">
 </span><span class='line'>    $ emacsclient -t   #从终端启动
 </span><span class='line'>    $ emacsclient -c   #从X启动</span></code></pre></td></tr></table></div></figure>
 
+
+<p><code>只要在启动服务器时运行初始化脚本，客户端启动无需运行脚本；不必每次打开一次Emacs，都要加载半天插件了。</code></p>
 
 <h4>宏命令(Macro-commands)</h4>
 
