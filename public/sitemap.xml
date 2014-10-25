@@ -69,23 +69,37 @@
   
   <url>
     <loc>http://cosail.github.io/new-page/about_me.html</loc>
+<<<<<<< HEAD
     <lastmod>2014-10-25T21:26:46+08:00</lastmod>
+=======
+    <lastmod>2014-10-19T00:26:56+08:00</lastmod>
+>>>>>>> 795f57d22f0246f0846c1a528dddcf6320a67a35
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>http://cosail.github.io/blog/archives/</loc>
     <lastmod>2014-10-25T21:26:46+08:00</lastmod>
+=======
+    <loc>http://cosail.github.io/</loc>
+    <lastmod>2014-10-19T00:26:56+08:00</lastmod>
+>>>>>>> 795f57d22f0246f0846c1a528dddcf6320a67a35
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>1.0</priority>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>http://cosail.github.io/</loc>
     <lastmod>2014-10-25T21:26:46+08:00</lastmod>
+=======
+    <loc>http://cosail.github.io/blog/archives/</loc>
+    <lastmod>2014-10-19T00:26:56+08:00</lastmod>
+>>>>>>> 795f57d22f0246f0846c1a528dddcf6320a67a35
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.7</priority>
   </url>
   
   

@@ -1,10 +1,12 @@
 ---
 layout: post
-title: "emacs快捷键"
+title: "emacs快捷键及命令"
 date: 2014-10-14 00:15:21 +0800
 comments: true
 categories: Text-Edit
 ---
+
+> 主要内容来自：[这里](http://aifreedom.com/technology/112)，由 [`CC BY-NC-SA 3.0协议`](http://creativecommons.org/licenses/by-nc-sa/3.0/deed.zh) 授权  
 
 ***按键缩写:***  
 `C` = Ctrl  
@@ -27,6 +29,10 @@ C-x C-c 关闭emacs
 
 #### 光标移动基本快捷键(Basic Movement)
 ```
+M-g g 或 M-x goto-line 跳到指定行
+M-x goto-char 跳到指定字符
+M-{ 上一段
+M-} 下一段
 C-f 后一个字符
 C-b 前一个字符
 C-p 上一行
@@ -52,8 +58,10 @@ Del 删除前一个字符
 M-Del 删除前一个单词
 C-k 移除(kill)一行
   
-C-Space 设置开始标记 (例如标记区域)
-C-@ 功能同上, 用于C-Space被操作系统拦截的情况
+C-Space 或 C-@ 开始标记
+M-h 标记整个段落
+C-x h 全选
+
 C-w 移除(kill)标记区域的内容
 M-w 复制标记区域的内容
 C-y 召回(yank)复制/移除的区域/行
@@ -72,6 +80,10 @@ M-c 使从光标位置开始的单词的首字母变为大写
 ```
 C-g 停止当前运行/输入的命令
 C-x u 撤销前一个命令
+M-x global-linum-mode 显示行号
+M-x linum-mode 只在当前buffer显示行号
+C-u M-! date 插入当前日期和时间
+C-u M-! <cmd> 插入<cmd>命令结果
 M-x revert-buffer RETURN (照着这个输入)撤销上次存盘后所有改动
 M-x recover-file RETURN 从自动存盘文件恢复
 M-x recover-session RETURN 如果你编辑了几个文件, 用这个恢复
@@ -119,8 +131,8 @@ $ 行尾
 \> 单词结尾
 [] 括号中的任意一个字符(例如[a-z]表示所有的小写字母)
   
-M C-s RETURN 使用正则表达式向后搜索
-M C-r RETURN 使用正则表达式向前搜索
+C-M-s 使用正则表达式向后搜索(可能和ubuntu下快捷键冲突)
+C-M-r 使用正则表达式向前搜索
 C-s 增量搜索
 C-s 重复增量搜索
 C-r 向前增量搜索
@@ -130,6 +142,7 @@ M-x query-replace-regexp 使用正则表达式搜索并替换
   
 #### 窗口命令(Window Commands)
 ```
+C-x o 切换至其他窗口
 C-x 2 水平分割窗格
 C-x 3 垂直分割窗格
 C-x o 切换至其他窗格
@@ -141,9 +154,8 @@ M C-v 滚动其他窗格内容
 C-x 4 f 在其他窗格中打开文件
 C-x 4 0 关闭当前缓冲区和窗格
 C-x 5 2 新建窗口(frame)
+C-x 5 1 删除其它所有窗口
 C-x 5 f 在新窗口中打开文件
-C-x 5 o 切换至其他窗口
-C-x 5 0 关闭当前窗口
 ```
   
 #### 书签命令(Bookmark commands)
@@ -153,96 +165,106 @@ C-x r b 转到书签
 M-x bookmark-rename 重命名书签
 M-x bookmark-delete 删除书签
 M-x bookmark-save 保存书签
+
 C-x r l 列出书签清单
-  
-d 标记等待删除
-Del 取消删除标记
-x 删除被标记的书签
-r 重命名
-s 保存列表内所有书签
-f 转到当前书签指向的位置
-m 标记在多窗口中打开
-v 显示被标记的书签(或者光标当前位置的书签)
-t 切换是否显示路径列表
-w 显示当前文件路径
-q 退出书签列表
-  
+    d 标记等待删除
+    Del 取消删除标记
+    x 删除被标记的书签
+    r 重命名
+    s 保存列表内所有书签
+    f 转到当前书签指向的位置
+    m 标记在多窗口中打开
+    v 显示被标记的书签(或者光标当前位置的书签)
+    t 切换是否显示路径列表
+    w 显示当前文件路径
+    q 退出书签列表
+      
 M-x bookmark-write 将所有书签导出至指定文件
 M-x bookmark-load 从指定文件导入书签
+```
+
+#### 输入特殊字符
+```
+C-x 8 C-h 得到特殊字符列表，如
+C-x 8 R 输入字符®
+C-x 8 o 输入字符°
 ```
   
 #### Shell
 ```
-M-x shell 打开shell模式
-C-c C-c 类似unix里的C-c(停止正在运行的程序)
-C-d 删除光标后一个字符
-C-c C-d 发送EOF
-C-c C-z 挂起程序(unix下的C-z)
-M-p 显示前一条命令
-M-n 显示后一条命令
+M-x shell/esh 打开shell模式
+    C-c C-c 类似unix里的C-c(停止正在运行的程序)
+    C-d 删除光标后一个字符
+    C-c C-d 发送EOF
+    C-c C-z 挂起程序(unix下的C-z)
+    M-p 显示前一条命令
+    M-n 显示后一条命令
 ```
   
 #### DIRectory EDitor (dired)
 ```
 C-x d 打开dired
-C(大写C) 复制
-d 标记等待删除
-D 立即删除
-e或f 打开文件或目录
-g 刷新当前目录
-G 改变文件所属组(chgrp)
-k 从屏幕上的列表里删除一行(不是真的删除)
-m 用*标记
-n 光标移动到下一行
-o 在另一个窗格打开文件并移动光标
-C-o 在另一个窗格打开文件但不移动光标
-P 打印文件
-q 退出dired
-Q 在标记的文件中替换
-R 重命名文件
-u 移除标记
-v 显示文件内容
-x 删除有D标记的文件
-Z 压缩/解压缩文件
-M-Del 移除标记(默认为所有类型的标记)
-~ 标记备份文件(文件名有~的文件)等待删除
-# 标记自动保存文件(文件名形如#name#)等待删除
-*/ 用*标记所有文件夹(用C-u */n移除标记)
-= 将当前文件和标记文件(使用C-@标记而不是dired的m标记)比较
-M-= 将当前文件和它的备份比较
-! 对当前文件应用shell命令
-M-} 移动光标至下一个用*或D标记的文件
-M-{ 移动光标至上一个用*或D标记的文件
-% d 使用正则表达式标记文件等待删除
-% m 使用正则表达式标记文件为*
-+ 新建文件夹
-> 移动光标至后一个文件夹
-< 移动光标至前一个文件夹
-s 切换排序模式(按文件名/日期)
-  
-或许把这个命令归入这一类也很合适:
+    C(大写C) 复制
+    d 标记等待删除
+    D 立即删除
+    e或f 打开文件或目录
+    g 刷新当前目录
+    G 改变文件所属组(chgrp)
+    k 从屏幕上的列表里删除一行(不是真的删除)
+    m 用*标记
+    n 光标移动到下一行
+    o 在另一个窗格打开文件并移动光标
+    C-o 在另一个窗格打开文件但不移动光标
+    P 打印文件
+    q 退出dired
+    Q 在标记的文件中替换
+    R 重命名文件
+    u 移除标记
+    v 显示文件内容
+    x 删除有D标记的文件
+    Z 压缩/解压缩文件
+    M-Del 移除标记(默认为所有类型的标记)
+    ~ 标记备份文件(文件名有~的文件)等待删除
+    # 标记自动保存文件(文件名形如#name#)等待删除
+    */ 用*标记所有文件夹(用C-u */n移除标记)
+    = 将当前文件和标记文件(使用C-@标记而不是dired的m标记)比较
+    M-= 将当前文件和它的备份比较
+    ! 对当前文件应用shell命令
+    M-} 移动光标至下一个用*或D标记的文件
+    M-{ 移动光标至上一个用*或D标记的文件
+    % d 使用正则表达式标记文件等待删除
+    % m 使用正则表达式标记文件为*
+    + 新建文件夹
+    > 移动光标至后一个文件夹
+    < 移动光标至前一个文件夹
+    s 切换排序模式(按文件名/日期)
+      
 M-x speedbar 打开一个独立的目录显示窗口
 ```
   
 #### Telnet
 ```
 M-x telnet 打开telnet模式
-C-d 删除后一个字符或发送EOF
-C-c C-c 停止正在运行的程序(和unix下的C-c类似)
-C-c C-d 发送EOF
-C-c C-o 清除最后一个命令的输出
-C-c C-z 挂起正在运行的命令
-C-c C-u 移除前一行
-M-p 显示前一条命令
+    C-d 删除后一个字符或发送EOF
+    C-c C-c 停止正在运行的程序(和unix下的C-c类似)
+    C-c C-d 发送EOF
+    C-c C-o 清除最后一个命令的输出
+    C-c C-z 挂起正在运行的命令
+    C-c C-u 移除前一行
+    M-p 显示前一条命令
 ```
   
-#### Text
+#### emacs daemon
+关于Emacs有一个很著名的笑话，就是Emacs = Emacs Makes A Computer Slow。  
+如何为Emacs加速？在后台运行一个emacs daemon服务端，然后你就可以在使用emacsclient打开任何文件，真正的处理交给emacs daemon。  
 ```
-只能在text模式里使用
-M-s 使当前行居中
-M-S 使当前段落居中
-M-x center-region 使被选中的区域居中
+先启动emacs deamon：
+    $ emacs --deamon
+然后运行emacs：
+    $ emacsclient -t   #从终端启动
+    $ emacsclient -c   #从X启动
 ```
+`只要在启动服务器时运行初始化脚本，客户端启动无需运行脚本；不必每次打开一次Emacs，都要加载半天插件了。`  
   
 #### 宏命令(Macro-commands)
 ```
