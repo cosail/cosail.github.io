@@ -3,7 +3,7 @@ layout: post
 title: "emacs快捷键"
 date: 2014-10-14 00:15:21 +0800
 comments: true
-categories: emacs
+categories: Text-Edit
 ---
 
 ***按键缩写:***  
