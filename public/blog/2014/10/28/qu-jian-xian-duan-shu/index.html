@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>cosail&#8217;s blog</title>
+  <title>线段(区间)树 - cosail&#8217;s blog</title>
   <meta name="author" content="cosail">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cosail.github.io/posts/2">
+  <link rel="canonical" href="http://cosail.github.io/blog/2014/10/28/qu-jian-xian-duan-shu">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="cosail's blog" type="application/atom+xml">
@@ -75,16 +75,13 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
 
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/10/28/qu-jian-xian-duan-shu/">线段(区间)树</a></h1>
+      <h1 class="entry-title">线段(区间)树</h1>
     
 
     
@@ -98,8 +95,8 @@
         
 		<!-- wuwei,2014.10.7: duoshuo -->
         
-           | <a href="/blog/2014/10/28/qu-jian-xian-duan-shu/#duoshuo_thread"
-             data-disqus-identifier="http://cosail.github.io/blog/2014/10/28/qu-jian-xian-duan-shu/">评论此文章</a>
+           | <a href="#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io">评论此文章</a>
         
       </p>
     
@@ -107,7 +104,7 @@
 
 
 
-  <div class="entry-content"><p><strong>线段树</strong>是一棵二叉树，其每一个节点表示了一个区间[a, b]；每一层中所有节点表示的区间互不重叠，其并都为整个区间范围。</p>
+<div class="entry-content"><p><strong>线段树</strong>是一棵二叉树，其每一个节点表示了一个区间[a, b]；每一层中所有节点表示的区间互不重叠，其并都为整个区间范围。</p>
 
 <p><font color='blue'>特点：</font> 每一个叶子节点表示一个不可再分的单位区间；若一个非叶子节点表是区间[a, b]，则其左子节点表示[a, (a+b)/2]，右子节点表示((a+b)/2，b]。<br/>
 其实是进行了二分，所以线段树是一棵平衡树，其深度不超过 lg(L)，L为最长区间长度。</p>
@@ -129,37 +126,65 @@
 <p><font color='red'>题3：</font> 苹果树。一棵苹果树上每个分叉点（二叉）及末梢可能有苹果(最多1个)，每次可以摘掉一个苹果，或有一个苹果新长出来，随时查询某块树枝（某个分叉点往上的子树）上，一共有多少个苹果。<br/>
 <font color='green'>解：</font> 该题关键要看到，每个非叶子节点上也是会长苹果的。深度优先遍历整个苹果树，为每个节点标记一个序号（1~n），一个值为 0 或 1 的 apple 字段（可变化），一个 sum 字段。某个节点往上对应树枝上的苹果数即该节点里的 apple + sum 值。</p>
 </div>
+
+
+
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+
+
+<span class="byline author vcard">Posted by <span class="fn">cosail</span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-10-28T19:53:48+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>7:53 pm</span></time>
+      
+
+<span class="categories">
   
-
-
-
-
-
-    </article>
+    <a class='category' href='/blog/categories/datastruct-slash-tree/'>datastruct/tree</a>
   
+</span>
 
 
-  
-  <div class="pagination"><font color="green">
+    </p>
     
-      <a class="prev" href="/posts/3">&larr; 前一篇文章</a>
-    
-    <a href="/blog/archives">博客所有文章</a>
-    
-    <a class="next" href="/index.html">后一篇文章 &rarr;</a>
-    </font>
-  </div>
+      <div class="sharing">
+  
+  
+  
+</div>
 
-	<!-- wuwei,2014.10.8: duoshuo -->
-	
-	  <section>
-		<div id="duoshuo_thread" aria-live="polite"><!-- wuwei,2014.10.7 -->
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/10/28/shu/" title="Previous Post: 二叉查找树转双向链表">&laquo; 二叉查找树转双向链表</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/10/30/gitfen-zhi/" title="Next Post: git分支">git分支 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+<!-- wuwei,2014.10.8: duoshuo -->
+
+  <section>
+    <div id="duoshuo_thread" aria-live="polite"><!-- wuwei,2014.10.7 -->
 <section>
 	<!-- 我在octopress/目录的_config.yml中定义了duoshuo_enable -->
 	
 	<!-- 多说评论框 start -->
-	<div class="ds-thread"  data-title="" ></div>
+	<div class="ds-thread"  data-title="线段(区间)树" ></div>
 		<!-- 多说评论框 end -->
 		<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 		<script type="text/javascript">
@@ -178,8 +203,7 @@
 <section>
 
 </div>
-	  </section>
-	  
+  </section>
 
 </div>
 
