@@ -9,9 +9,16 @@
   <meta name="author" content="cosail">
 
   
-  <meta name="description" content="以下是阅读《Pro Git》时的记录
-《Pro Git》Scott Chacon 2010, licensed under the Creative Commons Attribution-Non Commercial-Share Alike 3.0 license. 1.
-">
+  <meta name="description" content="DOT语言是一种文本图形描述语言，提供一种方便的描述图形的方法。
+开源的Graphviz软件包包含了一组工具，能够用来绘制DOT语言脚本和描述的图形，也提供了可调用的函数库。 DOT语言文件的后缀名通常为：.gv 或 .dot。 下面是定义DOT语言的抽象语法： 1
+2
+3
+4
+5
+6
+7
+8
+9 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,7 +93,7 @@
 
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/10/30/gitfen-zhi/">Git分支</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/10/31/dotyu-yan/">DOT语言</a></h1>
     
 
     
@@ -96,12 +103,12 @@
 
 
 
-<time class='entry-date' datetime='2014-10-30T16:05:13+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:05 pm</span></time>
+<time class='entry-date' datetime='2014-10-31T11:02:40+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>11:02 am</span></time>
         
 		<!-- wuwei,2014.10.7: duoshuo -->
         
-           | <a href="/blog/2014/10/30/gitfen-zhi/#duoshuo_thread"
-             data-disqus-identifier="http://cosail.github.io/blog/2014/10/30/gitfen-zhi/">评论此文章</a>
+           | <a href="/blog/2014/10/31/dotyu-yan/#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io/blog/2014/10/31/dotyu-yan/">评论此文章</a>
         
       </p>
     
@@ -109,10 +116,54 @@
 
 
 
-  <div class="entry-content"><blockquote><p>以下是阅读《Pro Git》时的记录<br/>
-《Pro Git》Scott Chacon 2010, licensed under the Creative Commons Attribution-Non Commercial-Share Alike 3.0 license.</p></blockquote>
+  <div class="entry-content"><p><strong>DOT语言</strong>是一种文本图形描述语言，提供一种方便的描述图形的方法。
+<code>开源的Graphviz软件包包含了一组工具，能够用来绘制DOT语言脚本和描述的图形，也提供了可调用的函数库。</code></p>
 
-<h3>1.</h3>
+<p>DOT语言文件的后缀名通常为：.gv 或 .dot。</p>
+
+<p>下面是定义DOT语言的抽象语法：</p>
+
+<p><img src="http://cosail.github.io/images/dot-grammar.jpg" title="" alt="" /></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> graph  :    [ strict ] (graph | digraph) [ ID ] '{' stmt_list '}'
+</span><span class='line'> stmt_list  :     [ stmt [ ';' ] [ stmt_list ] ]
+</span><span class='line'>  stmt  :     node_stmt
+</span><span class='line'>         |    edge_stmt
+</span><span class='line'>         |    attr_stmt
+</span><span class='line'>         |    ID '=' ID
+</span><span class='line'>         |    subgraph
+</span><span class='line'> attr_stmt    :   (graph | node | edge) attr_list
+</span><span class='line'> attr_list    :   '[' [ a_list ] ']' [ attr_list ]
+</span><span class='line'>a_list    :   ID '=' ID [ (';' | ',') ] [ a_list ]
+</span><span class='line'> edge_stmt    :   (node_id | subgraph) edgeRHS [ attr_list ]
+</span><span class='line'>   edgeRHS    :   edgeop (node_id | subgraph) [ edgeRHS ]
+</span><span class='line'> node_stmt    :   node_id [ attr_list ]
+</span><span class='line'>   node_id    :   ID [ port ]
+</span><span class='line'>  port    :   ':' ID [ ':' compass_pt ]
+</span><span class='line'>         |    ':' compass_pt
+</span><span class='line'>  subgraph    :   [ subgraph [ ID ] ] '{' stmt_list '}'
+</span><span class='line'>compass_pt  :     (n | ne | e | se | s | sw | w | nw | c | _)</span></code></pre></td></tr></table></div></figure>
+
+
+
 </div>
   
   
@@ -179,12 +230,22 @@
 <li class='category'><a href='/blog/categories/github/'>github (3)</a></li>
 <li class='category'><a href='/blog/categories/shell/'>shell (1)</a></li>
 <li class='category'><a href='/blog/categories/text-edit/'>text-edit (2)</a></li>
+<li class='category'><a href='/blog/categories/tools/'>tools (1)</a></li>
+<li class='category'><a href='/blog/categories/ubuntu-faq/'>ubuntu-faq (1)</a></li>
 
     </ul>
 </section>
 <section>
   <h1>最近发布</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/10/31/dotyu-yan/">DOT语言</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/31/virtualboxzhong-shi-yong-bu-liao-usbshe-bei-%3F/">VirtualBox中使用不了USB设备？</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/10/30/gitfen-zhi/">Git分支</a>
@@ -216,14 +277,6 @@
     
       <li class="post">
         <a href="/blog/2014/10/12/git-start/">Git概述及初配置</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress/">添加duoshuo评论到octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/04/octopress/">使用octopress部署github博客</a>
       </li>
     
   </ul>

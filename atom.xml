@@ -4,7 +4,7 @@
   <title><![CDATA[cosail's blog]]></title>
   <link href="http://cosail.github.io/atom.xml" rel="self"/>
   <link href="http://cosail.github.io/"/>
-  <updated>2014-10-31T08:42:54+08:00</updated>
+  <updated>2014-10-31T11:49:17+08:00</updated>
   <id>http://cosail.github.io/</id>
   <author>
     <name><![CDATA[cosail]]></name>
@@ -12,6 +12,79 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[DOT语言]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/31/dotyu-yan/"/>
+    <updated>2014-10-31T11:02:40+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/31/dotyu-yan</id>
+    <content type="html"><![CDATA[<p><strong>DOT语言</strong>是一种文本图形描述语言，提供一种方便的描述图形的方法。
+<code>开源的Graphviz软件包包含了一组工具，能够用来绘制DOT语言脚本和描述的图形，也提供了可调用的函数库。</code></p>
+
+<p>DOT语言文件的后缀名通常为：.gv 或 .dot。</p>
+
+<p>下面是定义DOT语言的抽象语法：</p>
+
+<p><img src="http://cosail.github.io/images/dot-grammar.jpg" title="" alt="" /></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> graph  :    [ strict ] (graph | digraph) [ ID ] '{' stmt_list '}'
+</span><span class='line'> stmt_list  :     [ stmt [ ';' ] [ stmt_list ] ]
+</span><span class='line'>  stmt  :     node_stmt
+</span><span class='line'>         |    edge_stmt
+</span><span class='line'>         |    attr_stmt
+</span><span class='line'>         |    ID '=' ID
+</span><span class='line'>         |    subgraph
+</span><span class='line'> attr_stmt    :   (graph | node | edge) attr_list
+</span><span class='line'> attr_list    :   '[' [ a_list ] ']' [ attr_list ]
+</span><span class='line'>a_list    :   ID '=' ID [ (';' | ',') ] [ a_list ]
+</span><span class='line'> edge_stmt    :   (node_id | subgraph) edgeRHS [ attr_list ]
+</span><span class='line'>   edgeRHS    :   edgeop (node_id | subgraph) [ edgeRHS ]
+</span><span class='line'> node_stmt    :   node_id [ attr_list ]
+</span><span class='line'>   node_id    :   ID [ port ]
+</span><span class='line'>  port    :   ':' ID [ ':' compass_pt ]
+</span><span class='line'>         |    ':' compass_pt
+</span><span class='line'>  subgraph    :   [ subgraph [ ID ] ] '{' stmt_list '}'
+</span><span class='line'>compass_pt  :     (n | ne | e | se | s | sw | w | nw | c | _)</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[VirtualBox中使用不了USB设备？]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/31/virtualboxzhong-shi-yong-bu-liao-usbshe-bei-%3F/"/>
+    <updated>2014-10-31T10:46:06+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/31/virtualboxzhong-shi-yong-bu-liao-usbshe-bei-?</id>
+    <content type="html"><![CDATA[<h3>ubuntu下virtualbox中的usb设备为灰色不可用怎么办?</h3>
+
+<p>virtualbox 装完成后会有 vboxusers 用户组，只要添加用户到组就行了：</p>
+
+<p>$ sudo vim /etc/group<br/>
+找到这一行：  vboxusers:x:127:<br/>
+添加自己的用户名(假设为w)：  vboxusers:x:127:w</p>
+
+<p>然后注销重新登陆w试试。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Git分支]]></title>
