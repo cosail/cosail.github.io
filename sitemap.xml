@@ -3,6 +3,30 @@
   
   
   <url>
+    <loc>http://cosail.github.io/blog/2014/10/30/gitfen-zhi/</loc>
+    
+    <lastmod>2014-10-30T16:05:13+08:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://cosail.github.io/blog/2014/10/28/qu-jian-xian-duan-shu/</loc>
+    
+    <lastmod>2014-10-28T19:53:48+08:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://cosail.github.io/blog/2014/10/28/shu/</loc>
+    
+    <lastmod>2014-10-28T10:11:11+08:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://cosail.github.io/blog/2014/10/25/markdownge-shi/</loc>
     
     <lastmod>2014-10-25T21:23:16+08:00</lastmod>
@@ -69,21 +93,21 @@
   
   <url>
     <loc>http://cosail.github.io/new-page/about_me.html</loc>
-    <lastmod>2014-10-25T22:17:37+08:00</lastmod>
+    <lastmod>2014-10-31T08:37:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://cosail.github.io/blog/archives/</loc>
-    <lastmod>2014-10-25T22:17:37+08:00</lastmod>
+    <lastmod>2014-10-31T08:37:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://cosail.github.io/</loc>
-    <lastmod>2014-10-25T22:17:37+08:00</lastmod>
+    <lastmod>2014-10-31T08:37:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
