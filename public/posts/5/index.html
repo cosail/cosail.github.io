@@ -9,6 +9,7 @@
   <meta name="author" content="cosail">
 
   
+<<<<<<< HEAD
   <meta name="description" content="有时会看到结构体里有宏定义，如下： 1
 2
 3
@@ -20,6 +21,11 @@
 struct rb_node
 { unsigned long rb_parent_color;
 #define RB_RED 0 #define RB_BLACK 1 struct rb_node *rb_right; &hellip;">
+=======
+  <meta name="description" content="问题： 将一棵二叉查找树转换成一个排好序的双向链表。
+要求： 不能创建新节点，只能调整指针指向。 分析： 关键是看如何遍历二叉查找树，要按顺序访问的话只能用深度优先遍历了。
+补充： 树遍历就是按某种顺序对树中每个结点访问且只能访问一次的过程，本质上是将非线性结构线性化。访问的含义很广，如查询、计算 &hellip;">
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -37,8 +43,16 @@ struct rb_node
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<<<<<<< HEAD
 <!--link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"-->
 <!--link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"-->
+=======
+
+<!--2014.10.28：断网后访问不了下面链接，妨碍本地显示，就给注释掉了
+<link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+&#8211;>
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
 
 <!-- wuwei: 链接在新标签中打开 -->
 <!-- base target="_blank" --> 
@@ -91,7 +105,11 @@ struct rb_node
 
   <header>
     
+<<<<<<< HEAD
       <h1 class="entry-title"><a href="/blog/2014/10/22/structli-de-number-define/">为什么在struct里定义宏</a></h1>
+=======
+      <h1 class="entry-title"><a href="/blog/2014/10/28/shu/">二叉查找树转双向链表</a></h1>
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
     
 
     
@@ -101,12 +119,21 @@ struct rb_node
 
 
 
+<<<<<<< HEAD
 <time class='entry-date' datetime='2014-10-22T22:18:21+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>10:18 pm</span></time>
         
 		<!-- wuwei,2014.10.7: duoshuo -->
         
            | <a href="/blog/2014/10/22/structli-de-number-define/#duoshuo_thread"
              data-disqus-identifier="http://cosail.github.io/blog/2014/10/22/structli-de-number-define/">评论此文章</a>
+=======
+<time class='entry-date' datetime='2014-10-28T10:11:11+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:11 am</span></time>
+        
+		<!-- wuwei,2014.10.7: duoshuo -->
+        
+           | <a href="/blog/2014/10/28/shu/#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io/blog/2014/10/28/shu/">评论此文章</a>
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
         
       </p>
     
@@ -114,6 +141,7 @@ struct rb_node
 
 
 
+<<<<<<< HEAD
   <div class="entry-content"><p>有时会看到结构体里有宏定义，如下：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -140,6 +168,21 @@ struct rb_node
 <p>因为对宏的处理是在预编译时完成的，而预处理器仅仅作简单的替换。宏从其定义处开始，至文件的尾部或取消宏(#undef)为止是可见的，struct的作用域对宏的定义没影响。</p>
 
 <p>可以用 gcc -E 命令来只做预处理而不编译，来查看宏处理后的程序源代码。</p>
+=======
+  <div class="entry-content"><p><font color='red'>问题：</font> 将一棵二叉查找树转换成一个排好序的双向链表。<br/>
+<font color='red'>要求：</font> 不能创建新节点，只能调整指针指向。</p>
+
+<hr />
+
+<p><font color='blue'>分析：</font> 关键是看如何遍历二叉查找树，要按顺序访问的话只能用深度优先遍历了。<br/>
+<font color='blue'>补充：</font> 树遍历就是按某种顺序对树中每个结点访问且只能访问一次的过程，本质上是将非线性结构线性化。访问的含义很广，如查询、计算、修改、输出结点的值。<br/>
+树的遍历分为深度优先遍历（含先序，中序，后序），广度优先遍历。用递归（使用函数调用栈）实现深度优先遍历，用栈实现广度优先遍历。</p>
+
+<hr />
+
+<p><font color='green'>解法1：</font> 中序遍历二叉查找树，较小的节点先访问。第一个访问的节点作为链表第一个节点，往后每访问一个节点就将其附加到链表的尾部。<br/>
+<font color='green'>解法2：</font> 先序遍历二叉查找树（还必须加上递归思想：将左子树和右子树分别抽象为一个节点）。第一个访问的是根节点的左子树（递归处理左子树，将其看作是一个已经转换好的前面部分的链表），然后是根节点（将其看作是链表中间某位置的节点），最后是根节点的右子树（递归处理右子树，将其看作是一个已经转换好的后面部分的链表）。最后将这三个部分依次连接起来就行了：左子树的最右节点与根节点相连，根节点再和右子树的最左节点相连。</p>
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
 </div>
   
   
@@ -203,6 +246,7 @@ struct rb_node
 <section>
     <h1>分类目录</h1>
     <ul id="categories">
+<<<<<<< HEAD
         <li class='category'><a href='/blog/categories/c/'>c (2)</a></li>
 <li class='category'><a href='/blog/categories/code/'>code (1)</a></li>
 <li class='category'><a href='/blog/categories/data-structure/'>data-structure (1)</a></li>
@@ -211,6 +255,15 @@ struct rb_node
 <li class='category'><a href='/blog/categories/github/'>github (3)</a></li>
 <li class='category'><a href='/blog/categories/shell/'>shell (1)</a></li>
 <li class='category'><a href='/blog/categories/tool/'>tool (1)</a></li>
+=======
+        <li class='category'><a href='/blog/categories/datastruct-tree/'>datastruct-tree (2)</a></li>
+<li class='category'><a href='/blog/categories/git/'>git (3)</a></li>
+<li class='category'><a href='/blog/categories/github/'>github (3)</a></li>
+<li class='category'><a href='/blog/categories/shell/'>shell (1)</a></li>
+<li class='category'><a href='/blog/categories/text-edit/'>text-edit (2)</a></li>
+<li class='category'><a href='/blog/categories/tools/'>tools (1)</a></li>
+<li class='category'><a href='/blog/categories/ubuntu-faq/'>ubuntu-faq (1)</a></li>
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
 
     </ul>
 </section>
@@ -219,6 +272,7 @@ struct rb_node
   <ul id="recent_posts">
     
       <li class="post">
+<<<<<<< HEAD
         <a href="/blog/2014/10/30/shi-yong-dothua-you-xiang-ceng-ji-tu/">使用dot画图</a>
       </li>
     
@@ -239,6 +293,32 @@ struct rb_node
       </li>
     
       <li class="post">
+=======
+        <a href="/blog/2014/10/31/dotyu-yan/">DOT语言</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/31/virtualboxzhong-shi-yong-bu-liao-usbshe-bei-%3F/">VirtualBox中使用不了USB设备？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/30/gitfen-zhi/">Git分支</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/28/qu-jian-xian-duan-shu/">线段(区间)树</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/28/shu/">二叉查找树转双向链表</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/25/markdownge-shi/">Markdown格式</a>
+      </li>
+    
+      <li class="post">
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
         <a href="/blog/2014/10/14/gitji-chu-cao-zuo/">Git基础操作</a>
       </li>
     
@@ -252,10 +332,13 @@ struct rb_node
     
       <li class="post">
         <a href="/blog/2014/10/12/git-start/">Git概述及初配置</a>
+<<<<<<< HEAD
       </li>
     
       <li class="post">
         <a href="/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress/">添加duoshuo评论到octopress</a>
+=======
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
       </li>
     
   </ul>

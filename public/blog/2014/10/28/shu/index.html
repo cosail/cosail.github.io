@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>二叉查找树转双向链表 - cosail&#8217;s blog</title>
+  <meta name="author" content="cosail">
+
+  
+  <meta name="description" content="问题： 将一棵二叉查找树转换成一个排好序的双向链表。
+要求： 不能创建新节点，只能调整指针指向。 分析： 关键是看如何遍历二叉查找树，要按顺序访问的话只能用深度优先遍历了。
+补充： 树遍历就是按某种顺序对树中每个结点访问且只能访问一次的过程，本质上是将非线性结构线性化。访问的含义很广，如查询、计算 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cosail.github.io/blog/2014/10/28/shu">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="cosail's blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.useso.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+
+<!--2014.10.28：断网后访问不了下面链接，妨碍本地显示，就给注释掉了
+<link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+&#8211;>
+
+<!-- wuwei: 链接在新标签中打开 -->
+<!-- base target="_blank" --> 
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <a href="/">	 
+	<h1>
+		<font color="white">cosail&#8217;s blog</font>
+		&nbsp;&nbsp;&nbsp;
+		
+		<font color="white" size="-1">—— Some Learning Notes.</font>
+		
+	</h1>	 
+  </a>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cosail.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">最新文章</a></li>
+  <li><a href="/blog/archives">所有文章</a></li>
+  <li><a href="/new-page/about_me.html">关于</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+
+  <header>
+    
+      <h1 class="entry-title">二叉查找树转双向链表</h1>
+    
+
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-10-28T10:11:11+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:11 am</span></time>
+        
+		<!-- wuwei,2014.10.7: duoshuo -->
+        
+           | <a href="#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io">评论此文章</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<div class="entry-content"><p><font color='red'>问题：</font> 将一棵二叉查找树转换成一个排好序的双向链表。<br/>
+<font color='red'>要求：</font> 不能创建新节点，只能调整指针指向。</p>
+
+<hr />
+
+<p><font color='blue'>分析：</font> 关键是看如何遍历二叉查找树，要按顺序访问的话只能用深度优先遍历了。<br/>
+<font color='blue'>补充：</font> 树遍历就是按某种顺序对树中每个结点访问且只能访问一次的过程，本质上是将非线性结构线性化。访问的含义很广，如查询、计算、修改、输出结点的值。<br/>
+树的遍历分为深度优先遍历（含先序，中序，后序），广度优先遍历。用递归（使用函数调用栈）实现深度优先遍历，用栈实现广度优先遍历。</p>
+
+<hr />
+
+<p><font color='green'>解法1：</font> 中序遍历二叉查找树，较小的节点先访问。第一个访问的节点作为链表第一个节点，往后每访问一个节点就将其附加到链表的尾部。<br/>
+<font color='green'>解法2：</font> 先序遍历二叉查找树（还必须加上递归思想：将左子树和右子树分别抽象为一个节点）。第一个访问的是根节点的左子树（递归处理左子树，将其看作是一个已经转换好的前面部分的链表），然后是根节点（将其看作是链表中间某位置的节点），最后是根节点的右子树（递归处理右子树，将其看作是一个已经转换好的后面部分的链表）。最后将这三个部分依次连接起来就行了：左子树的最右节点与根节点相连，根节点再和右子树的最左节点相连。</p>
+</div>
+
+
+
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+
+<span class="byline author vcard">Posted by <span class="fn">cosail</span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-10-28T10:11:11+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:11 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/datastruct-tree/'>datastruct-tree</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/10/25/markdownge-shi/" title="Previous Post: markdown格式">&laquo; markdown格式</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/10/28/qu-jian-xian-duan-shu/" title="Next Post: 线段(区间)树">线段(区间)树 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+<!-- wuwei,2014.10.8: duoshuo -->
+
+  <section>
+    <div id="duoshuo_thread" aria-live="polite"><!-- wuwei,2014.10.7 -->
+<section>
+	<!-- 我在octopress/目录的_config.yml中定义了duoshuo_enable -->
+	
+	<!-- 多说评论框 start -->
+	<div class="ds-thread"  data-title="二叉查找树转双向链表" ></div>
+		<!-- 多说评论框 end -->
+		<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+		<script type="text/javascript">
+		var duoshuoQuery = {short_name:"cosail"};
+			(function() {
+				var ds = document.createElement('script');
+				ds.type = 'text/javascript';ds.async = true;
+				ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+				ds.charset = 'UTF-8';
+				(document.getElementsByTagName('head')[0] 
+				 || document.getElementsByTagName('body')[0]).appendChild(ds);
+			})();
+		</script>
+		<!-- 多说公共JS代码 end -->
+	
+<section>
+
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+    <h1><a href="/new-page/about_me.html"><img src="/images/wuwei1.jpg"></a></h1>		
+</section>
+<section>
+    <h1>分类目录</h1>
+    <ul id="categories">
+        <li class='category'><a href='/blog/categories/datastruct-tree/'>datastruct-tree (2)</a></li>
+<li class='category'><a href='/blog/categories/git/'>git (3)</a></li>
+<li class='category'><a href='/blog/categories/github/'>github (3)</a></li>
+<li class='category'><a href='/blog/categories/shell/'>shell (1)</a></li>
+<li class='category'><a href='/blog/categories/text-edit/'>text-edit (2)</a></li>
+<li class='category'><a href='/blog/categories/tools/'>tools (1)</a></li>
+<li class='category'><a href='/blog/categories/ubuntu-faq/'>ubuntu-faq (1)</a></li>
+
+    </ul>
+</section>
+<section>
+  <h1>最近发布</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/10/31/dotyu-yan/">DOT语言</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/31/virtualboxzhong-shi-yong-bu-liao-usbshe-bei-%3F/">VirtualBox中使用不了USB设备？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/30/gitfen-zhi/">Git分支</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/28/qu-jian-xian-duan-shu/">线段(区间)树</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/28/shu/">二叉查找树转双向链表</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/25/markdownge-shi/">Markdown格式</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/14/gitji-chu-cao-zuo/">Git基础操作</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/14/emacskuai-jie-jian/">Emacs快捷键及命令</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/13/shellyu-fa/">Shell语法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/12/git-start/">Git概述及初配置</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<!-- wuwei,2014.10.7: -->
+<section>
+	<!-- 我在octopress/目录的_config.yml中定义了duoshuo_short_name -->
+	
+	<h1>最近评论</h1>
+	<ul class="ds-recent-comments" 
+		data-num-items="10" 
+		data-show-avatars="1" 
+		data-show-time="1" 
+		data-show-title="1" 
+		data-show-admin="1" 
+		data-excerpt-length="18">
+	</ul>
+	<!--多说js加载开始，一个页面只需要加载一次 -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"cosail"};
+	(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';
+	ds.async = true;
+	ds.src = 'http://static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!--多说js加载结束，一个页面只需要加载一次 -->
+	
+</section>
+<!-- wuwei,2014.10.7 -->
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - cosail -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

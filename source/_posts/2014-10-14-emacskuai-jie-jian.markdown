@@ -3,7 +3,7 @@ layout: post
 title: "emacs快捷键及命令"
 date: 2014-10-14 00:15:21 +0800
 comments: true
-categories: emacs
+categories: Text-Edit
 ---
 
 > 主要内容来自：[这里](http://aifreedom.com/technology/112)，由 [`CC BY-NC-SA 3.0协议`](http://creativecommons.org/licenses/by-nc-sa/3.0/deed.zh) 授权  

@@ -3,41 +3,79 @@
   
   
   <url>
+<<<<<<< HEAD
     <loc>http://cosail.github.io/blog/2014/10/30/shi-yong-dothua-you-xiang-ceng-ji-tu/</loc>
     
     <lastmod>2014-10-30T22:34:52+08:00</lastmod>
+=======
+    <loc>http://cosail.github.io/blog/2014/10/31/dotyu-yan/</loc>
+    
+    <lastmod>2014-10-31T11:02:40+08:00</lastmod>
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
     
     <priority>0.8</priority>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>http://cosail.github.io/blog/2014/10/24/shu-ju-jie-gou-gai-shu/</loc>
     
     <lastmod>2014-10-24T20:19:57+08:00</lastmod>
+=======
+    <loc>http://cosail.github.io/blog/2014/10/31/virtualboxzhong-shi-yong-bu-liao-usbshe-bei-%3F/</loc>
+    
+    <lastmod>2014-10-31T10:46:06+08:00</lastmod>
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
     
     <priority>0.8</priority>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>http://cosail.github.io/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/</loc>
     
     <lastmod>2014-10-23T17:09:08+08:00</lastmod>
+=======
+    <loc>http://cosail.github.io/blog/2014/10/30/gitfen-zhi/</loc>
+    
+    <lastmod>2014-10-30T16:05:13+08:00</lastmod>
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
     
     <priority>0.8</priority>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>http://cosail.github.io/blog/2014/10/23/linux-kernelzhong-de-rbtree/</loc>
     
     <lastmod>2014-10-23T15:18:34+08:00</lastmod>
+=======
+    <loc>http://cosail.github.io/blog/2014/10/28/qu-jian-xian-duan-shu/</loc>
+    
+    <lastmod>2014-10-28T19:53:48+08:00</lastmod>
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
     
     <priority>0.8</priority>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>http://cosail.github.io/blog/2014/10/22/structli-de-number-define/</loc>
     
     <lastmod>2014-10-22T22:18:21+08:00</lastmod>
+=======
+    <loc>http://cosail.github.io/blog/2014/10/28/shu/</loc>
+    
+    <lastmod>2014-10-28T10:11:11+08:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://cosail.github.io/blog/2014/10/25/markdownge-shi/</loc>
+    
+    <lastmod>2014-10-25T21:23:16+08:00</lastmod>
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
     
     <priority>0.8</priority>
   </url>
@@ -101,23 +139,37 @@
   
   <url>
     <loc>http://cosail.github.io/new-page/about_me.html</loc>
+<<<<<<< HEAD
     <lastmod>2014-10-31T00:13:54+08:00</lastmod>
+=======
+    <lastmod>2014-11-02T22:46:30+08:00</lastmod>
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>http://cosail.github.io/</loc>
     <lastmod>2014-10-31T00:13:54+08:00</lastmod>
+=======
+    <loc>http://cosail.github.io/blog/archives/</loc>
+    <lastmod>2014-11-02T22:46:30+08:00</lastmod>
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.7</priority>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>http://cosail.github.io/blog/archives/</loc>
     <lastmod>2014-10-31T00:13:54+08:00</lastmod>
+=======
+    <loc>http://cosail.github.io/</loc>
+    <lastmod>2014-11-02T22:46:30+08:00</lastmod>
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>1.0</priority>
   </url>
   
   

@@ -1,0 +1,178 @@
+---
+layout: post
+title: "DOT语言"
+date: 2014-10-31 11:02:40 +0800
+comments: true
+categories: tools
+---
+
+**DOT语言**是一种文本图形描述语言，提供一种方便的描述图形的方法。
+`开源的Graphviz软件包包含了一组工具，能够用来绘制DOT语言脚本和描述的图形，也提供了可调用的函数库。`
+
+DOT语言文件的后缀名通常为：.gv 或 .dot。  
+
+### DOT语言的语法
+
+下面是定义DOT语言的抽象语法：  
+![](http://cosail.github.io/images/dot-grammar.jpg")
+
+**对于上图的几点说明：**
+
+1. 粗体为终结符，斜体为非终结符；
+2. (...)表示分组，‘|’表示可替换，[...]表示可选项；
+3. 关键字node, edge, graph, digraph, subgraph, strict用大小写均可； 
+4. compass_pt 为方位点，它们不是关键字；
+5. node_id 仅仅是一个字符串，形如abc_2，2.34，<html-like>，“with space”；
+
+**有关语法的其他说明：**  
+
+1. DOT语言支持C++风格的注释： /**/ 和 //；  
+2. 以‘#’开头的行视为来自C预处理器的输出行，会被丢弃；  
+3. 允许被双引号包围的字符串跨越多行，另外也能使用字符串拼接操作符‘+’；
+4. 在 digraph 中，边操作符为 ->；而在 graph 中，边操作符为 --。
+
+### Subgraphs和Clusters
+
+**Subgraphs在graphviz中有三个作用：**  
+1.一个subgraph可用来在结构上表示某些节点和边应该被分为一组。另外还可将subgraph置于边操作符的两边，方便地支持快捷表示，如：
+```
+A -> {B C}
+```
+等价于
+```
+A -> B
+A -> C
+```
+
+2.subgraph可以为属性设置提供一个上下文环境。比如subgraph可以指定其中定义的所有节点的默认颜色为蓝色，如下还可以把某些节点安排在一个层级：
+```
+subgraph {
+	rank = same;
+	A -> B; B -> C;
+}
+```
+这样，A、B、C三个节点绘制是会被放在同一个层级。
+
+3.如果subgraph的名字以“cluster”开头，Graphviz会把它看作一个特殊的"cluster subgraph"。布局引擎在布局时会将属于同一个cluster的节点绘制在一块，整个cluster绘制在一个矩形框内。
+
+### 词法和语义说明
+
+1. 可以使用一个node, edge, 或graph语句，或者通过未附加到节点或边上的属性赋值来定义一个默认属性。这样，后面定义的对象会继承该属性，直到默认属性值被重新设置。
+2. 一个subgraph在其定义时会继承父graph的属性设置，如默认字体等。
+3. 如果一条边属于一个cluster，那么他的端点也属于该cluster。
+4. graph和subgraph其实是共享同一个命名空间，它们的名字必须唯一。
+
+### 字符编码
+
+DOT可接受UTF-8，Latin1(ISO-8859-1)字符集编码。默认为UTF-8。使用其它编码是也许得用到其它程序来转换，如iconv。
+
+
+
+------
+-------
+--------
+使用如下命令来将.dot文件翻译成.jpg文件：
+```
+$ dot -Tjpg hello.dot -o hello.jpg
+```
+`-Tjpg表示生成jpg文件,-Tps表示生成ps文件，还有其他输出格式`
+
+```
+digraph G {
+	size ="4,4";
+	main [shape=box];         //节点main的形状为box
+	main -> parse [weight=8];  //把边的weight设为8，默认为1
+	parse -> execute;
+	main -> init [style=dotted];  //此边用虚线绘制
+	main -> cleanup;
+	execute -> { make_string; printf} //快捷描述两条边
+	init -> make_string;
+	edge [color=red];        //设置边的默认颜色为红色
+	main -> printf [style=bold,label="100 times"]; //粗边，附上标签“100 times”
+	make_string [label="make a\nstring"];  //多行可使用'\n'
+	/*设置节点默认属性：形状为box，填充，且指定颜色*/
+	node [shape=box,style=filled,color=".7 .3 1.0"]; 
+	execute -> compare;
+}
+```
+
+### 2 绘图属性
+
+node, edge, graph都有许多属性可以设置，从而可产生各种各样的图形，下面介绍这些属性 。
+
+##### 2.1 节点属性设置示例
+
+先看结果图:  
+![](http://cosail.github.io/images/2.1.node.jpg")  
+
+在上图中，节点有默认属性，显式的在"[...]"内设置属性来覆盖默认属性：
+
+```
+digraph G {
+  default [] //默认:shape=ellipse,width=.75,height=.5,label=节点名("default")
+  doublecircle [ shape=doublecircle    	/*双层圈形状*/
+				,style=dotted			/*用点线绘制*/
+				,color=red]				/*绘制颜色为红色(边框颜色)*/
+  box [  shape=box		/*方框*/
+		,penwidth=4.0	/*线宽*/
+		,fontname=courier,fontsize=20,fontcolor=red	/*字体名,大小,颜色*/
+		,height=0.1,width=0.1		/*图形高宽(里面的文字可能会胀大它)*/
+		,label=BOX]			/*图形标签为"BOX"*/
+  box2 [ shape=box
+		,penwidth=4.0
+		,fontname=courier,fontsize=20,fontcolor=red
+		,height=0.1,width=0.1
+		,label=BOX,margin="0.2,0.1"]	/*图形标签,标签周围的空白*/
+  egg [  shape=egg		/*卵形状*/
+		,style=filled		/*填充*/
+		,fillcolor=green]	/*填充颜色为绿*/
+  Msquare [  shape=Msquare		/*带切角的正方形*/
+			,orientation=45.0]	/*旋转45度角*/
+  box3 [ shape=box	
+		,image="chair.jpg"		/*框内显示图片*/
+        ,label="treechair",labelloc=t	/*图形的标签,标签位于上部(top)*/
+		,fixedsize=true		/*图形为固定大小*/
+		,width=1.2,height=1.0]	/*图形大小*/
+  plaintext [shape=plaintext]	/*裸文本*/
+  polygon [  shape=polygon,sides=4	/*多边形,四条边*/
+			,distortion="-0.3"		/*变形(负数使上边短下边长):梯形*/
+			,peripheries=3]		/*边框层数为3层*/
+  polygon2 [ shape=polygon,sides=4
+			,skew=0.6]			/*偏斜(正数使向右斜):平行四边形*/
+
+  doublecircle -> Msquare -> polygon; egg->box2; //可用';'来分隔多条语句
+  doublecircle -> box -> box2
+  doublecircle -> egg -> box3
+  doublecircle -> plaintext -> polygon2
+}
+```
+
+##### 2.2 节点形状
+
+下面是主要的基于多边形的形状列表:  
+![](http://cosail.github.io/images/2.2-1.jpg")  
+[更多](http://www.graphviz.org/doc/info/shapes.html)
+
+还有一种基于记录的节点也非常重要，画数据结构的时候经常要用，包括**record**，**Mrecord**，后者和前者的唯一区别在于有圆角。还是先看图：  
+![](http://cosail.github.io/images/2.2-2.jpg")  
+
+**代码如下：**  
+`注解：`**“端口”**表示边和节点的连接位置。  
+```
+digraph structs { 
+	node [shape=record]; //节点的默认形状设为“record”
+
+	/* 下面"<>"中为节点的端口,两字段的端口名分别为"f0","f1" */
+	struct2 [label="<f0> one | <f1> two"];
+	/* 形状为圆角record，'\ '为空格 */
+	struct1 [shape=Mrecord, label="<f0> left | <f1> mid\ dle | <f2> right"]; 
+	/* 用'\n'给标签文本换行，<here>是一个能和边相连的端口 */
+	struct3 [label="hello\nworld | { b |{c|<here> d|e}| f} | g | h"]; 
+
+	struct1:f1 -> struct2:f0; 
+	/* 从节点struct1的端口f2,连接到节点struct3的端口here */
+	struct1:f2 -> struct3:here; 
+} 
+```
+
+

@@ -1,0 +1,565 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>DOT语言 - cosail&#8217;s blog</title>
+  <meta name="author" content="cosail">
+
+  
+  <meta name="description" content="DOT语言是一种文本图形描述语言，提供一种方便的描述图形的方法。
+开源的Graphviz软件包包含了一组工具，能够用来绘制DOT语言脚本和描述的图形，也提供了可调用的函数库。 DOT语言文件的后缀名通常为：.gv 或 .dot。 DOT语言的语法 下面是定义DOT语言的抽象语法： &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cosail.github.io/blog/2014/10/31/dotyu-yan">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="cosail's blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.useso.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+
+<!--2014.10.28：断网后访问不了下面链接，妨碍本地显示，就给注释掉了
+<link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+&#8211;>
+
+<!-- wuwei: 链接在新标签中打开 -->
+<!-- base target="_blank" --> 
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <a href="/">	 
+	<h1>
+		<font color="white">cosail&#8217;s blog</font>
+		&nbsp;&nbsp;&nbsp;
+		
+		<font color="white" size="-1">—— Some Learning Notes.</font>
+		
+	</h1>	 
+  </a>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cosail.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">最新文章</a></li>
+  <li><a href="/blog/archives">所有文章</a></li>
+  <li><a href="/new-page/about_me.html">关于</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+
+  <header>
+    
+      <h1 class="entry-title">DOT语言</h1>
+    
+
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-10-31T11:02:40+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>11:02 am</span></time>
+        
+		<!-- wuwei,2014.10.7: duoshuo -->
+        
+           | <a href="#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io">评论此文章</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<div class="entry-content"><p><strong>DOT语言</strong>是一种文本图形描述语言，提供一种方便的描述图形的方法。
+<code>开源的Graphviz软件包包含了一组工具，能够用来绘制DOT语言脚本和描述的图形，也提供了可调用的函数库。</code></p>
+
+<p>DOT语言文件的后缀名通常为：.gv 或 .dot。</p>
+
+<h3>DOT语言的语法</h3>
+
+<p>下面是定义DOT语言的抽象语法：<br/>
+<img src="http://cosail.github.io/images/dot-grammar.jpg" title="" alt="" /></p>
+
+<p><strong>对于上图的几点说明：</strong></p>
+
+<ol>
+<li>粗体为终结符，斜体为非终结符；</li>
+<li>(&hellip;)表示分组，‘|’表示可替换，[&hellip;]表示可选项；</li>
+<li>关键字node, edge, graph, digraph, subgraph, strict用大小写均可；</li>
+<li>compass_pt 为方位点，它们不是关键字；</li>
+<li>node_id 仅仅是一个字符串，形如abc_2，2.34，<html-like>，“with space”；</li>
+</ol>
+
+
+<p><strong>有关语法的其他说明：</strong></p>
+
+<ol>
+<li>DOT语言支持C++风格的注释： /**/ 和 //；</li>
+<li>以‘#’开头的行视为来自C预处理器的输出行，会被丢弃；</li>
+<li>允许被双引号包围的字符串跨越多行，另外也能使用字符串拼接操作符‘+’；</li>
+<li>在 digraph 中，边操作符为 ->；而在 graph 中，边操作符为 &ndash;。</li>
+</ol>
+
+
+<h3>Subgraphs和Clusters</h3>
+
+<p><strong>Subgraphs在graphviz中有三个作用：</strong><br/>
+1.一个subgraph可用来在结构上表示某些节点和边应该被分为一组。另外还可将subgraph置于边操作符的两边，方便地支持快捷表示，如：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>A -&gt; {B C}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>等价于</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>A -&gt; B
+</span><span class='line'>A -&gt; C</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2.subgraph可以为属性设置提供一个上下文环境。比如subgraph可以指定其中定义的所有节点的默认颜色为蓝色，如下还可以把某些节点安排在一个层级：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>subgraph {
+</span><span class='line'>  rank = same;
+</span><span class='line'>  A -&gt; B; B -&gt; C;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样，A、B、C三个节点绘制是会被放在同一个层级。</p>
+
+<p>3.如果subgraph的名字以“cluster”开头，Graphviz会把它看作一个特殊的&#8221;cluster subgraph&#8221;。布局引擎在布局时会将属于同一个cluster的节点绘制在一块，整个cluster绘制在一个矩形框内。</p>
+
+<h3>词法和语义说明</h3>
+
+<ol>
+<li>可以使用一个node, edge, 或graph语句，或者通过未附加到节点或边上的属性赋值来定义一个默认属性。这样，后面定义的对象会继承该属性，直到默认属性值被重新设置。</li>
+<li>一个subgraph在其定义时会继承父graph的属性设置，如默认字体等。</li>
+<li>如果一条边属于一个cluster，那么他的端点也属于该cluster。</li>
+<li>graph和subgraph其实是共享同一个命名空间，它们的名字必须唯一。</li>
+</ol>
+
+
+<h3>字符编码</h3>
+
+<p>DOT可接受UTF-8，Latin1(ISO-8859-1)字符集编码。默认为UTF-8。使用其它编码是也许得用到其它程序来转换，如iconv。</p>
+
+<hr />
+
+<hr />
+
+<hr />
+
+<p>使用如下命令来将.dot文件翻译成.jpg文件：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ dot -Tjpg hello.dot -o hello.jpg</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>-Tjpg表示生成jpg文件,-Tps表示生成ps文件，还有其他输出格式</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>digraph G {
+</span><span class='line'>  size ="4,4";
+</span><span class='line'>  main [shape=box];         //节点main的形状为box
+</span><span class='line'>  main -&gt; parse [weight=8];  //把边的weight设为8，默认为1
+</span><span class='line'>  parse -&gt; execute;
+</span><span class='line'>  main -&gt; init [style=dotted];  //此边用虚线绘制
+</span><span class='line'>  main -&gt; cleanup;
+</span><span class='line'>  execute -&gt; { make_string; printf} //快捷描述两条边
+</span><span class='line'>  init -&gt; make_string;
+</span><span class='line'>  edge [color=red];        //设置边的默认颜色为红色
+</span><span class='line'>  main -&gt; printf [style=bold,label="100 times"]; //粗边，附上标签“100 times”
+</span><span class='line'>  make_string [label="make a\nstring"];  //多行可使用'\n'
+</span><span class='line'>  /*设置节点默认属性：形状为box，填充，且指定颜色*/
+</span><span class='line'>  node [shape=box,style=filled,color=".7 .3 1.0"]; 
+</span><span class='line'>  execute -&gt; compare;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>2 绘图属性</h3>
+
+<p>node, edge, graph都有许多属性可以设置，从而可产生各种各样的图形，下面介绍这些属性 。</p>
+
+<h5>2.1 节点属性设置示例</h5>
+
+<p>先看结果图:<br/>
+<img src="http://cosail.github.io/images/2.1.node.jpg" title="" alt="" /></p>
+
+<p>在上图中，节点有默认属性，显式的在&#8221;[&hellip;]&ldquo;内设置属性来覆盖默认属性：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>digraph G {
+</span><span class='line'>  default [] //默认:shape=ellipse,width=.75,height=.5,label=节点名("default")
+</span><span class='line'>  doublecircle [ shape=doublecircle       /*双层圈形状*/
+</span><span class='line'>              ,style=dotted           /*用点线绘制*/
+</span><span class='line'>              ,color=red]             /*绘制颜色为红色(边框颜色)*/
+</span><span class='line'>  box [  shape=box        /*方框*/
+</span><span class='line'>      ,penwidth=4.0   /*线宽*/
+</span><span class='line'>      ,fontname=courier,fontsize=20,fontcolor=red /*字体名,大小,颜色*/
+</span><span class='line'>      ,height=0.1,width=0.1       /*图形高宽(里面的文字可能会胀大它)*/
+</span><span class='line'>      ,label=BOX]         /*图形标签为"BOX"*/
+</span><span class='line'>  box2 [ shape=box
+</span><span class='line'>      ,penwidth=4.0
+</span><span class='line'>      ,fontname=courier,fontsize=20,fontcolor=red
+</span><span class='line'>      ,height=0.1,width=0.1
+</span><span class='line'>      ,label=BOX,margin="0.2,0.1"]    /*图形标签,标签周围的空白*/
+</span><span class='line'>  egg [  shape=egg        /*卵形状*/
+</span><span class='line'>      ,style=filled       /*填充*/
+</span><span class='line'>      ,fillcolor=green]   /*填充颜色为绿*/
+</span><span class='line'>  Msquare [  shape=Msquare        /*带切角的正方形*/
+</span><span class='line'>          ,orientation=45.0]  /*旋转45度角*/
+</span><span class='line'>  box3 [ shape=box    
+</span><span class='line'>      ,image="chair.jpg"      /*框内显示图片*/
+</span><span class='line'>        ,label="treechair",labelloc=t /*图形的标签,标签位于上部(top)*/
+</span><span class='line'>      ,fixedsize=true     /*图形为固定大小*/
+</span><span class='line'>      ,width=1.2,height=1.0]  /*图形大小*/
+</span><span class='line'>  plaintext [shape=plaintext] /*裸文本*/
+</span><span class='line'>  polygon [  shape=polygon,sides=4    /*多边形,四条边*/
+</span><span class='line'>          ,distortion="-0.3"      /*变形(负数使上边短下边长):梯形*/
+</span><span class='line'>          ,peripheries=3]     /*边框层数为3层*/
+</span><span class='line'>  polygon2 [ shape=polygon,sides=4
+</span><span class='line'>          ,skew=0.6]          /*偏斜(正数使向右斜):平行四边形*/
+</span><span class='line'>
+</span><span class='line'>  doublecircle -&gt; Msquare -&gt; polygon; egg-&gt;box2; //可用';'来分隔多条语句
+</span><span class='line'>  doublecircle -&gt; box -&gt; box2
+</span><span class='line'>  doublecircle -&gt; egg -&gt; box3
+</span><span class='line'>  doublecircle -&gt; plaintext -&gt; polygon2
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>2.2 节点形状</h5>
+
+<p>下面是主要的基于多边形的形状列表:<br/>
+<img src="http://cosail.github.io/images/2.2-1.jpg" title="" alt="" /><br/>
+<a href="http://www.graphviz.org/doc/info/shapes.html">更多</a></p>
+
+<p>还有一种基于记录的节点也非常重要，画数据结构的时候经常要用，包括<strong>record</strong>，<strong>Mrecord</strong>，后者和前者的唯一区别在于有圆角。还是先看图：<br/>
+<img src="http://cosail.github.io/images/2.2-2.jpg" title="" alt="" /></p>
+
+<p><strong>代码如下：</strong><br/>
+<code>注解：</code><strong>“端口”</strong>表示边和节点的连接位置。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>digraph structs { 
+</span><span class='line'>  node [shape=record]; //节点的默认形状设为“record”
+</span><span class='line'>
+</span><span class='line'>  /* 下面"&lt;&gt;"中为节点的端口,两字段的端口名分别为"f0","f1" */
+</span><span class='line'>  struct2 [label="&lt;f0&gt; one | &lt;f1&gt; two"];
+</span><span class='line'>  /* 形状为圆角record，'\ '为空格 */
+</span><span class='line'>  struct1 [shape=Mrecord, label="&lt;f0&gt; left | &lt;f1&gt; mid\ dle | &lt;f2&gt; right"]; 
+</span><span class='line'>  /* 用'\n'给标签文本换行，&lt;here&gt;是一个能和边相连的端口 */
+</span><span class='line'>  struct3 [label="hello\nworld | { b |{c|&lt;here&gt; d|e}| f} | g | h"]; 
+</span><span class='line'>
+</span><span class='line'>  struct1:f1 -&gt; struct2:f0; 
+</span><span class='line'>  /* 从节点struct1的端口f2,连接到节点struct3的端口here */
+</span><span class='line'>  struct1:f2 -&gt; struct3:here; 
+</span><span class='line'>} </span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+
+<span class="byline author vcard">Posted by <span class="fn">cosail</span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-10-31T11:02:40+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>11:02 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/tools/'>tools</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/10/31/virtualboxzhong-shi-yong-bu-liao-usbshe-bei-%3F/" title="Previous Post: VirtualBox中使用不了USB设备？">&laquo; VirtualBox中使用不了USB设备？</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+<!-- wuwei,2014.10.8: duoshuo -->
+
+  <section>
+    <div id="duoshuo_thread" aria-live="polite"><!-- wuwei,2014.10.7 -->
+<section>
+	<!-- 我在octopress/目录的_config.yml中定义了duoshuo_enable -->
+	
+	<!-- 多说评论框 start -->
+	<div class="ds-thread"  data-title="DOT语言" ></div>
+		<!-- 多说评论框 end -->
+		<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+		<script type="text/javascript">
+		var duoshuoQuery = {short_name:"cosail"};
+			(function() {
+				var ds = document.createElement('script');
+				ds.type = 'text/javascript';ds.async = true;
+				ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+				ds.charset = 'UTF-8';
+				(document.getElementsByTagName('head')[0] 
+				 || document.getElementsByTagName('body')[0]).appendChild(ds);
+			})();
+		</script>
+		<!-- 多说公共JS代码 end -->
+	
+<section>
+
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+    <h1><a href="/new-page/about_me.html"><img src="/images/wuwei1.jpg"></a></h1>		
+</section>
+<section>
+    <h1>分类目录</h1>
+    <ul id="categories">
+        <li class='category'><a href='/blog/categories/datastruct-tree/'>datastruct-tree (2)</a></li>
+<li class='category'><a href='/blog/categories/git/'>git (3)</a></li>
+<li class='category'><a href='/blog/categories/github/'>github (3)</a></li>
+<li class='category'><a href='/blog/categories/shell/'>shell (1)</a></li>
+<li class='category'><a href='/blog/categories/text-edit/'>text-edit (2)</a></li>
+<li class='category'><a href='/blog/categories/tools/'>tools (1)</a></li>
+<li class='category'><a href='/blog/categories/ubuntu-faq/'>ubuntu-faq (1)</a></li>
+
+    </ul>
+</section>
+<section>
+  <h1>最近发布</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/10/31/dotyu-yan/">DOT语言</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/31/virtualboxzhong-shi-yong-bu-liao-usbshe-bei-%3F/">VirtualBox中使用不了USB设备？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/30/gitfen-zhi/">Git分支</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/28/qu-jian-xian-duan-shu/">线段(区间)树</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/28/shu/">二叉查找树转双向链表</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/25/markdownge-shi/">Markdown格式</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/14/gitji-chu-cao-zuo/">Git基础操作</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/14/emacskuai-jie-jian/">Emacs快捷键及命令</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/13/shellyu-fa/">Shell语法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/12/git-start/">Git概述及初配置</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<!-- wuwei,2014.10.7: -->
+<section>
+	<!-- 我在octopress/目录的_config.yml中定义了duoshuo_short_name -->
+	
+	<h1>最近评论</h1>
+	<ul class="ds-recent-comments" 
+		data-num-items="10" 
+		data-show-avatars="1" 
+		data-show-time="1" 
+		data-show-title="1" 
+		data-show-admin="1" 
+		data-excerpt-length="18">
+	</ul>
+	<!--多说js加载开始，一个页面只需要加载一次 -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"cosail"};
+	(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';
+	ds.async = true;
+	ds.src = 'http://static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!--多说js加载结束，一个页面只需要加载一次 -->
+	
+</section>
+<!-- wuwei,2014.10.7 -->
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - cosail -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
