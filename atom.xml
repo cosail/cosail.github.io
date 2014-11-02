@@ -4,11 +4,7 @@
   <title><![CDATA[cosail's blog]]></title>
   <link href="http://cosail.github.io/atom.xml" rel="self"/>
   <link href="http://cosail.github.io/"/>
-<<<<<<< HEAD
   <updated>2014-11-02T23:08:59+08:00</updated>
-=======
-  <updated>2014-11-02T22:46:30+08:00</updated>
->>>>>>> 55b443de73dd36ef53abc897d7ff8e1ed8e49f81
   <id>http://cosail.github.io/</id>
   <author>
     <name><![CDATA[cosail]]></name>
@@ -725,7 +721,6 @@ void main()
   </entry>
   
   <entry>
-<<<<<<< HEAD
     <title type="html"><![CDATA[数据结构概述]]></title>
     <link href="http://cosail.github.io/blog/2014/10/24/shu-ju-jie-gou-gai-shu/"/>
     <updated>2014-10-24T20:19:57+08:00</updated>
@@ -1422,8 +1417,6 @@ linux-source-3.13.0/lib/rbtree.c</p></blockquote>
   </entry>
   
   <entry>
-=======
->>>>>>> 55b443de73dd36ef53abc897d7ff8e1ed8e49f81
     <title type="html"><![CDATA[Git基础操作]]></title>
     <link href="http://cosail.github.io/blog/2014/10/14/gitji-chu-cao-zuo/"/>
     <updated>2014-10-14T10:34:40+08:00</updated>
