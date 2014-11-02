@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ubuntu-faq | cosail's blog]]></title>
+  <link href="http://cosail.github.io/blog/categories/ubuntu-faq/atom.xml" rel="self"/>
+  <link href="http://cosail.github.io/"/>
+  <updated>2014-11-02T23:08:59+08:00</updated>
+  <id>http://cosail.github.io/</id>
+  <author>
+    <name><![CDATA[cosail]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[VirtualBox中使用不了USB设备？]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/31/virtualboxzhong-shi-yong-bu-liao-usbshe-bei-%3F/"/>
+    <updated>2014-10-31T10:46:06+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/31/virtualboxzhong-shi-yong-bu-liao-usbshe-bei-?</id>
+    <content type="html"><![CDATA[<h3>ubuntu下virtualbox中的usb设备为灰色不可用怎么办?</h3>
+
+<p>virtualbox 装完成后会有 vboxusers 用户组，只要添加用户到组就行了：</p>
+
+<p>$ sudo vim /etc/group<br/>
+找到这一行：  vboxusers:x:127:<br/>
+添加自己的用户名(假设为w)：  vboxusers:x:127:w</p>
+
+<p>然后注销重新登陆w试试。</p>
+]]></content>
+  </entry>
+  
+</feed>

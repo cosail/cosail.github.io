@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: C | cosail's blog]]></title>
+  <link href="http://cosail.github.io/blog/categories/c/atom.xml" rel="self"/>
+  <link href="http://cosail.github.io/"/>
+  <updated>2014-11-02T23:08:59+08:00</updated>
+  <id>http://cosail.github.io/</id>
+  <author>
+    <name><![CDATA[cosail]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Typeof获取表达式类型]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/"/>
+    <updated>2014-10-23T17:09:08+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing</id>
+    <content type="html"><![CDATA[<h3>typeof 关键字</h3>
+
+<p><code>typeof</code>是 C 语言的一个新扩展，它告诉编译器你要使用某个表达式的类型（而不需要显示的指明该类型），如：</p>
+
+<pre><code class="c">typeof( x[0](1) )  var;
+</code></pre>
+
+<p><code>上面定义了一个变量var，它的类型为：函数指针数组</code></p>
+
+<p>也可以用类型而不是表达式，如：</p>
+
+<pre><code class="c">typeof( int * )  var;
+</code></pre>
+
+<p><code>变量 var 的类型为： int *。这个好像用处不大？</code></p>
+
+<p>一般情况下用<code>typeof</code>，如果要于ISO C兼容的话，用双下划线的形式<code>__typeof__</code>。</p>
+
+<p>你可以在能用 typedef 的所有地方使用 typeof，如：类型声明，类型转换，或 sizeof()，typeof()中。例如：</p>
+
+<pre><code class="c">typeof (*x) y;      // y 的类型为：指针 x 指向的类型  
+typeof(*x) y[4];  // 指针 x 指向的类型的数组类型  
+typeof (typeof (char *)[4]) y;  // 字符指针数组类型
+</code></pre>
+
+<p>如果想把T定义成一个表达式的类型：</p>
+
+<pre><code class="c">typdef typeof(expr) T;
+</code></pre>
+
+<h3>限制</h3>
+
+<p>typeof 中的类型名不能包含 extern 或 static，不过允许包含类型限定符 const 或 volatile。</p>
+
+<pre><code class="c">typeof(extern int) a;       // 不可以
+extern typeof(const int) b = 3;  // 可以
+</code></pre>
+
+<h3>应用</h3>
+
+<p>gcc 编译器支持该扩展，在linux内核中应用非常广泛，如 linux-source-3.13.0/include/linux/kernel.h 文件中的两个宏：</p>
+
+<p>下面定义一个安全的 max 宏，避免参数被多次展开的错误。</p>
+
+<pre><code class="c">#define max(x, y) ({                         \
+    typeof(x) _max1 = (x);                  \
+    typeof(y) _max2 = (y);                  \
+    (void) (&amp;_max1 == &amp;_max2);              \
+    _max1 &gt; _max2 ? _max1 : _max2; })
+</code></pre>
+
+<p>下面第2行获取结构体（类型名为 type）中的成员（成员变量名为 member）相对结构体<br/>
+起始地址的偏移量，第3行由成员的起始地址（ptr）减去其偏移量得到结构体的起始地址：</p>
+
+<pre><code class="c">#define container_of(ptr, type, member) ({          \
+    const typeof( ((type *)0)-&gt;member ) *__mptr = (ptr);    \
+    (type *)( (char *)__mptr - offsetof(type,member) );})
+</code></pre>
+
+<h3>类似的__auto_type</h3>
+
+<p>可以在 gnu c 中使用<code>__auto_type</code>来声明一个变量的类型，如</p>
+
+<pre><code class="c">int a = 3;
+__auto_type  var = a;   // 类似C++里的 auto
+</code></pre>
+
+<p><a href="https://gcc.gnu.org/onlinedocs/gcc/Typeof.html">参考</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[为什么在struct里定义宏]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/22/structli-de-number-define/"/>
+    <updated>2014-10-22T22:18:21+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/22/structli-de-number-define</id>
+    <content type="html"><![CDATA[<p>有时会看到结构体里有宏定义，如下：
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">rb_node</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'><span class="p">{</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'>    <span class="kt">unsigned</span> <span class="kt">long</span>  <span class="n">rb_parent_color</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">define</span> <span class="n">RB_RED</span>      <span class="mi">0</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">define</span> <span class="n">RB_BLACK</span>    <span class="mi">1</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_right</span><span class="p">;</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_left</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span> <span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">attribute</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span><span class="p">((</span><span class="n">aligned</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span><span class="p">))));</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+这是Linux内核中红黑树节点的定义，其中 rb_parent_color 的第0位用来存储节点的颜色（红/黑）。把两种颜色的宏定义放在结构体定义内，应该是为了增强代码可读性。</p>
+
+<p>因为对宏的处理是在预编译时完成的，而预处理器仅仅作简单的替换。宏从其定义处开始，至文件的尾部或取消宏(#undef)为止是可见的，struct的作用域对宏的定义没影响。</p>
+
+<p>可以用 gcc -E 命令来只做预处理而不编译，来查看宏处理后的程序源代码。</p>
+]]></content>
+  </entry>
+  
+</feed>

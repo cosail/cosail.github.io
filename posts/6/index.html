@@ -9,9 +9,19 @@
   <meta name="author" content="cosail">
 
   
-  <meta name="description" content="依赖 octopress依赖ruby, 可能你得先执行: 1
-sudo apt-get install ruby ruby-dev 在github创建自己的Web站点:
-看官方示例 安装octopress: git clone git://github.com/imathis/octopress. &hellip;">
+  <meta name="description" content="Markdown是一个Web上使用的文本到HTML的转换工具，可以通过简单、易读易写的文本格式生成结构化的HTML文档。Markdown的语法简洁明了、学习容易，而且功能比纯文本更强，因此很多人用它写博客。 1. 下面为简单使用介绍: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -29,8 +39,16 @@ sudo apt-get install ruby ruby-dev 在github创建自己的Web站点:
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<<<<<<< HEAD
+<!--link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"-->
+<!--link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"-->
+=======
+
+<!--2014.10.28：断网后访问不了下面链接，妨碍本地显示，就给注释掉了
 <link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+&#8211;>
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
 
 <!-- wuwei: 链接在新标签中打开 -->
 <!-- base target="_blank" --> 
@@ -83,7 +101,7 @@ sudo apt-get install ruby ruby-dev 在github创建自己的Web站点:
 
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/10/04/octopress/">使用octopress部署github博客</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/10/25/markdownge-shi/">Markdown格式</a></h1>
     
 
     
@@ -93,12 +111,12 @@ sudo apt-get install ruby ruby-dev 在github创建自己的Web站点:
 
 
 
-<time class='entry-date' datetime='2014-10-04T16:41:42+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:41 pm</span></time>
+<time class='entry-date' datetime='2014-10-25T21:23:16+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:23 pm</span></time>
         
 		<!-- wuwei,2014.10.7: duoshuo -->
         
-           | <a href="/blog/2014/10/04/octopress/#duoshuo_thread"
-             data-disqus-identifier="http://cosail.github.io/blog/2014/10/04/octopress/">评论此文章</a>
+           | <a href="/blog/2014/10/25/markdownge-shi/#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io/blog/2014/10/25/markdownge-shi/">评论此文章</a>
         
       </p>
     
@@ -106,131 +124,362 @@ sudo apt-get install ruby ruby-dev 在github创建自己的Web站点:
 
 
 
-  <div class="entry-content"><h3>依赖</h3>
+  <div class="entry-content"><p>Markdown是一个Web上使用的文本到HTML的转换工具，可以通过简单、易读易写的文本格式生成结构化的HTML文档。Markdown的语法简洁明了、学习容易，而且功能比纯文本更强，因此很多人用它写博客。</p>
 
-<ul>
-<li>octopress依赖ruby, 可能你得先执行:</li>
-</ul>
+<hr />
 
+<h2><font color="green">1. 下面为简单使用介绍:</font> </h2>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install ruby ruby-dev</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>## 1. 标题
+</span><span class='line'>
+</span><span class='line'>使用#，可表示1-6级标题。
+</span><span class='line'>
+</span><span class='line'># 一级标题
+</span><span class='line'>###### 六级标题
+</span><span class='line'>
+</span><span class='line'>## 2. 段落
+</span><span class='line'>
+</span><span class='line'>段落的前后要有空行，所谓的空行是指没有文字内容.
+</span><span class='line'>若想在段内强制换行的方式是使用两个以上空格加上回车（引用中换行省略回车）。
+</span><span class='line'>
+</span><span class='line'>## 3. 区块引用
+</span><span class='line'>
+</span><span class='line'>在段落的每行或者只在第一行使用符号&gt;,还可使用多个嵌套引用，如：
+</span><span class='line'>&gt;区块引用
+</span><span class='line'>&gt;&gt;嵌套引用
+</span><span class='line'>
+</span><span class='line'>## 4. 代码区块
+</span><span class='line'>
+</span><span class='line'>代码区块的建立是在每行加上4个空格或者一个制表符（如同写代码一样）。如 普通段落：
+</span><span class='line'>普通
+</span><span class='line'>void main()
+</span><span class='line'>{
+</span><span class='line'>printf("Hello, Markdown.");
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>代码区块：
+</span><span class='line'>
+</span><span class='line'>    代码
+</span><span class='line'>    void main()
+</span><span class='line'>    {
+</span><span class='line'>      printf("Hei, you.");
+</span><span class='line'>    }
+</span><span class='line'>注意:顶端需要和普通段落之间存在空行。
+</span><span class='line'>
+</span><span class='line'>## 5. 强调
+</span><span class='line'>
+</span><span class='line'>在强调内容两侧分别加上*或者_，如:  
+</span><span class='line'>
+</span><span class='line'>*斜体*，_斜体_  
+</span><span class='line'>**粗体**，__粗体__  
+</span><span class='line'>***粗斜体***，___粗斜体___
+</span><span class='line'>
+</span><span class='line'>## 6. 列表
+</span><span class='line'>
+</span><span class='line'>使用-、+、或*标记无序列表，如：
+</span><span class='line'>- 1.1
+</span><span class='line'>- 1.2
+</span><span class='line'>+ 1.1
+</span><span class='line'>+ 1.2
+</span><span class='line'>* 1.1
+</span><span class='line'>* 1.2  
+</span><span class='line'>注意：标记后面最少有一个空格或制表符。
+</span><span class='line'>
+</span><span class='line'>有序列表的标记方式是将上述的符号换成数字,并辅以.，如:
+</span><span class='line'>
+</span><span class='line'>1. 貌似和纯文本没区别
+</span><span class='line'>2. 但复制一下就知道还是有区别的  
+</span><span class='line'>注意:顶端需要和普通段落之间存在空行。
+</span><span class='line'>
+</span><span class='line'>## 7. 分割线
+</span><span class='line'>
+</span><span class='line'>分割线最常使用就是三个或以上*，还可以使用-和_。
+</span><span class='line'>***
+</span><span class='line'>一区1:
+</span><span class='line'>******
+</span><span class='line'>一区2
+</span><span class='line'>***
+</span><span class='line'>
+</span><span class='line'>------------------
+</span><span class='line'>二区1:
+</span><span class='line'>---
+</span><span class='line'>二区2
+</span><span class='line'>------------------
+</span><span class='line'>
+</span><span class='line'>## 8. 链接
+</span><span class='line'>
+</span><span class='line'>链接可以由两种形式生成：行内式和参考式。 行内式：  
+</span><span class='line'>    [百度](http://www.baidu.com "Markdown")。
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>参考式：  
+</span><span class='line'>[百度][1]  
+</span><span class='line'>[百度][2]
+</span><span class='line'>[1]:http://www.baidu.com "Markdown"
+</span><span class='line'>[2]:http://www.baidu.com "Markdown"  
+</span><span class='line'>注意：上述的[1]:http://www.baidu.com "Markdown"不要出现在区块中。
+</span><span class='line'>
+</span><span class='line'>## 9. 图片
+</span><span class='line'>
+</span><span class='line'>添加图片的形式和链接相似，只需在链接的基础上前方加一个'！'。
+</span><span class='line'>
+</span><span class='line'>![](http://cosail.github.io/images/chairTree.jpg)
+</span><span class='line'>
+</span><span class='line'>## 10. 符号'`', '\'
+</span><span class='line'>
+</span><span class='line'>'`'起到标记作用。如：
+</span><span class='line'>
+</span><span class='line'>`ctrl+a`
+</span><span class='line'>
+</span><span class='line'>'\'相当于反转义作用。使符号成为普通符号。  
+</span><span class='line'>\*普通\*
+</span><span class='line'>
+</span><span class='line'>## 参考:
+</span><span class='line'>[https://github.com/younghz/Markdown](https://github.com/younghz/Markdown)
+</span><span class='line'>## 链接:
+</span><span class='line'>[在线Markdown编辑](https://www.zybuluo.com/mdeditor)  
+</span><span class='line'>[CommonMark](http://commonmark.org/): A strongly specified, highly compatible implementation of Markdown.  
+</span><span class='line'>[The official specification for CommonMark. ](http://jgm.github.io/stmd/spec.html)
+</span></code></pre></td></tr></table></div></figure>
 
 
-<ul>
-<li>在github创建自己的Web站点:<br/>
-<a href="https://pages.github.com/">看官方示例</a></li>
-</ul>
+<hr />
 
+<h2><font color="green">2. 对应上面代码的显示效果如下:</font> </h2>
 
-<h3>安装octopress:</h3>
+<h2>1. 标题</h2>
 
-<pre><code>git clone git://github.com/imathis/octopress.git octopress  //下载源码
-cd octopress
+<p>使用#，可表示1-6级标题。</p>
 
-切换gem源为国内源，方法如下：  
-**先查看当前源(默认为官方源)**
-gem source -l
-**删除官方源**,如
-gem source -r http://rubygems.org/
-**添加淘宝源**
-gem source -a http://ruby.taobao.org/
+<h1>一级标题</h1>
 
-**安装bundler**
-    gem install bundler
+<h6>六级标题</h6>
 
-为了使后面的rake generate不出错, 在octopress/下的Gemfile文件首行:  
-https://rubygems.org/替换为http://ruby.taobao.org/  
-并在文件末尾添加: 
-gem 'execjs'    //安装execjs
-gem 'therubyracer'     //execjs还需要后端才能处理，想简单解决可以加上这个 Gem
+<h2>2. 段落</h2>
 
-bundle install  //安装octopress (若安装过程中出现问题-例如需要root权限来安装某些依赖,请根据提示处理之)
-rake install    //安装octopress默认主题
+<p>段落的前后要有空行，所谓的空行是指没有文字内容.
+若想在段内强制换行的方式是使用两个以上空格加上回车（引用中换行省略回车）。</p>
+
+<h2>3. 区块引用</h2>
+
+<p>在段落的每行或者只在第一行使用符号>,还可使用多个嵌套引用，如：</p>
+
+<blockquote><p>区块引用</p>
+
+<blockquote><p>嵌套引用</p></blockquote></blockquote>
+
+<h2>4. 代码区块</h2>
+
+<p>代码区块的建立是在每行加上4个空格或者一个制表符（如同写代码一样）。如 普通段落：
+普通
+void main()
+{
+printf(&ldquo;Hello, Markdown.&rdquo;);
+}</p>
+
+<p>代码区块：</p>
+
+<pre><code>代码
+void main()
+{
+  printf("Hei, you.");
+}
 </code></pre>
 
-<h3>配置Octopress:</h3>
+<p>注意:顶端需要和普通段落之间存在空行。</p>
 
-<pre><code>修改文件 _config.yml:
-按自己情况填写url,title,subtitle,author,email等信息,
-其中url为在github创建的仓库地址,如:  
- git@github.com:cosail/cosail.github.io或https://github.com/cosail/cosail.github.io。
+<h2>5. 强调</h2>
 
-为了避免网页加载太慢, 在source/目录中执行:
-grep "googleapis" ./ -r     //查找需要修改的文件
-替换文件中fonts.googleapis.com为fonts.useso.com(360提供的谷歌字库)，
-替换文件中ajax.googleapis.com为ajax.useso.com(360提供的谷歌公用库)，
-这样你调用这些文件的时候就快多了。
+<p>在强调内容两侧分别加上*或者_，如:</p>
 
-在octopress根目录执行 :
-rake setup_github_pages    //按照要求输入仓库地址等，这个命令会在根目录下新建_deploy目录，
-这个会push到仓库的master分支，也就是访问博客的文件。
-    rake generate  //这个会按照既定规则生成静态文件的博客。
-rake deploy    //将前一步生成的文件拷贝到_deploy目录,并push到github
+<p><em>斜体</em>，<em>斜体</em><br/>
+<strong>粗体</strong>，<strong>粗体</strong><br/>
+<strong><em>粗斜体</em></strong>，<strong><em>粗斜体</em></strong></p>
 
-第一次执行 rake deploy 的时候可能会报错,解决方法是进入_deploy目录执行:
-git pull origin +master
+<h2>6. 列表</h2>
 
-然后再次尝试部署:
-cd ..
-rake deploy
-</code></pre>
+<p>使用-、+、或*标记无序列表，如：
+- 1.1
+- 1.2
++ 1.1
++ 1.2
+* 1.1
+* 1.2<br/>
+注意：标记后面最少有一个空格或制表符。</p>
 
-<p><code>现在就应该可以正常显示博客页面了!让我们预览一下:</code></p>
+<p>有序列表的标记方式是将上述的符号换成数字,并辅以.，如:</p>
 
-<h3>配置完成后, 进行本地预览:</h3>
+<ol>
+<li>貌似和纯文本没区别</li>
+<li>但复制一下就知道还是有区别的<br/>
+注意:顶端需要和普通段落之间存在空行。</li>
+</ol>
 
-<pre><code>rake preview //在浏览器中进行本地预览了,访问http://localhost:4000
-</code></pre>
 
-<h3>提交源码用于备份:</h3>
+<h2>7. 分割线</h2>
 
-<pre><code>可以将当前octopress的源码备份到github的source分支下,在octopress目录下执行:
-git add .
-git commit -m 'Initial source commit'
-git push origin source
-</code></pre>
+<p>分割线最常使用就是三个或以上*，还可以使用-和_。</p>
 
-<h3>新建文章:</h3>
+<hr />
 
-<pre><code>rake new_post["文章名"] //文章文件将存储在source/_posts目录下，按照Jekyll的命名规范命名：YYYY-MM-DD-post-文章名.markdown。
-</code></pre>
+<p>一区1:</p>
 
-<h3>新建页面:</h3>
+<hr />
 
-<pre><code>添加页面cosail.github.io/new-page/ :
-rake new_page[new-page] //creates /source/new-page/index.markdown
-rake new_page[new-page/page.markdown] //creates /source/new-page/page.markdown  
-</code></pre>
+<p>一区2</p>
 
-<p>访问试试: <a href="http://cosail.github.io/new-page/">cosail.github.io/new-page/</a></p>
+<hr />
 
-<h3>使用octopress: 创建,编辑,生成并发布文章</h3>
+<hr />
 
-<pre><code>rake new_post["文章名"]  //新建文章
-编辑文章: 编辑source/_posts/下的相应markdown文件
-rake generate     //生成
-可选择备份一下:
-        git add .
-        git commit -am "back up for source/." 
-        git push origin source
-rake deploy     //发布
-</code></pre>
+<h2>二区1:</h2>
 
-<h3>另外一点小改动:</h3>
+<h2>二区2</h2>
 
-<p>为了点击链接在新标签页中打开, <br/>
-在source/_include/custom/head.html文件末尾添加一行 :<br/>
-   <code>&lt;base target=”_ blank”&gt;</code><br/>
-点击试试: <a href="http://www.baidu.com">百度</a></p>
+<h2>8. 链接</h2>
 
-<h3>参考:</h3>
+<p>链接可以由两种形式生成：行内式和参考式。 行内式：<br/>
+    <a href="http://www.baidu.com" title="Markdown">百度</a>。</p>
 
-<p><a href="http://www.itzhoulin.com/category/wordpress/">利用octopress部署博客到github</a><br/>
-<a href="https://ruby-china.org/topics/1605">执行 rails server 报错 Could not find a JavaScript runtime</a><br/>
-<a href="http://jingyan.baidu.com/album/afd8f4de4595ac34e386e969.html?picindex=1">解决WP加载谷歌ajax.googleapis.com缓慢问题</a><br/>
-<a href="http://zhidao.baidu.com/link?url=688qT_eBlOJIcHrFM1wmHFYBLWozjH1cE1FUW8ezjOyT6l4kxnlndXu1Uy_-5mZr6G54eES8NtkJfihDPXkovq">在html中怎么设置全部链接在新标签打开</a><br/>
-<a href="http://www.oschina.net/question/218617_66108">markdown 如何显示html标签</a></p>
+<p>参考式：<br/>
+<a href="http://www.baidu.com" title="Markdown">百度</a><br/>
+<a href="http://www.baidu.com" title="Markdown">百度</a>
+注意：上述的<a href="http://www.baidu.com" title="Markdown">1</a>:<a href="http://www.baidu.com">http://www.baidu.com</a> &ldquo;Markdown&#8221;不要出现在区块中。</p>
+
+<h2>9. 图片</h2>
+
+<p>添加图片的形式和链接相似，只需在链接的基础上前方加一个&#8217;！&#8217;。</p>
+
+<p><img src="http://cosail.github.io/images/chairTree.jpg" alt="" /></p>
+
+<h2>10. 符号&#8217;`&lsquo;, &rsquo;&#39;</h2>
+
+<p>&lsquo;`&#8217;起到标记作用。如：</p>
+
+<p><code>ctrl+a</code></p>
+
+<p>&lsquo;&#39;相当于反转义作用。使符号成为普通符号。<br/>
+*普通*</p>
+
+<h2>参考:</h2>
+
+<p><a href="https://github.com/younghz/Markdown">https://github.com/younghz/Markdown</a></p>
+
+<h2>链接:</h2>
+
+<p><a href="https://www.zybuluo.com/mdeditor">在线Markdown编辑</a><br/>
+<a href="http://commonmark.org/">CommonMark</a>: A strongly specified, highly compatible implementation of Markdown.<br/>
+<a href="http://jgm.github.io/stmd/spec.html">The official specification for CommonMark. </a></p>
 </div>
   
   
@@ -294,10 +543,16 @@ rake deploy     //发布
 <section>
     <h1>分类目录</h1>
     <ul id="categories">
-        <li class='category'><a href='/blog/categories/emacs/'>emacs (1)</a></li>
-<li class='category'><a href='/blog/categories/git/'>git (2)</a></li>
+        <li class='category'><a href='/blog/categories/c/'>c (2)</a></li>
+<li class='category'><a href='/blog/categories/code/'>code (1)</a></li>
+<li class='category'><a href='/blog/categories/data-structure/'>data-structure (1)</a></li>
+<li class='category'><a href='/blog/categories/datastruct-tree/'>datastruct-tree (2)</a></li>
+<li class='category'><a href='/blog/categories/git/'>git (3)</a></li>
 <li class='category'><a href='/blog/categories/github/'>github (3)</a></li>
 <li class='category'><a href='/blog/categories/shell/'>shell (1)</a></li>
+<li class='category'><a href='/blog/categories/text-edit/'>text-edit (2)</a></li>
+<li class='category'><a href='/blog/categories/tools/'>tools (1)</a></li>
+<li class='category'><a href='/blog/categories/ubuntu-faq/'>ubuntu-faq (1)</a></li>
 
     </ul>
 </section>
@@ -306,31 +561,43 @@ rake deploy     //发布
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/10/14/gitji-chu-cao-zuo/">Git基础操作</a>
+        <a href="/blog/2014/10/31/dotyu-yan/">DOT语言</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/10/14/emacskuai-jie-jian/">Emacs快捷键及命令</a>
+        <a href="/blog/2014/10/31/virtualboxzhong-shi-yong-bu-liao-usbshe-bei-%3F/">VirtualBox中使用不了USB设备？</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/10/13/shellyu-fa/">Shell语法</a>
+        <a href="/blog/2014/10/30/gitfen-zhi/">Git分支</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/10/12/git-start/">Git概述及初配置</a>
+        <a href="/blog/2014/10/28/qu-jian-xian-duan-shu/">线段(区间)树</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress/">添加duoshuo评论到octopress</a>
+        <a href="/blog/2014/10/28/shu/">二叉查找树转双向链表</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/10/04/octopress/">使用octopress部署github博客</a>
+        <a href="/blog/2014/10/25/markdownge-shi/">Markdown格式</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/10/04/ssh_key_for_github/">生成SSH Key,并设置github</a>
+        <a href="/blog/2014/10/24/shu-ju-jie-gou-gai-shu/">数据结构概述</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/">Typeof获取表达式类型</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/23/linux-kernelzhong-de-rbtree/">Linux Kernel中的红黑树</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/22/structli-de-number-define/">为什么在struct里定义宏</a>
       </li>
     
   </ul>
