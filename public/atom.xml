@@ -4,11 +4,7 @@
   <title><![CDATA[cosail's blog]]></title>
   <link href="http://cosail.github.io/atom.xml" rel="self"/>
   <link href="http://cosail.github.io/"/>
-<<<<<<< HEAD
-  <updated>2014-10-31T00:13:54+08:00</updated>
-=======
-  <updated>2014-11-02T22:46:30+08:00</updated>
->>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
+  <updated>2014-11-02T23:31:28+08:00</updated>
   <id>http://cosail.github.io/</id>
   <author>
     <name><![CDATA[cosail]]></name>
@@ -18,23 +14,23 @@
 
   
   <entry>
-<<<<<<< HEAD
-    <title type="html"><![CDATA[使用dot画图]]></title>
-    <link href="http://cosail.github.io/blog/2014/10/30/shi-yong-dothua-you-xiang-ceng-ji-tu/"/>
-    <updated>2014-10-30T22:34:52+08:00</updated>
-    <id>http://cosail.github.io/blog/2014/10/30/shi-yong-dothua-you-xiang-ceng-ji-tu</id>
-    <content type="html"><![CDATA[<p>dot用来绘制层次的有向图，能够很好的调整图中的节点和边的布局。<br/>
-dot能以命令行程序，web可视化服务，或兼容的图形接口的形式使用。<br/>
-dot程序可读入用领域特定语言-DOT语言写的文本文件，输出多种格式的图形格式文件，如GIF, PNG, SVG, PDF, PostScript。</p>
+    <title type="html"><![CDATA[使用dot绘图]]></title>
+    <link href="http://cosail.github.io/blog/2014/11/02/shi-yong-dothui-tu/"/>
+    <updated>2014-11-02T23:20:28+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/11/02/shi-yong-dothui-tu</id>
+    <content type="html"><![CDATA[<h3>0 DOT语言简介</h3>
 
-<p>dot绘图过程主要分四步：
-1. 消除图中的环
-2. 为节点指定层级，层级决定了节点的Y坐标
-3. 排列层级中的节点，避免交叉
-4. 设置节点的X坐标，使边的长度较短，确定边的路径</p>
+<p><a href="http://cosail.github.io/blog/2014/10/31/dotyu-yan/">DOT语言</a></p>
 
-<p>DOT语言描述三种主要对象：图，节点，边。<br/>
-主图可以是有向图（digraph）、无向图（graph），而在一个主图内可以定义若干由节点和边构成的子图。无向图和有向图分别如下所示：</p>
+<h3>1 dot命令</h3>
+
+<p>使用如下命令来将.dot文件翻译成.jpg文件：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ dot -Tjpg hello.dot -o hello.jpg</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>-Tjpg表示生成jpg文件,-Tps表示生成ps文件，还有其他输出格式</code></p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -46,195 +42,42 @@ dot程序可读入用领域特定语言-DOT语言写的文本文件，输出多�
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>graph G {
-</span><span class='line'>  main--parse--execute;
-</span><span class='line'>  main--cleanup;
-</span><span class='line'>  main--printf;
-</span><span class='line'>  
-</span><span class='line'>  execute--printf;
-</span><span class='line'>  execute--compare;
-</span><span class='line'>
-</span><span class='line'>  init--make_string;
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>digraph G {
+</span><span class='line'>  size ="4,4";
+</span><span class='line'>  main [shape=box];         //节点main的形状为box
+</span><span class='line'>  main -&gt; parse [weight=8];  //把边的weight设为8，默认为1
+</span><span class='line'>  parse -&gt; execute;
+</span><span class='line'>  main -&gt; init [style=dotted];  //此边用虚线绘制
+</span><span class='line'>  main -&gt; cleanup;
+</span><span class='line'>  execute -&gt; { make_string; printf} //快捷描述两条边
+</span><span class='line'>  init -&gt; make_string;
+</span><span class='line'>  edge [color=red];        //设置边的默认颜色为红色
+</span><span class='line'>  main -&gt; printf [style=bold,label="100 times"]; //粗边，附上标签“100 times”
+</span><span class='line'>  make_string [label="make a\nstring"];  //多行可使用'\n'
+</span><span class='line'>  /*设置节点默认属性：形状为box，填充，且指定颜色*/
+</span><span class='line'>  node [shape=box,style=filled,color=".7 .3 1.0"]; 
+</span><span class='line'>  execute -&gt; compare;
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
-<p><img src="" alt="" /></p>
+<h3>2 绘图属性</h3>
 
-<p>digraph G {
-  main->parse->execute;
-  main->cleanup;
-  main->printf;</p>
+<p>node, edge, graph都有许多属性可以设置，从而可产生各种各样的图形，下面介绍这些属性 。</p>
 
-<p>  execute->printf;
-  execute->compare;</p>
+<h5>2.1 节点属性设置示例</h5>
 
-<p>  init->make_string;
-}</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[数据结构概述]]></title>
-    <link href="http://cosail.github.io/blog/2014/10/24/shu-ju-jie-gou-gai-shu/"/>
-    <updated>2014-10-24T20:19:57+08:00</updated>
-    <id>http://cosail.github.io/blog/2014/10/24/shu-ju-jie-gou-gai-shu</id>
-    <content type="html"><![CDATA[<h3>&hellip;</h3>
+<p>先看结果图:<br/>
+<img src="http://cosail.github.io/images/2.1.node.jpg" title="" alt="" /></p>
 
-<h3>Tree</h3>
+<p>在上图中，节点有默认属性，显式的在&#8221;[&hellip;]&ldquo;内设置属性来覆盖默认属性：</p>
 
-<h5>RB-Tree</h5>
-
-<p>红黑树本质上就是一棵查找二叉树，能用查找二叉树做的事情也就能用红黑树来做。<br/>
-不同的是红黑树会自动调整，让自己保持树的平衡状态，从而保证每次查找，插入，删除操作在 O（lg n) 的时间内完成。</p>
-
-<p><code>变形</code>：用红黑树可以实现<strong>区间树</strong>。</p>
-
-<h3>&hellip;</h3>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Typeof获取表达式类型]]></title>
-    <link href="http://cosail.github.io/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/"/>
-    <updated>2014-10-23T17:09:08+08:00</updated>
-    <id>http://cosail.github.io/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing</id>
-    <content type="html"><![CDATA[<h3>typeof 关键字</h3>
-
-<p><code>typeof</code>是 C 语言的一个新扩展，它告诉编译器你要使用某个表达式的类型（而不需要显示的指明该类型），如：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typeof</span><span class="p">(</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span>  <span class="n">var</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>上面定义了一个变量var，它的类型为：函数指针数组</code></p>
-
-<p>也可以用类型而不是表达式，如：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typeof</span><span class="p">(</span> <span class="kt">int</span> <span class="o">*</span> <span class="p">)</span>  <span class="n">var</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>变量 var 的类型为： int *。这个好像用处不大？</code></p>
-
-<p>一般情况下用<code>typeof</code>，如果要于ISO C兼容的话，用双下划线的形式<code>__typeof__</code>。</p>
-
-<p>你可以在能用 typedef 的所有地方使用 typeof，如：类型声明，类型转换，或 sizeof()，typeof()中。例如：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typeof</span> <span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="n">y</span><span class="p">;</span>      <span class="c1">// y 的类型为：指针 x 指向的类型  </span>
-</span><span class='line'><span class="n">typeof</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="n">y</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>  <span class="c1">// 指针 x 指向的类型的数组类型  </span>
-</span><span class='line'><span class="n">typeof</span> <span class="p">(</span><span class="n">typeof</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)[</span><span class="mi">4</span><span class="p">])</span> <span class="n">y</span><span class="p">;</span>  <span class="c1">// 字符指针数组类型</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果想把T定义成一个表达式的类型：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typdef</span> <span class="n">typeof</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="n">T</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>限制</h3>
-
-<p>typeof 中的类型名不能包含 extern 或 static，不过允许包含类型限定符 const 或 volatile。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typeof</span><span class="p">(</span><span class="k">extern</span> <span class="kt">int</span><span class="p">)</span> <span class="n">a</span><span class="p">;</span>       <span class="c1">// 不可以</span>
-</span><span class='line'><span class="k">extern</span> <span class="n">typeof</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span><span class="p">)</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>  <span class="c1">// 可以</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>应用</h3>
-
-<p>gcc 编译器支持该扩展，在linux内核中应用非常广泛，如 linux-source-3.13.0/include/linux/kernel.h 文件中的两个宏：</p>
-
-<p>下面定义一个安全的 max 宏，避免参数被多次展开的错误。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#define max(x, y) ({                         \</span>
-</span><span class='line'><span class="cp">    typeof(x) _max1 = (x);                  \</span>
-</span><span class='line'><span class="cp">    typeof(y) _max2 = (y);                  \</span>
-</span><span class='line'><span class="cp">    (void) (&amp;_max1 == &amp;_max2);              \</span>
-</span><span class='line'><span class="cp">    _max1 &gt; _max2 ? _max1 : _max2; })</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>下面第2行获取结构体（类型名为 type）中的成员（成员变量名为 member）相对结构体<br/>
-起始地址的偏移量，第3行由成员的起始地址（ptr）减去其偏移量得到结构体的起始地址：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#define container_of(ptr, type, member) ({         \</span>
-</span><span class='line'><span class="cp"> const typeof( ((type *)0)-&gt;member ) *__mptr = (ptr); \</span>
-</span><span class='line'><span class="cp"> (type *)( (char *)__mptr - offsetof(type,member) );})</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>类似的__auto_type</h3>
-
-<p>可以在 gnu c 中使用<code>__auto_type</code>来声明一个变量的类型，如</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-</span><span class='line'><span class="n">__auto_type</span>  <span class="n">var</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>   <span class="c1">// 类似C++里的 auto</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="https://gcc.gnu.org/onlinedocs/gcc/Typeof.html">参考</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Linux Kernel中的红黑树]]></title>
-    <link href="http://cosail.github.io/blog/2014/10/23/linux-kernelzhong-de-rbtree/"/>
-    <updated>2014-10-23T15:18:34+08:00</updated>
-    <id>http://cosail.github.io/blog/2014/10/23/linux-kernelzhong-de-rbtree</id>
-    <content type="html"><![CDATA[<blockquote><p>参考自Linux内核源码：<br/>
-linux-source-3.13.0/Documentation/rbtree.txt<br/>
-linux-source-3.13.0/include/linux/rbtree.h<br/>
-linux-source-3.13.0/lib/rbtree.c</p></blockquote>
-
-<h3>1. rbtree.txt中对红黑树的介绍</h3>
-
-<p><code>红黑树</code>是一种自平衡的二叉搜索树，用来存储可排序的 key / value 对。</p>
-
-<p>红黑树和 AVL 树相似，但提供更为实时的插入，删除（分别用最多两次，三次旋转操作完成平衡），有 O（log n）的查找时间复杂度。</p>
-
-<p><code>Linux红黑树</code>为了优化速度，不是在红黑树节点中用指针指向被组织的数据结构，而是将红黑树节点嵌入到它组织的数据结构中（这样可以减少一次间接的地址引用，也有更好的缓存局部性）。</p>
-
-<p>使用者要自己写二叉树的查找，插入函数（使用那些已经实现的红黑树函数）。</p>
-
-<h3>2. Linux红黑树的使用及说明</h3>
-
-<h5>2.1 创建一个新的红黑树</h5>
-
-<p>红黑树中的数据节点就是一个包含 struct rb_node 成员的结构体：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">mytype</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">struct</span> <span class="n">rb_node</span> <span class="n">node</span><span class="p">;</span>
-</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">keystring</span><span class="p">;</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>那如何由红黑树上的节点 rb_node 去访问相应的数据呢？在头文件&lt; linux/kernel.h > 中定义了一个宏 container_of，可用来从红黑树维护的节点得到包含着节点的结构体，然后就能访问该结构体的所有成员了：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -243,51 +86,120 @@ linux-source-3.13.0/lib/rbtree.c</p></blockquote>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm"> * container_of - 由指向结构体成员变量的指针转换为该结构体本身的指针(得到包含它的容器)。</span>
-</span><span class='line'><span class="cm"> * @ptr: 指向 member 的指针</span>
-</span><span class='line'><span class="cm"> * @type:   包含 member 的结构体的类型</span>
-</span><span class='line'><span class="cm"> * @member:  成员变量名</span>
-</span><span class='line'><span class="cm"> */</span>
-</span><span class='line'><span class="cp">#define container_of(ptr, type, member) ({           \</span>
-</span><span class='line'><span class="cp"> const typeof( ((type *)0)-&gt;member ) *__mptr = (ptr); \</span>
-</span><span class='line'><span class="cp"> (type *)( (char *)__mptr - offsetof(type,member) );})</span>
-</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>digraph G {
+</span><span class='line'>  default [] //默认:shape=ellipse,width=.75,height=.5,label=节点名("default")
+</span><span class='line'>  doublecircle [ shape=doublecircle       /*双层圈形状*/
+</span><span class='line'>              ,style=dotted           /*用点线绘制*/
+</span><span class='line'>              ,color=red]             /*绘制颜色为红色(边框颜色)*/
+</span><span class='line'>  box [  shape=box        /*方框*/
+</span><span class='line'>      ,penwidth=4.0   /*线宽*/
+</span><span class='line'>      ,fontname=courier,fontsize=20,fontcolor=red /*字体名,大小,颜色*/
+</span><span class='line'>      ,height=0.1,width=0.1       /*图形高宽(里面的文字可能会胀大它)*/
+</span><span class='line'>      ,label=BOX]         /*图形标签为"BOX"*/
+</span><span class='line'>  box2 [ shape=box
+</span><span class='line'>      ,penwidth=4.0
+</span><span class='line'>      ,fontname=courier,fontsize=20,fontcolor=red
+</span><span class='line'>      ,height=0.1,width=0.1
+</span><span class='line'>      ,label=BOX,margin="0.2,0.1"]    /*图形标签,标签周围的空白*/
+</span><span class='line'>  egg [  shape=egg        /*卵形状*/
+</span><span class='line'>      ,style=filled       /*填充*/
+</span><span class='line'>      ,fillcolor=green]   /*填充颜色为绿*/
+</span><span class='line'>  Msquare [  shape=Msquare        /*带切角的正方形*/
+</span><span class='line'>          ,orientation=45.0]  /*旋转45度角*/
+</span><span class='line'>  box3 [ shape=box    
+</span><span class='line'>      ,image="chair.jpg"      /*框内显示图片*/
+</span><span class='line'>        ,label="treechair",labelloc=t /*图形的标签,标签位于上部(top)*/
+</span><span class='line'>      ,fixedsize=true     /*图形为固定大小*/
+</span><span class='line'>      ,width=1.2,height=1.0]  /*图形大小*/
+</span><span class='line'>  plaintext [shape=plaintext] /*裸文本*/
+</span><span class='line'>  polygon [  shape=polygon,sides=4    /*多边形,四条边*/
+</span><span class='line'>          ,distortion="-0.3"      /*变形(负数使上边短下边长):梯形*/
+</span><span class='line'>          ,peripheries=3]     /*边框层数为3层*/
+</span><span class='line'>  polygon2 [ shape=polygon,sides=4
+</span><span class='line'>          ,skew=0.6]          /*偏斜(正数使向右斜):平行四边形*/
+</span><span class='line'>
+</span><span class='line'>  doublecircle -&gt; Msquare -&gt; polygon; egg-&gt;box2; //可用';'来分隔多条语句
+</span><span class='line'>  doublecircle -&gt; box -&gt; box2
+</span><span class='line'>  doublecircle -&gt; egg -&gt; box3
+</span><span class='line'>  doublecircle -&gt; plaintext -&gt; polygon2
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
-<p><code>上面第 8 行获取结构体（类型名为 type）中的成员（成员变量名为 member）相对结构体起始地址的偏移量；第 9 行由成员的起始地址（ptr）减去其偏移量得到结构体的起始地址。</code><br/>
-关于第 8 行的<code>typeof()</code>参看<a href="http://localhost:4000/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/">这里</a>。</p>
+<h5>2.2 节点形状</h5>
 
-<p>我们也可以用 rb_entry 宏，它只是换了个更友好的名字：</p>
+<p>下面是主要的基于多边形的形状列表:<br/>
+<img src="http://cosail.github.io/images/2.2-1.jpg" title="" alt="" /><br/>
+<a href="http://www.graphviz.org/doc/info/shapes.html">更多</a></p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#define    rb_entry(ptr, type, member)  container_of(ptr, type, member)</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>还有一种基于记录的节点也非常重要，画数据结构的时候经常要用，包括<strong>record</strong>，<strong>Mrecord</strong>，后者和前者的唯一区别在于有圆角。还是先看图：<br/>
+<img src="http://cosail.github.io/images/2.2-2.jpg" title="" alt="" /></p>
 
+<p><strong>代码如下：</strong><br/>
+<code>注解：</code><strong>“端口”</strong>表示边和节点的连接位置。</p>
 
-<p>红黑树的根是一个 struct rb_root，看代码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">rb_root</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_node</span><span class="p">;</span>
-</span><span class='line'><span class="p">};</span>
-</span><span class='line'><span class="cp">#define RB_ROOT  (struct rb_root) { NULL, }</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>digraph structs { 
+</span><span class='line'>  node [shape=record]; //节点的默认形状设为“record”
 </span><span class='line'>
-</span><span class='line'><span class="k">struct</span> <span class="n">rb_root</span> <span class="n">mytree</span> <span class="o">=</span> <span class="n">RB_ROOT</span><span class="p">;</span>   <span class="c1">// 初始化红黑树的根</span>
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>  /* 下面"&lt;&gt;"中为节点的端口,两字段的端口名分别为"f0","f1" */
+</span><span class='line'>  struct2 [label="&lt;f0&gt; one | &lt;f1&gt; two"];
+</span><span class='line'>  /* 形状为圆角record，'\ '为空格 */
+</span><span class='line'>  struct1 [shape=Mrecord, label="&lt;f0&gt; left | &lt;f1&gt; mid\ dle | &lt;f2&gt; right"]; 
+</span><span class='line'>  /* 用'\n'给标签文本换行，&lt;here&gt;是一个能和边相连的端口 */
+</span><span class='line'>  struct3 [label="hello\nworld | { b |{c|&lt;here&gt; d|e}| f} | g | h"]; 
+</span><span class='line'>
+</span><span class='line'>  struct1:f1 -&gt; struct2:f0; 
+</span><span class='line'>  /* 从节点struct1的端口f2,连接到节点struct3的端口here */
+</span><span class='line'>  struct1:f2 -&gt; struct3:here; 
+</span><span class='line'>} </span></code></pre></td></tr></table></div></figure>
 
 
-<h5>2.2 在红黑树中查找一个值</h5>
 
-<p>红黑树的查找很简单，就是二叉树的查找。前面说过，你需要写自己的查找函数，像这样：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-=======
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[DOT语言]]></title>
     <link href="http://cosail.github.io/blog/2014/10/31/dotyu-yan/"/>
     <updated>2014-10-31T11:02:40+08:00</updated>
@@ -370,332 +282,9 @@ linux-source-3.13.0/lib/rbtree.c</p></blockquote>
 
 <p>DOT可接受UTF-8，Latin1(ISO-8859-1)字符集编码。默认为UTF-8。使用其它编码是也许得用到其它程序来转换，如iconv。</p>
 
-<hr />
+<h3>dot使用参考</h3>
 
-<hr />
-
-<hr />
-
-<p>使用如下命令来将.dot文件翻译成.jpg文件：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ dot -Tjpg hello.dot -o hello.jpg</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>-Tjpg表示生成jpg文件,-Tps表示生成ps文件，还有其他输出格式</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
->>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<<<<<<< HEAD
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="nf">my_search</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">string</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">node</span> <span class="o">=</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">while</span> <span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">container_of</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="k">struct</span> <span class="n">mytype</span><span class="p">,</span> <span class="n">node</span><span class="p">);</span>
-</span><span class='line'>          <span class="kt">int</span> <span class="n">result</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>          <span class="n">result</span> <span class="o">=</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">data</span><span class="o">-&gt;</span><span class="n">keystring</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>                  <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">rb_left</span><span class="p">;</span>
-</span><span class='line'>          <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>                  <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">rb_right</span><span class="p">;</span>
-</span><span class='line'>          <span class="k">else</span>
-</span><span class='line'>                  <span class="k">return</span> <span class="n">data</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>2.3 在红黑树中插入一个值</h5>
-
-<p>先查找得到 data 应插入的位置，然后插入相应的新节点并调整树使其平衡。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-=======
-</pre></td><td class='code'><pre><code class=''><span class='line'>digraph G {
-</span><span class='line'>  size ="4,4";
-</span><span class='line'>  main [shape=box];         //节点main的形状为box
-</span><span class='line'>  main -&gt; parse [weight=8];  //把边的weight设为8，默认为1
-</span><span class='line'>  parse -&gt; execute;
-</span><span class='line'>  main -&gt; init [style=dotted];  //此边用虚线绘制
-</span><span class='line'>  main -&gt; cleanup;
-</span><span class='line'>  execute -&gt; { make_string; printf} //快捷描述两条边
-</span><span class='line'>  init -&gt; make_string;
-</span><span class='line'>  edge [color=red];        //设置边的默认颜色为红色
-</span><span class='line'>  main -&gt; printf [style=bold,label="100 times"]; //粗边，附上标签“100 times”
-</span><span class='line'>  make_string [label="make a\nstring"];  //多行可使用'\n'
-</span><span class='line'>  /*设置节点默认属性：形状为box，填充，且指定颜色*/
-</span><span class='line'>  node [shape=box,style=filled,color=".7 .3 1.0"]; 
-</span><span class='line'>  execute -&gt; compare;
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>2 绘图属性</h3>
-
-<p>node, edge, graph都有许多属性可以设置，从而可产生各种各样的图形，下面介绍这些属性 。</p>
-
-<h5>2.1 节点属性设置示例</h5>
-
-<p>先看结果图:<br/>
-<img src="http://cosail.github.io/images/2.1.node.jpg" title="" alt="" /></p>
-
-<p>在上图中，节点有默认属性，显式的在&#8221;[&hellip;]&ldquo;内设置属性来覆盖默认属性：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
->>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<<<<<<< HEAD
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">my_insert</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">,</span> <span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="n">data</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">**</span><span class="n">new</span> <span class="o">=</span> <span class="o">&amp;</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">),</span> <span class="o">*</span><span class="n">parent</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="cm">/* 查找应插入的位置 */</span>
-</span><span class='line'>  <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">new</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="n">this</span> <span class="o">=</span> <span class="n">container_of</span><span class="p">(</span><span class="o">*</span><span class="n">new</span><span class="p">,</span> <span class="k">struct</span> <span class="n">mytype</span><span class="p">,</span> <span class="n">node</span><span class="p">);</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">keystring</span><span class="p">,</span> <span class="n">this</span><span class="o">-&gt;</span><span class="n">keystring</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="n">parent</span> <span class="o">=</span> <span class="o">*</span><span class="n">new</span><span class="p">;</span>
-</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>          <span class="n">new</span> <span class="o">=</span> <span class="o">&amp;</span><span class="p">((</span><span class="o">*</span><span class="n">new</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">rb_left</span><span class="p">);</span>
-</span><span class='line'>      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>          <span class="n">new</span> <span class="o">=</span> <span class="o">&amp;</span><span class="p">((</span><span class="o">*</span><span class="n">new</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">rb_right</span><span class="p">);</span>
-</span><span class='line'>      <span class="k">else</span>
-</span><span class='line'>          <span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span> <span class="c1">// 该值已存在！不用再插入</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="cm">/* 插入新节点并调整树使其平衡 */</span>
-</span><span class='line'>  <span class="n">rb_link_node</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">node</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">new</span><span class="p">);</span>
-</span><span class='line'>  <span class="n">rb_insert_color</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">node</span><span class="p">,</span> <span class="n">root</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>2.4 在红黑树中删除或替换一个值</h5>
-
-<p>要删除一个已有节点：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-=======
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>digraph G {
-</span><span class='line'>  default [] //默认:shape=ellipse,width=.75,height=.5,label=节点名("default")
-</span><span class='line'>  doublecircle [ shape=doublecircle       /*双层圈形状*/
-</span><span class='line'>              ,style=dotted           /*用点线绘制*/
-</span><span class='line'>              ,color=red]             /*绘制颜色为红色(边框颜色)*/
-</span><span class='line'>  box [  shape=box        /*方框*/
-</span><span class='line'>      ,penwidth=4.0   /*线宽*/
-</span><span class='line'>      ,fontname=courier,fontsize=20,fontcolor=red /*字体名,大小,颜色*/
-</span><span class='line'>      ,height=0.1,width=0.1       /*图形高宽(里面的文字可能会胀大它)*/
-</span><span class='line'>      ,label=BOX]         /*图形标签为"BOX"*/
-</span><span class='line'>  box2 [ shape=box
-</span><span class='line'>      ,penwidth=4.0
-</span><span class='line'>      ,fontname=courier,fontsize=20,fontcolor=red
-</span><span class='line'>      ,height=0.1,width=0.1
-</span><span class='line'>      ,label=BOX,margin="0.2,0.1"]    /*图形标签,标签周围的空白*/
-</span><span class='line'>  egg [  shape=egg        /*卵形状*/
-</span><span class='line'>      ,style=filled       /*填充*/
-</span><span class='line'>      ,fillcolor=green]   /*填充颜色为绿*/
-</span><span class='line'>  Msquare [  shape=Msquare        /*带切角的正方形*/
-</span><span class='line'>          ,orientation=45.0]  /*旋转45度角*/
-</span><span class='line'>  box3 [ shape=box    
-</span><span class='line'>      ,image="chair.jpg"      /*框内显示图片*/
-</span><span class='line'>        ,label="treechair",labelloc=t /*图形的标签,标签位于上部(top)*/
-</span><span class='line'>      ,fixedsize=true     /*图形为固定大小*/
-</span><span class='line'>      ,width=1.2,height=1.0]  /*图形大小*/
-</span><span class='line'>  plaintext [shape=plaintext] /*裸文本*/
-</span><span class='line'>  polygon [  shape=polygon,sides=4    /*多边形,四条边*/
-</span><span class='line'>          ,distortion="-0.3"      /*变形(负数使上边短下边长):梯形*/
-</span><span class='line'>          ,peripheries=3]     /*边框层数为3层*/
-</span><span class='line'>  polygon2 [ shape=polygon,sides=4
-</span><span class='line'>          ,skew=0.6]          /*偏斜(正数使向右斜):平行四边形*/
-</span><span class='line'>
-</span><span class='line'>  doublecircle -&gt; Msquare -&gt; polygon; egg-&gt;box2; //可用';'来分隔多条语句
-</span><span class='line'>  doublecircle -&gt; box -&gt; box2
-</span><span class='line'>  doublecircle -&gt; egg -&gt; box3
-</span><span class='line'>  doublecircle -&gt; plaintext -&gt; polygon2
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>2.2 节点形状</h5>
-
-<p>下面是主要的基于多边形的形状列表:<br/>
-<img src="http://cosail.github.io/images/2.2-1.jpg" title="" alt="" /><br/>
-<a href="http://www.graphviz.org/doc/info/shapes.html">更多</a></p>
-
-<p>还有一种基于记录的节点也非常重要，画数据结构的时候经常要用，包括<strong>record</strong>，<strong>Mrecord</strong>，后者和前者的唯一区别在于有圆角。还是先看图：<br/>
-<img src="http://cosail.github.io/images/2.2-2.jpg" title="" alt="" /></p>
-
-<p><strong>代码如下：</strong><br/>
-<code>注解：</code><strong>“端口”</strong>表示边和节点的连接位置。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
->>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<<<<<<< HEAD
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cm">/* 删除节点函数原型 */</span>
-</span><span class='line'><span class="kt">void</span> <span class="nf">rb_erase</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">victim</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">tree</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="cm">/* 删除节点示例代码 */</span>
-</span><span class='line'><span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">mysearch</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mytree</span><span class="p">,</span> <span class="s">&quot;walrus&quot;</span><span class="p">);</span>  <span class="c1">// 查找节点位置</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">rb_erase</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">node</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">mytree</span><span class="p">);</span>  <span class="c1">// 从红黑树删除节点</span>
-</span><span class='line'>  <span class="n">myfree</span><span class="p">(</span><span class="n">data</span><span class="p">);</span> <span class="c1">// 释放结构体内存空间</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>替换一个已有节点：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">void</span> <span class="nf">rb_replace_node</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">old</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">new</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">tree</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>注意：替换节点不会重新排序，若替换后键值改变了，红黑树就可能不正确了。</code></p>
-
-<h5>2.5 按序遍历红黑树</h5>
-
-<p>提供了 4 个函数用来遍历红黑树（也可以是其它二叉树）：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cm">/* 函数原型 */</span>
-</span><span class='line'><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="nf">rb_first</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">tree</span><span class="p">);</span>
-</span><span class='line'><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="nf">rb_last</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">tree</span><span class="p">);</span>
-</span><span class='line'><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="nf">rb_next</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
-</span><span class='line'><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="nf">rb_prev</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="cm">/* 遍历红黑树示例代码 */</span>
-</span><span class='line'><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">node</span><span class="p">;</span>
-</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="n">node</span> <span class="o">=</span> <span class="n">rb_first</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mytree</span><span class="p">);</span> <span class="n">node</span><span class="p">;</span> <span class="n">node</span> <span class="o">=</span> <span class="n">rb_next</span><span class="p">(</span><span class="n">node</span><span class="p">))</span>
-</span><span class='line'>    <span class="n">printk</span><span class="p">(</span><span class="s">&quot;key=%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="k">struct</span> <span class="n">mytype</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">keystring</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>3. 扩展的红黑树</h3>
-
-<p>扩展的红黑树在节点中存储了额外的数据，其值根据以该节点为根的子树的所有节点的内容计算得到。这额外的数据可以用来扩展红黑树的功能。红黑树扩展被实现为一个可选的特性，基于基础的红黑树。</p>
-
-<h5>3.1 使用扩展红黑树</h5>
-
-<p>使用扩展红黑树时不直接包含&lt;linux/rbtree.h>，而是包含头文件&lt;linux/rbtree_augmented.h>(已经包含了前者)。</p>
-
-<p>在执行插入节点操作时，我们必须更新到插入节点的路径上的额外数据（因为当红黑树为了平衡而进行结构调整后，路径上的额外数据就可能失效了）。怎么更新额外数据呢？可以用rb_augment_inserted()代替rb_insert_color()，若调整了树则会调用回调函数（由我们提供）来更新受影响的子树上的额外数据。</p>
-
-<p>在执行删除节点操作时，用rb_erase_augmented()代替rb_erase()。也会调用回调函数来更新受影响的子树上的额外数据。</p>
-
-<h5>3.2 回调函数</h5>
-
-<p>这里的回调函数有我们使用者提供，处理对象是红黑树上的额外数据。</p>
-
-<p>回调函数可通过设置struct rb_augment_callbacks来提供，包括三个回调函数：<br/>
-- 传递函数：更新某节点和其祖先的额外数据，直到另一指定节点或根（当指定节点为NULL时）。
-- 复制函数：拷贝一个节点上的额外数据到第二个节点。<br/>
-- 交替函数：拷贝一个节点上的额外数据到第二个节点，并更新以第二个节点为根的子树上的额外数据。</p>
-
-<h5>3.3 应用扩展红黑树构造区间树</h5>
-
-<p>用红黑树可以实现<strong>区间树</strong>。一般情况下，红黑树节点中存放着 key/value 对。那怎么表示区间[lo, hi]？我们可以在节点中增加一个<strong><em>额外信息</em></strong>。如在红黑树节点中存放整型值 lo 作为下界(也是key), 额外的 hi 来表示上界。另外在节点中增加一个<strong><em>额外信息</em></strong> —— 在每个节点中保存该节点的所有后代中最大的 hi(记为__subtree_last)。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-=======
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>digraph structs { 
-</span><span class='line'>  node [shape=record]; //节点的默认形状设为“record”
-</span><span class='line'>
-</span><span class='line'>  /* 下面"&lt;&gt;"中为节点的端口,两字段的端口名分别为"f0","f1" */
-</span><span class='line'>  struct2 [label="&lt;f0&gt; one | &lt;f1&gt; two"];
-</span><span class='line'>  /* 形状为圆角record，'\ '为空格 */
-</span><span class='line'>  struct1 [shape=Mrecord, label="&lt;f0&gt; left | &lt;f1&gt; mid\ dle | &lt;f2&gt; right"]; 
-</span><span class='line'>  /* 用'\n'给标签文本换行，&lt;here&gt;是一个能和边相连的端口 */
-</span><span class='line'>  struct3 [label="hello\nworld | { b |{c|&lt;here&gt; d|e}| f} | g | h"]; 
-</span><span class='line'>
-</span><span class='line'>  struct1:f1 -&gt; struct2:f0; 
-</span><span class='line'>  /* 从节点struct1的端口f2,连接到节点struct3的端口here */
-</span><span class='line'>  struct1:f2 -&gt; struct3:here; 
-</span><span class='line'>} </span></code></pre></td></tr></table></div></figure>
-
-
-
+<p><a href="http://cosail.github.io/blog/2014/11/02/shi-yong-dothui-tu/">使用dot绘图</a></p>
 ]]></content>
   </entry>
   
@@ -790,7 +379,6 @@ linux-source-3.13.0/lib/rbtree.c</p></blockquote>
 <h2><font color="green">1. 下面为简单使用介绍:</font> </h2>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
->>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -900,192 +488,6 @@ linux-source-3.13.0/lib/rbtree.c</p></blockquote>
 <span class='line-number'>108</span>
 <span class='line-number'>109</span>
 <span class='line-number'>110</span>
-<<<<<<< HEAD
-<span class='line-number'>111</span>
-<span class='line-number'>112</span>
-<span class='line-number'>113</span>
-<span class='line-number'>114</span>
-<span class='line-number'>115</span>
-<span class='line-number'>116</span>
-<span class='line-number'>117</span>
-<span class='line-number'>118</span>
-<span class='line-number'>119</span>
-<span class='line-number'>120</span>
-<span class='line-number'>121</span>
-<span class='line-number'>122</span>
-<span class='line-number'>123</span>
-<span class='line-number'>124</span>
-<span class='line-number'>125</span>
-<span class='line-number'>126</span>
-<span class='line-number'>127</span>
-<span class='line-number'>128</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span>
-</span><span class='line'><span class="nf">interval_tree_first_match</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">,</span>
-</span><span class='line'>            <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">start</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">last</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
-</span><span class='line'>  <span class="n">node</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>          <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">left</span> <span class="o">=</span>
-</span><span class='line'>              <span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
-</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">&gt;=</span> <span class="n">start</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>              <span class="cm">/*</span>
-</span><span class='line'><span class="cm">              * Some nodes in left subtree satisfy Cond2.</span>
-</span><span class='line'><span class="cm">              * Iterate to find the leftmost such node N.</span>
-</span><span class='line'><span class="cm">              * If it also satisfies Cond1, that&#39;s the match</span>
-</span><span class='line'><span class="cm">              * we are looking for. Otherwise, there is no</span>
-</span><span class='line'><span class="cm">              * matching interval as nodes to the right of N</span>
-</span><span class='line'><span class="cm">              * can&#39;t satisfy Cond1 either.</span>
-</span><span class='line'><span class="cm">              */</span>
-</span><span class='line'>              <span class="n">node</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
-</span><span class='line'>              <span class="k">continue</span><span class="p">;</span>
-</span><span class='line'>          <span class="p">}</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">start</span> <span class="o">&lt;=</span> <span class="n">last</span><span class="p">)</span> <span class="p">{</span>     <span class="cm">/* Cond1 */</span>
-</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">last</span> <span class="o">&gt;=</span> <span class="n">start</span><span class="p">)</span>  <span class="cm">/* Cond2 */</span>
-</span><span class='line'>              <span class="k">return</span> <span class="n">node</span><span class="p">;</span>   <span class="cm">/* node is leftmost match */</span>
-</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>              <span class="n">node</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">,</span>
-</span><span class='line'>                  <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
-</span><span class='line'>              <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">&gt;=</span> <span class="n">start</span><span class="p">)</span>
-</span><span class='line'>                  <span class="k">continue</span><span class="p">;</span>
-</span><span class='line'>          <span class="p">}</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>      <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>  <span class="cm">/* No match */</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">Insertion</span><span class="o">/</span><span class="n">removal</span> <span class="n">are</span> <span class="n">defined</span> <span class="n">using</span> <span class="n">the</span> <span class="n">following</span> <span class="n">augmented</span> <span class="nl">callbacks</span><span class="p">:</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">static</span> <span class="kr">inline</span> <span class="kt">unsigned</span> <span class="kt">long</span>
-</span><span class='line'><span class="n">compute_subtree_last</span><span class="p">(</span><span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">max</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">last</span><span class="p">,</span> <span class="n">subtree_last</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="n">subtree_last</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">,</span>
-</span><span class='line'>          <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">__subtree_last</span><span class="p">;</span>
-</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">max</span> <span class="o">&lt;</span> <span class="n">subtree_last</span><span class="p">)</span>
-</span><span class='line'>          <span class="n">max</span> <span class="o">=</span> <span class="n">subtree_last</span><span class="p">;</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="n">subtree_last</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">,</span>
-</span><span class='line'>          <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">__subtree_last</span><span class="p">;</span>
-</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">max</span> <span class="o">&lt;</span> <span class="n">subtree_last</span><span class="p">)</span>
-</span><span class='line'>          <span class="n">max</span> <span class="o">=</span> <span class="n">subtree_last</span><span class="p">;</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">max</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">static</span> <span class="kt">void</span> <span class="n">augment_propagate</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">stop</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="k">while</span> <span class="p">(</span><span class="n">rb</span> <span class="o">!=</span> <span class="n">stop</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span> <span class="o">=</span>
-</span><span class='line'>          <span class="n">rb_entry</span><span class="p">(</span><span class="n">rb</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
-</span><span class='line'>      <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">subtree_last</span> <span class="o">=</span> <span class="n">compute_subtree_last</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
-</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">==</span> <span class="n">subtree_last</span><span class="p">)</span>
-</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
-</span><span class='line'>      <span class="n">node</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">subtree_last</span><span class="p">;</span>
-</span><span class='line'>      <span class="n">rb</span> <span class="o">=</span> <span class="n">rb_parent</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">static</span> <span class="kt">void</span> <span class="n">augment_copy</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_old</span><span class="p">,</span> <span class="n">stru</span><span class="err">，</span><span class="n">ct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_new</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">old</span> <span class="o">=</span>
-</span><span class='line'>      <span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_old</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
-</span><span class='line'>  <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">new</span> <span class="o">=</span>
-</span><span class='line'>      <span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_new</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">new</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">old</span><span class="o">-&gt;</span><span class="n">__subtree_last</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">static</span> <span class="kt">void</span> <span class="n">augment_rotate</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_old</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_new</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">old</span> <span class="o">=</span>
-</span><span class='line'>      <span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_old</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
-</span><span class='line'>  <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">new</span> <span class="o">=</span>
-</span><span class='line'>      <span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_new</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">new</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">old</span><span class="o">-&gt;</span><span class="n">__subtree_last</span><span class="p">;</span>
-</span><span class='line'>  <span class="n">old</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">compute_subtree_last</span><span class="p">(</span><span class="n">old</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">static</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">rb_augment_callbacks</span> <span class="n">augment_callbacks</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">augment_propagate</span><span class="p">,</span> <span class="n">augment_copy</span><span class="p">,</span> <span class="n">augment_rotate</span>
-</span><span class='line'><span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="nf">interval_tree_insert</span><span class="p">(</span><span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span><span class="p">,</span>
-</span><span class='line'>            <span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">**</span><span class="n">link</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">,</span> <span class="o">*</span><span class="n">rb_parent</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-</span><span class='line'>  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">start</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">last</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">parent</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">link</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="n">rb_parent</span> <span class="o">=</span> <span class="o">*</span><span class="n">link</span><span class="p">;</span>
-</span><span class='line'>      <span class="n">parent</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_parent</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
-</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">&lt;</span> <span class="n">last</span><span class="p">)</span>
-</span><span class='line'>          <span class="n">parent</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">last</span><span class="p">;</span>
-</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">start</span> <span class="o">&lt;</span> <span class="n">parent</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">)</span>
-</span><span class='line'>          <span class="n">link</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">;</span>
-</span><span class='line'>      <span class="k">else</span>
-</span><span class='line'>          <span class="n">link</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">;</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">node</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">last</span><span class="p">;</span>
-</span><span class='line'>  <span class="n">rb_link_node</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">,</span> <span class="n">rb_parent</span><span class="p">,</span> <span class="n">link</span><span class="p">);</span>
-</span><span class='line'>  <span class="n">rb_insert_augmented</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">augment_callbacks</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="nf">interval_tree_remove</span><span class="p">(</span><span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span><span class="p">,</span>
-</span><span class='line'>            <span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="n">rb_erase_augmented</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">augment_callbacks</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[为什么在struct里定义宏]]></title>
-    <link href="http://cosail.github.io/blog/2014/10/22/structli-de-number-define/"/>
-    <updated>2014-10-22T22:18:21+08:00</updated>
-    <id>http://cosail.github.io/blog/2014/10/22/structli-de-number-define</id>
-    <content type="html"><![CDATA[<p>有时会看到结构体里有宏定义，如下：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">rb_node</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="kt">unsigned</span> <span class="kt">long</span>  <span class="n">rb_parent_color</span><span class="p">;</span>
-</span><span class='line'><span class="cp">#define RB_RED      0  </span>
-</span><span class='line'><span class="cp">#define RB_BLACK    1  </span>
-</span><span class='line'>    <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_right</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_left</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span> <span class="n">__attribute__</span><span class="p">((</span><span class="n">aligned</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span><span class="p">))));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这是Linux内核中红黑树节点的定义，其中 rb_parent_color 的第0位用来存储节点的颜色（红/黑）。把两种颜色的宏定义放在结构体定义内，应该是为了增强代码可读性。</p>
-
-<p>因为对宏的处理是在预编译时完成的，而预处理器仅仅作简单的替换。宏从其定义处开始，至文件的尾部或取消宏(#undef)为止是可见的，struct的作用域对宏的定义没影响。</p>
-
-<p>可以用 gcc -E 命令来只做预处理而不编译，来查看宏处理后的程序源代码。</p>
-=======
 </pre></td><td class='code'><pre><code class=''><span class='line'>## 1. 标题
 </span><span class='line'>
 </span><span class='line'>使用#，可表示1-6级标题。
@@ -1326,7 +728,702 @@ void main()
 <p><a href="https://www.zybuluo.com/mdeditor">在线Markdown编辑</a><br/>
 <a href="http://commonmark.org/">CommonMark</a>: A strongly specified, highly compatible implementation of Markdown.<br/>
 <a href="http://jgm.github.io/stmd/spec.html">The official specification for CommonMark. </a></p>
->>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[数据结构概述]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/24/shu-ju-jie-gou-gai-shu/"/>
+    <updated>2014-10-24T20:19:57+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/24/shu-ju-jie-gou-gai-shu</id>
+    <content type="html"><![CDATA[<h3>&hellip;</h3>
+
+<h3>Tree</h3>
+
+<h5>RB-Tree</h5>
+
+<p>红黑树本质上就是一棵查找二叉树，能用查找二叉树做的事情也就能用红黑树来做。<br/>
+不同的是红黑树会自动调整，让自己保持树的平衡状态，从而保证每次查找，插入，删除操作在 O（lg n) 的时间内完成。</p>
+
+<p><code>变形</code>：用红黑树可以实现<strong>区间树</strong>。</p>
+
+<h3>&hellip;</h3>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Typeof获取表达式类型]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/"/>
+    <updated>2014-10-23T17:09:08+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing</id>
+    <content type="html"><![CDATA[<h3>typeof 关键字</h3>
+
+<p><code>typeof</code>是 C 语言的一个新扩展，它告诉编译器你要使用某个表达式的类型（而不需要显示的指明该类型），如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typeof</span><span class="p">(</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span>  <span class="n">var</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>上面定义了一个变量var，它的类型为：函数指针数组</code></p>
+
+<p>也可以用类型而不是表达式，如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typeof</span><span class="p">(</span> <span class="kt">int</span> <span class="o">*</span> <span class="p">)</span>  <span class="n">var</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>变量 var 的类型为： int *。这个好像用处不大？</code></p>
+
+<p>一般情况下用<code>typeof</code>，如果要于ISO C兼容的话，用双下划线的形式<code>__typeof__</code>。</p>
+
+<p>你可以在能用 typedef 的所有地方使用 typeof，如：类型声明，类型转换，或 sizeof()，typeof()中。例如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typeof</span> <span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="n">y</span><span class="p">;</span>      <span class="c1">// y 的类型为：指针 x 指向的类型  </span>
+</span><span class='line'><span class="n">typeof</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="n">y</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>  <span class="c1">// 指针 x 指向的类型的数组类型  </span>
+</span><span class='line'><span class="n">typeof</span> <span class="p">(</span><span class="n">typeof</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)[</span><span class="mi">4</span><span class="p">])</span> <span class="n">y</span><span class="p">;</span>  <span class="c1">// 字符指针数组类型</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果想把T定义成一个表达式的类型：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typdef</span> <span class="n">typeof</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="n">T</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>限制</h3>
+
+<p>typeof 中的类型名不能包含 extern 或 static，不过允许包含类型限定符 const 或 volatile。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typeof</span><span class="p">(</span><span class="k">extern</span> <span class="kt">int</span><span class="p">)</span> <span class="n">a</span><span class="p">;</span>       <span class="c1">// 不可以</span>
+</span><span class='line'><span class="k">extern</span> <span class="n">typeof</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span><span class="p">)</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>  <span class="c1">// 可以</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>应用</h3>
+
+<p>gcc 编译器支持该扩展，在linux内核中应用非常广泛，如 linux-source-3.13.0/include/linux/kernel.h 文件中的两个宏：</p>
+
+<p>下面定义一个安全的 max 宏，避免参数被多次展开的错误。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#define max(x, y) ({                         \</span>
+</span><span class='line'><span class="cp">    typeof(x) _max1 = (x);                  \</span>
+</span><span class='line'><span class="cp">    typeof(y) _max2 = (y);                  \</span>
+</span><span class='line'><span class="cp">    (void) (&amp;_max1 == &amp;_max2);              \</span>
+</span><span class='line'><span class="cp">    _max1 &gt; _max2 ? _max1 : _max2; })</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>下面第2行获取结构体（类型名为 type）中的成员（成员变量名为 member）相对结构体<br/>
+起始地址的偏移量，第3行由成员的起始地址（ptr）减去其偏移量得到结构体的起始地址：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#define container_of(ptr, type, member) ({         \</span>
+</span><span class='line'><span class="cp"> const typeof( ((type *)0)-&gt;member ) *__mptr = (ptr); \</span>
+</span><span class='line'><span class="cp"> (type *)( (char *)__mptr - offsetof(type,member) );})</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>类似的__auto_type</h3>
+
+<p>可以在 gnu c 中使用<code>__auto_type</code>来声明一个变量的类型，如</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span><span class='line'><span class="n">__auto_type</span>  <span class="n">var</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>   <span class="c1">// 类似C++里的 auto</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="https://gcc.gnu.org/onlinedocs/gcc/Typeof.html">参考</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux Kernel中的红黑树]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/23/linux-kernelzhong-de-rbtree/"/>
+    <updated>2014-10-23T15:18:34+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/23/linux-kernelzhong-de-rbtree</id>
+    <content type="html"><![CDATA[<blockquote><p>参考自Linux内核源码：<br/>
+linux-source-3.13.0/Documentation/rbtree.txt<br/>
+linux-source-3.13.0/include/linux/rbtree.h<br/>
+linux-source-3.13.0/lib/rbtree.c</p></blockquote>
+
+<h3>1. rbtree.txt中对红黑树的介绍</h3>
+
+<p><code>红黑树</code>是一种自平衡的二叉搜索树，用来存储可排序的 key / value 对。</p>
+
+<p>红黑树和 AVL 树相似，但提供更为实时的插入，删除（分别用最多两次，三次旋转操作完成平衡），有 O（log n）的查找时间复杂度。</p>
+
+<p><code>Linux红黑树</code>为了优化速度，不是在红黑树节点中用指针指向被组织的数据结构，而是将红黑树节点嵌入到它组织的数据结构中（这样可以减少一次间接的地址引用，也有更好的缓存局部性）。</p>
+
+<p>使用者要自己写二叉树的查找，插入函数（使用那些已经实现的红黑树函数）。</p>
+
+<h3>2. Linux红黑树的使用及说明</h3>
+
+<h5>2.1 创建一个新的红黑树</h5>
+
+<p>红黑树中的数据节点就是一个包含 struct rb_node 成员的结构体：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">mytype</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">struct</span> <span class="n">rb_node</span> <span class="n">node</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">keystring</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>那如何由红黑树上的节点 rb_node 去访问相应的数据呢？在头文件&lt; linux/kernel.h > 中定义了一个宏 container_of，可用来从红黑树维护的节点得到包含着节点的结构体，然后就能访问该结构体的所有成员了：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * container_of - 由指向结构体成员变量的指针转换为该结构体本身的指针(得到包含它的容器)。</span>
+</span><span class='line'><span class="cm"> * @ptr: 指向 member 的指针</span>
+</span><span class='line'><span class="cm"> * @type:   包含 member 的结构体的类型</span>
+</span><span class='line'><span class="cm"> * @member:  成员变量名</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="cp">#define container_of(ptr, type, member) ({           \</span>
+</span><span class='line'><span class="cp"> const typeof( ((type *)0)-&gt;member ) *__mptr = (ptr); \</span>
+</span><span class='line'><span class="cp"> (type *)( (char *)__mptr - offsetof(type,member) );})</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>上面第 8 行获取结构体（类型名为 type）中的成员（成员变量名为 member）相对结构体起始地址的偏移量；第 9 行由成员的起始地址（ptr）减去其偏移量得到结构体的起始地址。</code><br/>
+关于第 8 行的<code>typeof()</code>参看<a href="http://localhost:4000/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/">这里</a>。</p>
+
+<p>我们也可以用 rb_entry 宏，它只是换了个更友好的名字：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#define    rb_entry(ptr, type, member)  container_of(ptr, type, member)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>红黑树的根是一个 struct rb_root，看代码：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">rb_root</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_node</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'><span class="cp">#define RB_ROOT  (struct rb_root) { NULL, }</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">struct</span> <span class="n">rb_root</span> <span class="n">mytree</span> <span class="o">=</span> <span class="n">RB_ROOT</span><span class="p">;</span>   <span class="c1">// 初始化红黑树的根</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>2.2 在红黑树中查找一个值</h5>
+
+<p>红黑树的查找很简单，就是二叉树的查找。前面说过，你需要写自己的查找函数，像这样：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="nf">my_search</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">string</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">node</span> <span class="o">=</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">while</span> <span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">container_of</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="k">struct</span> <span class="n">mytype</span><span class="p">,</span> <span class="n">node</span><span class="p">);</span>
+</span><span class='line'>          <span class="kt">int</span> <span class="n">result</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="n">result</span> <span class="o">=</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">data</span><span class="o">-&gt;</span><span class="n">keystring</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>                  <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">rb_left</span><span class="p">;</span>
+</span><span class='line'>          <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>                  <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">rb_right</span><span class="p">;</span>
+</span><span class='line'>          <span class="k">else</span>
+</span><span class='line'>                  <span class="k">return</span> <span class="n">data</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>2.3 在红黑树中插入一个值</h5>
+
+<p>先查找得到 data 应插入的位置，然后插入相应的新节点并调整树使其平衡。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">my_insert</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">,</span> <span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="n">data</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">**</span><span class="n">new</span> <span class="o">=</span> <span class="o">&amp;</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">),</span> <span class="o">*</span><span class="n">parent</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="cm">/* 查找应插入的位置 */</span>
+</span><span class='line'>  <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">new</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="n">this</span> <span class="o">=</span> <span class="n">container_of</span><span class="p">(</span><span class="o">*</span><span class="n">new</span><span class="p">,</span> <span class="k">struct</span> <span class="n">mytype</span><span class="p">,</span> <span class="n">node</span><span class="p">);</span>
+</span><span class='line'>      <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">keystring</span><span class="p">,</span> <span class="n">this</span><span class="o">-&gt;</span><span class="n">keystring</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">parent</span> <span class="o">=</span> <span class="o">*</span><span class="n">new</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>          <span class="n">new</span> <span class="o">=</span> <span class="o">&amp;</span><span class="p">((</span><span class="o">*</span><span class="n">new</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">rb_left</span><span class="p">);</span>
+</span><span class='line'>      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>          <span class="n">new</span> <span class="o">=</span> <span class="o">&amp;</span><span class="p">((</span><span class="o">*</span><span class="n">new</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">rb_right</span><span class="p">);</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>          <span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span> <span class="c1">// 该值已存在！不用再插入</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="cm">/* 插入新节点并调整树使其平衡 */</span>
+</span><span class='line'>  <span class="n">rb_link_node</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">node</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">new</span><span class="p">);</span>
+</span><span class='line'>  <span class="n">rb_insert_color</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">node</span><span class="p">,</span> <span class="n">root</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>2.4 在红黑树中删除或替换一个值</h5>
+
+<p>要删除一个已有节点：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cm">/* 删除节点函数原型 */</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">rb_erase</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">victim</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">tree</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/* 删除节点示例代码 */</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">mysearch</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mytree</span><span class="p">,</span> <span class="s">&quot;walrus&quot;</span><span class="p">);</span>  <span class="c1">// 查找节点位置</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">rb_erase</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">node</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">mytree</span><span class="p">);</span>  <span class="c1">// 从红黑树删除节点</span>
+</span><span class='line'>  <span class="n">myfree</span><span class="p">(</span><span class="n">data</span><span class="p">);</span> <span class="c1">// 释放结构体内存空间</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>替换一个已有节点：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">void</span> <span class="nf">rb_replace_node</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">old</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">new</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">tree</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>注意：替换节点不会重新排序，若替换后键值改变了，红黑树就可能不正确了。</code></p>
+
+<h5>2.5 按序遍历红黑树</h5>
+
+<p>提供了 4 个函数用来遍历红黑树（也可以是其它二叉树）：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cm">/* 函数原型 */</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="nf">rb_first</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">tree</span><span class="p">);</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="nf">rb_last</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">tree</span><span class="p">);</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="nf">rb_next</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="nf">rb_prev</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/* 遍历红黑树示例代码 */</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">node</span><span class="p">;</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="n">node</span> <span class="o">=</span> <span class="n">rb_first</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mytree</span><span class="p">);</span> <span class="n">node</span><span class="p">;</span> <span class="n">node</span> <span class="o">=</span> <span class="n">rb_next</span><span class="p">(</span><span class="n">node</span><span class="p">))</span>
+</span><span class='line'>    <span class="n">printk</span><span class="p">(</span><span class="s">&quot;key=%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="k">struct</span> <span class="n">mytype</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">keystring</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>3. 扩展的红黑树</h3>
+
+<p>扩展的红黑树在节点中存储了额外的数据，其值根据以该节点为根的子树的所有节点的内容计算得到。这额外的数据可以用来扩展红黑树的功能。红黑树扩展被实现为一个可选的特性，基于基础的红黑树。</p>
+
+<h5>3.1 使用扩展红黑树</h5>
+
+<p>使用扩展红黑树时不直接包含&lt;linux/rbtree.h>，而是包含头文件&lt;linux/rbtree_augmented.h>(已经包含了前者)。</p>
+
+<p>在执行插入节点操作时，我们必须更新到插入节点的路径上的额外数据（因为当红黑树为了平衡而进行结构调整后，路径上的额外数据就可能失效了）。怎么更新额外数据呢？可以用rb_augment_inserted()代替rb_insert_color()，若调整了树则会调用回调函数（由我们提供）来更新受影响的子树上的额外数据。</p>
+
+<p>在执行删除节点操作时，用rb_erase_augmented()代替rb_erase()。也会调用回调函数来更新受影响的子树上的额外数据。</p>
+
+<h5>3.2 回调函数</h5>
+
+<p>这里的回调函数有我们使用者提供，处理对象是红黑树上的额外数据。</p>
+
+<p>回调函数可通过设置struct rb_augment_callbacks来提供，包括三个回调函数：<br/>
+- 传递函数：更新某节点和其祖先的额外数据，直到另一指定节点或根（当指定节点为NULL时）。
+- 复制函数：拷贝一个节点上的额外数据到第二个节点。<br/>
+- 交替函数：拷贝一个节点上的额外数据到第二个节点，并更新以第二个节点为根的子树上的额外数据。</p>
+
+<h5>3.3 应用扩展红黑树构造区间树</h5>
+
+<p>用红黑树可以实现<strong>区间树</strong>。一般情况下，红黑树节点中存放着 key/value 对。那怎么表示区间[lo, hi]？我们可以在节点中增加一个<strong><em>额外信息</em></strong>。如在红黑树节点中存放整型值 lo 作为下界(也是key), 额外的 hi 来表示上界。另外在节点中增加一个<strong><em>额外信息</em></strong> —— 在每个节点中保存该节点的所有后代中最大的 hi(记为__subtree_last)。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span>
+</span><span class='line'><span class="nf">interval_tree_first_match</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">,</span>
+</span><span class='line'>            <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">start</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">last</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">node</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">left</span> <span class="o">=</span>
+</span><span class='line'>              <span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">&gt;=</span> <span class="n">start</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>              <span class="cm">/*</span>
+</span><span class='line'><span class="cm">              * Some nodes in left subtree satisfy Cond2.</span>
+</span><span class='line'><span class="cm">              * Iterate to find the leftmost such node N.</span>
+</span><span class='line'><span class="cm">              * If it also satisfies Cond1, that&#39;s the match</span>
+</span><span class='line'><span class="cm">              * we are looking for. Otherwise, there is no</span>
+</span><span class='line'><span class="cm">              * matching interval as nodes to the right of N</span>
+</span><span class='line'><span class="cm">              * can&#39;t satisfy Cond1 either.</span>
+</span><span class='line'><span class="cm">              */</span>
+</span><span class='line'>              <span class="n">node</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
+</span><span class='line'>              <span class="k">continue</span><span class="p">;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">start</span> <span class="o">&lt;=</span> <span class="n">last</span><span class="p">)</span> <span class="p">{</span>     <span class="cm">/* Cond1 */</span>
+</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">last</span> <span class="o">&gt;=</span> <span class="n">start</span><span class="p">)</span>  <span class="cm">/* Cond2 */</span>
+</span><span class='line'>              <span class="k">return</span> <span class="n">node</span><span class="p">;</span>   <span class="cm">/* node is leftmost match */</span>
+</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>              <span class="n">node</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">,</span>
+</span><span class='line'>                  <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>              <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">&gt;=</span> <span class="n">start</span><span class="p">)</span>
+</span><span class='line'>                  <span class="k">continue</span><span class="p">;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>  <span class="cm">/* No match */</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">Insertion</span><span class="o">/</span><span class="n">removal</span> <span class="n">are</span> <span class="n">defined</span> <span class="n">using</span> <span class="n">the</span> <span class="n">following</span> <span class="n">augmented</span> <span class="nl">callbacks</span><span class="p">:</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">static</span> <span class="kr">inline</span> <span class="kt">unsigned</span> <span class="kt">long</span>
+</span><span class='line'><span class="n">compute_subtree_last</span><span class="p">(</span><span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">max</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">last</span><span class="p">,</span> <span class="n">subtree_last</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">subtree_last</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">,</span>
+</span><span class='line'>          <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">__subtree_last</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">max</span> <span class="o">&lt;</span> <span class="n">subtree_last</span><span class="p">)</span>
+</span><span class='line'>          <span class="n">max</span> <span class="o">=</span> <span class="n">subtree_last</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">subtree_last</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">,</span>
+</span><span class='line'>          <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">__subtree_last</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">max</span> <span class="o">&lt;</span> <span class="n">subtree_last</span><span class="p">)</span>
+</span><span class='line'>          <span class="n">max</span> <span class="o">=</span> <span class="n">subtree_last</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">max</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">static</span> <span class="kt">void</span> <span class="n">augment_propagate</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">stop</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">while</span> <span class="p">(</span><span class="n">rb</span> <span class="o">!=</span> <span class="n">stop</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span> <span class="o">=</span>
+</span><span class='line'>          <span class="n">rb_entry</span><span class="p">(</span><span class="n">rb</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>      <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">subtree_last</span> <span class="o">=</span> <span class="n">compute_subtree_last</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">==</span> <span class="n">subtree_last</span><span class="p">)</span>
+</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">node</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">subtree_last</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">rb</span> <span class="o">=</span> <span class="n">rb_parent</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">static</span> <span class="kt">void</span> <span class="n">augment_copy</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_old</span><span class="p">,</span> <span class="n">stru</span><span class="err">，</span><span class="n">ct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_new</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">old</span> <span class="o">=</span>
+</span><span class='line'>      <span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_old</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">new</span> <span class="o">=</span>
+</span><span class='line'>      <span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_new</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">new</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">old</span><span class="o">-&gt;</span><span class="n">__subtree_last</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">static</span> <span class="kt">void</span> <span class="n">augment_rotate</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_old</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_new</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">old</span> <span class="o">=</span>
+</span><span class='line'>      <span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_old</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">new</span> <span class="o">=</span>
+</span><span class='line'>      <span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_new</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">new</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">old</span><span class="o">-&gt;</span><span class="n">__subtree_last</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">old</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">compute_subtree_last</span><span class="p">(</span><span class="n">old</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">static</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">rb_augment_callbacks</span> <span class="n">augment_callbacks</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">augment_propagate</span><span class="p">,</span> <span class="n">augment_copy</span><span class="p">,</span> <span class="n">augment_rotate</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">void</span> <span class="nf">interval_tree_insert</span><span class="p">(</span><span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span><span class="p">,</span>
+</span><span class='line'>            <span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">**</span><span class="n">link</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">,</span> <span class="o">*</span><span class="n">rb_parent</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class='line'>  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">start</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">last</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">parent</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">link</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">rb_parent</span> <span class="o">=</span> <span class="o">*</span><span class="n">link</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">parent</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_parent</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">&lt;</span> <span class="n">last</span><span class="p">)</span>
+</span><span class='line'>          <span class="n">parent</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">last</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">start</span> <span class="o">&lt;</span> <span class="n">parent</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">)</span>
+</span><span class='line'>          <span class="n">link</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>          <span class="n">link</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">node</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">last</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">rb_link_node</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">,</span> <span class="n">rb_parent</span><span class="p">,</span> <span class="n">link</span><span class="p">);</span>
+</span><span class='line'>  <span class="n">rb_insert_augmented</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">augment_callbacks</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">void</span> <span class="nf">interval_tree_remove</span><span class="p">(</span><span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span><span class="p">,</span>
+</span><span class='line'>            <span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">rb_erase_augmented</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">augment_callbacks</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[为什么在struct里定义宏]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/22/structli-de-number-define/"/>
+    <updated>2014-10-22T22:18:21+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/22/structli-de-number-define</id>
+    <content type="html"><![CDATA[<p>有时会看到结构体里有宏定义，如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">rb_node</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">unsigned</span> <span class="kt">long</span>  <span class="n">rb_parent_color</span><span class="p">;</span>
+</span><span class='line'><span class="cp">#define RB_RED      0  </span>
+</span><span class='line'><span class="cp">#define RB_BLACK    1  </span>
+</span><span class='line'>    <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_right</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_left</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span> <span class="n">__attribute__</span><span class="p">((</span><span class="n">aligned</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span><span class="p">))));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这是Linux内核中红黑树节点的定义，其中 rb_parent_color 的第0位用来存储节点的颜色（红/黑）。把两种颜色的宏定义放在结构体定义内，应该是为了增强代码可读性。</p>
+
+<p>因为对宏的处理是在预编译时完成的，而预处理器仅仅作简单的替换。宏从其定义处开始，至文件的尾部或取消宏(#undef)为止是可见的，struct的作用域对宏的定义没影响。</p>
+
+<p>可以用 gcc -E 命令来只做预处理而不编译，来查看宏处理后的程序源代码。</p>
 ]]></content>
   </entry>
   

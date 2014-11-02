@@ -5,13 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>使用dot画图 - cosail&#8217;s blog</title>
+  <title>cosail&#8217;s blog</title>
   <meta name="author" content="cosail">
 
   
-  <meta name="description" content="dot用来绘制层次的有向图，能够很好的调整图中的节点和边的布局。
-dot能以命令行程序，web可视化服务，或兼容的图形接口的形式使用。
-dot程序可读入用领域特定语言-DOT语言写的文本文件，输出多种格式的图形格式文件，如GIF, PNG, SVG, PDF, PostScript。 &hellip;">
+  <meta name="description" content="生成SSH key, 设置github 见github帮助:Generating SSH keys 注意最下面一行有个链接,说明如何改变一个已存在仓库的URL,如我们要使用SSH访问方式,这样就可以避免老是要输入帐户名和密码了:Changing a remote&rsquo;s URL. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +18,7 @@ dot程序可读入用领域特定语言-DOT语言写的文本文件，输出多�
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cosail.github.io/blog/2014/10/30/shi-yong-dothua-you-xiang-ceng-ji-tu">
+  <link rel="canonical" href="http://cosail.github.io/posts/18">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="cosail's blog" type="application/atom+xml">
@@ -29,8 +27,16 @@ dot程序可读入用领域特定语言-DOT语言写的文本文件，输出多�
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<<<<<<< HEAD
 <!--link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"-->
 <!--link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"-->
+=======
+
+<!--2014.10.28：断网后访问不了下面链接，妨碍本地显示，就给注释掉了
+<link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+&#8211;>
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
 
 <!-- wuwei: 链接在新标签中打开 -->
 <!-- base target="_blank" --> 
@@ -74,13 +80,16 @@ dot程序可读入用领域特定语言-DOT语言写的文本文件，输出多�
 </nav>
   <div id="main">
     <div id="content">
-      <div>
-<article class="hentry" role="article">
+      <div class="blog-index">
   
+  
+  
+    <article>
+      
 
   <header>
     
-      <h1 class="entry-title">使用dot画图</h1>
+      <h1 class="entry-title"><a href="/blog/2014/10/04/ssh_key_for_github/">生成SSH Key,并设置github</a></h1>
     
 
     
@@ -90,12 +99,12 @@ dot程序可读入用领域特定语言-DOT语言写的文本文件，输出多�
 
 
 
-<time class='entry-date' datetime='2014-10-30T22:34:52+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:34 pm</span></time>
+<time class='entry-date' datetime='2014-10-04T16:35:07+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:35 pm</span></time>
         
 		<!-- wuwei,2014.10.7: duoshuo -->
         
-           | <a href="#duoshuo_thread"
-             data-disqus-identifier="http://cosail.github.io">评论此文章</a>
+           | <a href="/blog/2014/10/04/ssh_key_for_github/#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io/blog/2014/10/04/ssh_key_for_github/">评论此文章</a>
         
       </p>
     
@@ -103,111 +112,46 @@ dot程序可读入用领域特定语言-DOT语言写的文本文件，输出多�
 
 
 
-<div class="entry-content"><p>dot用来绘制层次的有向图，能够很好的调整图中的节点和边的布局。<br/>
-dot能以命令行程序，web可视化服务，或兼容的图形接口的形式使用。<br/>
-dot程序可读入用领域特定语言-DOT语言写的文本文件，输出多种格式的图形格式文件，如GIF, PNG, SVG, PDF, PostScript。</p>
+  <div class="entry-content"><h3>生成SSH key, 设置github</h3>
 
-<p>dot绘图过程主要分四步：
-1. 消除图中的环
-2. 为节点指定层级，层级决定了节点的Y坐标
-3. 排列层级中的节点，避免交叉
-4. 设置节点的X坐标，使边的长度较短，确定边的路径</p>
+<p><a href="https://help.github.com/articles/generating-ssh-keys/">见github帮助:Generating SSH keys</a></p>
 
-<p>DOT语言描述三种主要对象：图，节点，边。<br/>
-主图可以是有向图（digraph）、无向图（graph），而在一个主图内可以定义若干由节点和边构成的子图。无向图和有向图分别如下所示：</p>
+<p><code>注意最下面一行有个链接,说明如何改变一个已存在仓库的URL,如我们要使用SSH访问方式,这样就可以避免老是要输入帐户名和密码了:</code><a href="https://help.github.com/articles/changing-a-remote-s-url/">Changing a remote&rsquo;s URL.</a></p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>graph G {
-</span><span class='line'>  main--parse--execute;
-</span><span class='line'>  main--cleanup;
-</span><span class='line'>  main--printf;
-</span><span class='line'>  
-</span><span class='line'>  execute--printf;
-</span><span class='line'>  execute--compare;
-</span><span class='line'>
-</span><span class='line'>  init--make_string;
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+<h3>如果通过HTTPS访问,也可以让github记住你的用户名和密码(记住一段时间)</h3>
 
-
-<p><img src="" alt="" /></p>
-
-<p>digraph G {
-  main->parse->execute;
-  main->cleanup;
-  main->printf;</p>
-
-<p>  execute->printf;
-  execute->compare;</p>
-
-<p>  init->make_string;
-}</p>
+<p><a href="https://help.github.com/articles/caching-your-github-password-in-git/">Caching your GitHub password in Git</a><br/>
+<code>比较: SSH访问是通过SSH key, 而不是用户名和密码来认证.</code></p>
 </div>
-
-
-
-
-
-  <footer>
-    <p class="meta">
-      
+  
   
 
 
 
-<span class="byline author vcard">Posted by <span class="fn">cosail</span></span>
 
 
-      
-
-
-
-
-<time class='entry-date' datetime='2014-10-30T22:34:52+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:34 pm</span></time>
-      
-
-<span class="categories">
+    </article>
   
-    <a class='category' href='/blog/categories/tool/'>tool</a>
+
+
   
-</span>
-
-
-    </p>
+  <div class="pagination"><font color="green">
     
-      <div class="sharing">
-  
-  
-  
-</div>
-
+    <a href="/blog/archives">博客所有文章</a>
     
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2014/10/24/shu-ju-jie-gou-gai-shu/" title="Previous Post: 数据结构概述">&laquo; 数据结构概述</a>
-      
-      
-    </p>
-  </footer>
-</article>
+    <a class="next" href="/posts/17">后一篇文章 &rarr;</a>
+    </font>
+  </div>
 
-<!-- wuwei,2014.10.8: duoshuo -->
-
-  <section>
-    <div id="duoshuo_thread" aria-live="polite"><!-- wuwei,2014.10.7 -->
+	<!-- wuwei,2014.10.8: duoshuo -->
+	
+	  <section>
+		<div id="duoshuo_thread" aria-live="polite"><!-- wuwei,2014.10.7 -->
 <section>
 	<!-- 我在octopress/目录的_config.yml中定义了duoshuo_enable -->
 	
 	<!-- 多说评论框 start -->
-	<div class="ds-thread"  data-title="使用dot画图" ></div>
+	<div class="ds-thread"  data-title="" ></div>
 		<!-- 多说评论框 end -->
 		<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 		<script type="text/javascript">
@@ -226,7 +170,8 @@ dot程序可读入用领域特定语言-DOT语言写的文本文件，输出多�
 <section>
 
 </div>
-  </section>
+	  </section>
+	  
 
 </div>
 
@@ -241,11 +186,13 @@ dot程序可读入用领域特定语言-DOT语言写的文本文件，输出多�
         <li class='category'><a href='/blog/categories/c/'>c (2)</a></li>
 <li class='category'><a href='/blog/categories/code/'>code (1)</a></li>
 <li class='category'><a href='/blog/categories/data-structure/'>data-structure (1)</a></li>
-<li class='category'><a href='/blog/categories/emacs/'>emacs (1)</a></li>
-<li class='category'><a href='/blog/categories/git/'>git (2)</a></li>
+<li class='category'><a href='/blog/categories/datastruct-tree/'>datastruct-tree (2)</a></li>
+<li class='category'><a href='/blog/categories/git/'>git (3)</a></li>
 <li class='category'><a href='/blog/categories/github/'>github (3)</a></li>
 <li class='category'><a href='/blog/categories/shell/'>shell (1)</a></li>
-<li class='category'><a href='/blog/categories/tool/'>tool (1)</a></li>
+<li class='category'><a href='/blog/categories/text-edit/'>text-edit (2)</a></li>
+<li class='category'><a href='/blog/categories/tools/'>tools (2)</a></li>
+<li class='category'><a href='/blog/categories/ubuntu-faq/'>ubuntu-faq (1)</a></li>
 
     </ul>
 </section>
@@ -254,7 +201,31 @@ dot程序可读入用领域特定语言-DOT语言写的文本文件，输出多�
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/10/30/shi-yong-dothua-you-xiang-ceng-ji-tu/">使用dot画图</a>
+        <a href="/blog/2014/11/02/shi-yong-dothui-tu/">使用dot绘图</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/31/dotyu-yan/">DOT语言</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/31/virtualboxzhong-shi-yong-bu-liao-usbshe-bei-%3F/">VirtualBox中使用不了USB设备？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/30/gitfen-zhi/">Git分支</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/28/qu-jian-xian-duan-shu/">线段(区间)树</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/28/shu/">二叉查找树转双向链表</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/25/markdownge-shi/">Markdown格式</a>
       </li>
     
       <li class="post">
@@ -267,30 +238,6 @@ dot程序可读入用领域特定语言-DOT语言写的文本文件，输出多�
     
       <li class="post">
         <a href="/blog/2014/10/23/linux-kernelzhong-de-rbtree/">Linux Kernel中的红黑树</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/22/structli-de-number-define/">为什么在struct里定义宏</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/14/gitji-chu-cao-zuo/">Git基础操作</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/14/emacskuai-jie-jian/">Emacs快捷键及命令</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/13/shellyu-fa/">Shell语法</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/12/git-start/">Git概述及初配置</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress/">添加duoshuo评论到octopress</a>
       </li>
     
   </ul>

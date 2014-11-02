@@ -9,15 +9,8 @@
   <meta name="author" content="cosail">
 
   
-<<<<<<< HEAD
-  <meta name="description" content="&hellip; Tree RB-Tree 红黑树本质上就是一棵查找二叉树，能用查找二叉树做的事情也就能用红黑树来做。
-不同的是红黑树会自动调整，让自己保持树的平衡状态，从而保证每次查找，插入，删除操作在 O（lg n) 的时间内完成。 变形：用红黑树可以实现区间树。 &hellip;
-">
-=======
-  <meta name="description" content="ubuntu下virtualbox中的usb设备为灰色不可用怎么办? virtualbox 装完成后会有 vboxusers 用户组，只要添加用户到组就行了： $ sudo vim /etc/group
-找到这一行： vboxusers:x:127:
-添加自己的用户名(假设为w)： &hellip;">
->>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
+  <meta name="description" content="DOT语言是一种文本图形描述语言，提供一种方便的描述图形的方法。
+开源的Graphviz软件包包含了一组工具，能够用来绘制DOT语言脚本和描述的图形，也提供了可调用的函数库。 DOT语言文件的后缀名通常为：.gv 或 .dot。 DOT语言的语法 下面是定义DOT语言的抽象语法： &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -97,11 +90,7 @@
 
   <header>
     
-<<<<<<< HEAD
-      <h1 class="entry-title"><a href="/blog/2014/10/24/shu-ju-jie-gou-gai-shu/">数据结构概述</a></h1>
-=======
-      <h1 class="entry-title"><a href="/blog/2014/10/31/virtualboxzhong-shi-yong-bu-liao-usbshe-bei-%3F/">VirtualBox中使用不了USB设备？</a></h1>
->>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
+      <h1 class="entry-title"><a href="/blog/2014/10/31/dotyu-yan/">DOT语言</a></h1>
     
 
     
@@ -111,21 +100,12 @@
 
 
 
-<<<<<<< HEAD
-<time class='entry-date' datetime='2014-10-24T20:19:57+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:19 pm</span></time>
+<time class='entry-date' datetime='2014-10-31T11:02:40+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>11:02 am</span></time>
         
 		<!-- wuwei,2014.10.7: duoshuo -->
         
-           | <a href="/blog/2014/10/24/shu-ju-jie-gou-gai-shu/#duoshuo_thread"
-             data-disqus-identifier="http://cosail.github.io/blog/2014/10/24/shu-ju-jie-gou-gai-shu/">评论此文章</a>
-=======
-<time class='entry-date' datetime='2014-10-31T10:46:06+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>10:46 am</span></time>
-        
-		<!-- wuwei,2014.10.7: duoshuo -->
-        
-           | <a href="/blog/2014/10/31/virtualboxzhong-shi-yong-bu-liao-usbshe-bei-%3F/#duoshuo_thread"
-             data-disqus-identifier="http://cosail.github.io/blog/2014/10/31/virtualboxzhong-shi-yong-bu-liao-usbshe-bei-%3F/">评论此文章</a>
->>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
+           | <a href="/blog/2014/10/31/dotyu-yan/#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io/blog/2014/10/31/dotyu-yan/">评论此文章</a>
         
       </p>
     
@@ -133,30 +113,87 @@
 
 
 
-<<<<<<< HEAD
-  <div class="entry-content"><h3>&hellip;</h3>
+  <div class="entry-content"><p><strong>DOT语言</strong>是一种文本图形描述语言，提供一种方便的描述图形的方法。
+<code>开源的Graphviz软件包包含了一组工具，能够用来绘制DOT语言脚本和描述的图形，也提供了可调用的函数库。</code></p>
 
-<h3>Tree</h3>
+<p>DOT语言文件的后缀名通常为：.gv 或 .dot。</p>
 
-<h5>RB-Tree</h5>
+<h3>DOT语言的语法</h3>
 
-<p>红黑树本质上就是一棵查找二叉树，能用查找二叉树做的事情也就能用红黑树来做。<br/>
-不同的是红黑树会自动调整，让自己保持树的平衡状态，从而保证每次查找，插入，删除操作在 O（lg n) 的时间内完成。</p>
+<p>下面是定义DOT语言的抽象语法：<br/>
+<img src="http://cosail.github.io/images/dot-grammar.jpg" title="" alt="" /></p>
 
-<p><code>变形</code>：用红黑树可以实现<strong>区间树</strong>。</p>
+<p><strong>对于上图的几点说明：</strong></p>
 
-<h3>&hellip;</h3>
-=======
-  <div class="entry-content"><h3>ubuntu下virtualbox中的usb设备为灰色不可用怎么办?</h3>
+<ol>
+<li>粗体为终结符，斜体为非终结符；</li>
+<li>(&hellip;)表示分组，‘|’表示可替换，[&hellip;]表示可选项；</li>
+<li>关键字node, edge, graph, digraph, subgraph, strict用大小写均可；</li>
+<li>compass_pt 为方位点，它们不是关键字；</li>
+<li>node_id 仅仅是一个字符串，形如abc_2，2.34，<html-like>，“with space”；</li>
+</ol>
 
-<p>virtualbox 装完成后会有 vboxusers 用户组，只要添加用户到组就行了：</p>
 
-<p>$ sudo vim /etc/group<br/>
-找到这一行：  vboxusers:x:127:<br/>
-添加自己的用户名(假设为w)：  vboxusers:x:127:w</p>
+<p><strong>有关语法的其他说明：</strong></p>
 
-<p>然后注销重新登陆w试试。</p>
->>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
+<ol>
+<li>DOT语言支持C++风格的注释： /**/ 和 //；</li>
+<li>以‘#’开头的行视为来自C预处理器的输出行，会被丢弃；</li>
+<li>允许被双引号包围的字符串跨越多行，另外也能使用字符串拼接操作符‘+’；</li>
+<li>在 digraph 中，边操作符为 ->；而在 graph 中，边操作符为 &ndash;。</li>
+</ol>
+
+
+<h3>Subgraphs和Clusters</h3>
+
+<p><strong>Subgraphs在graphviz中有三个作用：</strong><br/>
+1.一个subgraph可用来在结构上表示某些节点和边应该被分为一组。另外还可将subgraph置于边操作符的两边，方便地支持快捷表示，如：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>A -&gt; {B C}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>等价于</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>A -&gt; B
+</span><span class='line'>A -&gt; C</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2.subgraph可以为属性设置提供一个上下文环境。比如subgraph可以指定其中定义的所有节点的默认颜色为蓝色，如下还可以把某些节点安排在一个层级：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>subgraph {
+</span><span class='line'>  rank = same;
+</span><span class='line'>  A -&gt; B; B -&gt; C;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样，A、B、C三个节点绘制是会被放在同一个层级。</p>
+
+<p>3.如果subgraph的名字以“cluster”开头，Graphviz会把它看作一个特殊的&#8221;cluster subgraph&#8221;。布局引擎在布局时会将属于同一个cluster的节点绘制在一块，整个cluster绘制在一个矩形框内。</p>
+
+<h3>词法和语义说明</h3>
+
+<ol>
+<li>可以使用一个node, edge, 或graph语句，或者通过未附加到节点或边上的属性赋值来定义一个默认属性。这样，后面定义的对象会继承该属性，直到默认属性值被重新设置。</li>
+<li>一个subgraph在其定义时会继承父graph的属性设置，如默认字体等。</li>
+<li>如果一条边属于一个cluster，那么他的端点也属于该cluster。</li>
+<li>graph和subgraph其实是共享同一个命名空间，它们的名字必须唯一。</li>
+</ol>
+
+
+<h3>字符编码</h3>
+
+<p>DOT可接受UTF-8，Latin1(ISO-8859-1)字符集编码。默认为UTF-8。使用其它编码是也许得用到其它程序来转换，如iconv。</p>
+
+<h3>dot使用参考</h3>
+
+<p><a href="http://cosail.github.io/blog/2014/11/02/shi-yong-dothui-tu/">使用dot绘图</a></p>
 </div>
   
   
@@ -220,24 +257,16 @@
 <section>
     <h1>分类目录</h1>
     <ul id="categories">
-<<<<<<< HEAD
         <li class='category'><a href='/blog/categories/c/'>c (2)</a></li>
 <li class='category'><a href='/blog/categories/code/'>code (1)</a></li>
 <li class='category'><a href='/blog/categories/data-structure/'>data-structure (1)</a></li>
-<li class='category'><a href='/blog/categories/emacs/'>emacs (1)</a></li>
-<li class='category'><a href='/blog/categories/git/'>git (2)</a></li>
-<li class='category'><a href='/blog/categories/github/'>github (3)</a></li>
-<li class='category'><a href='/blog/categories/shell/'>shell (1)</a></li>
-<li class='category'><a href='/blog/categories/tool/'>tool (1)</a></li>
-=======
-        <li class='category'><a href='/blog/categories/datastruct-tree/'>datastruct-tree (2)</a></li>
+<li class='category'><a href='/blog/categories/datastruct-tree/'>datastruct-tree (2)</a></li>
 <li class='category'><a href='/blog/categories/git/'>git (3)</a></li>
 <li class='category'><a href='/blog/categories/github/'>github (3)</a></li>
 <li class='category'><a href='/blog/categories/shell/'>shell (1)</a></li>
 <li class='category'><a href='/blog/categories/text-edit/'>text-edit (2)</a></li>
-<li class='category'><a href='/blog/categories/tools/'>tools (1)</a></li>
+<li class='category'><a href='/blog/categories/tools/'>tools (2)</a></li>
 <li class='category'><a href='/blog/categories/ubuntu-faq/'>ubuntu-faq (1)</a></li>
->>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
 
     </ul>
 </section>
@@ -246,36 +275,10 @@
   <ul id="recent_posts">
     
       <li class="post">
-<<<<<<< HEAD
-        <a href="/blog/2014/10/30/shi-yong-dothua-you-xiang-ceng-ji-tu/">使用dot画图</a>
+        <a href="/blog/2014/11/02/shi-yong-dothui-tu/">使用dot绘图</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/10/24/shu-ju-jie-gou-gai-shu/">数据结构概述</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/">Typeof获取表达式类型</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/23/linux-kernelzhong-de-rbtree/">Linux Kernel中的红黑树</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/22/structli-de-number-define/">为什么在struct里定义宏</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/14/gitji-chu-cao-zuo/">Git基础操作</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/14/emacskuai-jie-jian/">Emacs快捷键及命令</a>
-      </li>
-    
-      <li class="post">
-=======
         <a href="/blog/2014/10/31/dotyu-yan/">DOT语言</a>
       </li>
     
@@ -300,27 +303,15 @@
       </li>
     
       <li class="post">
-        <a href="/blog/2014/10/14/gitji-chu-cao-zuo/">Git基础操作</a>
+        <a href="/blog/2014/10/24/shu-ju-jie-gou-gai-shu/">数据结构概述</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/10/14/emacskuai-jie-jian/">Emacs快捷键及命令</a>
+        <a href="/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/">Typeof获取表达式类型</a>
       </li>
     
       <li class="post">
->>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
-        <a href="/blog/2014/10/13/shellyu-fa/">Shell语法</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/12/git-start/">Git概述及初配置</a>
-<<<<<<< HEAD
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress/">添加duoshuo评论到octopress</a>
-=======
->>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
+        <a href="/blog/2014/10/23/linux-kernelzhong-de-rbtree/">Linux Kernel中的红黑树</a>
       </li>
     
   </ul>
