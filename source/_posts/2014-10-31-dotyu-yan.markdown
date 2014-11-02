@@ -100,9 +100,12 @@ digraph G {
 
 node, edge, graph都有许多属性可以设置，从而可产生各种各样的图形，下面介绍这些属性 。
 
-##### 2.1 Node形状
+##### 2.1 节点属性设置示例
 
-node有默认属性,显式的设置属性来覆盖默认属性,在"[...]"内设置：  
+先看结果图:  
+![](http://cosail.github.io/images/2.1.node.jpg")  
+
+在上图中，节点有默认属性，显式的在"[...]"内设置属性来覆盖默认属性：
 
 ```
 digraph G {
@@ -143,8 +146,33 @@ digraph G {
   doublecircle -> plaintext -> polygon2
 }
 ```
-![](http://cosail.github.io/images/2.1.node.jpg")
 
+##### 2.2 节点形状
 
+下面是主要的基于多边形的形状列表:  
+![](http://cosail.github.io/images/2.2-1.node.jpg")  
+![更多](http://www.graphviz.org/doc/info/shapes.html)
+
+还有一种基于记录的节点也非常重要，画数据结构的时候经常要用，包括**record**，**Mrecord**，后者和前者的唯一区别在于有圆角。还是先看图：  
+![](http://cosail.github.io/images/2.2-2.jpg")  
+
+**代码如下：**  
+`注解：`**“端口”**表示边和节点的连接位置。  
+```
+digraph structs { 
+	node [shape=record]; //节点的默认形状设为“record”
+
+	/* 下面"<>"中为节点的端口,两字段的端口名分别为"f0","f1" */
+	struct2 [label="<f0> one | <f1> two"];
+	/* 形状为圆角record，'\ '为空格 */
+	struct1 [shape=Mrecord, label="<f0> left | <f1> mid\ dle | <f2> right"]; 
+	/* 用'\n'给标签文本换行，<here>是一个能和边相连的端口 */
+	struct3 [label="hello\nworld | { b |{c|<here> d|e}| f} | g | h"]; 
+
+	struct1:f1 -> struct2:f0; 
+	/* 从节点struct1的端口f2,连接到节点struct3的端口here */
+	struct1:f2 -> struct3:here; 
+} 
+```
 
 

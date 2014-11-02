@@ -4,7 +4,7 @@
   <title><![CDATA[cosail's blog]]></title>
   <link href="http://cosail.github.io/atom.xml" rel="self"/>
   <link href="http://cosail.github.io/"/>
-  <updated>2014-11-02T21:37:38+08:00</updated>
+  <updated>2014-11-02T22:44:13+08:00</updated>
   <id>http://cosail.github.io/</id>
   <author>
     <name><![CDATA[cosail]]></name>
@@ -148,9 +148,12 @@
 
 <p>node, edge, graph都有许多属性可以设置，从而可产生各种各样的图形，下面介绍这些属性 。</p>
 
-<h5>2.1 Node形状</h5>
+<h5>2.1 节点属性设置示例</h5>
 
-<p>node有默认属性,显式的设置属性来覆盖默认属性,在&#8221;[&hellip;]&ldquo;内设置：</p>
+<p>先看结果图:<br/>
+<img src="http://cosail.github.io/images/2.1.node.jpg" title="" alt="" /></p>
+
+<p>在上图中，节点有默认属性，显式的在&#8221;[&hellip;]&ldquo;内设置属性来覆盖默认属性：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -228,7 +231,49 @@
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
-<p><img src="http://cosail.github.io/images/2.1.node.jpg" title="" alt="" /></p>
+<h5>2.2 节点形状</h5>
+
+<p>下面是主要的基于多边形的形状列表:<br/>
+<img src="http://cosail.github.io/images/2.2-1.node.jpg" title="" alt="" /><br/>
+<img src="http://www.graphviz.org/doc/info/shapes.html" alt="更多" /></p>
+
+<p>还有一种基于记录的节点也非常重要，画数据结构的时候经常要用，包括<strong>record</strong>，<strong>Mrecord</strong>，后者和前者的唯一区别在于有圆角。还是先看图：<br/>
+<img src="http://cosail.github.io/images/2.2-2.jpg" title="" alt="" /></p>
+
+<p><strong>代码如下：</strong><br/>
+<code>注解：</code><strong>“端口”</strong>表示边和节点的连接位置。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>digraph structs { 
+</span><span class='line'>  node [shape=record]; //节点的默认形状设为“record”
+</span><span class='line'>
+</span><span class='line'>  /* 下面"&lt;&gt;"中为节点的端口,两字段的端口名分别为"f0","f1" */
+</span><span class='line'>  struct2 [label="&lt;f0&gt; one | &lt;f1&gt; two"];
+</span><span class='line'>  /* 形状为圆角record，'\ '为空格 */
+</span><span class='line'>  struct1 [shape=Mrecord, label="&lt;f0&gt; left | &lt;f1&gt; mid\ dle | &lt;f2&gt; right"]; 
+</span><span class='line'>  /* 用'\n'给标签文本换行，&lt;here&gt;是一个能和边相连的端口 */
+</span><span class='line'>  struct3 [label="hello\nworld | { b |{c|&lt;here&gt; d|e}| f} | g | h"]; 
+</span><span class='line'>
+</span><span class='line'>  struct1:f1 -&gt; struct2:f0; 
+</span><span class='line'>  /* 从节点struct1的端口f2,连接到节点struct3的端口here */
+</span><span class='line'>  struct1:f2 -&gt; struct3:here; 
+</span><span class='line'>} </span></code></pre></td></tr></table></div></figure>
+
+
+
 ]]></content>
   </entry>
   
