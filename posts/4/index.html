@@ -28,15 +28,21 @@
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!--link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"-->
 <!--link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"-->
 =======
+=======
+>>>>>>> 55b443de73dd36ef53abc897d7ff8e1ed8e49f81
 
 <!--2014.10.28：断网后访问不了下面链接，妨碍本地显示，就给注释掉了
 <link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 &#8211;>
+<<<<<<< HEAD
 >>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
+=======
+>>>>>>> 55b443de73dd36ef53abc897d7ff8e1ed8e49f81
 
 <!-- wuwei: 链接在新标签中打开 -->
 <!-- base target="_blank" --> 
@@ -113,12 +119,21 @@
 
 
   <div class="entry-content"><p><strong>线段树</strong>是一棵二叉树，其每一个节点表示了一个区间[a, b]；每一层中所有节点表示的区间互不重叠，其并都为整个区间范围。</p>
+<<<<<<< HEAD
 
 <p><font color='blue'>特点：</font> 每一个叶子节点表示一个不可再分的单位区间；若一个非叶子节点表是区间[a, b]，则其左子节点表示[a, (a+b)/2]，右子节点表示((a+b)/2，b]。<br/>
 其实是进行了二分，所以线段树是一棵平衡树，其深度不超过 lg(L)，L为最长区间长度。</p>
 
 <p><font color='blue'>应用：</font> 线段树适合用来处理有关区间统计的问题：按区间划分，修改，特别是需要经常进行查找操作时。</p>
 
+=======
+
+<p><font color='blue'>特点：</font> 每一个叶子节点表示一个不可再分的单位区间；若一个非叶子节点表是区间[a, b]，则其左子节点表示[a, (a+b)/2]，右子节点表示((a+b)/2，b]。<br/>
+其实是进行了二分，所以线段树是一棵平衡树，其深度不超过 lg(L)，L为最长区间长度。</p>
+
+<p><font color='blue'>应用：</font> 线段树适合用来处理有关区间统计的问题：按区间划分，修改，特别是需要经常进行查找操作时。</p>
+
+>>>>>>> 55b443de73dd36ef53abc897d7ff8e1ed8e49f81
 <p><font color='red'>题1：</font> 求序列 a1a2&hellip;an 的任意一个子序列 ai&hellip;aj 的和，同时允许动态修改每个元素的值？<br/>
 <font color='green'>解：</font> 构造一棵区间树，其根节点表示区间[a1, an]，每个节点里再加上额外字段 sum 来表示区间里所有数的和。<br/>
 对于求子序列和：找到子序列覆盖的所有子区间，把这些子区间对应的 sum 累加。那怎么去累加呢？一是用递归；二是遍历这段被覆盖的区域。<br/>
@@ -196,10 +211,14 @@
 <section>
     <h1>分类目录</h1>
     <ul id="categories">
+<<<<<<< HEAD
         <li class='category'><a href='/blog/categories/c/'>c (2)</a></li>
 <li class='category'><a href='/blog/categories/code/'>code (1)</a></li>
 <li class='category'><a href='/blog/categories/data-structure/'>data-structure (1)</a></li>
 <li class='category'><a href='/blog/categories/datastruct-tree/'>datastruct-tree (2)</a></li>
+=======
+        <li class='category'><a href='/blog/categories/datastruct-tree/'>datastruct-tree (2)</a></li>
+>>>>>>> 55b443de73dd36ef53abc897d7ff8e1ed8e49f81
 <li class='category'><a href='/blog/categories/git/'>git (3)</a></li>
 <li class='category'><a href='/blog/categories/github/'>github (3)</a></li>
 <li class='category'><a href='/blog/categories/shell/'>shell (1)</a></li>
@@ -215,6 +234,7 @@
     
       <li class="post">
         <a href="/blog/2014/10/31/dotyu-yan/">DOT语言</a>
+<<<<<<< HEAD
       </li>
     
       <li class="post">
@@ -251,6 +271,44 @@
     
       <li class="post">
         <a href="/blog/2014/10/22/structli-de-number-define/">为什么在struct里定义宏</a>
+=======
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/31/virtualboxzhong-shi-yong-bu-liao-usbshe-bei-%3F/">VirtualBox中使用不了USB设备？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/30/gitfen-zhi/">Git分支</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/28/qu-jian-xian-duan-shu/">线段(区间)树</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/28/shu/">二叉查找树转双向链表</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/25/markdownge-shi/">Markdown格式</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/14/gitji-chu-cao-zuo/">Git基础操作</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/14/emacskuai-jie-jian/">Emacs快捷键及命令</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/13/shellyu-fa/">Shell语法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/12/git-start/">Git概述及初配置</a>
+>>>>>>> 55b443de73dd36ef53abc897d7ff8e1ed8e49f81
       </li>
     
   </ul>

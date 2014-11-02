@@ -9,6 +9,7 @@
   <meta name="author" content="cosail">
 
   
+<<<<<<< HEAD
   <meta name="description" content="有时会看到结构体里有宏定义，如下： 1
 2
 3
@@ -20,6 +21,10 @@
 struct rb_node
 { unsigned long rb_parent_color;
 #define RB_RED 0 #define RB_BLACK 1 struct rb_node *rb_right; &hellip;">
+=======
+  <meta name="description" content="以下是阅读《Pro Git》时的记录
+《Pro Git》Scott Chacon 2010, licensed under the Creative Commons Attribution-Non Commercial-Share Alike 3.0 license. 1. 版本控制系统（VCS &hellip;">
+>>>>>>> 55b443de73dd36ef53abc897d7ff8e1ed8e49f81
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -38,15 +43,21 @@ struct rb_node
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!--link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"-->
 <!--link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"-->
 =======
+=======
+>>>>>>> 55b443de73dd36ef53abc897d7ff8e1ed8e49f81
 
 <!--2014.10.28：断网后访问不了下面链接，妨碍本地显示，就给注释掉了
 <link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 &#8211;>
+<<<<<<< HEAD
 >>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
+=======
+>>>>>>> 55b443de73dd36ef53abc897d7ff8e1ed8e49f81
 
 <!-- wuwei: 链接在新标签中打开 -->
 <!-- base target="_blank" --> 
@@ -99,7 +110,11 @@ struct rb_node
 
   <header>
     
+<<<<<<< HEAD
       <h1 class="entry-title"><a href="/blog/2014/10/22/structli-de-number-define/">为什么在struct里定义宏</a></h1>
+=======
+      <h1 class="entry-title"><a href="/blog/2014/10/12/git-start/">Git概述及初配置</a></h1>
+>>>>>>> 55b443de73dd36ef53abc897d7ff8e1ed8e49f81
     
 
     
@@ -109,12 +124,21 @@ struct rb_node
 
 
 
+<<<<<<< HEAD
 <time class='entry-date' datetime='2014-10-22T22:18:21+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>10:18 pm</span></time>
         
 		<!-- wuwei,2014.10.7: duoshuo -->
         
            | <a href="/blog/2014/10/22/structli-de-number-define/#duoshuo_thread"
              data-disqus-identifier="http://cosail.github.io/blog/2014/10/22/structli-de-number-define/">评论此文章</a>
+=======
+<time class='entry-date' datetime='2014-10-12T20:16:46+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:16 pm</span></time>
+        
+		<!-- wuwei,2014.10.7: duoshuo -->
+        
+           | <a href="/blog/2014/10/12/git-start/#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io/blog/2014/10/12/git-start/">评论此文章</a>
+>>>>>>> 55b443de73dd36ef53abc897d7ff8e1ed8e49f81
         
       </p>
     
@@ -122,6 +146,7 @@ struct rb_node
 
 
 
+<<<<<<< HEAD
   <div class="entry-content"><p>有时会看到结构体里有宏定义，如下：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -148,6 +173,144 @@ struct rb_node
 <p>因为对宏的处理是在预编译时完成的，而预处理器仅仅作简单的替换。宏从其定义处开始，至文件的尾部或取消宏(#undef)为止是可见的，struct的作用域对宏的定义没影响。</p>
 
 <p>可以用 gcc -E 命令来只做预处理而不编译，来查看宏处理后的程序源代码。</p>
+=======
+  <div class="entry-content"><blockquote><p>以下是阅读《Pro Git》时的记录<br/>
+《Pro Git》Scott Chacon 2010, licensed under the Creative Commons Attribution-Non Commercial-Share Alike 3.0 license.</p></blockquote>
+
+<h3>1. 版本控制系统（VCS）</h3>
+
+<p>VCS的主要作用：记录文件的变化，保存项目过去某些时间点的状态，回溯到之前的状态。<br/>
+<code>即保存和恢复数据。</code></p>
+
+<ul>
+<li><p>本地版本控制系统: 保存并管理文件补丁（文件内容前后的变化），不断打补丁。<br/>
+<code>自己在自己的电脑上干自己的事。</code></p></li>
+<li><p>集中化版本控制系统（CVCS）：单一的集中管理服务器保存所有文件的修订版本。<br/>
+<code>可有多人用客户端访问中央服务器，取出文件，提交更新，协同合作。
+  若中央服务器故障，则可能丢失数据，且大家都无法在故障时段提交更新。</code></p></li>
+<li><p>分布式版本控制系统（DVCS）：  客户端有代码仓库的完整镜像，和服务器一样掌握所有必要信息。<br/>
+<code>大家可以在自己电脑上提交（异步），必要时推到服务器（同步）。</code></p></li>
+</ul>
+
+
+<h3>2. Git的特点</h3>
+
+<ul>
+<li><p>直接给更新的文件作快照，并保存快照的索引。<br/>
+<code>而不是像其他CVS一样每次仅仅记录变化的部分</code></p></li>
+<li><p>本地保存更新历史，断网时可以向本机提交更新。<br/>
+<code>Subversion和CVS断网时无法提交更新，因为仓库数据在服务器上维护着，本机信息不足。</code></p></li>
+<li><p>保持数据完整性<br/>
+<code>保存文件或目录需要先计算校验和（使用SHA-1算法计算出的一个哈希值，作为指纹），并将结果作为唯一标识及索引。你动了哪里，Git就会知道。</code></p></li>
+<li><p>高可靠性<br/>
+<code>在Git，只要在本机提交后（本机操作很方便快捷），就不必担心弄丢弄乱数据了（可在本机恢复）；若再定期推送到远端仓库的话，就更保险了。</code></p></li>
+<li><p>git三状态：已修改，已暂存(staged)，已提交。</p>
+
+<ul>
+<li>已修改：修改了某文件</li>
+<li>已暂存：把已修改文件列为下次要提交的文件</li>
+<li>已提交：文件已安全地保存在本机数据库中</li>
+</ul>
+</li>
+</ul>
+
+
+<p>基本的 Git 工作流程如下所示:</p>
+
+<ol>
+<li><p>在工作目录中修改某些文件。
+<code>工作目录中的文件实际上都是从 git 目录中的压缩对象数据库中提取出来的，我们在工作目录中编辑文件。</code></p></li>
+<li><p>对这些修改了的文件作快照,并保存到暂存区域。<br/>
+<code>暂存区其实是个索引文件，放在 git 目录中。</code></p></li>
+<li><p>提交更新,将保存在暂存区域的文件快照转储到 git 目录中。   <br/>
+<code>每个项目有一个.git/目录，是保存元数据和对象数据库的地方。克隆仓库时拷贝的就是里边的数据。</code></p></li>
+</ol>
+
+
+<h3>3. 初次配置Git</h3>
+
+<p>Git 有专门用来配置和读取相应工作环境变量的工具： git config 命令（实际调用 git-config 命令）。</p>
+
+<p>环境变量们住在这里：</p>
+
+<ol>
+<li><p>/etc/gitconfig：系统中对所有用户都普遍适用的配置。<br/>
+<code>git config 用 --system 选项, 读写这个文件。</code></p></li>
+<li><p>~/.gitconfig：用户目录下的配置文件只适用于该用户。<br/>
+<code>git config 用 --global 选项, 读写这个文件。</code></p></li>
+<li><p>当前项目的 .git/config ：这里的配置仅仅针对当前项目有效。</p></li>
+</ol>
+
+
+<p><strong><em>每一个级别的配置都会覆盖上层的相同配置, 所以.git/config 里的配置会覆盖 前两者中的同名变量。</em></strong></p>
+
+<ul>
+<li>设置用户信息：用户名称，邮件地址</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git config --global user.name "username"
+</span><span class='line'>$ git config --global user.email username@126.com
+</span><span class='line'>// --global表示更改的是用户住目录中的配置文件，去掉该选项则修改的是当前项目的配置文件。</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>每次 Git 提交时会说明是谁提交了更新, 随之纳入历史记录。</code></p>
+
+<ul>
+<li>设置文本编辑器</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git config --global core.editor vi</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>有时 Git 会提示你输入，这时会调用这里的文本编辑器。</code></p>
+
+<ul>
+<li>设置差异分析工具</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git config --global merge.tool vimdiff</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>在解决合并冲突时会使用差异分析工具，Git 可以理解 kdiff3,tkdiff,meld,xxdiff,emerge,vimdiff,gvimdiff,ecmerge,
+，opendiff 等合并工具的输出信息。</code></p>
+
+<ul>
+<li>查看配置信息</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git config --list</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>若有重复的变量名, 说明它们来自不同的配置文件,  Git 实际采用的是最后一个。</code></p>
+
+<p>也可以直接查阅某个环境变量的设定：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git config user.name</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>4. Git 帮助命令</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git help &lt;verb&gt;
+</span><span class='line'>$ git &lt;verb&gt; --help
+</span><span class='line'>$ man git-&lt;verb&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+
+>>>>>>> 55b443de73dd36ef53abc897d7ff8e1ed8e49f81
 </div>
   
   
@@ -211,10 +374,14 @@ struct rb_node
 <section>
     <h1>分类目录</h1>
     <ul id="categories">
+<<<<<<< HEAD
         <li class='category'><a href='/blog/categories/c/'>c (2)</a></li>
 <li class='category'><a href='/blog/categories/code/'>code (1)</a></li>
 <li class='category'><a href='/blog/categories/data-structure/'>data-structure (1)</a></li>
 <li class='category'><a href='/blog/categories/datastruct-tree/'>datastruct-tree (2)</a></li>
+=======
+        <li class='category'><a href='/blog/categories/datastruct-tree/'>datastruct-tree (2)</a></li>
+>>>>>>> 55b443de73dd36ef53abc897d7ff8e1ed8e49f81
 <li class='category'><a href='/blog/categories/git/'>git (3)</a></li>
 <li class='category'><a href='/blog/categories/github/'>github (3)</a></li>
 <li class='category'><a href='/blog/categories/shell/'>shell (1)</a></li>
@@ -253,6 +420,7 @@ struct rb_node
       </li>
     
       <li class="post">
+<<<<<<< HEAD
         <a href="/blog/2014/10/24/shu-ju-jie-gou-gai-shu/">数据结构概述</a>
       </li>
     
@@ -266,6 +434,21 @@ struct rb_node
     
       <li class="post">
         <a href="/blog/2014/10/22/structli-de-number-define/">为什么在struct里定义宏</a>
+=======
+        <a href="/blog/2014/10/14/gitji-chu-cao-zuo/">Git基础操作</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/14/emacskuai-jie-jian/">Emacs快捷键及命令</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/13/shellyu-fa/">Shell语法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/12/git-start/">Git概述及初配置</a>
+>>>>>>> 55b443de73dd36ef53abc897d7ff8e1ed8e49f81
       </li>
     
   </ul>
