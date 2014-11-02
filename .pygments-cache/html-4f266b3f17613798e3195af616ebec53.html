@@ -1,0 +1,19 @@
+<div class="highlight"><pre> graph  : 	[ strict ] (graph | digraph) [ ID ] &#39;{&#39; stmt_list &#39;}&#39;
+ stmt_list  : 	[ stmt [ &#39;;&#39; ] [ stmt_list ] ]
+  stmt  : 	node_stmt
+         | 	edge_stmt
+         | 	attr_stmt
+         | 	ID &#39;=&#39; ID
+         | 	subgraph
+ attr_stmt 	: 	(graph | node | edge) attr_list
+ attr_list 	: 	&#39;[&#39; [ a_list ] &#39;]&#39; [ attr_list ]
+a_list 	: 	ID &#39;=&#39; ID [ (&#39;;&#39; | &#39;,&#39;) ] [ a_list ]
+ edge_stmt 	: 	(node_id | subgraph) edgeRHS [ attr_list ]
+   edgeRHS 	: 	edgeop (node_id | subgraph) [ edgeRHS ]
+ node_stmt 	: 	node_id [ attr_list ]
+   node_id 	: 	ID [ port ]
+  port 	: 	&#39;:&#39; ID [ &#39;:&#39; compass_pt ]
+         | 	&#39;:&#39; compass_pt
+  subgraph 	: 	[ subgraph [ ID ] ] &#39;{&#39; stmt_list &#39;}&#39;
+compass_pt  : 	(n | ne | e | se | s | sw | w | nw | c | _)
+</pre></div>

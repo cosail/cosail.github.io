@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Datastruct/tree | cosail's blog]]></title>
-  <link href="http://cosail.github.io/blog/categories/datastruct-slash-tree/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Datastruct-tree | cosail's blog]]></title>
+  <link href="http://cosail.github.io/blog/categories/datastruct-tree/atom.xml" rel="self"/>
   <link href="http://cosail.github.io/"/>
-  <updated>2014-10-31T08:37:52+08:00</updated>
+  <updated>2014-11-02T21:37:38+08:00</updated>
   <id>http://cosail.github.io/</id>
   <author>
     <name><![CDATA[cosail]]></name>

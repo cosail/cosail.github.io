@@ -3,7 +3,7 @@ layout: post
 title: "线段(区间)树"
 date: 2014-10-28 19:53:48 +0800
 comments: true
-categories: DataStruct/Tree
+categories: datastruct-tree
 ---
 
 **线段树**是一棵二叉树，其每一个节点表示了一个区间[a, b]；每一层中所有节点表示的区间互不重叠，其并都为整个区间范围。

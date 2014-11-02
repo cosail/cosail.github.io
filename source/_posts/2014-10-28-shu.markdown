@@ -3,7 +3,7 @@ layout: post
 title: "二叉查找树转双向链表"
 date: 2014-10-28 10:11:11 +0800
 comments: true
-categories: DataStruct/Tree
+categories: datastruct-tree
 ---
 
 
