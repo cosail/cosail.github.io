@@ -34,7 +34,7 @@ categories: shell
 
 #### 1 . variable.sh 
 
-```
+```sh
 #!/bin/sh
 
 # Shell变量,环境变量
@@ -71,7 +71,7 @@ exit 0
                                               
 #### 2 . condition.sh 
 
-```
+```sh
 #!/bin/bash
 
 #
@@ -134,7 +134,7 @@ exit 0
                                               
 #### 3 . control.sh 
 
-```
+```sh
 #!/bin/bash
 
 #
@@ -205,7 +205,7 @@ exit 0
           
 #### 4 . AndOr.sh  
 
-```
+```sh
 #!/bin/bash
 
 touch file_one
@@ -242,7 +242,7 @@ exit 0
                                               
 #### 5 . statementBlock.sh  
 
-```
+```sh
 #!/bin/bash
 
 #语句块: {}
@@ -263,7 +263,7 @@ fi
                                               
 #### 6 . function.sh  
 
-```
+```sh
 #!/bin/bash
 
 #
@@ -331,7 +331,7 @@ exit 0
 
 #### 7 . command_1.sh
 
-```
+```sh
 #!/bin/bash
 
 #
@@ -395,7 +395,7 @@ exit 0
                                               
 #### 8 . old_version_set.sh
 
-```
+```sh
 #!/bin/bash
 
 version=Old_version
@@ -406,7 +406,7 @@ PATH=/bin:/usr/bin:/usr/local/Old_bin:.
                                               
 #### 9 . new_version_set.sh
 
-```
+```sh
 #!/bin/bash
 
 version=New_version
@@ -417,7 +417,7 @@ PATH=/bin:/usr/bin:/usr/local/New_bin:.
                                               
 #### 10 . command_2.sh 
 
-```
+```sh
 #!/bin/bash
 
 #
@@ -458,7 +458,7 @@ exit 1  # 1-125表错误码
                                               
 #### 11 . command_3.sh
 
-```
+```sh
 #!/bin/bash
 
 #
@@ -511,7 +511,7 @@ exit 0
 
 #### 12 . another.sh 
 
-```
+```sh
 #!/bin/bash
 
 echo "$foo"
@@ -526,7 +526,7 @@ echo "$bar2"
                                               
 #### 13 . command_4.sh 
 
-```
+```sh
 #!/bin/bash
 
 #
@@ -578,7 +578,7 @@ echo "should not reach here"
                                         
 #### 14 . command_5.sh
 
-```
+```sh
 #!/bin/bash
 
 #
@@ -613,7 +613,7 @@ find . -name "c*" -exec ls -l {} \;     #-exec或-ok命令将后续参数作为�
 
 #### 15 . command_6.sh
 
-```
+```sh
 #!/bin/bash
 
 #
@@ -643,7 +643,7 @@ grep -E [a-z]\{5\} ./condition.sh   #-E开启扩展匹配:? * + {n} {n,} {n,m}  
                                               
 #### 16 . command_7.sh 
 
-```
+```sh
 #!/bin/bash
 
 #
@@ -705,7 +705,7 @@ rm *.jpg
     
 #### 17 . command_8.sh 
 
-```
+```sh
 #!/bin/bash
 
 # <<TAG 和 TAG中间的内容就好象是标准输入的内容
@@ -761,7 +761,7 @@ trap 'echo Exiting: foovar= $foovar' EXIT
        
 #### 18 . dialog.sh
 
-```
+```sh
 #!/bin/bash
 
 #dialog命令: linux控制台下的简单GUI程序
@@ -788,7 +788,7 @@ echo "$res"
 
 #### 19. merge.sh : 合并list.txt中列出的当前目录下的文件 
 
-```
+```sh
 #!/bin/bash
 
 if [ -f list2.txt ]

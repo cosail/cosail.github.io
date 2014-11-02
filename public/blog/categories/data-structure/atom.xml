@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Data-structure | cosail's blog]]></title>
+  <link href="http://cosail.github.io/blog/categories/data-structure/atom.xml" rel="self"/>
+  <link href="http://cosail.github.io/"/>
+  <updated>2014-10-31T00:13:54+08:00</updated>
+  <id>http://cosail.github.io/</id>
+  <author>
+    <name><![CDATA[cosail]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[数据结构概述]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/24/shu-ju-jie-gou-gai-shu/"/>
+    <updated>2014-10-24T20:19:57+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/24/shu-ju-jie-gou-gai-shu</id>
+    <content type="html"><![CDATA[<h3>&hellip;</h3>
+
+<h3>Tree</h3>
+
+<h5>RB-Tree</h5>
+
+<p>红黑树本质上就是一棵查找二叉树，能用查找二叉树做的事情也就能用红黑树来做。<br/>
+不同的是红黑树会自动调整，让自己保持树的平衡状态，从而保证每次查找，插入，删除操作在 O（lg n) 的时间内完成。</p>
+
+<p><code>变形</code>：用红黑树可以实现<strong>区间树</strong>。</p>
+
+<h3>&hellip;</h3>
+]]></content>
+  </entry>
+  
+</feed>

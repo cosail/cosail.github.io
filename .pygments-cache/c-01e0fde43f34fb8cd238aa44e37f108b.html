@@ -1,0 +1,6 @@
+<div class="highlight"><pre><span class="cp">#define max(x, y) ({                         \</span>
+<span class="cp">    typeof(x) _max1 = (x);                  \</span>
+<span class="cp">    typeof(y) _max2 = (y);                  \</span>
+<span class="cp">    (void) (&amp;_max1 == &amp;_max2);              \</span>
+<span class="cp">    _max1 &gt; _max2 ? _max1 : _max2; })</span>
+</pre></div>

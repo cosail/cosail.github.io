@@ -1,0 +1,58 @@
+<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+<span class="c">#</span>
+<span class="c"># Shell脚本条件测试:用test或[都可  (&#39;[&#39;也是一个命令，位于/usr/bin/)</span>
+<span class="c">#</span>
+
+<span class="c">#字符串比较</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;you&quot;</span> <span class="o">=</span> <span class="s2">&quot;me&quot;</span> <span class="o">]</span>     <span class="c">#&#39;!=&#39;表字符串判不等</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;you = me&quot;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&quot;you != me&quot;</span>
+<span class="k">fi</span>
+
+<span class="k">if</span> <span class="o">[</span> -z <span class="s2">&quot;&quot;</span> <span class="o">]</span>            <span class="c">#&#39;-n&#39;表不为空</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;string is NULL&quot;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&quot;string is not NULL&quot;</span>
+<span class="k">fi</span>
+
+<span class="c">#算术比较</span>
+<span class="k">if</span> <span class="nb">test </span><span class="m">3</span> -eq <span class="m">4</span>         <span class="c">#-ne (这里的3,4可以是更复杂的表达式)</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;3 = 4&quot;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&quot;3 != 4&quot;</span>
+<span class="k">fi</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="m">5</span> -gt <span class="m">6</span> <span class="o">]</span>          <span class="c">#-ge, -lt, -le, !</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;5 &gt; 6&quot;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&quot;5 &lt;= 6&quot;</span>
+<span class="k">fi</span>
+
+<span class="c">#文件条件测试</span>
+<span class="c">#文件存在:通常用&#39;-f&#39;代替，因为&#39;-e&#39;可能不可移植</span>
+<span class="k">if</span> <span class="nb">test</span> -e fred.c<span class="p">;</span> <span class="k">then</span>     <span class="c">#then也可以放在这，但要&#39;;&#39;分隔</span>
+    <span class="nb">echo</span> <span class="s2">&quot;fred.c is exist&quot;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&quot;no file fred.c&quot;</span>
+<span class="k">fi</span>
+
+<span class="c">#是普通文件</span>
+<span class="k">if</span> <span class="o">[</span> -f fred.c <span class="o">]</span>            <span class="c">#&#39;[&#39;与测试内容之间必须有空格，因为&#39;[&#39;是个命令名</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;fred.c is a general file&quot;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&quot;fred.c is not a general file&quot;</span>
+<span class="k">fi</span>
+
+<span class="c"># -d 是一个目录</span>
+<span class="c"># -r,-w,-x 文件可读，写，执行</span>
+<span class="c"># -u,-g 文件的SUID，SGID被设置</span>
+<span class="c"># -s 文件的长度不为0</span>
+<span class="nb">exit </span>0
+</pre></div>

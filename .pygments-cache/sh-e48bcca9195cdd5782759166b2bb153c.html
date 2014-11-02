@@ -1,0 +1,33 @@
+<div class="highlight"><pre><span class="c">#!/bin/sh</span>
+
+<span class="c"># Shell变量,环境变量</span>
+<span class="c"># 运行时带几个参数： ./variable.sh you me her him them it</span>
+
+<span class="nb">echo</span> ---------普通变量------------
+<span class="nv">myvar</span><span class="o">=</span><span class="s2">&quot;Hi there!&quot;</span>   
+<span class="nb">echo</span> <span class="nv">$myvar</span>         <span class="c">#打印变量值</span>
+<span class="nb">echo</span> <span class="s2">&quot;$myvar&quot;</span>       <span class="c">#双引号可避免空格问题，但不抑制变量解析</span>
+<span class="nb">echo</span> <span class="s1">&#39;$myvar&#39;</span>       <span class="c">#单引号抑制变量解析</span>
+<span class="nb">echo</span> <span class="se">\$</span>myvar        <span class="c">#&#39;$&#39;被&#39;\&#39;转义</span>
+
+<span class="nb">echo </span>Please enter some text:
+<span class="nb">read </span>myvar          <span class="c">#键盘输入</span>
+<span class="nb">echo</span> <span class="s1">&#39;$myvar&#39;</span> now equals : <span class="nv">$myvar</span>
+
+<span class="nb">echo</span> ---------环境变量------------
+<span class="nb">echo</span> <span class="o">[</span><span class="nv">$IFS</span><span class="o">]</span>         <span class="c">#Input Field Separator</span>
+
+<span class="nb">echo</span> <span class="s1">&#39;$0:&#39;</span> <span class="nv">$0</span>        <span class="c">#shell程序文件名</span>
+<span class="nb">echo</span> <span class="s1">&#39;$$:&#39;</span> <span class="nv">$$</span>        <span class="c">#进程ID</span>
+<span class="nb">echo</span> <span class="s1">&#39;$?:&#39;</span> <span class="nv">$?</span>        <span class="c">#最后运行的命令的结束代码（返回值）</span>
+
+<span class="nb">echo</span> <span class="s1">&#39;$*:&#39;</span><span class="nv">$*</span>        <span class="c">#所有参数</span>
+<span class="nb">echo</span> <span class="s1">&#39;$@:&#39;</span><span class="nv">$@</span>        <span class="c">#所有参数，但不使用$IFS</span>
+<span class="nb">echo</span> <span class="s1">&#39;$#:&#39;</span><span class="nv">$# </span>       <span class="c">#参数个数</span>
+<span class="nb">echo </span>args: <span class="nv">$1</span>,<span class="nv">$2</span>,<span class="nv">$3</span>,<span class="nv">$4</span>,<span class="nv">$5</span>   <span class="c">#第1到第5个参数</span>
+
+<span class="nb">set</span> -o verbose      <span class="c">#在命令执行前在屏幕上回显命令</span>
+<span class="nb">echo</span> <span class="s1">&#39;$-:&#39;</span><span class="nv">$-</span>        <span class="c">#使用Set命令设定的Flag一览</span>
+
+<span class="nb">exit </span>0
+</pre></div>

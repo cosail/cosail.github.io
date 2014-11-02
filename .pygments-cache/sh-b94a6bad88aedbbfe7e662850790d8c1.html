@@ -1,0 +1,32 @@
+<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+touch file_one
+rm -f file_two
+
+<span class="c">#AND列表:&amp;&amp;</span>
+<span class="c">#[ -f file_two ]测试失败,echo &quot; two&quot;不会执行</span>
+<span class="k">if</span> <span class="o">[</span> -f file_one <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;one&quot;</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> -f file_two <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot; two&quot;</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;true&quot;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&quot;false&quot;</span>
+<span class="k">fi</span>
+
+
+<span class="c">#OR列表:||</span>
+rm -f file_one
+
+<span class="k">if</span> <span class="o">[</span> -f file_one <span class="o">]</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&quot;one&quot;</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&quot;One&quot;</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;true&quot;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&quot;false&quot;</span>
+<span class="k">fi</span>
+
+
+<span class="c">#混用AND和OR列表: 这里没有用if</span>
+<span class="c">#如果测试为真执行命令1, 为假执行命令2</span>
+<span class="o">[</span> -f file_one <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;test for true: cmd1&quot;</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&quot;test for false: cmd2&quot;</span>
+
+<span class="nb">exit </span>0
+</pre></div>

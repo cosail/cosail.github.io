@@ -1,0 +1,59 @@
+<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+<span class="c">#</span>
+<span class="c"># Shell命令</span>
+<span class="c">#</span>
+
+<span class="c">#命令1:&quot;break&quot;</span>
+<span class="nb">echo</span> ----------------break----------------
+rm -rf fred*
+<span class="nb">echo</span> &gt; fred1    <span class="c">#new file</span>
+<span class="nb">echo</span> &gt; fred2
+mkdir fred3     <span class="c">#new directory</span>
+<span class="nb">echo</span> &gt; fred4
+
+<span class="k">for</span> file in fred*
+<span class="k">do</span>
+    <span class="k">if</span> <span class="o">[</span> -d <span class="s2">&quot;$file&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nb">break</span><span class="p">;</span>                  <span class="c">#是目录则跳出</span>
+    <span class="k">fi</span>
+<span class="k">done</span>
+
+<span class="nb">echo </span>I got a directory: <span class="nv">$file</span>
+
+rm -rf fred*
+
+<span class="c">#命令2:&quot;continue&quot;</span>
+<span class="nb">echo</span> ---------------continue--------------
+rm -rf fred*
+<span class="nb">echo</span> &gt; fred1    <span class="c">#new file</span>
+<span class="nb">echo</span> &gt; fred2
+mkdir fred3     <span class="c">#new directory</span>
+<span class="nb">echo</span> &gt; fred4
+
+<span class="k">for</span> file in fred*
+<span class="k">do</span>
+    <span class="k">if</span> <span class="o">[</span> -d <span class="s2">&quot;$file&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="k">continue</span><span class="p">;</span>                  <span class="c">#是目录则马上进入下一次循环</span>
+    <span class="k">fi</span>
+    <span class="nb">echo </span>I got a file: <span class="nv">$file</span>
+<span class="k">done</span>
+
+rm -rf fred*
+
+<span class="nb">echo</span> ---------------:-------------------
+<span class="c">#命令3:&quot;:&quot;        //一个空命令,相当于true</span>
+<span class="k">if</span> <span class="o">[</span> -f fred <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    :
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&quot;file fred did not exist&quot;</span>
+<span class="k">fi</span>
+
+
+<span class="nb">echo</span> -------------.---------------------
+<span class="c">#命令4:&quot;.&quot;      //在当前shell中执行命令,而不是在子shell中执行(正如source命令,会改变当前环境)</span>
+<span class="nb">echo</span> 请在shell下用<span class="s2">&quot;. ./old_version_set.sh&quot;</span>,<span class="s2">&quot;. ./new_version_set.sh&quot;</span>来查看效果
+
+
+<span class="nb">exit </span>0
+</pre></div>

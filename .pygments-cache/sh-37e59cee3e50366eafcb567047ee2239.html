@@ -1,0 +1,31 @@
+<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+<span class="c">#</span>
+<span class="c"># shell</span>
+<span class="c">#</span>
+
+<span class="nb">echo</span> -----------find------------
+<span class="c">#命令16:&quot;find&quot;</span>
+<span class="c">#find [path] [options] [test] [actions]</span>
+find . -name fun*.sh -print
+<span class="nb">echo</span> -------
+
+find / -mount -name wish    <span class="c">#-mount不去搜索挂载的其他文件系统</span>
+<span class="nb">echo</span> -------
+
+find . -newer command_2.sh -type f     <span class="c">#搜索比command_2.sh要新的文件,不是目录</span>
+<span class="nb">echo</span> -------
+
+find . -newer command_2.sh -o -name <span class="s2">&quot;v*.sh&quot;</span>   <span class="c">#-o表示或者,-a表示并且,!表非</span>
+<span class="nb">echo</span> -------
+
+find . -newer command_2.sh -or -name <span class="s2">&quot;v*.sh&quot;</span>   <span class="c">#-or表示或者,-and表示并且,-not表非</span>
+<span class="nb">echo</span> -------
+
+<span class="c">#用圆括号来组合测试(不用也是成功的)</span>
+find . <span class="se">\(</span> -newer command_2.sh -o -name <span class="s2">&quot;v*.sh&quot;</span> <span class="se">\)</span> -type f -print
+<span class="nb">echo</span> -------
+
+<span class="c">#找到匹配的文件后,可以执行指定的动作:</span>
+find . -name <span class="s2">&quot;c*&quot;</span> -exec ls -l <span class="o">{}</span> <span class="se">\;</span>     <span class="c">#-exec或-ok命令将后续参数作为他们的参数直到被&quot;\;&quot;终止,魔串&quot;{}&quot;会被当前文件的完整路径取代</span>
+</pre></div>

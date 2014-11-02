@@ -1,0 +1,38 @@
+<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+<span class="k">if</span> <span class="o">[</span> -f list2.txt <span class="o">]</span>
+<span class="k">then</span>
+    rm -f list2.txt
+<span class="k">fi</span>
+
+cat ./list.txt <span class="p">|</span> <span class="k">while</span> <span class="nb">read </span>line　　　　　　#读取list.txt的每一行
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="k">${</span><span class="nv">line</span><span class="p">#*[[:</span><span class="nv">blank</span><span class="p">:]]</span><span class="k">}</span> &gt;&gt; list2.txt      <span class="c">#去掉行首的序号和空白字符</span>
+<span class="k">done</span>
+
+
+<span class="nv">x</span><span class="o">=</span><span class="m">0</span>         <span class="c">#文件序号</span>
+<span class="k">if</span> <span class="o">[</span> -f merged.txt <span class="o">]</span>
+<span class="k">then</span>
+    rm -r merged.txt
+<span class="k">fi</span>
+
+cat ./list2.txt <span class="p">|</span> <span class="k">while</span> <span class="nb">read </span>line
+<span class="k">do</span>
+    <span class="nv">x</span><span class="o">=</span><span class="k">$((</span><span class="nv">$x</span> <span class="o">+</span> <span class="m">1</span><span class="k">))</span>
+    <span class="nb">echo</span> <span class="s2">&quot;************** $x . $line : start ************&quot;</span> &gt;&gt; merged.txt
+    cat ./<span class="nv">$line</span> &gt;&gt; merged.txt
+    <span class="nb">echo</span> <span class="s2">&quot;************** $x . $line : end **************&quot;</span> &gt;&gt; merged.txt
+    <span class="nb">echo</span> <span class="s2">&quot;                                               &quot;</span> &gt;&gt; merged.txt
+    <span class="nb">echo</span> <span class="s2">&quot;                  @ @                       &quot;</span> &gt;&gt; merged.txt
+    <span class="nb">echo</span> <span class="s2">&quot;                 ( V )                       &quot;</span> &gt;&gt; merged.txt
+    <span class="nb">echo</span> <span class="s2">&quot;                  ^ ^                       &quot;</span> &gt;&gt; merged.txt
+    <span class="nb">echo</span> <span class="s2">&quot;                       .=.=.0             &quot;</span> &gt;&gt; merged.txt
+    <span class="nb">echo</span> <span class="s2">&quot;                                             &quot;</span> &gt;&gt; merged.txt
+<span class="k">done</span>
+
+<span class="k">if</span> <span class="o">[</span> -f list2.txt <span class="o">]</span>
+<span class="k">then</span>
+    rm -f list2.txt
+<span class="k">fi</span>                                       
+</pre></div>

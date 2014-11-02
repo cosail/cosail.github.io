@@ -1,0 +1,25 @@
+<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+<span class="c">#</span>
+<span class="c"># shell命令</span>
+<span class="c">#</span>
+
+<span class="nb">echo</span> ----grep: General Regular Expression Parser----
+<span class="c">#grep [option] pattern [files]</span>
+grep <span class="s2">&quot;if&quot;</span> ./condition.sh
+
+<span class="nb">echo</span> ----------
+grep -c <span class="s2">&quot;if&quot;</span> ./condition.sh ./command_1.sh  <span class="c">#搜索多个文件,只输出匹配行数</span>
+
+<span class="nb">echo</span> ----------
+grep -v <span class="s2">&quot;i&quot;</span> ./condition.sh      <span class="c">#匹配不出现&quot;i&quot;的行</span>
+
+<span class="nb">echo</span> ---------
+grep ^# ./condition.sh      <span class="c">#行首为用&#39;^&#39;,行尾用&#39;$&#39;</span>
+
+<span class="nb">echo</span> -----------
+grep <span class="o">[[</span>:blank:<span class="o">]]</span><span class="nb">echo</span><span class="o">[[</span>:blank:<span class="o">]]</span> ./condition.sh      <span class="c">#[]中可以使用特殊匹配模式,[:blank:]表示空格或制表符</span>
+
+<span class="nb">echo</span> ------------
+grep -E <span class="o">[</span>a-z<span class="o">]</span><span class="se">\{</span>5<span class="se">\}</span> ./condition.sh   <span class="c">#-E开启扩展匹配:? * + {n} {n,} {n,m}  //匹配0或1次,0或多次,1或多次,n次,n次及以上,n到m次</span>
+</pre></div>

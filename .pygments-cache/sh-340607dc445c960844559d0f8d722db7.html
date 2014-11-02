@@ -1,0 +1,23 @@
+<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+<span class="c">#dialog命令: linux控制台下的简单GUI程序</span>
+<span class="c">#对话框   标题                  消息框</span>
+dialog --title <span class="s2">&quot;Message you&quot;</span> --msgbox <span class="s2">&quot;Tell you something you do not know.&quot;</span> <span class="m">8</span> 40
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="o">=</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    dialog --infobox <span class="s2">&quot;your choose: OK&quot;</span> <span class="m">5</span> 20
+    sleep 1
+    dialog --clear
+<span class="k">fi</span>
+
+<span class="c">#对话框   标题                       复选列表    提示        高  宽 选项数 选项编号,文本,状态....                      标准错误重定向(dialog的输出)</span>
+dialog --title <span class="s2">&quot;Check box example&quot;</span> --checklist <span class="s2">&quot;Pick Number&quot;</span> <span class="m">15</span>  <span class="m">25</span>   <span class="m">3</span>     <span class="m">1</span> <span class="s2">&quot;one&quot;</span> <span class="s2">&quot;off&quot;</span> <span class="m">2</span> <span class="s2">&quot;two&quot;</span> <span class="s2">&quot;on&quot;</span> <span class="m">3</span> <span class="s2">&quot;three&quot;</span> <span class="s2">&quot;off&quot;</span>  2&gt; /tmp/tmp_file_<span class="nv">$$</span>.txt
+<span class="nv">ret</span><span class="o">=</span><span class="nv">$?</span>                                  <span class="c">#保存dialog的返回值</span>
+<span class="nv">res</span><span class="o">=</span><span class="k">$(</span>cat /tmp/tmp_file_<span class="nv">$$</span>.txt<span class="k">)</span>         <span class="c">#保存dialog的输出值(用户选择的选项)</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$ret</span> <span class="o">=</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    dialog --infobox <span class="s2">&quot;Your choise: $res&quot;</span> <span class="m">10</span> 30
+<span class="k">else</span>
+    dialog --infobox <span class="s2">&quot;Bad, you canceled!&quot;</span> <span class="m">10</span> 30
+<span class="k">fi</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;$res&quot;</span>
+</pre></div>

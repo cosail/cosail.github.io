@@ -1,0 +1,25 @@
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">my_insert</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">,</span> <span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="n">data</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">struct</span> <span class="n">rb_node</span> <span class="o">**</span><span class="n">new</span> <span class="o">=</span> <span class="o">&amp;</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">),</span> <span class="o">*</span><span class="n">parent</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+	<span class="cm">/* 查找应插入的位置 */</span>
+	<span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">new</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="n">this</span> <span class="o">=</span> <span class="n">container_of</span><span class="p">(</span><span class="o">*</span><span class="n">new</span><span class="p">,</span> <span class="k">struct</span> <span class="n">mytype</span><span class="p">,</span> <span class="n">node</span><span class="p">);</span>
+		<span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">keystring</span><span class="p">,</span> <span class="n">this</span><span class="o">-&gt;</span><span class="n">keystring</span><span class="p">);</span>
+
+	    <span class="n">parent</span> <span class="o">=</span> <span class="o">*</span><span class="n">new</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+			<span class="n">new</span> <span class="o">=</span> <span class="o">&amp;</span><span class="p">((</span><span class="o">*</span><span class="n">new</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">rb_left</span><span class="p">);</span>
+		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+			<span class="n">new</span> <span class="o">=</span> <span class="o">&amp;</span><span class="p">((</span><span class="o">*</span><span class="n">new</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">rb_right</span><span class="p">);</span>
+		<span class="k">else</span>
+			<span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span> <span class="c1">// 该值已存在！不用再插入</span>
+	<span class="p">}</span>
+
+	<span class="cm">/* Add new node and rebalance tree. */</span>
+	<span class="n">rb_link_node</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">node</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">new</span><span class="p">);</span>
+	<span class="n">rb_insert_color</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">node</span><span class="p">,</span> <span class="n">root</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>

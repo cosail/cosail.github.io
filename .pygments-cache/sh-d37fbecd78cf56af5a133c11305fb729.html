@@ -1,0 +1,57 @@
+<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+<span class="c">#</span>
+<span class="c"># shell命令的执行</span>
+<span class="c">#</span>
+
+<span class="c"># $(cmd)的结果就是cmd命令的输出     //只有需要脚本可移植时才应该用`cmd`(当命令中有特殊字符时要转义)</span>
+<span class="nb">echo</span> <span class="s1">&#39;------------$(cmd)-------------&#39;</span>
+<span class="nb">echo </span>Current user: <span class="k">$(</span>who<span class="k">)</span>
+<span class="nv">whoisthere</span><span class="o">=</span><span class="sb">`</span>who<span class="sb">`</span>
+<span class="nb">echo </span>Current user: <span class="nv">$whoisthere</span>
+
+<span class="nb">echo</span> --------------<span class="k">${</span><span class="nv">var</span><span class="k">}</span>------------
+<span class="c"># 参数扩展: ${var}      //如${i}_tmp会扩展变量i,而$i_tmp会扩展变量i_tmp</span>
+<span class="k">for</span> i in <span class="m">1</span> <span class="m">3</span> 5
+<span class="k">do</span>
+    <span class="nb">echo </span>cmd_<span class="k">${</span><span class="nv">i</span><span class="k">}</span>_cmd
+    <span class="nb">echo </span>CMD_<span class="nv">$i_CMD</span>     <span class="c">#$i_CMD会被扩展为空,不会报错!</span>
+<span class="k">done</span>
+
+<span class="nb">echo</span> --------
+<span class="c"># ${param:-default}     若param为空,则把扩展为default</span>
+<span class="c"># ${#param}             扩展为param的长度</span>
+<span class="c"># ${param%word}         在param的尾部删除与word匹配的最短串,返回剩余部分</span>
+<span class="c"># ${param%%word}        尾部,删最长匹配</span>
+<span class="c"># ${param#word}         头部,删最短匹配</span>
+<span class="c"># ${param##word}        头部,删最长匹配</span>
+<span class="nb">unset </span>foo
+<span class="nb">echo</span> <span class="k">${</span><span class="nv">foo</span><span class="k">:-</span><span class="nv">hello</span><span class="p"> you</span><span class="k">}</span>  <span class="c">#foo为空,扩展为hello you</span>
+
+<span class="nv">foo</span><span class="o">=</span>something
+<span class="nb">echo</span> <span class="k">${</span><span class="nv">foo</span><span class="k">:-</span><span class="nv">Hello</span><span class="k">}</span>      <span class="c">#foo不为空,扩展为something</span>
+
+<span class="nv">foo</span><span class="o">=</span>/usr/bin/X11/startx
+<span class="nb">echo</span> <span class="k">${</span><span class="nv">foo</span><span class="p">#*/</span><span class="k">}</span>          <span class="c">#删去头部/</span>
+<span class="nb">echo</span> <span class="k">${</span><span class="nv">foo</span><span class="p">##*/</span><span class="k">}</span>         <span class="c">#删去头部/usr/bin/x11/</span>
+
+<span class="nv">bar</span><span class="o">=</span>/usr/local/etc/local/networks
+<span class="nb">echo</span> <span class="k">${</span><span class="nv">bar</span><span class="p">%local*</span><span class="k">}</span>      <span class="c">#删去尾部local/networks</span>
+<span class="nb">echo</span> <span class="k">${</span><span class="nv">bar</span><span class="p">%%local*</span><span class="k">}</span>     <span class="c">#删去尾部local/etc/local/networks</span>
+
+<span class="nb">echo</span> <span class="s1">&#39;-----example for ${ }------&#39;</span>
+touch 1.gif 2.gif 3.gif
+ls *.gif *.jpg
+
+<span class="k">for</span> image in *.gif
+<span class="k">do</span>
+    mv <span class="nv">$image</span> <span class="k">${</span><span class="nv">image</span><span class="p">%%gif</span><span class="k">}</span>jpg      <span class="c">#效果如: mv 1.gif 1.jpg</span>
+<span class="k">done</span>
+ls *.gif *.jpg
+rm *.jpg
+
+<span class="c">#另外:</span>
+<span class="c"># ${param:+default}     若param不为空,则返回default</span>
+<span class="c"># ${param:=default}     若param为空,则赋值为default,再返回;否则直接返回param的值</span>
+<span class="c"># ${param:?default}     若param为空,则输出param: default;否则返回param</span>
+</pre></div>

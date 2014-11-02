@@ -1,0 +1,129 @@
+<div class="highlight"><pre><span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span>
+<span class="nf">interval_tree_first_match</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">,</span>
+			  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">start</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">last</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span><span class="p">;</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">)</span>
+		<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">node</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+
+	<span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">left</span> <span class="o">=</span>
+				<span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">&gt;=</span> <span class="n">start</span><span class="p">)</span> <span class="p">{</span>
+				<span class="cm">/*</span>
+<span class="cm">				 * Some nodes in left subtree satisfy Cond2.</span>
+<span class="cm">				 * Iterate to find the leftmost such node N.</span>
+<span class="cm">				 * If it also satisfies Cond1, that&#39;s the match</span>
+<span class="cm">				 * we are looking for. Otherwise, there is no</span>
+<span class="cm">				 * matching interval as nodes to the right of N</span>
+<span class="cm">				 * can&#39;t satisfy Cond1 either.</span>
+<span class="cm">				 */</span>
+				<span class="n">node</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
+				<span class="k">continue</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">start</span> <span class="o">&lt;=</span> <span class="n">last</span><span class="p">)</span> <span class="p">{</span>		<span class="cm">/* Cond1 */</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">last</span> <span class="o">&gt;=</span> <span class="n">start</span><span class="p">)</span>	<span class="cm">/* Cond2 */</span>
+				<span class="k">return</span> <span class="n">node</span><span class="p">;</span>	<span class="cm">/* node is leftmost match */</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">node</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">,</span>
+					<span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">&gt;=</span> <span class="n">start</span><span class="p">)</span>
+					<span class="k">continue</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>	<span class="cm">/* No match */</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">Insertion</span><span class="o">/</span><span class="n">removal</span> <span class="n">are</span> <span class="n">defined</span> <span class="n">using</span> <span class="n">the</span> <span class="n">following</span> <span class="n">augmented</span> <span class="nl">callbacks</span><span class="p">:</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="kt">unsigned</span> <span class="kt">long</span>
+<span class="n">compute_subtree_last</span><span class="p">(</span><span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">max</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">last</span><span class="p">,</span> <span class="n">subtree_last</span><span class="p">;</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">subtree_last</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">,</span>
+			<span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">__subtree_last</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">max</span> <span class="o">&lt;</span> <span class="n">subtree_last</span><span class="p">)</span>
+			<span class="n">max</span> <span class="o">=</span> <span class="n">subtree_last</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">subtree_last</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">,</span>
+			<span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">__subtree_last</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">max</span> <span class="o">&lt;</span> <span class="n">subtree_last</span><span class="p">)</span>
+			<span class="n">max</span> <span class="o">=</span> <span class="n">subtree_last</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">max</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="n">augment_propagate</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">stop</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">while</span> <span class="p">(</span><span class="n">rb</span> <span class="o">!=</span> <span class="n">stop</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span> <span class="o">=</span>
+			<span class="n">rb_entry</span><span class="p">(</span><span class="n">rb</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+		<span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">subtree_last</span> <span class="o">=</span> <span class="n">compute_subtree_last</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">==</span> <span class="n">subtree_last</span><span class="p">)</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="n">node</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">subtree_last</span><span class="p">;</span>
+		<span class="n">rb</span> <span class="o">=</span> <span class="n">rb_parent</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="n">augment_copy</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_old</span><span class="p">,</span> <span class="n">stru</span><span class="err">，</span><span class="n">ct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_new</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">old</span> <span class="o">=</span>
+		<span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_old</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+	<span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">new</span> <span class="o">=</span>
+		<span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_new</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+
+	<span class="n">new</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">old</span><span class="o">-&gt;</span><span class="n">__subtree_last</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="n">augment_rotate</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_old</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_new</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">old</span> <span class="o">=</span>
+		<span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_old</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+	<span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">new</span> <span class="o">=</span>
+		<span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_new</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+
+	<span class="n">new</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">old</span><span class="o">-&gt;</span><span class="n">__subtree_last</span><span class="p">;</span>
+	<span class="n">old</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">compute_subtree_last</span><span class="p">(</span><span class="n">old</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">rb_augment_callbacks</span> <span class="n">augment_callbacks</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="n">augment_propagate</span><span class="p">,</span> <span class="n">augment_copy</span><span class="p">,</span> <span class="n">augment_rotate</span>
+<span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">interval_tree_insert</span><span class="p">(</span><span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span><span class="p">,</span>
+			  <span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">struct</span> <span class="n">rb_node</span> <span class="o">**</span><span class="n">link</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">,</span> <span class="o">*</span><span class="n">rb_parent</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">start</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">last</span><span class="p">;</span>
+	<span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">parent</span><span class="p">;</span>
+
+	<span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">link</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">rb_parent</span> <span class="o">=</span> <span class="o">*</span><span class="n">link</span><span class="p">;</span>
+		<span class="n">parent</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_parent</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">&lt;</span> <span class="n">last</span><span class="p">)</span>
+			<span class="n">parent</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">last</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">start</span> <span class="o">&lt;</span> <span class="n">parent</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">)</span>
+			<span class="n">link</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">;</span>
+		<span class="k">else</span>
+			<span class="n">link</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="n">node</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">last</span><span class="p">;</span>
+	<span class="n">rb_link_node</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">,</span> <span class="n">rb_parent</span><span class="p">,</span> <span class="n">link</span><span class="p">);</span>
+	<span class="n">rb_insert_augmented</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">augment_callbacks</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">interval_tree_remove</span><span class="p">(</span><span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span><span class="p">,</span>
+			  <span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">rb_erase_augmented</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">augment_callbacks</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
