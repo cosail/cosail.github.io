@@ -9,7 +9,8 @@
   <meta name="author" content="cosail">
 
   
-  <meta name="description" content="octopress本身已经有disqus评论,但是在国内加载速度太慢，所以还是以国内的duoshuo评论替代之。 主要涉及的文件 下面根目录“/”为octopress/目录 /_config.ymlz ：添加多说相关设置变量 /source/_layouts/post.html ： &hellip;">
+  <meta name="description" content="以下是阅读《Pro Git》时的记录
+《Pro Git》Scott Chacon 2010, licensed under the Creative Commons Attribution-Non Commercial-Share Alike 3.0 license. 1. 版本控制系统（VCS &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -89,7 +90,7 @@
 
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress/">添加duoshuo评论到octopress</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/10/12/git-start/">Git概述及初配置</a></h1>
     
 
     
@@ -99,12 +100,12 @@
 
 
 
-<time class='entry-date' datetime='2014-10-08T10:25:36+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:25 am</span></time>
+<time class='entry-date' datetime='2014-10-12T20:16:46+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:16 pm</span></time>
         
 		<!-- wuwei,2014.10.7: duoshuo -->
         
-           | <a href="/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress/#duoshuo_thread"
-             data-disqus-identifier="http://cosail.github.io/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress/">评论此文章</a>
+           | <a href="/blog/2014/10/12/git-start/#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io/blog/2014/10/12/git-start/">评论此文章</a>
         
       </p>
     
@@ -112,247 +113,142 @@
 
 
 
-  <div class="entry-content"><p>octopress本身已经有disqus评论,但是在国内加载速度太慢，所以还是以国内的duoshuo评论替代之。</p>
+  <div class="entry-content"><blockquote><p>以下是阅读《Pro Git》时的记录<br/>
+《Pro Git》Scott Chacon 2010, licensed under the Creative Commons Attribution-Non Commercial-Share Alike 3.0 license.</p></blockquote>
 
-<h3>主要涉及的文件</h3>
+<h3>1. 版本控制系统（VCS）</h3>
 
-<p>下面根目录“/”为octopress/目录</p>
+<p>VCS的主要作用：记录文件的变化，保存项目过去某些时间点的状态，回溯到之前的状态。<br/>
+<code>即保存和恢复数据。</code></p>
 
-<pre><code>/_config.ymlz ：添加多说相关设置变量  
-/source/_layouts/post.html ：为博文页添加duoshuo评论  
-/source/_layouts/page.html ：为普通页面添加duoshuo评论  
-/source/_include/post/duoshuo.html ：duoshuo评论框  
-/source/_include/article.html ：文章上面加一个评论链接  
-/source/_include/asides/duoshuo.html ：duoshuo最新评论显示  
-/source/index.html ：  为首页添加duoshuo评论  
-</code></pre>
+<ul>
+<li><p>本地版本控制系统: 保存并管理文件补丁（文件内容前后的变化），不断打补丁。<br/>
+<code>自己在自己的电脑上干自己的事。</code></p></li>
+<li><p>集中化版本控制系统（CVCS）：单一的集中管理服务器保存所有文件的修订版本。<br/>
+<code>可有多人用客户端访问中央服务器，取出文件，提交更新，协同合作。
+  若中央服务器故障，则可能丢失数据，且大家都无法在故障时段提交更新。</code></p></li>
+<li><p>分布式版本控制系统（DVCS）：  客户端有代码仓库的完整镜像，和服务器一样掌握所有必要信息。<br/>
+<code>大家可以在自己电脑上提交（异步），必要时推到服务器（同步）。</code></p></li>
+</ul>
 
-<p>  <code>多说评论框把评论提交到多说服务器，多说最新评论显示从服务器拉取评论以显示在我们的页面上。  
-下面一个文件一个文件地添加代码：</code></p>
 
-<h3>编辑文件/_config.ymlz</h3>
+<h3>2. Git的特点</h3>
 
-<p>添加如下几行：</p>
+<ul>
+<li><p>直接给更新的文件作快照，并保存快照的索引。<br/>
+<code>而不是像其他CVS一样每次仅仅记录变化的部分</code></p></li>
+<li><p>本地保存更新历史，断网时可以向本机提交更新。<br/>
+<code>Subversion和CVS断网时无法提交更新，因为仓库数据在服务器上维护着，本机信息不足。</code></p></li>
+<li><p>保持数据完整性<br/>
+<code>保存文件或目录需要先计算校验和（使用SHA-1算法计算出的一个哈希值，作为指纹），并将结果作为唯一标识及索引。你动了哪里，Git就会知道。</code></p></li>
+<li><p>高可靠性<br/>
+<code>在Git，只要在本机提交后（本机操作很方便快捷），就不必担心弄丢弄乱数据了（可在本机恢复）；若再定期推送到远端仓库的话，就更保险了。</code></p></li>
+<li><p>git三状态：已修改，已暂存(staged)，已提交。</p>
 
-<pre><code>duoshuo_short_name: yourname #用你自己duoshuo名（需要去多说网站获取）  
-duoshuo_asides_num: 10      # 侧边栏评论显示条目数  
-duoshuo_asides_avatars: 1   # 侧边栏评论是否显示头像  
-duoshuo_asides_time: 1      # 侧边栏评论是否显示时间  
-duoshuo_asides_title: 1     # 侧边栏评论是否显示标题  
-duoshuo_asides_admin: 1     # 侧边栏评论是否显示作者评论  
-duoshuo_asides_length: 18   # 侧边栏评论截取的长度  
-</code></pre>
+<ul>
+<li>已修改：修改了某文件</li>
+<li>已暂存：把已修改文件列为下次要提交的文件</li>
+<li>已提交：文件已安全地保存在本机数据库中</li>
+</ul>
+</li>
+</ul>
 
-<h3>编辑文件/source/_layouts/post.html</h3>
 
-<p>在disqus代码：</p>
+<p>基本的 Git 工作流程如下所示:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<ol>
+<li><p>在工作目录中修改某些文件。
+<code>工作目录中的文件实际上都是从 git 目录中的压缩对象数据库中提取出来的，我们在工作目录中编辑文件。</code></p></li>
+<li><p>对这些修改了的文件作快照,并保存到暂存区域。<br/>
+<code>暂存区其实是个索引文件，放在 git 目录中。</code></p></li>
+<li><p>提交更新,将保存在暂存区域的文件快照转储到 git 目录中。   <br/>
+<code>每个项目有一个.git/目录，是保存元数据和对象数据库的地方。克隆仓库时拷贝的就是里边的数据。</code></p></li>
+</ol>
+
+
+<h3>3. 初次配置Git</h3>
+
+<p>Git 有专门用来配置和读取相应工作环境变量的工具： git config 命令（实际调用 git-config 命令）。</p>
+
+<p>环境变量们住在这里：</p>
+
+<ol>
+<li><p>/etc/gitconfig：系统中对所有用户都普遍适用的配置。<br/>
+<code>git config 用 --system 选项, 读写这个文件。</code></p></li>
+<li><p>~/.gitconfig：用户目录下的配置文件只适用于该用户。<br/>
+<code>git config 用 --global 选项, 读写这个文件。</code></p></li>
+<li><p>当前项目的 .git/config ：这里的配置仅仅针对当前项目有效。</p></li>
+</ol>
+
+
+<p><strong><em>每一个级别的配置都会覆盖上层的相同配置, 所以.git/config 里的配置会覆盖 前两者中的同名变量。</em></strong></p>
+
+<ul>
+<li>设置用户信息：用户名称，邮件地址</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">disqus_short_name</span> <span class="nx">and</span> <span class="nx">page</span><span class="p">.</span><span class="nx">comments</span> <span class="o">==</span> <span class="kc">true</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">section</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Comments</span><span class="o">&lt;</span><span class="err">/h1&gt;  </span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;disqus_thread&quot;</span> <span class="nx">aria</span><span class="o">-</span><span class="nx">live</span><span class="o">=</span><span class="s2">&quot;polite&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="o">%</span> <span class="nx">include</span> <span class="nx">post</span><span class="o">/</span><span class="nx">disqus_thread</span><span class="p">.</span><span class="nx">html</span> <span class="o">%</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;  </span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/section&gt;  </span>
-</span><span class='line'><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git config --global user.name "username"
+</span><span class='line'>$ git config --global user.email username@126.com
+</span><span class='line'>// --global表示更改的是用户住目录中的配置文件，去掉该选项则修改的是当前项目的配置文件。</span></code></pre></td></tr></table></div></figure>
 
 
-<p>下方添加多说评论框（在文件/source/_include/post/duoshuo.html中实现）：</p>
+<p><code>每次 Git 提交时会说明是谁提交了更新, 随之纳入历史记录。</code></p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<ul>
+<li>设置文本编辑器</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git config --global core.editor vi</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>有时 Git 会提示你输入，这时会调用这里的文本编辑器。</code></p>
+
+<ul>
+<li>设置差异分析工具</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git config --global merge.tool vimdiff</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>在解决合并冲突时会使用差异分析工具，Git 可以理解 kdiff3,tkdiff,meld,xxdiff,emerge,vimdiff,gvimdiff,ecmerge,
+，opendiff 等合并工具的输出信息。</code></p>
+
+<ul>
+<li>查看配置信息</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git config --list</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>若有重复的变量名, 说明它们来自不同的配置文件,  Git 实际采用的是最后一个。</code></p>
+
+<p>也可以直接查阅某个环境变量的设定：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git config user.name</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>4. Git 帮助命令</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">duoshuo_short_name</span> <span class="nx">and</span> <span class="nx">page</span><span class="p">.</span><span class="nx">comments</span> <span class="o">!=</span> <span class="kc">false</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'>  <span class="o">&lt;</span><span class="nx">section</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="nx">h3</span><span class="o">&gt;</span><span class="err">多说评论：</span><span class="o">&lt;</span><span class="err">/h3&gt;  </span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;comments&quot;</span> <span class="nx">aria</span><span class="o">-</span><span class="nx">live</span><span class="o">=</span><span class="s2">&quot;polite&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="o">%</span> <span class="nx">include</span> <span class="nx">post</span><span class="o">/</span><span class="nx">duoshuo</span><span class="p">.</span><span class="nx">html</span> <span class="o">%</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;  </span>
-</span><span class='line'>  <span class="o">&lt;</span><span class="err">/section&gt;  </span>
-</span><span class='line'><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git help &lt;verb&gt;
+</span><span class='line'>$ git &lt;verb&gt; --help
+</span><span class='line'>$ man git-&lt;verb&gt;</span></code></pre></td></tr></table></div></figure>
 
 
-<p><code>上面是为了使rake new_post["..."]产生的文章页面下包含评论框；若要使用rake new_page["..."]产生的页面下也包含评论框，可以在/source/_layouts/page.html做同样添加。如下：</code></p>
 
-<h3>编辑文件/source/_layouts/page.html</h3>
-
-<p>就如前面index.html中的添加一样，在disqus代码后添加相应代码，这里不赘述了。</p>
-
-<h3>编辑文件/source/_include/post/duoshuo.html</h3>
-
-<p>这个文件需要你新建，然后复制粘贴以下代码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">section</span><span class="o">&gt;</span>
-</span><span class='line'>  <span class="c">&lt;!--</span> <span class="err">在</span><span class="nx">octopress</span><span class="o">/</span><span class="err">目录的</span><span class="nx">_config</span><span class="p">.</span><span class="nx">yml</span><span class="err">中已经定义了</span><span class="nx">duoshuo_short_name</span> <span class="o">--&gt;</span>
-</span><span class='line'>  <span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">duoshuo_short_name</span> <span class="o">!=</span> <span class="kc">false</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'>  <span class="c">&lt;!--</span> <span class="err">多说评论框</span> <span class="nx">start</span> <span class="o">--&gt;</span>
-</span><span class='line'>  <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;ds-thread&quot;</span>  <span class="nx">data</span><span class="o">-</span><span class="nx">title</span><span class="o">=</span><span class="s2">&quot;添加duoshuo评论到octopress&quot;</span> <span class="o">&gt;&lt;</span><span class="err">/div&gt;</span>
-</span><span class='line'>      <span class="c">&lt;!--</span> <span class="err">多说评论框</span> <span class="nx">end</span> <span class="o">--&gt;</span>
-</span><span class='line'>      <span class="c">&lt;!--</span> <span class="err">多说公共</span><span class="nx">JS</span><span class="err">代码</span> <span class="nx">start</span> <span class="p">(</span><span class="err">一个网页只需插入一次</span><span class="p">)</span> <span class="o">--&gt;</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span><span class="o">&gt;</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">duoshuoQuery</span> <span class="o">=</span> <span class="p">{</span><span class="nx">short_name</span><span class="o">:</span><span class="s2">&quot;cosail&quot;</span><span class="p">};</span>
-</span><span class='line'>          <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>              <span class="kd">var</span> <span class="nx">ds</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
-</span><span class='line'>              <span class="nx">ds</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span><span class="nx">ds</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-</span><span class='line'>              <span class="nx">ds</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">==</span> <span class="s1">&#39;https:&#39;</span> <span class="o">?</span> <span class="s1">&#39;https:&#39;</span> <span class="o">:</span> <span class="s1">&#39;http:&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;//static.duoshuo.com/embed.js&#39;</span><span class="p">;</span>
-</span><span class='line'>              <span class="nx">ds</span><span class="p">.</span><span class="nx">charset</span> <span class="o">=</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">;</span>
-</span><span class='line'>              <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-</span><span class='line'>               <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">ds</span><span class="p">);</span>
-</span><span class='line'>          <span class="p">})();</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="err">/script&gt;</span>
-</span><span class='line'>      <span class="c">&lt;!--</span> <span class="err">多说公共</span><span class="nx">JS</span><span class="err">代码</span> <span class="nx">end</span> <span class="o">--&gt;</span>
-</span><span class='line'>  <span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">section</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>上面就是duoshuo评论框模块了。</code></p>
-
-<h3>编辑文件/source/_include/article.html</h3>
-
-<p>在disqus代码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">disqus_short_name</span> <span class="nx">and</span> <span class="nx">page</span><span class="p">.</span><span class="nx">comments</span> <span class="o">!=</span> <span class="kc">false</span> <span class="nx">and</span> <span class="nx">post</span><span class="p">.</span><span class="nx">comments</span> <span class="o">!=</span> <span class="kc">false</span> <span class="nx">and</span> <span class="nx">site</span><span class="p">.</span><span class="nx">disqus_show_comment_count</span> <span class="o">==</span> <span class="kc">true</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'><span class="o">|</span> <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;#disqus_thread&quot;</span><span class="o">&gt;</span><span class="nx">Comments</span><span class="o">&lt;</span><span class="err">/a&gt;</span>
-</span><span class='line'><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>下方添加duoshuo代码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">duoshuo_short_name</span> <span class="nx">and</span> <span class="nx">page</span><span class="p">.</span><span class="nx">comments</span> <span class="o">!=</span> <span class="kc">false</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'><span class="o">|</span> <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;#comments&quot;</span><span class="o">&gt;</span><span class="nx">Comments</span><span class="o">&lt;</span><span class="err">/a&gt;</span>
-</span><span class='line'><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>这样就在文章上面加上了一个评论链接。</code></p>
-
-<h3>编辑文件/source/_include/asides/duoshuo.html</h3>
-
-<p>这个文件需要你新建，然后复制粘贴以下代码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">section</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="err">最新评论</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">ul</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;ds-recent-comments&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">num</span><span class="o">-</span><span class="nx">items</span><span class="o">=</span><span class="s2">&quot;10&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">show</span><span class="o">-</span><span class="nx">avatars</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">show</span><span class="o">-</span><span class="nx">time</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">show</span><span class="o">-</span><span class="nx">title</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">show</span><span class="o">-</span><span class="nx">admin</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">excerpt</span><span class="o">-</span><span class="nx">length</span><span class="o">=</span><span class="s2">&quot;18&quot;</span><span class="o">&gt;&lt;</span><span class="err">/ul&gt;</span>
-</span><span class='line'><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">index</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'><span class="c">&lt;!--</span><span class="err">多说</span><span class="nx">js</span><span class="err">加载开始，一个页面只需要加载一次</span> <span class="o">--&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span><span class="o">&gt;</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">duoshuoQuery</span> <span class="o">=</span> <span class="p">{</span><span class="nx">short_name</span><span class="o">:</span><span class="s2">&quot;cosail&quot;</span><span class="p">};</span>
-</span><span class='line'>  <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">ds</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="nx">ds</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span><span class="nx">ds</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-</span><span class='line'>    <span class="nx">ds</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;http://static.duoshuo.com/embed.js&#39;</span><span class="p">;</span>
-</span><span class='line'>    <span class="nx">ds</span><span class="p">.</span><span class="nx">charset</span> <span class="o">=</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">ds</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">})();</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/script&gt;</span>
-</span><span class='line'><span class="c">&lt;!--</span><span class="err">多说</span><span class="nx">js</span><span class="err">加载结束，一个页面只需要加载一次</span> <span class="o">--&gt;</span>
-</span><span class='line'><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/section&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>上面的代码是为了在侧边栏里显示最新评论，为了把它添加到侧边栏，还需在_config.yml 文件中的 blog_index_asides 行或 page_asides 行或 post_asides 行中添加：</code></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">asides</span><span class="o">/</span><span class="nx">duoshuo</span><span class="p">.</span><span class="nx">html</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>编辑文件/source/index.html</h3>
-
-<p>在代码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;blog-index&quot;</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="p">...</span><span class="err">省略</span><span class="p">...</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>的<code>&lt;/div&gt;</code>之前添加一段，像下面这样：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;blog-index&quot;</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="p">...</span><span class="err">省略</span><span class="p">...</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c">&lt;!--</span> <span class="err">增加评论框</span> <span class="o">--&gt;</span>
-</span><span class='line'>    <span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">duoshuo_short_name</span> <span class="nx">and</span> <span class="nx">page</span><span class="p">.</span><span class="nx">comments</span> <span class="o">!=</span> <span class="kc">false</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="nx">section</span><span class="o">&gt;</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;duoshuo_thread&quot;</span> <span class="nx">aria</span><span class="o">-</span><span class="nx">live</span><span class="o">=</span><span class="s2">&quot;polite&quot;</span><span class="o">&gt;</span> <span class="p">{</span><span class="o">%</span> <span class="nx">include</span> <span class="nx">post</span><span class="o">/</span><span class="nx">duoshuo</span><span class="p">.</span><span class="nx">html</span> <span class="o">%</span><span class="p">}</span> <span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="err">/section&gt;</span>
-</span><span class='line'>    <span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>这样就在Blog的开始页面index.html上加入了评论功能。</code></p>
 </div>
   
   
@@ -424,7 +320,7 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
 <li class='category'><a href='/blog/categories/github/'>github (3)</a></li>
 <li class='category'><a href='/blog/categories/shell/'>shell (1)</a></li>
 <li class='category'><a href='/blog/categories/text-edit/'>text-edit (2)</a></li>
-<li class='category'><a href='/blog/categories/tools/'>tools (1)</a></li>
+<li class='category'><a href='/blog/categories/tools/'>tools (2)</a></li>
 <li class='category'><a href='/blog/categories/ubuntu-faq/'>ubuntu-faq (1)</a></li>
 
     </ul>
@@ -432,6 +328,10 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
 <section>
   <h1>最近发布</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/02/shi-yong-dothui-tu/">使用dot绘图</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/10/31/dotyu-yan/">DOT语言</a>
@@ -467,10 +367,6 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
     
       <li class="post">
         <a href="/blog/2014/10/23/linux-kernelzhong-de-rbtree/">Linux Kernel中的红黑树</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/22/structli-de-number-define/">为什么在struct里定义宏</a>
       </li>
     
   </ul>

@@ -9,9 +9,9 @@
   <meta name="author" content="cosail">
 
   
-  <meta name="description" content="以下是阅读《Pro Git》时的记录
-《Pro Git》Scott Chacon 2010, licensed under the Creative Commons Attribution-Non Commercial-Share Alike 3.0 license. 1.
-">
+  <meta name="description" content="ubuntu下virtualbox中的usb设备为灰色不可用怎么办? virtualbox 装完成后会有 vboxusers 用户组，只要添加用户到组就行了： $ sudo vim /etc/group
+找到这一行： vboxusers:x:127:
+添加自己的用户名(假设为w)： &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -91,7 +91,7 @@
 
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/10/30/gitfen-zhi/">Git分支</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/10/31/virtualboxzhong-shi-yong-bu-liao-usbshe-bei-%3F/">VirtualBox中使用不了USB设备？</a></h1>
     
 
     
@@ -101,12 +101,12 @@
 
 
 
-<time class='entry-date' datetime='2014-10-30T16:05:13+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:05 pm</span></time>
+<time class='entry-date' datetime='2014-10-31T10:46:06+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>10:46 am</span></time>
         
 		<!-- wuwei,2014.10.7: duoshuo -->
         
-           | <a href="/blog/2014/10/30/gitfen-zhi/#duoshuo_thread"
-             data-disqus-identifier="http://cosail.github.io/blog/2014/10/30/gitfen-zhi/">评论此文章</a>
+           | <a href="/blog/2014/10/31/virtualboxzhong-shi-yong-bu-liao-usbshe-bei-%3F/#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io/blog/2014/10/31/virtualboxzhong-shi-yong-bu-liao-usbshe-bei-%3F/">评论此文章</a>
         
       </p>
     
@@ -114,10 +114,15 @@
 
 
 
-  <div class="entry-content"><blockquote><p>以下是阅读《Pro Git》时的记录<br/>
-《Pro Git》Scott Chacon 2010, licensed under the Creative Commons Attribution-Non Commercial-Share Alike 3.0 license.</p></blockquote>
+  <div class="entry-content"><h3>ubuntu下virtualbox中的usb设备为灰色不可用怎么办?</h3>
 
-<h3>1.</h3>
+<p>virtualbox 装完成后会有 vboxusers 用户组，只要添加用户到组就行了：</p>
+
+<p>$ sudo vim /etc/group<br/>
+找到这一行：  vboxusers:x:127:<br/>
+添加自己的用户名(假设为w)：  vboxusers:x:127:w</p>
+
+<p>然后注销重新登陆w试试。</p>
 </div>
   
   
@@ -189,7 +194,7 @@
 <li class='category'><a href='/blog/categories/github/'>github (3)</a></li>
 <li class='category'><a href='/blog/categories/shell/'>shell (1)</a></li>
 <li class='category'><a href='/blog/categories/text-edit/'>text-edit (2)</a></li>
-<li class='category'><a href='/blog/categories/tools/'>tools (1)</a></li>
+<li class='category'><a href='/blog/categories/tools/'>tools (2)</a></li>
 <li class='category'><a href='/blog/categories/ubuntu-faq/'>ubuntu-faq (1)</a></li>
 
     </ul>
@@ -197,6 +202,10 @@
 <section>
   <h1>最近发布</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/02/shi-yong-dothui-tu/">使用dot绘图</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/10/31/dotyu-yan/">DOT语言</a>
@@ -232,10 +241,6 @@
     
       <li class="post">
         <a href="/blog/2014/10/23/linux-kernelzhong-de-rbtree/">Linux Kernel中的红黑树</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/22/structli-de-number-define/">为什么在struct里定义宏</a>
       </li>
     
   </ul>
