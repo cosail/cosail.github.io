@@ -150,8 +150,8 @@ digraph G {
 ##### 2.2 节点形状
 
 下面是主要的基于多边形的形状列表:  
-![](http://cosail.github.io/images/2.2-1.node.jpg")  
-![更多](http://www.graphviz.org/doc/info/shapes.html)
+![](http://cosail.github.io/images/2.2-1.jpg")  
+[更多](http://www.graphviz.org/doc/info/shapes.html)
 
 还有一种基于记录的节点也非常重要，画数据结构的时候经常要用，包括**record**，**Mrecord**，后者和前者的唯一区别在于有圆角。还是先看图：  
 ![](http://cosail.github.io/images/2.2-2.jpg")  
