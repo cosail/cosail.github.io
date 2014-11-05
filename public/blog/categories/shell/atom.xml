@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Shell | cosail's blog]]></title>
   <link href="http://cosail.github.io/blog/categories/shell/atom.xml" rel="self"/>
   <link href="http://cosail.github.io/"/>
-  <updated>2014-11-05T20:21:53+08:00</updated>
+  <updated>2014-11-05T20:24:37+08:00</updated>
   <id>http://cosail.github.io/</id>
   <author>
     <name><![CDATA[cosail]]></name>
@@ -45,7 +45,7 @@
 
 <h4>1 . variable.sh</h4>
 
-<pre><code>#!/bin/sh
+<pre><code class="sh">#!/bin/sh
 
 # Shell变量,环境变量
 # 运行时带几个参数： ./variable.sh you me her him them it
@@ -81,7 +81,7 @@ exit 0
 
 <h4>2 . condition.sh</h4>
 
-<pre><code>#!/bin/bash
+<pre><code class="sh">#!/bin/bash
 
 #
 # Shell脚本条件测试:用test或[都可  ('['也是一个命令，位于/usr/bin/)
@@ -142,7 +142,7 @@ exit 0
 
 <h4>3 . control.sh</h4>
 
-<pre><code>#!/bin/bash
+<pre><code class="sh">#!/bin/bash
 
 #
 # Shell的控制语句
@@ -211,7 +211,7 @@ exit 0
 
 <h4>4 . AndOr.sh</h4>
 
-<pre><code>#!/bin/bash
+<pre><code class="sh">#!/bin/bash
 
 touch file_one
 rm -f file_two
@@ -246,7 +246,7 @@ exit 0
 
 <h4>5 . statementBlock.sh</h4>
 
-<pre><code>#!/bin/bash
+<pre><code class="sh">#!/bin/bash
 
 #语句块: {}
 if {
@@ -265,7 +265,7 @@ fi
 
 <h4>6 . function.sh</h4>
 
-<pre><code>#!/bin/bash
+<pre><code class="sh">#!/bin/bash
 
 #
 #Shell函数
@@ -332,7 +332,7 @@ exit 0
 
 <h4>7 . command_1.sh</h4>
 
-<pre><code>#!/bin/bash
+<pre><code class="sh">#!/bin/bash
 
 #
 # Shell命令
@@ -394,7 +394,7 @@ exit 0
 
 <h4>8 . old_version_set.sh</h4>
 
-<pre><code>#!/bin/bash
+<pre><code class="sh">#!/bin/bash
 
 version=Old_version
 PS1="Old&gt; "
@@ -403,7 +403,7 @@ PATH=/bin:/usr/bin:/usr/local/Old_bin:.
 
 <h4>9 . new_version_set.sh</h4>
 
-<pre><code>#!/bin/bash
+<pre><code class="sh">#!/bin/bash
 
 version=New_version
 PS1="New&gt; "
@@ -412,7 +412,7 @@ PATH=/bin:/usr/bin:/usr/local/New_bin:.
 
 <h4>10 . command_2.sh</h4>
 
-<pre><code>#!/bin/bash
+<pre><code class="sh">#!/bin/bash
 
 #
 #   shell命令
@@ -451,7 +451,7 @@ exit 1  # 1-125表错误码
 
 <h4>11 . command_3.sh</h4>
 
-<pre><code>#!/bin/bash
+<pre><code class="sh">#!/bin/bash
 
 #
 # shell命令
@@ -503,7 +503,7 @@ exit 0
 
 <h4>12 . another.sh</h4>
 
-<pre><code>#!/bin/bash
+<pre><code class="sh">#!/bin/bash
 
 echo "$foo"
 echo "$bar"
@@ -516,7 +516,7 @@ echo "$bar2"
 
 <h4>13 . command_4.sh</h4>
 
-<pre><code>#!/bin/bash
+<pre><code class="sh">#!/bin/bash
 
 #
 # shell命令
@@ -567,7 +567,7 @@ echo "should not reach here"
 
 <h4>14 . command_5.sh</h4>
 
-<pre><code>#!/bin/bash
+<pre><code class="sh">#!/bin/bash
 
 #
 # shell
@@ -601,7 +601,7 @@ find . -name "c*" -exec ls -l {} \;     #-exec或-ok命令将后续参数作为�
 
 <h4>15 . command_6.sh</h4>
 
-<pre><code>#!/bin/bash
+<pre><code class="sh">#!/bin/bash
 
 #
 # shell命令
@@ -629,7 +629,7 @@ grep -E [a-z]\{5\} ./condition.sh   #-E开启扩展匹配:? * + {n} {n,} {n,m}  
 
 <h4>16 . command_7.sh</h4>
 
-<pre><code>#!/bin/bash
+<pre><code class="sh">#!/bin/bash
 
 #
 # shell命令的执行
@@ -689,7 +689,7 @@ rm *.jpg
 
 <h4>17 . command_8.sh</h4>
 
-<pre><code>#!/bin/bash
+<pre><code class="sh">#!/bin/bash
 
 # &lt;&lt;TAG 和 TAG中间的内容就好象是标准输入的内容
 echo '--------------&lt;&lt;TAG--------------'
@@ -743,7 +743,7 @@ trap 'echo Exiting: foovar= $foovar' EXIT
 
 <h4>18 . dialog.sh</h4>
 
-<pre><code>#!/bin/bash
+<pre><code class="sh">#!/bin/bash
 
 #dialog命令: linux控制台下的简单GUI程序
 #对话框   标题                  消息框
@@ -769,7 +769,7 @@ echo "$res"
 
 <h4>19. merge.sh : 合并list.txt中列出的当前目录下的文件</h4>
 
-<pre><code>#!/bin/bash
+<pre><code class="sh">#!/bin/bash
 
 if [ -f list2.txt ]
 then

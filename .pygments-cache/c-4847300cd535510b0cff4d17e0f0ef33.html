@@ -1,0 +1,7 @@
+<div class="highlight"><pre><span class="k">struct</span> <span class="n">rb_root</span> <span class="p">{</span>
+	<span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_node</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="cp">#define RB_ROOT	(struct rb_root) { NULL, }</span>
+
+<span class="k">struct</span> <span class="n">rb_root</span> <span class="n">mytree</span> <span class="o">=</span> <span class="n">RB_ROOT</span><span class="p">;</span>   <span class="c1">// 初始化红黑树的根</span>
+</pre></div>

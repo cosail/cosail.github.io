@@ -1,0 +1,10 @@
+<div class="highlight"><pre><span class="n">typeof</span><span class="p">(</span><span class="k">extern</span> <span class="kt">int</span><span class="p">)</span> <span class="n">a</span><span class="p">;</span>
+<span class="k">extern</span> <span class="n">typeof</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span><span class="p">)</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+
+<span class="cp">### 应用</span>
+
+<span class="n">gcc</span> <span class="err">编译器支持该扩展，在</span><span class="n">linux</span><span class="err">内核中应用非常广泛，如在</span> <span class="n">linux</span><span class="o">-</span><span class="n">source</span><span class="o">-</span><span class="mf">3.13.0</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">linux</span><span class="o">/</span><span class="n">kernel</span><span class="p">.</span><span class="n">h</span> <span class="err">文件中的两个宏：</span>
+
+<span class="err">下面定义一个安全的</span> <span class="n">max</span> <span class="err">宏，避免参数被多次展开的错误。</span>  
+</pre></div>

@@ -1,0 +1,48 @@
+<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+<span class="c">#</span>
+<span class="c"># shell命令</span>
+<span class="c">#</span>
+
+<span class="nb">echo</span> --------------unset---------------
+<span class="c">#命令14:&quot;unset&quot;     //从环境中删除变量或函数,但不能删除shell本身定义的只读变量如PATH</span>
+<span class="nv">foo</span><span class="o">=</span><span class="s2">&quot;Oh I&#39;am here&quot;</span>
+<span class="nb">echo</span> <span class="nv">$foo</span>
+
+<span class="nv">foo</span><span class="o">=</span>        <span class="c">#将foo设为空,变量仍存在</span>
+<span class="nb">echo</span> <span class="nv">$foo</span>
+
+<span class="nv">foo</span><span class="o">=</span><span class="s2">&quot;Oh i am here again&quot;</span>
+<span class="nb">echo</span> <span class="nv">$foo</span>
+<span class="nb">unset </span>foo   <span class="c">#将foo变量删除掉</span>
+<span class="nb">echo</span> <span class="nv">$foo</span>
+
+
+<span class="nb">echo</span> --------------trap------------------
+<span class="c">#命令15:&quot;trap&quot;          </span>
+<span class="c">#   trap cmd signal: 当信号signal出现时,执行命令cmd(该命令之后有效)</span>
+<span class="c">#   trap signal: 忽略信号signal</span>
+<span class="c">#   trap - signal: 恢复signal的默认处理</span>
+<span class="nb">trap</span> <span class="s1">&#39;rm -f /tmp/my_tmp_file_$$&#39;</span> INT    <span class="c">#可以用trap -l看到INT信号</span>
+<span class="nb">echo </span>createing file /tmp/my_tmp_file_<span class="nv">$$</span>
+date &gt; /tmp/my_tmp_file_<span class="nv">$$</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;press CTRL+C to interrupt ...&quot;</span>
+<span class="k">while</span> <span class="o">[</span> -f /tmp/my_tmp_file_<span class="nv">$$</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>
+    <span class="nb">echo </span>File exists
+    sleep 1
+<span class="k">done</span>
+<span class="nb">echo</span> <span class="s2">&quot;File no longer exists&quot;</span>
+
+<span class="c">#设置回CTRL+C信号的默认处理:终止程序</span>
+<span class="nb">trap </span>INT
+<span class="nb">echo </span>createing file /tmp/my_tmp_file_<span class="nv">$$</span>
+date &gt; /tmp/my_tmp_file_<span class="nv">$$</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;press CTRL+C to interrupt ...&quot;</span>
+<span class="k">while</span> <span class="o">[</span> -f /tmp/my_tmp_file_<span class="nv">$$</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>
+    <span class="nb">echo </span>File exists
+    sleep 1
+<span class="k">done</span>
+<span class="nb">echo</span> <span class="s2">&quot;should not reach here&quot;</span>                 
+</pre></div>

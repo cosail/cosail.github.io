@@ -1,0 +1,9 @@
+<div class="highlight"><pre><span class="k">struct</span> <span class="n">rb_node</span>  
+<span class="p">{</span>  
+    <span class="kt">unsigned</span> <span class="kt">long</span>  <span class="n">rb_parent_color</span><span class="p">;</span>  
+<span class="cp">#define RB_RED      0  </span>
+<span class="cp">#define RB_BLACK    1  </span>
+    <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_right</span><span class="p">;</span>  
+    <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_left</span><span class="p">;</span>  
+<span class="p">}</span> <span class="n">__attribute__</span><span class="p">((</span><span class="n">aligned</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span><span class="p">))));</span>  
+</pre></div>

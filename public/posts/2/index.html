@@ -28,11 +28,16 @@
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<<<<<<< HEAD
+<!--link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"-->
+<!--link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"-->
+=======
 
 <!--2014.10.28：断网后访问不了下面链接，妨碍本地显示，就给注释掉了
 <link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 &#8211;>
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
 
 <!-- wuwei: 链接在新标签中打开 -->
 <!-- base target="_blank" --> 
@@ -110,6 +115,7 @@
 
   <div class="entry-content"><p><strong>DOT语言</strong>是一种文本图形描述语言，提供一种方便的描述图形的方法。
 <code>开源的Graphviz软件包包含了一组工具，能够用来绘制DOT语言脚本和描述的图形，也提供了可调用的函数库。</code></p>
+<<<<<<< HEAD
 
 <p>DOT语言文件的后缀名通常为：.gv 或 .dot。</p>
 
@@ -364,6 +370,87 @@
 
 
 
+=======
+
+<p>DOT语言文件的后缀名通常为：.gv 或 .dot。</p>
+
+<h3>DOT语言的语法</h3>
+
+<p>下面是定义DOT语言的抽象语法：<br/>
+<img src="http://cosail.github.io/images/dot-grammar.jpg" title="" alt="" /></p>
+
+<p><strong>对于上图的几点说明：</strong></p>
+
+<ol>
+<li>粗体为终结符，斜体为非终结符；</li>
+<li>(&hellip;)表示分组，‘|’表示可替换，[&hellip;]表示可选项；</li>
+<li>关键字node, edge, graph, digraph, subgraph, strict用大小写均可；</li>
+<li>compass_pt 为方位点，它们不是关键字；</li>
+<li>node_id 仅仅是一个字符串，形如abc_2，2.34，<html-like>，“with space”；</li>
+</ol>
+
+
+<p><strong>有关语法的其他说明：</strong></p>
+
+<ol>
+<li>DOT语言支持C++风格的注释： /**/ 和 //；</li>
+<li>以‘#’开头的行视为来自C预处理器的输出行，会被丢弃；</li>
+<li>允许被双引号包围的字符串跨越多行，另外也能使用字符串拼接操作符‘+’；</li>
+<li>在 digraph 中，边操作符为 ->；而在 graph 中，边操作符为 &ndash;。</li>
+</ol>
+
+
+<h3>Subgraphs和Clusters</h3>
+
+<p><strong>Subgraphs在graphviz中有三个作用：</strong><br/>
+1.一个subgraph可用来在结构上表示某些节点和边应该被分为一组。另外还可将subgraph置于边操作符的两边，方便地支持快捷表示，如：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>A -&gt; {B C}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>等价于</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>A -&gt; B
+</span><span class='line'>A -&gt; C</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2.subgraph可以为属性设置提供一个上下文环境。比如subgraph可以指定其中定义的所有节点的默认颜色为蓝色，如下还可以把某些节点安排在一个层级：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>subgraph {
+</span><span class='line'>  rank = same;
+</span><span class='line'>  A -&gt; B; B -&gt; C;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样，A、B、C三个节点绘制是会被放在同一个层级。</p>
+
+<p>3.如果subgraph的名字以“cluster”开头，Graphviz会把它看作一个特殊的&#8221;cluster subgraph&#8221;。布局引擎在布局时会将属于同一个cluster的节点绘制在一块，整个cluster绘制在一个矩形框内。</p>
+
+<h3>词法和语义说明</h3>
+
+<ol>
+<li>可以使用一个node, edge, 或graph语句，或者通过未附加到节点或边上的属性赋值来定义一个默认属性。这样，后面定义的对象会继承该属性，直到默认属性值被重新设置。</li>
+<li>一个subgraph在其定义时会继承父graph的属性设置，如默认字体等。</li>
+<li>如果一条边属于一个cluster，那么他的端点也属于该cluster。</li>
+<li>graph和subgraph其实是共享同一个命名空间，它们的名字必须唯一。</li>
+</ol>
+
+
+<h3>字符编码</h3>
+
+<p>DOT可接受UTF-8，Latin1(ISO-8859-1)字符集编码。默认为UTF-8。使用其它编码是也许得用到其它程序来转换，如iconv。</p>
+
+<h3>dot使用参考</h3>
+
+<p><a href="http://cosail.github.io/blog/2014/11/02/shi-yong-dothui-tu/">使用dot绘图</a></p>
+>>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
 </div>
   
   
@@ -427,13 +514,19 @@
 <section>
     <h1>分类目录</h1>
     <ul id="categories">
+<<<<<<< HEAD
         <li class='category'><a href='/blog/categories/c/'>c (1)</a></li>
+=======
+        <li class='category'><a href='/blog/categories/c/'>c (2)</a></li>
+<li class='category'><a href='/blog/categories/code/'>code (1)</a></li>
+<li class='category'><a href='/blog/categories/data-structure/'>data-structure (1)</a></li>
+>>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
 <li class='category'><a href='/blog/categories/datastruct-tree/'>datastruct-tree (2)</a></li>
 <li class='category'><a href='/blog/categories/git/'>git (3)</a></li>
 <li class='category'><a href='/blog/categories/github/'>github (3)</a></li>
 <li class='category'><a href='/blog/categories/shell/'>shell (1)</a></li>
 <li class='category'><a href='/blog/categories/text-edit/'>text-edit (2)</a></li>
-<li class='category'><a href='/blog/categories/tools/'>tools (1)</a></li>
+<li class='category'><a href='/blog/categories/tools/'>tools (2)</a></li>
 <li class='category'><a href='/blog/categories/ubuntu-faq/'>ubuntu-faq (1)</a></li>
 
     </ul>
@@ -443,7 +536,11 @@
   <ul id="recent_posts">
     
       <li class="post">
+<<<<<<< HEAD
         <a href="/blog/2014/11/05/er-wei-shu-zu-chuan-can/">二维数组如何作为参数传给函数？</a>
+=======
+        <a href="/blog/2014/11/02/shi-yong-dothui-tu/">使用dot绘图</a>
+>>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
       </li>
     
       <li class="post">
@@ -471,17 +568,20 @@
       </li>
     
       <li class="post">
-        <a href="/blog/2014/10/14/gitji-chu-cao-zuo/">Git基础操作</a>
+        <a href="/blog/2014/10/24/shu-ju-jie-gou-gai-shu/">数据结构概述</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/10/14/emacskuai-jie-jian/">Emacs快捷键及命令</a>
+        <a href="/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/">Typeof获取表达式类型</a>
       </li>
     
+<<<<<<< HEAD
+=======
       <li class="post">
-        <a href="/blog/2014/10/13/shellyu-fa/">Shell语法</a>
+        <a href="/blog/2014/10/23/linux-kernelzhong-de-rbtree/">Linux Kernel中的红黑树</a>
       </li>
     
+>>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
   </ul>
 </section>
 

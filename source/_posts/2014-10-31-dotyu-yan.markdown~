@@ -1,0 +1,74 @@
+---
+layout: post
+title: "DOT语言"
+date: 2014-10-31 11:02:40 +0800
+comments: true
+categories: tools
+---
+
+**DOT语言**是一种文本图形描述语言，提供一种方便的描述图形的方法。
+`开源的Graphviz软件包包含了一组工具，能够用来绘制DOT语言脚本和描述的图形，也提供了可调用的函数库。`
+
+DOT语言文件的后缀名通常为：.gv 或 .dot。  
+
+### DOT语言的语法
+
+下面是定义DOT语言的抽象语法：  
+![](http://cosail.github.io/images/dot-grammar.jpg")
+
+**对于上图的几点说明：**
+
+1. 粗体为终结符，斜体为非终结符；
+2. (...)表示分组，‘|’表示可替换，[...]表示可选项；
+3. 关键字node, edge, graph, digraph, subgraph, strict用大小写均可； 
+4. compass_pt 为方位点，它们不是关键字；
+5. node_id 仅仅是一个字符串，形如abc_2，2.34，<html-like>，“with space”；
+
+**有关语法的其他说明：**  
+
+1. DOT语言支持C++风格的注释： /**/ 和 //；  
+2. 以‘#’开头的行视为来自C预处理器的输出行，会被丢弃；  
+3. 允许被双引号包围的字符串跨越多行，另外也能使用字符串拼接操作符‘+’；
+4. 在 digraph 中，边操作符为 ->；而在 graph 中，边操作符为 --。
+
+### Subgraphs和Clusters
+
+**Subgraphs在graphviz中有三个作用：**  
+1.一个subgraph可用来在结构上表示某些节点和边应该被分为一组。另外还可将subgraph置于边操作符的两边，方便地支持快捷表示，如：
+```
+A -> {B C}
+```
+等价于
+```
+A -> B
+A -> C
+```
+
+2.subgraph可以为属性设置提供一个上下文环境。比如subgraph可以指定其中定义的所有节点的默认颜色为蓝色，如下还可以把某些节点安排在一个层级：
+```
+subgraph {
+	rank = same;
+	A -> B; B -> C;
+}
+```
+这样，A、B、C三个节点绘制是会被放在同一个层级。
+
+3.如果subgraph的名字以“cluster”开头，Graphviz会把它看作一个特殊的"cluster subgraph"。布局引擎在布局时会将属于同一个cluster的节点绘制在一块，整个cluster绘制在一个矩形框内。
+
+### 词法和语义说明
+
+1. 可以使用一个node, edge, 或graph语句，或者通过未附加到节点或边上的属性赋值来定义一个默认属性。这样，后面定义的对象会继承该属性，直到默认属性值被重新设置。
+2. 一个subgraph在其定义时会继承父graph的属性设置，如默认字体等。
+3. 如果一条边属于一个cluster，那么他的端点也属于该cluster。
+4. graph和subgraph其实是共享同一个命名空间，它们的名字必须唯一。
+
+### 字符编码
+
+DOT可接受UTF-8，Latin1(ISO-8859-1)字符集编码。默认为UTF-8。使用其它编码是也许得用到其它程序来转换，如iconv。
+
+---
+### dot使用参考
+
+[使用dot绘图](http://cosail.github.io/blog/2014/11/02/shi-yong-dothui-tu/)
+
+

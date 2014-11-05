@@ -1,0 +1,66 @@
+<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+<span class="c">#</span>
+<span class="c"># Shell的控制语句</span>
+<span class="c">#</span>
+
+<span class="c">#if</span>
+<span class="nb">echo</span> <span class="s2">&quot;Is it morning? Please answer yes or no:&quot;</span>
+<span class="nb">read </span>timeofday
+
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$timeofday&quot;</span> <span class="o">=</span> <span class="s2">&quot;yes&quot;</span> <span class="o">]</span>  <span class="c">#若$timeofday不加双引号，且为空(未输入，直接按回车)的话,会产生语法错误：if [ = &quot;yes&quot; ]</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Good morning!&quot;</span>
+<span class="k">elif</span> <span class="o">[</span> <span class="s2">&quot;$timeofday&quot;</span> <span class="o">=</span> <span class="s2">&quot;no&quot;</span> <span class="o">]</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Good afternoon!&quot;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Sorry, it&#39;s not recognized: \&quot;$timeofday\&quot;&quot;</span>
+    <span class="nb">exit </span>1
+<span class="k">fi</span>
+
+<span class="c">#for</span>
+<span class="k">for</span> var in bar fud <span class="m">45</span> <span class="s2">&quot;hehe you sob&quot;</span>      <span class="c">#Shell认为所有变量包含的都是字符串，如这里的45</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="nv">$var</span>
+<span class="k">done</span>
+
+<span class="k">for</span> file in <span class="k">$(</span>ls *.sh<span class="k">)</span><span class="p">;</span> <span class="k">do</span>      <span class="c">#$(cmd)</span>
+    <span class="nb">echo</span> <span class="nv">$file</span>
+<span class="k">done</span>
+
+<span class="c">#while</span>
+<span class="nv">foo</span><span class="o">=</span>1
+<span class="k">while</span> <span class="o">[</span> <span class="s2">&quot;$foo&quot;</span> -le <span class="m">20</span> <span class="o">]</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> -n <span class="s2">&quot;foo = $foo,&quot;</span>        <span class="c">#-n是bash的echo带的去换行参数,不是所有shell都有</span>
+    <span class="nv">foo</span><span class="o">=</span><span class="k">$((</span><span class="nv">$foo</span><span class="o">+</span><span class="m">1</span><span class="k">))</span>         <span class="c">#$(())结构为算数扩展，替换会里面的表达式的值</span>
+<span class="k">done</span>
+
+<span class="c">#until</span>
+<span class="c">#若是该shell脚本的第一个参数指定的用户登录，则发警报</span>
+<span class="k">until</span> who <span class="p">|</span> grep <span class="s2">&quot;$1&quot;</span> &gt; /dev/null   <span class="c">#who列出已登陆的用户</span>
+<span class="k">do</span>
+    sleep 5
+<span class="k">done</span>
+
+<span class="nb">echo</span> -e <span class="se">\\</span>a         <span class="c">#响铃(我机器上没有声音?)</span>
+<span class="nb">echo</span> <span class="s2">&quot;**** $1 has just logged in ! ****&quot;</span>
+
+<span class="c">#case: case结构会使用第一个匹配的模式,即使后面的模式更精确</span>
+<span class="nb">echo</span> <span class="s2">&quot;is it morning ? Please answer yes or no:&quot;</span>
+<span class="nb">read </span>timeofday
+
+<span class="k">case</span> <span class="s2">&quot;$timeofday&quot;</span> in
+    <span class="o">[</span>Yy<span class="o">][</span>Ee<span class="o">][</span>Ss<span class="o">]</span> <span class="p">|</span> <span class="o">[</span>Yy<span class="o">])</span>    <span class="nb">echo</span> <span class="s2">&quot;Good morning&quot;</span><span class="p">;;</span>       <span class="c">#每个模式之后以&quot;;;&quot;结尾,可放置多条语句</span>
+    no <span class="p">|</span> n<span class="o">)</span>    
+        <span class="nb">echo</span> <span class="s2">&quot;you say no or n&quot;</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Good afternoon&quot;</span><span class="p">;;</span>
+    *<span class="o">)</span>  <span class="nb">echo</span> <span class="s2">&quot;Soory, answer not recognized&quot;</span>  <span class="c">#*通配符匹配所有</span>
+        <span class="nb">echo</span> <span class="s2">&quot;please answer yes or no&quot;</span>
+        <span class="nb">exit </span>1
+        <span class="p">;;</span>      <span class="c">#esac前的;;可省略</span>
+<span class="k">esac</span>
+
+<span class="nb">exit </span>0
+</pre></div>

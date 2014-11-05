@@ -4,7 +4,11 @@
   <title><![CDATA[cosail's blog]]></title>
   <link href="http://cosail.github.io/atom.xml" rel="self"/>
   <link href="http://cosail.github.io/"/>
+<<<<<<< HEAD
   <updated>2014-11-05T20:21:53+08:00</updated>
+=======
+  <updated>2014-11-02T23:31:28+08:00</updated>
+>>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
   <id>http://cosail.github.io/</id>
   <author>
     <name><![CDATA[cosail]]></name>
@@ -14,6 +18,7 @@
 
   
   <entry>
+<<<<<<< HEAD
     <title type="html"><![CDATA[二维数组如何作为参数传给函数？]]></title>
     <link href="http://cosail.github.io/blog/2014/11/05/er-wei-shu-zu-chuan-can/"/>
     <updated>2014-11-05T20:07:14+08:00</updated>
@@ -103,70 +108,17 @@
 <li>compass_pt 为方位点，它们不是关键字；</li>
 <li>node_id 仅仅是一个字符串，形如abc_2，2.34，<html-like>，“with space”；</li>
 </ol>
+=======
+    <title type="html"><![CDATA[使用dot绘图]]></title>
+    <link href="http://cosail.github.io/blog/2014/11/02/shi-yong-dothui-tu/"/>
+    <updated>2014-11-02T23:20:28+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/11/02/shi-yong-dothui-tu</id>
+    <content type="html"><![CDATA[<h3>0 DOT语言简介</h3>
+>>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
 
+<p><a href="http://cosail.github.io/blog/2014/10/31/dotyu-yan/">DOT语言</a></p>
 
-<p><strong>有关语法的其他说明：</strong></p>
-
-<ol>
-<li>DOT语言支持C++风格的注释： /**/ 和 //；</li>
-<li>以‘#’开头的行视为来自C预处理器的输出行，会被丢弃；</li>
-<li>允许被双引号包围的字符串跨越多行，另外也能使用字符串拼接操作符‘+’；</li>
-<li>在 digraph 中，边操作符为 ->；而在 graph 中，边操作符为 &ndash;。</li>
-</ol>
-
-
-<h3>Subgraphs和Clusters</h3>
-
-<p><strong>Subgraphs在graphviz中有三个作用：</strong><br/>
-1.一个subgraph可用来在结构上表示某些节点和边应该被分为一组。另外还可将subgraph置于边操作符的两边，方便地支持快捷表示，如：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>A -&gt; {B C}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>等价于</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>A -&gt; B
-</span><span class='line'>A -&gt; C</span></code></pre></td></tr></table></div></figure>
-
-
-<p>2.subgraph可以为属性设置提供一个上下文环境。比如subgraph可以指定其中定义的所有节点的默认颜色为蓝色，如下还可以把某些节点安排在一个层级：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>subgraph {
-</span><span class='line'>  rank = same;
-</span><span class='line'>  A -&gt; B; B -&gt; C;
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样，A、B、C三个节点绘制是会被放在同一个层级。</p>
-
-<p>3.如果subgraph的名字以“cluster”开头，Graphviz会把它看作一个特殊的&#8221;cluster subgraph&#8221;。布局引擎在布局时会将属于同一个cluster的节点绘制在一块，整个cluster绘制在一个矩形框内。</p>
-
-<h3>词法和语义说明</h3>
-
-<ol>
-<li>可以使用一个node, edge, 或graph语句，或者通过未附加到节点或边上的属性赋值来定义一个默认属性。这样，后面定义的对象会继承该属性，直到默认属性值被重新设置。</li>
-<li>一个subgraph在其定义时会继承父graph的属性设置，如默认字体等。</li>
-<li>如果一条边属于一个cluster，那么他的端点也属于该cluster。</li>
-<li>graph和subgraph其实是共享同一个命名空间，它们的名字必须唯一。</li>
-</ol>
-
-
-<h3>字符编码</h3>
-
-<p>DOT可接受UTF-8，Latin1(ISO-8859-1)字符集编码。默认为UTF-8。使用其它编码是也许得用到其它程序来转换，如iconv。</p>
-
-<hr />
-
-<hr />
-
-<hr />
+<h3>1 dot命令</h3>
 
 <p>使用如下命令来将.dot文件翻译成.jpg文件：</p>
 
@@ -340,6 +292,95 @@
 
 
 
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[DOT语言]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/31/dotyu-yan/"/>
+    <updated>2014-10-31T11:02:40+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/31/dotyu-yan</id>
+    <content type="html"><![CDATA[<p><strong>DOT语言</strong>是一种文本图形描述语言，提供一种方便的描述图形的方法。
+<code>开源的Graphviz软件包包含了一组工具，能够用来绘制DOT语言脚本和描述的图形，也提供了可调用的函数库。</code></p>
+
+<p>DOT语言文件的后缀名通常为：.gv 或 .dot。</p>
+
+<h3>DOT语言的语法</h3>
+
+<p>下面是定义DOT语言的抽象语法：<br/>
+<img src="http://cosail.github.io/images/dot-grammar.jpg" title="" alt="" /></p>
+
+<p><strong>对于上图的几点说明：</strong></p>
+
+<ol>
+<li>粗体为终结符，斜体为非终结符；</li>
+<li>(&hellip;)表示分组，‘|’表示可替换，[&hellip;]表示可选项；</li>
+<li>关键字node, edge, graph, digraph, subgraph, strict用大小写均可；</li>
+<li>compass_pt 为方位点，它们不是关键字；</li>
+<li>node_id 仅仅是一个字符串，形如abc_2，2.34，<html-like>，“with space”；</li>
+</ol>
+
+
+<p><strong>有关语法的其他说明：</strong></p>
+
+<ol>
+<li>DOT语言支持C++风格的注释： /**/ 和 //；</li>
+<li>以‘#’开头的行视为来自C预处理器的输出行，会被丢弃；</li>
+<li>允许被双引号包围的字符串跨越多行，另外也能使用字符串拼接操作符‘+’；</li>
+<li>在 digraph 中，边操作符为 ->；而在 graph 中，边操作符为 &ndash;。</li>
+</ol>
+
+
+<h3>Subgraphs和Clusters</h3>
+
+<p><strong>Subgraphs在graphviz中有三个作用：</strong><br/>
+1.一个subgraph可用来在结构上表示某些节点和边应该被分为一组。另外还可将subgraph置于边操作符的两边，方便地支持快捷表示，如：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>A -&gt; {B C}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>等价于</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>A -&gt; B
+</span><span class='line'>A -&gt; C</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2.subgraph可以为属性设置提供一个上下文环境。比如subgraph可以指定其中定义的所有节点的默认颜色为蓝色，如下还可以把某些节点安排在一个层级：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>subgraph {
+</span><span class='line'>  rank = same;
+</span><span class='line'>  A -&gt; B; B -&gt; C;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样，A、B、C三个节点绘制是会被放在同一个层级。</p>
+
+<p>3.如果subgraph的名字以“cluster”开头，Graphviz会把它看作一个特殊的&#8221;cluster subgraph&#8221;。布局引擎在布局时会将属于同一个cluster的节点绘制在一块，整个cluster绘制在一个矩形框内。</p>
+
+<h3>词法和语义说明</h3>
+
+<ol>
+<li>可以使用一个node, edge, 或graph语句，或者通过未附加到节点或边上的属性赋值来定义一个默认属性。这样，后面定义的对象会继承该属性，直到默认属性值被重新设置。</li>
+<li>一个subgraph在其定义时会继承父graph的属性设置，如默认字体等。</li>
+<li>如果一条边属于一个cluster，那么他的端点也属于该cluster。</li>
+<li>graph和subgraph其实是共享同一个命名空间，它们的名字必须唯一。</li>
+</ol>
+
+
+<h3>字符编码</h3>
+
+<p>DOT可接受UTF-8，Latin1(ISO-8859-1)字符集编码。默认为UTF-8。使用其它编码是也许得用到其它程序来转换，如iconv。</p>
+
+<h3>dot使用参考</h3>
+
+<p><a href="http://cosail.github.io/blog/2014/11/02/shi-yong-dothui-tu/">使用dot绘图</a></p>
 ]]></content>
   </entry>
   
@@ -783,6 +824,702 @@ void main()
 <p><a href="https://www.zybuluo.com/mdeditor">在线Markdown编辑</a><br/>
 <a href="http://commonmark.org/">CommonMark</a>: A strongly specified, highly compatible implementation of Markdown.<br/>
 <a href="http://jgm.github.io/stmd/spec.html">The official specification for CommonMark. </a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[数据结构概述]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/24/shu-ju-jie-gou-gai-shu/"/>
+    <updated>2014-10-24T20:19:57+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/24/shu-ju-jie-gou-gai-shu</id>
+    <content type="html"><![CDATA[<h3>&hellip;</h3>
+
+<h3>Tree</h3>
+
+<h5>RB-Tree</h5>
+
+<p>红黑树本质上就是一棵查找二叉树，能用查找二叉树做的事情也就能用红黑树来做。<br/>
+不同的是红黑树会自动调整，让自己保持树的平衡状态，从而保证每次查找，插入，删除操作在 O（lg n) 的时间内完成。</p>
+
+<p><code>变形</code>：用红黑树可以实现<strong>区间树</strong>。</p>
+
+<h3>&hellip;</h3>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Typeof获取表达式类型]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/"/>
+    <updated>2014-10-23T17:09:08+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing</id>
+    <content type="html"><![CDATA[<h3>typeof 关键字</h3>
+
+<p><code>typeof</code>是 C 语言的一个新扩展，它告诉编译器你要使用某个表达式的类型（而不需要显示的指明该类型），如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typeof</span><span class="p">(</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span>  <span class="n">var</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>上面定义了一个变量var，它的类型为：函数指针数组</code></p>
+
+<p>也可以用类型而不是表达式，如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typeof</span><span class="p">(</span> <span class="kt">int</span> <span class="o">*</span> <span class="p">)</span>  <span class="n">var</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>变量 var 的类型为： int *。这个好像用处不大？</code></p>
+
+<p>一般情况下用<code>typeof</code>，如果要于ISO C兼容的话，用双下划线的形式<code>__typeof__</code>。</p>
+
+<p>你可以在能用 typedef 的所有地方使用 typeof，如：类型声明，类型转换，或 sizeof()，typeof()中。例如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typeof</span> <span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="n">y</span><span class="p">;</span>      <span class="c1">// y 的类型为：指针 x 指向的类型  </span>
+</span><span class='line'><span class="n">typeof</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="n">y</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>  <span class="c1">// 指针 x 指向的类型的数组类型  </span>
+</span><span class='line'><span class="n">typeof</span> <span class="p">(</span><span class="n">typeof</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)[</span><span class="mi">4</span><span class="p">])</span> <span class="n">y</span><span class="p">;</span>  <span class="c1">// 字符指针数组类型</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果想把T定义成一个表达式的类型：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typdef</span> <span class="n">typeof</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="n">T</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>限制</h3>
+
+<p>typeof 中的类型名不能包含 extern 或 static，不过允许包含类型限定符 const 或 volatile。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typeof</span><span class="p">(</span><span class="k">extern</span> <span class="kt">int</span><span class="p">)</span> <span class="n">a</span><span class="p">;</span>       <span class="c1">// 不可以</span>
+</span><span class='line'><span class="k">extern</span> <span class="n">typeof</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span><span class="p">)</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>  <span class="c1">// 可以</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>应用</h3>
+
+<p>gcc 编译器支持该扩展，在linux内核中应用非常广泛，如 linux-source-3.13.0/include/linux/kernel.h 文件中的两个宏：</p>
+
+<p>下面定义一个安全的 max 宏，避免参数被多次展开的错误。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#define max(x, y) ({                         \</span>
+</span><span class='line'><span class="cp">    typeof(x) _max1 = (x);                  \</span>
+</span><span class='line'><span class="cp">    typeof(y) _max2 = (y);                  \</span>
+</span><span class='line'><span class="cp">    (void) (&amp;_max1 == &amp;_max2);              \</span>
+</span><span class='line'><span class="cp">    _max1 &gt; _max2 ? _max1 : _max2; })</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>下面第2行获取结构体（类型名为 type）中的成员（成员变量名为 member）相对结构体<br/>
+起始地址的偏移量，第3行由成员的起始地址（ptr）减去其偏移量得到结构体的起始地址：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#define container_of(ptr, type, member) ({         \</span>
+</span><span class='line'><span class="cp"> const typeof( ((type *)0)-&gt;member ) *__mptr = (ptr); \</span>
+</span><span class='line'><span class="cp"> (type *)( (char *)__mptr - offsetof(type,member) );})</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>类似的__auto_type</h3>
+
+<p>可以在 gnu c 中使用<code>__auto_type</code>来声明一个变量的类型，如</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span><span class='line'><span class="n">__auto_type</span>  <span class="n">var</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>   <span class="c1">// 类似C++里的 auto</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="https://gcc.gnu.org/onlinedocs/gcc/Typeof.html">参考</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux Kernel中的红黑树]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/23/linux-kernelzhong-de-rbtree/"/>
+    <updated>2014-10-23T15:18:34+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/23/linux-kernelzhong-de-rbtree</id>
+    <content type="html"><![CDATA[<blockquote><p>参考自Linux内核源码：<br/>
+linux-source-3.13.0/Documentation/rbtree.txt<br/>
+linux-source-3.13.0/include/linux/rbtree.h<br/>
+linux-source-3.13.0/lib/rbtree.c</p></blockquote>
+
+<h3>1. rbtree.txt中对红黑树的介绍</h3>
+
+<p><code>红黑树</code>是一种自平衡的二叉搜索树，用来存储可排序的 key / value 对。</p>
+
+<p>红黑树和 AVL 树相似，但提供更为实时的插入，删除（分别用最多两次，三次旋转操作完成平衡），有 O（log n）的查找时间复杂度。</p>
+
+<p><code>Linux红黑树</code>为了优化速度，不是在红黑树节点中用指针指向被组织的数据结构，而是将红黑树节点嵌入到它组织的数据结构中（这样可以减少一次间接的地址引用，也有更好的缓存局部性）。</p>
+
+<p>使用者要自己写二叉树的查找，插入函数（使用那些已经实现的红黑树函数）。</p>
+
+<h3>2. Linux红黑树的使用及说明</h3>
+
+<h5>2.1 创建一个新的红黑树</h5>
+
+<p>红黑树中的数据节点就是一个包含 struct rb_node 成员的结构体：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">mytype</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">struct</span> <span class="n">rb_node</span> <span class="n">node</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">keystring</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>那如何由红黑树上的节点 rb_node 去访问相应的数据呢？在头文件&lt; linux/kernel.h > 中定义了一个宏 container_of，可用来从红黑树维护的节点得到包含着节点的结构体，然后就能访问该结构体的所有成员了：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * container_of - 由指向结构体成员变量的指针转换为该结构体本身的指针(得到包含它的容器)。</span>
+</span><span class='line'><span class="cm"> * @ptr: 指向 member 的指针</span>
+</span><span class='line'><span class="cm"> * @type:   包含 member 的结构体的类型</span>
+</span><span class='line'><span class="cm"> * @member:  成员变量名</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="cp">#define container_of(ptr, type, member) ({           \</span>
+</span><span class='line'><span class="cp"> const typeof( ((type *)0)-&gt;member ) *__mptr = (ptr); \</span>
+</span><span class='line'><span class="cp"> (type *)( (char *)__mptr - offsetof(type,member) );})</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>上面第 8 行获取结构体（类型名为 type）中的成员（成员变量名为 member）相对结构体起始地址的偏移量；第 9 行由成员的起始地址（ptr）减去其偏移量得到结构体的起始地址。</code><br/>
+关于第 8 行的<code>typeof()</code>参看<a href="http://localhost:4000/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/">这里</a>。</p>
+
+<p>我们也可以用 rb_entry 宏，它只是换了个更友好的名字：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#define    rb_entry(ptr, type, member)  container_of(ptr, type, member)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>红黑树的根是一个 struct rb_root，看代码：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">rb_root</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_node</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'><span class="cp">#define RB_ROOT  (struct rb_root) { NULL, }</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">struct</span> <span class="n">rb_root</span> <span class="n">mytree</span> <span class="o">=</span> <span class="n">RB_ROOT</span><span class="p">;</span>   <span class="c1">// 初始化红黑树的根</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>2.2 在红黑树中查找一个值</h5>
+
+<p>红黑树的查找很简单，就是二叉树的查找。前面说过，你需要写自己的查找函数，像这样：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="nf">my_search</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">string</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">node</span> <span class="o">=</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">while</span> <span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">container_of</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="k">struct</span> <span class="n">mytype</span><span class="p">,</span> <span class="n">node</span><span class="p">);</span>
+</span><span class='line'>          <span class="kt">int</span> <span class="n">result</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="n">result</span> <span class="o">=</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">data</span><span class="o">-&gt;</span><span class="n">keystring</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>                  <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">rb_left</span><span class="p">;</span>
+</span><span class='line'>          <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>                  <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">rb_right</span><span class="p">;</span>
+</span><span class='line'>          <span class="k">else</span>
+</span><span class='line'>                  <span class="k">return</span> <span class="n">data</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>2.3 在红黑树中插入一个值</h5>
+
+<p>先查找得到 data 应插入的位置，然后插入相应的新节点并调整树使其平衡。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">my_insert</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">,</span> <span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="n">data</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">**</span><span class="n">new</span> <span class="o">=</span> <span class="o">&amp;</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">),</span> <span class="o">*</span><span class="n">parent</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="cm">/* 查找应插入的位置 */</span>
+</span><span class='line'>  <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">new</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="n">this</span> <span class="o">=</span> <span class="n">container_of</span><span class="p">(</span><span class="o">*</span><span class="n">new</span><span class="p">,</span> <span class="k">struct</span> <span class="n">mytype</span><span class="p">,</span> <span class="n">node</span><span class="p">);</span>
+</span><span class='line'>      <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">keystring</span><span class="p">,</span> <span class="n">this</span><span class="o">-&gt;</span><span class="n">keystring</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">parent</span> <span class="o">=</span> <span class="o">*</span><span class="n">new</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>          <span class="n">new</span> <span class="o">=</span> <span class="o">&amp;</span><span class="p">((</span><span class="o">*</span><span class="n">new</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">rb_left</span><span class="p">);</span>
+</span><span class='line'>      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>          <span class="n">new</span> <span class="o">=</span> <span class="o">&amp;</span><span class="p">((</span><span class="o">*</span><span class="n">new</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">rb_right</span><span class="p">);</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>          <span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span> <span class="c1">// 该值已存在！不用再插入</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="cm">/* 插入新节点并调整树使其平衡 */</span>
+</span><span class='line'>  <span class="n">rb_link_node</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">node</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">new</span><span class="p">);</span>
+</span><span class='line'>  <span class="n">rb_insert_color</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">node</span><span class="p">,</span> <span class="n">root</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>2.4 在红黑树中删除或替换一个值</h5>
+
+<p>要删除一个已有节点：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cm">/* 删除节点函数原型 */</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">rb_erase</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">victim</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">tree</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/* 删除节点示例代码 */</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">mysearch</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mytree</span><span class="p">,</span> <span class="s">&quot;walrus&quot;</span><span class="p">);</span>  <span class="c1">// 查找节点位置</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">rb_erase</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">node</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">mytree</span><span class="p">);</span>  <span class="c1">// 从红黑树删除节点</span>
+</span><span class='line'>  <span class="n">myfree</span><span class="p">(</span><span class="n">data</span><span class="p">);</span> <span class="c1">// 释放结构体内存空间</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>替换一个已有节点：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">void</span> <span class="nf">rb_replace_node</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">old</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">new</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">tree</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>注意：替换节点不会重新排序，若替换后键值改变了，红黑树就可能不正确了。</code></p>
+
+<h5>2.5 按序遍历红黑树</h5>
+
+<p>提供了 4 个函数用来遍历红黑树（也可以是其它二叉树）：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cm">/* 函数原型 */</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="nf">rb_first</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">tree</span><span class="p">);</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="nf">rb_last</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">tree</span><span class="p">);</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="nf">rb_next</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="nf">rb_prev</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/* 遍历红黑树示例代码 */</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">node</span><span class="p">;</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="n">node</span> <span class="o">=</span> <span class="n">rb_first</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mytree</span><span class="p">);</span> <span class="n">node</span><span class="p">;</span> <span class="n">node</span> <span class="o">=</span> <span class="n">rb_next</span><span class="p">(</span><span class="n">node</span><span class="p">))</span>
+</span><span class='line'>    <span class="n">printk</span><span class="p">(</span><span class="s">&quot;key=%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="k">struct</span> <span class="n">mytype</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">keystring</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>3. 扩展的红黑树</h3>
+
+<p>扩展的红黑树在节点中存储了额外的数据，其值根据以该节点为根的子树的所有节点的内容计算得到。这额外的数据可以用来扩展红黑树的功能。红黑树扩展被实现为一个可选的特性，基于基础的红黑树。</p>
+
+<h5>3.1 使用扩展红黑树</h5>
+
+<p>使用扩展红黑树时不直接包含&lt;linux/rbtree.h>，而是包含头文件&lt;linux/rbtree_augmented.h>(已经包含了前者)。</p>
+
+<p>在执行插入节点操作时，我们必须更新到插入节点的路径上的额外数据（因为当红黑树为了平衡而进行结构调整后，路径上的额外数据就可能失效了）。怎么更新额外数据呢？可以用rb_augment_inserted()代替rb_insert_color()，若调整了树则会调用回调函数（由我们提供）来更新受影响的子树上的额外数据。</p>
+
+<p>在执行删除节点操作时，用rb_erase_augmented()代替rb_erase()。也会调用回调函数来更新受影响的子树上的额外数据。</p>
+
+<h5>3.2 回调函数</h5>
+
+<p>这里的回调函数有我们使用者提供，处理对象是红黑树上的额外数据。</p>
+
+<p>回调函数可通过设置struct rb_augment_callbacks来提供，包括三个回调函数：<br/>
+- 传递函数：更新某节点和其祖先的额外数据，直到另一指定节点或根（当指定节点为NULL时）。
+- 复制函数：拷贝一个节点上的额外数据到第二个节点。<br/>
+- 交替函数：拷贝一个节点上的额外数据到第二个节点，并更新以第二个节点为根的子树上的额外数据。</p>
+
+<h5>3.3 应用扩展红黑树构造区间树</h5>
+
+<p>用红黑树可以实现<strong>区间树</strong>。一般情况下，红黑树节点中存放着 key/value 对。那怎么表示区间[lo, hi]？我们可以在节点中增加一个<strong><em>额外信息</em></strong>。如在红黑树节点中存放整型值 lo 作为下界(也是key), 额外的 hi 来表示上界。另外在节点中增加一个<strong><em>额外信息</em></strong> —— 在每个节点中保存该节点的所有后代中最大的 hi(记为__subtree_last)。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span>
+</span><span class='line'><span class="nf">interval_tree_first_match</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">,</span>
+</span><span class='line'>            <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">start</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">last</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">node</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">left</span> <span class="o">=</span>
+</span><span class='line'>              <span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">&gt;=</span> <span class="n">start</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>              <span class="cm">/*</span>
+</span><span class='line'><span class="cm">              * Some nodes in left subtree satisfy Cond2.</span>
+</span><span class='line'><span class="cm">              * Iterate to find the leftmost such node N.</span>
+</span><span class='line'><span class="cm">              * If it also satisfies Cond1, that&#39;s the match</span>
+</span><span class='line'><span class="cm">              * we are looking for. Otherwise, there is no</span>
+</span><span class='line'><span class="cm">              * matching interval as nodes to the right of N</span>
+</span><span class='line'><span class="cm">              * can&#39;t satisfy Cond1 either.</span>
+</span><span class='line'><span class="cm">              */</span>
+</span><span class='line'>              <span class="n">node</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
+</span><span class='line'>              <span class="k">continue</span><span class="p">;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">start</span> <span class="o">&lt;=</span> <span class="n">last</span><span class="p">)</span> <span class="p">{</span>     <span class="cm">/* Cond1 */</span>
+</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">last</span> <span class="o">&gt;=</span> <span class="n">start</span><span class="p">)</span>  <span class="cm">/* Cond2 */</span>
+</span><span class='line'>              <span class="k">return</span> <span class="n">node</span><span class="p">;</span>   <span class="cm">/* node is leftmost match */</span>
+</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>              <span class="n">node</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">,</span>
+</span><span class='line'>                  <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>              <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">&gt;=</span> <span class="n">start</span><span class="p">)</span>
+</span><span class='line'>                  <span class="k">continue</span><span class="p">;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>  <span class="cm">/* No match */</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">Insertion</span><span class="o">/</span><span class="n">removal</span> <span class="n">are</span> <span class="n">defined</span> <span class="n">using</span> <span class="n">the</span> <span class="n">following</span> <span class="n">augmented</span> <span class="nl">callbacks</span><span class="p">:</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">static</span> <span class="kr">inline</span> <span class="kt">unsigned</span> <span class="kt">long</span>
+</span><span class='line'><span class="n">compute_subtree_last</span><span class="p">(</span><span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">max</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">last</span><span class="p">,</span> <span class="n">subtree_last</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">subtree_last</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">,</span>
+</span><span class='line'>          <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">__subtree_last</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">max</span> <span class="o">&lt;</span> <span class="n">subtree_last</span><span class="p">)</span>
+</span><span class='line'>          <span class="n">max</span> <span class="o">=</span> <span class="n">subtree_last</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">subtree_last</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">,</span>
+</span><span class='line'>          <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">__subtree_last</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">max</span> <span class="o">&lt;</span> <span class="n">subtree_last</span><span class="p">)</span>
+</span><span class='line'>          <span class="n">max</span> <span class="o">=</span> <span class="n">subtree_last</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">max</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">static</span> <span class="kt">void</span> <span class="n">augment_propagate</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">stop</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">while</span> <span class="p">(</span><span class="n">rb</span> <span class="o">!=</span> <span class="n">stop</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span> <span class="o">=</span>
+</span><span class='line'>          <span class="n">rb_entry</span><span class="p">(</span><span class="n">rb</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>      <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">subtree_last</span> <span class="o">=</span> <span class="n">compute_subtree_last</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">==</span> <span class="n">subtree_last</span><span class="p">)</span>
+</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">node</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">subtree_last</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">rb</span> <span class="o">=</span> <span class="n">rb_parent</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">static</span> <span class="kt">void</span> <span class="n">augment_copy</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_old</span><span class="p">,</span> <span class="n">stru</span><span class="err">，</span><span class="n">ct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_new</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">old</span> <span class="o">=</span>
+</span><span class='line'>      <span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_old</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">new</span> <span class="o">=</span>
+</span><span class='line'>      <span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_new</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">new</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">old</span><span class="o">-&gt;</span><span class="n">__subtree_last</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">static</span> <span class="kt">void</span> <span class="n">augment_rotate</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_old</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_new</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">old</span> <span class="o">=</span>
+</span><span class='line'>      <span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_old</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">new</span> <span class="o">=</span>
+</span><span class='line'>      <span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_new</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">new</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">old</span><span class="o">-&gt;</span><span class="n">__subtree_last</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">old</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">compute_subtree_last</span><span class="p">(</span><span class="n">old</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">static</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">rb_augment_callbacks</span> <span class="n">augment_callbacks</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">augment_propagate</span><span class="p">,</span> <span class="n">augment_copy</span><span class="p">,</span> <span class="n">augment_rotate</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">void</span> <span class="nf">interval_tree_insert</span><span class="p">(</span><span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span><span class="p">,</span>
+</span><span class='line'>            <span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">**</span><span class="n">link</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">,</span> <span class="o">*</span><span class="n">rb_parent</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class='line'>  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">start</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">last</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">parent</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">link</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">rb_parent</span> <span class="o">=</span> <span class="o">*</span><span class="n">link</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">parent</span> <span class="o">=</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">rb_parent</span><span class="p">,</span> <span class="k">struct</span> <span class="n">interval_tree_node</span><span class="p">,</span> <span class="n">rb</span><span class="p">);</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">&lt;</span> <span class="n">last</span><span class="p">)</span>
+</span><span class='line'>          <span class="n">parent</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">last</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">start</span> <span class="o">&lt;</span> <span class="n">parent</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">)</span>
+</span><span class='line'>          <span class="n">link</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_left</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>          <span class="n">link</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">.</span><span class="n">rb_right</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">node</span><span class="o">-&gt;</span><span class="n">__subtree_last</span> <span class="o">=</span> <span class="n">last</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">rb_link_node</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">,</span> <span class="n">rb_parent</span><span class="p">,</span> <span class="n">link</span><span class="p">);</span>
+</span><span class='line'>  <span class="n">rb_insert_augmented</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">augment_callbacks</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">void</span> <span class="nf">interval_tree_remove</span><span class="p">(</span><span class="k">struct</span> <span class="n">interval_tree_node</span> <span class="o">*</span><span class="n">node</span><span class="p">,</span>
+</span><span class='line'>            <span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">rb_erase_augmented</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">augment_callbacks</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[为什么在struct里定义宏]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/22/structli-de-number-define/"/>
+    <updated>2014-10-22T22:18:21+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/22/structli-de-number-define</id>
+    <content type="html"><![CDATA[<p>有时会看到结构体里有宏定义，如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">rb_node</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">unsigned</span> <span class="kt">long</span>  <span class="n">rb_parent_color</span><span class="p">;</span>
+</span><span class='line'><span class="cp">#define RB_RED      0  </span>
+</span><span class='line'><span class="cp">#define RB_BLACK    1  </span>
+</span><span class='line'>    <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_right</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_left</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span> <span class="n">__attribute__</span><span class="p">((</span><span class="n">aligned</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span><span class="p">))));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这是Linux内核中红黑树节点的定义，其中 rb_parent_color 的第0位用来存储节点的颜色（红/黑）。把两种颜色的宏定义放在结构体定义内，应该是为了增强代码可读性。</p>
+
+<p>因为对宏的处理是在预编译时完成的，而预处理器仅仅作简单的替换。宏从其定义处开始，至文件的尾部或取消宏(#undef)为止是可见的，struct的作用域对宏的定义没影响。</p>
+
+<p>可以用 gcc -E 命令来只做预处理而不编译，来查看宏处理后的程序源代码。</p>
 ]]></content>
   </entry>
   
@@ -1932,7 +2669,7 @@ void main()
 
 <h4>1 . variable.sh</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1964,43 +2701,44 @@ void main()
 <span class='line-number'>30</span>
 <span class='line-number'>31</span>
 <span class='line-number'>32</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/sh
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/sh</span>
 </span><span class='line'>
-</span><span class='line'># Shell变量,环境变量
-</span><span class='line'># 运行时带几个参数： ./variable.sh you me her him them it
+</span><span class='line'><span class="c"># Shell变量,环境变量</span>
+</span><span class='line'><span class="c"># 运行时带几个参数： ./variable.sh you me her him them it</span>
 </span><span class='line'>
-</span><span class='line'>echo ---------普通变量------------
-</span><span class='line'>myvar="Hi there!"   
-</span><span class='line'>echo $myvar         #打印变量值
-</span><span class='line'>echo "$myvar"       #双引号可避免空格问题，但不抑制变量解析
-</span><span class='line'>echo '$myvar'       #单引号抑制变量解析
-</span><span class='line'>echo \$myvar        #'$'被'\'转义
+</span><span class='line'><span class="nb">echo</span> ---------普通变量------------
+</span><span class='line'><span class="nv">myvar</span><span class="o">=</span><span class="s2">&quot;Hi there!&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="nv">$myvar</span>         <span class="c">#打印变量值</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$myvar&quot;</span>       <span class="c">#双引号可避免空格问题，但不抑制变量解析</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;$myvar&#39;</span>       <span class="c">#单引号抑制变量解析</span>
+</span><span class='line'><span class="nb">echo</span> <span class="se">\$</span>myvar        <span class="c">#&#39;$&#39;被&#39;\&#39;转义</span>
 </span><span class='line'>
-</span><span class='line'>echo Please enter some text:
-</span><span class='line'>read myvar          #键盘输入
-</span><span class='line'>echo '$myvar' now equals : $myvar
+</span><span class='line'><span class="nb">echo </span>Please enter some text:
+</span><span class='line'><span class="nb">read </span>myvar          <span class="c">#键盘输入</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;$myvar&#39;</span> now equals : <span class="nv">$myvar</span>
 </span><span class='line'>
-</span><span class='line'>echo ---------环境变量------------
-</span><span class='line'>echo [$IFS]         #Input Field Separator
+</span><span class='line'><span class="nb">echo</span> ---------环境变量------------
+</span><span class='line'><span class="nb">echo</span> <span class="o">[</span><span class="nv">$IFS</span><span class="o">]</span>         <span class="c">#Input Field Separator</span>
 </span><span class='line'>
-</span><span class='line'>echo '$0:' $0        #shell程序文件名
-</span><span class='line'>echo '$$:' $$        #进程ID
-</span><span class='line'>echo '$?:' $?        #最后运行的命令的结束代码（返回值）
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;$0:&#39;</span> <span class="nv">$0</span>        <span class="c">#shell程序文件名</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;$$:&#39;</span> <span class="nv">$$</span>        <span class="c">#进程ID</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;$?:&#39;</span> <span class="nv">$?</span>        <span class="c">#最后运行的命令的结束代码（返回值）</span>
 </span><span class='line'>
-</span><span class='line'>echo '$*:'$*        #所有参数
-</span><span class='line'>echo '$@:'$@        #所有参数，但不使用$IFS
-</span><span class='line'>echo '$#:'$#        #参数个数
-</span><span class='line'>echo args: $1,$2,$3,$4,$5   #第1到第5个参数
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;$*:&#39;</span><span class="nv">$*</span>        <span class="c">#所有参数</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;$@:&#39;</span><span class="nv">$@</span>        <span class="c">#所有参数，但不使用$IFS</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;$#:&#39;</span><span class="nv">$# </span>       <span class="c">#参数个数</span>
+</span><span class='line'><span class="nb">echo </span>args: <span class="nv">$1</span>,<span class="nv">$2</span>,<span class="nv">$3</span>,<span class="nv">$4</span>,<span class="nv">$5</span>   <span class="c">#第1到第5个参数</span>
 </span><span class='line'>
-</span><span class='line'>set -o verbose      #在命令执行前在屏幕上回显命令
-</span><span class='line'>echo '$-:'$-        #使用Set命令设定的Flag一览
+</span><span class='line'><span class="nb">set</span> -o verbose      <span class="c">#在命令执行前在屏幕上回显命令</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;$-:&#39;</span><span class="nv">$-</span>        <span class="c">#使用Set命令设定的Flag一览</span>
 </span><span class='line'>
-</span><span class='line'>exit 0</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="nb">exit </span>0
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>2 . condition.sh</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -2057,68 +2795,69 @@ void main()
 <span class='line-number'>55</span>
 <span class='line-number'>56</span>
 <span class='line-number'>57</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
 </span><span class='line'>
-</span><span class='line'>#
-</span><span class='line'># Shell脚本条件测试:用test或[都可  ('['也是一个命令，位于/usr/bin/)
-</span><span class='line'>#
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># Shell脚本条件测试:用test或[都可  (&#39;[&#39;也是一个命令，位于/usr/bin/)</span>
+</span><span class='line'><span class="c">#</span>
 </span><span class='line'>
-</span><span class='line'>#字符串比较
-</span><span class='line'>if [ "you" = "me" ]     #'!='表字符串判不等
-</span><span class='line'>then
-</span><span class='line'>    echo "you = me"
-</span><span class='line'>else
-</span><span class='line'>    echo "you != me"
-</span><span class='line'>fi
+</span><span class='line'><span class="c">#字符串比较</span>
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;you&quot;</span> <span class="o">=</span> <span class="s2">&quot;me&quot;</span> <span class="o">]</span>     <span class="c">#&#39;!=&#39;表字符串判不等</span>
+</span><span class='line'><span class="k">then</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;you = me&quot;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;you != me&quot;</span>
+</span><span class='line'><span class="k">fi</span>
 </span><span class='line'>
-</span><span class='line'>if [ -z "" ]            #'-n'表不为空
-</span><span class='line'>then
-</span><span class='line'>    echo "string is NULL"
-</span><span class='line'>else
-</span><span class='line'>    echo "string is not NULL"
-</span><span class='line'>fi
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> -z <span class="s2">&quot;&quot;</span> <span class="o">]</span>            <span class="c">#&#39;-n&#39;表不为空</span>
+</span><span class='line'><span class="k">then</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;string is NULL&quot;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;string is not NULL&quot;</span>
+</span><span class='line'><span class="k">fi</span>
 </span><span class='line'>
-</span><span class='line'>#算术比较
-</span><span class='line'>if test 3 -eq 4         #-ne (这里的3,4可以是更复杂的表达式)
-</span><span class='line'>then
-</span><span class='line'>    echo "3 = 4"
-</span><span class='line'>else
-</span><span class='line'>    echo "3 != 4"
-</span><span class='line'>fi
+</span><span class='line'><span class="c">#算术比较</span>
+</span><span class='line'><span class="k">if</span> <span class="nb">test </span><span class="m">3</span> -eq <span class="m">4</span>         <span class="c">#-ne (这里的3,4可以是更复杂的表达式)</span>
+</span><span class='line'><span class="k">then</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;3 = 4&quot;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;3 != 4&quot;</span>
+</span><span class='line'><span class="k">fi</span>
 </span><span class='line'>
-</span><span class='line'>if [ 5 -gt 6 ]          #-ge, -lt, -le, !
-</span><span class='line'>then
-</span><span class='line'>    echo "5 &gt; 6"
-</span><span class='line'>else
-</span><span class='line'>    echo "5 &lt;= 6"
-</span><span class='line'>fi
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="m">5</span> -gt <span class="m">6</span> <span class="o">]</span>          <span class="c">#-ge, -lt, -le, !</span>
+</span><span class='line'><span class="k">then</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;5 &gt; 6&quot;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;5 &lt;= 6&quot;</span>
+</span><span class='line'><span class="k">fi</span>
 </span><span class='line'>
-</span><span class='line'>#文件条件测试
-</span><span class='line'>#文件存在:通常用'-f'代替，因为'-e'可能不可移植
-</span><span class='line'>if test -e fred.c; then     #then也可以放在这，但要';'分隔
-</span><span class='line'>    echo "fred.c is exist"
-</span><span class='line'>else
-</span><span class='line'>    echo "no file fred.c"
-</span><span class='line'>fi
+</span><span class='line'><span class="c">#文件条件测试</span>
+</span><span class='line'><span class="c">#文件存在:通常用&#39;-f&#39;代替，因为&#39;-e&#39;可能不可移植</span>
+</span><span class='line'><span class="k">if</span> <span class="nb">test</span> -e fred.c<span class="p">;</span> <span class="k">then</span>     <span class="c">#then也可以放在这，但要&#39;;&#39;分隔</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;fred.c is exist&quot;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;no file fred.c&quot;</span>
+</span><span class='line'><span class="k">fi</span>
 </span><span class='line'>
-</span><span class='line'>#是普通文件
-</span><span class='line'>if [ -f fred.c ]            #'['与测试内容之间必须有空格，因为'['是个命令名
-</span><span class='line'>then
-</span><span class='line'>    echo "fred.c is a general file"
-</span><span class='line'>else
-</span><span class='line'>    echo "fred.c is not a general file"
-</span><span class='line'>fi
+</span><span class='line'><span class="c">#是普通文件</span>
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> -f fred.c <span class="o">]</span>            <span class="c">#&#39;[&#39;与测试内容之间必须有空格，因为&#39;[&#39;是个命令名</span>
+</span><span class='line'><span class="k">then</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;fred.c is a general file&quot;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;fred.c is not a general file&quot;</span>
+</span><span class='line'><span class="k">fi</span>
 </span><span class='line'>
-</span><span class='line'># -d 是一个目录
-</span><span class='line'># -r,-w,-x 文件可读，写，执行
-</span><span class='line'># -u,-g 文件的SUID，SGID被设置
-</span><span class='line'># -s 文件的长度不为0
-</span><span class='line'>exit 0</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="c"># -d 是一个目录</span>
+</span><span class='line'><span class="c"># -r,-w,-x 文件可读，写，执行</span>
+</span><span class='line'><span class="c"># -u,-g 文件的SUID，SGID被设置</span>
+</span><span class='line'><span class="c"># -s 文件的长度不为0</span>
+</span><span class='line'><span class="nb">exit </span>0
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>3 . control.sh</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -2183,76 +2922,77 @@ void main()
 <span class='line-number'>63</span>
 <span class='line-number'>64</span>
 <span class='line-number'>65</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
 </span><span class='line'>
-</span><span class='line'>#
-</span><span class='line'># Shell的控制语句
-</span><span class='line'>#
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># Shell的控制语句</span>
+</span><span class='line'><span class="c">#</span>
 </span><span class='line'>
-</span><span class='line'>#if
-</span><span class='line'>echo "Is it morning? Please answer yes or no:"
-</span><span class='line'>read timeofday
+</span><span class='line'><span class="c">#if</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;Is it morning? Please answer yes or no:&quot;</span>
+</span><span class='line'><span class="nb">read </span>timeofday
 </span><span class='line'>
-</span><span class='line'>if [ "$timeofday" = "yes" ]  #若$timeofday不加双引号，且为空(未输入，直接按回车)的话,会产生语法错误：if [ = "yes" ]
-</span><span class='line'>then
-</span><span class='line'>    echo "Good morning!"
-</span><span class='line'>elif [ "$timeofday" = "no" ]
-</span><span class='line'>then
-</span><span class='line'>    echo "Good afternoon!"
-</span><span class='line'>else
-</span><span class='line'>    echo "Sorry, it's not recognized: \"$timeofday\""
-</span><span class='line'>    exit 1
-</span><span class='line'>fi
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$timeofday&quot;</span> <span class="o">=</span> <span class="s2">&quot;yes&quot;</span> <span class="o">]</span>  <span class="c">#若$timeofday不加双引号，且为空(未输入，直接按回车)的话,会产生语法错误：if [ = &quot;yes&quot; ]</span>
+</span><span class='line'><span class="k">then</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;Good morning!&quot;</span>
+</span><span class='line'><span class="k">elif</span> <span class="o">[</span> <span class="s2">&quot;$timeofday&quot;</span> <span class="o">=</span> <span class="s2">&quot;no&quot;</span> <span class="o">]</span>
+</span><span class='line'><span class="k">then</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;Good afternoon!&quot;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;Sorry, it&#39;s not recognized: \&quot;$timeofday\&quot;&quot;</span>
+</span><span class='line'>    <span class="nb">exit </span>1
+</span><span class='line'><span class="k">fi</span>
 </span><span class='line'>
-</span><span class='line'>#for
-</span><span class='line'>for var in bar fud 45 "hehe you sob"      #Shell认为所有变量包含的都是字符串，如这里的45
-</span><span class='line'>do
-</span><span class='line'>    echo $var
-</span><span class='line'>done
+</span><span class='line'><span class="c">#for</span>
+</span><span class='line'><span class="k">for</span> var in bar fud <span class="m">45</span> <span class="s2">&quot;hehe you sob&quot;</span>      <span class="c">#Shell认为所有变量包含的都是字符串，如这里的45</span>
+</span><span class='line'><span class="k">do</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="nv">$var</span>
+</span><span class='line'><span class="k">done</span>
 </span><span class='line'>
-</span><span class='line'>for file in $(ls *.sh); do      #$(cmd)
-</span><span class='line'>    echo $file
-</span><span class='line'>done
+</span><span class='line'><span class="k">for</span> file in <span class="k">$(</span>ls *.sh<span class="k">)</span><span class="p">;</span> <span class="k">do</span>      <span class="c">#$(cmd)</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="nv">$file</span>
+</span><span class='line'><span class="k">done</span>
 </span><span class='line'>
-</span><span class='line'>#while
-</span><span class='line'>foo=1
-</span><span class='line'>while [ "$foo" -le 20 ]
-</span><span class='line'>do
-</span><span class='line'>    echo -n "foo = $foo,"        #-n是bash的echo带的去换行参数,不是所有shell都有
-</span><span class='line'>    foo=$(($foo+1))         #$(())结构为算数扩展，替换会里面的表达式的值
-</span><span class='line'>done
+</span><span class='line'><span class="c">#while</span>
+</span><span class='line'><span class="nv">foo</span><span class="o">=</span>1
+</span><span class='line'><span class="k">while</span> <span class="o">[</span> <span class="s2">&quot;$foo&quot;</span> -le <span class="m">20</span> <span class="o">]</span>
+</span><span class='line'><span class="k">do</span>
+</span><span class='line'>    <span class="nb">echo</span> -n <span class="s2">&quot;foo = $foo,&quot;</span>        <span class="c">#-n是bash的echo带的去换行参数,不是所有shell都有</span>
+</span><span class='line'>    <span class="nv">foo</span><span class="o">=</span><span class="k">$((</span><span class="nv">$foo</span><span class="o">+</span><span class="m">1</span><span class="k">))</span>         <span class="c">#$(())结构为算数扩展，替换会里面的表达式的值</span>
+</span><span class='line'><span class="k">done</span>
 </span><span class='line'>
-</span><span class='line'>#until
-</span><span class='line'>#若是该shell脚本的第一个参数指定的用户登录，则发警报
-</span><span class='line'>until who | grep "$1" &gt; /dev/null   #who列出已登陆的用户
-</span><span class='line'>do
+</span><span class='line'><span class="c">#until</span>
+</span><span class='line'><span class="c">#若是该shell脚本的第一个参数指定的用户登录，则发警报</span>
+</span><span class='line'><span class="k">until</span> who <span class="p">|</span> grep <span class="s2">&quot;$1&quot;</span> &gt; /dev/null   <span class="c">#who列出已登陆的用户</span>
+</span><span class='line'><span class="k">do</span>
 </span><span class='line'>    sleep 5
-</span><span class='line'>done
+</span><span class='line'><span class="k">done</span>
 </span><span class='line'>
-</span><span class='line'>echo -e \\a         #响铃(我机器上没有声音?)
-</span><span class='line'>echo "**** $1 has just logged in ! ****"
+</span><span class='line'><span class="nb">echo</span> -e <span class="se">\\</span>a         <span class="c">#响铃(我机器上没有声音?)</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;**** $1 has just logged in ! ****&quot;</span>
 </span><span class='line'>
-</span><span class='line'>#case: case结构会使用第一个匹配的模式,即使后面的模式更精确
-</span><span class='line'>echo "is it morning ? Please answer yes or no:"
-</span><span class='line'>read timeofday
+</span><span class='line'><span class="c">#case: case结构会使用第一个匹配的模式,即使后面的模式更精确</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;is it morning ? Please answer yes or no:&quot;</span>
+</span><span class='line'><span class="nb">read </span>timeofday
 </span><span class='line'>
-</span><span class='line'>case "$timeofday" in
-</span><span class='line'>    [Yy][Ee][Ss] | [Yy])    echo "Good morning";;       #每个模式之后以";;"结尾,可放置多条语句
-</span><span class='line'>    no | n)    
-</span><span class='line'>        echo "you say no or n"
-</span><span class='line'>        echo "Good afternoon";;
-</span><span class='line'>    *)  echo "Soory, answer not recognized"  #*通配符匹配所有
-</span><span class='line'>        echo "please answer yes or no"
-</span><span class='line'>        exit 1
-</span><span class='line'>        ;;      #esac前的;;可省略
-</span><span class='line'>esac
+</span><span class='line'><span class="k">case</span> <span class="s2">&quot;$timeofday&quot;</span> in
+</span><span class='line'>    <span class="o">[</span>Yy<span class="o">][</span>Ee<span class="o">][</span>Ss<span class="o">]</span> <span class="p">|</span> <span class="o">[</span>Yy<span class="o">])</span>    <span class="nb">echo</span> <span class="s2">&quot;Good morning&quot;</span><span class="p">;;</span>       <span class="c">#每个模式之后以&quot;;;&quot;结尾,可放置多条语句</span>
+</span><span class='line'>    no <span class="p">|</span> n<span class="o">)</span>
+</span><span class='line'>        <span class="nb">echo</span> <span class="s2">&quot;you say no or n&quot;</span>
+</span><span class='line'>        <span class="nb">echo</span> <span class="s2">&quot;Good afternoon&quot;</span><span class="p">;;</span>
+</span><span class='line'>    *<span class="o">)</span>  <span class="nb">echo</span> <span class="s2">&quot;Soory, answer not recognized&quot;</span>  <span class="c">#*通配符匹配所有</span>
+</span><span class='line'>        <span class="nb">echo</span> <span class="s2">&quot;please answer yes or no&quot;</span>
+</span><span class='line'>        <span class="nb">exit </span>1
+</span><span class='line'>        <span class="p">;;</span>      <span class="c">#esac前的;;可省略</span>
+</span><span class='line'><span class="k">esac</span>
 </span><span class='line'>
-</span><span class='line'>exit 0</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="nb">exit </span>0
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>4 . AndOr.sh</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -2283,42 +3023,43 @@ void main()
 <span class='line-number'>29</span>
 <span class='line-number'>30</span>
 <span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
 </span><span class='line'>
 </span><span class='line'>touch file_one
 </span><span class='line'>rm -f file_two
 </span><span class='line'>
-</span><span class='line'>#AND列表:&&
-</span><span class='line'>#[ -f file_two ]测试失败,echo " two"不会执行
-</span><span class='line'>if [ -f file_one ] && echo "one" && [ -f file_two ] && echo " two"
-</span><span class='line'>then
-</span><span class='line'>    echo "true"
-</span><span class='line'>else
-</span><span class='line'>    echo "false"
-</span><span class='line'>fi
+</span><span class='line'><span class="c">#AND列表:&amp;&amp;</span>
+</span><span class='line'><span class="c">#[ -f file_two ]测试失败,echo &quot; two&quot;不会执行</span>
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> -f file_one <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;one&quot;</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> -f file_two <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot; two&quot;</span>
+</span><span class='line'><span class="k">then</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;true&quot;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;false&quot;</span>
+</span><span class='line'><span class="k">fi</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>#OR列表:||
+</span><span class='line'><span class="c">#OR列表:||</span>
 </span><span class='line'>rm -f file_one
 </span><span class='line'>
-</span><span class='line'>if [ -f file_one ] || echo "one" || echo "One"
-</span><span class='line'>then
-</span><span class='line'>    echo "true"
-</span><span class='line'>else
-</span><span class='line'>    echo "false"
-</span><span class='line'>fi
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> -f file_one <span class="o">]</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&quot;one&quot;</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&quot;One&quot;</span>
+</span><span class='line'><span class="k">then</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;true&quot;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;false&quot;</span>
+</span><span class='line'><span class="k">fi</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>#混用AND和OR列表: 这里没有用if
-</span><span class='line'>#如果测试为真执行命令1, 为假执行命令2
-</span><span class='line'>[ -f file_one ] && echo "test for true: cmd1" || echo "test for false: cmd2"
+</span><span class='line'><span class="c">#混用AND和OR列表: 这里没有用if</span>
+</span><span class='line'><span class="c">#如果测试为真执行命令1, 为假执行命令2</span>
+</span><span class='line'><span class="o">[</span> -f file_one <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;test for true: cmd1&quot;</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&quot;test for false: cmd2&quot;</span>
 </span><span class='line'>
-</span><span class='line'>exit 0</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="nb">exit </span>0
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>5 . statementBlock.sh</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -2333,26 +3074,27 @@ void main()
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
 </span><span class='line'>
-</span><span class='line'>#语句块: {}
-</span><span class='line'>if {
-</span><span class='line'>    echo "We in block"
-</span><span class='line'>    echo "You in block"
-</span><span class='line'>    echo "They in block"
-</span><span class='line'>}
-</span><span class='line'>then {
-</span><span class='line'>    echo "true"
-</span><span class='line'>    echo "I said true"
-</span><span class='line'>}
-</span><span class='line'>else
-</span><span class='line'>    echo "false"
-</span><span class='line'>fi</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="c">#语句块: {}</span>
+</span><span class='line'><span class="k">if</span> <span class="o">{</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;We in block&quot;</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;You in block&quot;</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;They in block&quot;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="k">then</span> <span class="o">{</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;true&quot;</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;I said true&quot;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;false&quot;</span>
+</span><span class='line'><span class="k">fi</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>6 . function.sh</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -2415,74 +3157,75 @@ void main()
 <span class='line-number'>61</span>
 <span class='line-number'>62</span>
 <span class='line-number'>63</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
 </span><span class='line'>
-</span><span class='line'>#
-</span><span class='line'>#Shell函数
-</span><span class='line'>#
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c">#Shell函数</span>
+</span><span class='line'><span class="c">#</span>
 </span><span class='line'>
-</span><span class='line'>func() {
-</span><span class='line'>    echo "this"
-</span><span class='line'>    echo "that"
+</span><span class='line'>func<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;this&quot;</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;that&quot;</span>
 </span><span class='line'>    ls /bin/ls
-</span><span class='line'>    echo "result"
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;result&quot;</span>
 </span><span class='line'>
-</span><span class='line'>    return 0
-</span><span class='line'>}
+</span><span class='line'>    <span class="k">return</span> 0
+</span><span class='line'><span class="o">}</span>
 </span><span class='line'>
-</span><span class='line'>#直接调用函数
+</span><span class='line'><span class="c">#直接调用函数</span>
 </span><span class='line'>func
 </span><span class='line'>
-</span><span class='line'>echo "-----------------------------"
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;-----------------------------&quot;</span>
 </span><span class='line'>
-</span><span class='line'>#res会捕获func()函数echo的字符串
-</span><span class='line'>res="$(func)"   #调用函数就跟使用其他命令一样
+</span><span class='line'><span class="c">#res会捕获func()函数echo的字符串</span>
+</span><span class='line'><span class="nv">res</span><span class="o">=</span><span class="s2">&quot;$(func)&quot;</span>   <span class="c">#调用函数就跟使用其他命令一样</span>
 </span><span class='line'>
-</span><span class='line'>echo "func() executed completely:"
-</span><span class='line'>echo $res
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;func() executed completely:&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="nv">$res</span>
 </span><span class='line'>
-</span><span class='line'>echo "-----------------------------"
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;-----------------------------&quot;</span>
 </span><span class='line'>
-</span><span class='line'>#函数内局部变量
-</span><span class='line'>func2() {
-</span><span class='line'>    local res="local res"               #local声明局部变量
-</span><span class='line'>    echo "Inside func2(): res=$res"
-</span><span class='line'>}
+</span><span class='line'><span class="c">#函数内局部变量</span>
+</span><span class='line'>func2<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="nb">local </span><span class="nv">res</span><span class="o">=</span><span class="s2">&quot;local res&quot;</span>               <span class="c">#local声明局部变量</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;Inside func2(): res=$res&quot;</span>
+</span><span class='line'><span class="o">}</span>
 </span><span class='line'>
 </span><span class='line'>func2
-</span><span class='line'>echo "Outside func2(): res=$res"
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;Outside func2(): res=$res&quot;</span>
 </span><span class='line'>
-</span><span class='line'>echo "-----------------------------"
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;-----------------------------&quot;</span>
 </span><span class='line'>
-</span><span class='line'>#从函数返回一个值
-</span><span class='line'>yes_or_no() {
-</span><span class='line'>    echo "Is your name $* ?"        #这里的$*是传给函数的所有参数,不是传给shell程序的参数
-</span><span class='line'>    while true
-</span><span class='line'>    do
-</span><span class='line'>        echo -n "Enter yes or no: "
-</span><span class='line'>        read x
-</span><span class='line'>        
-</span><span class='line'>        case "$x" in
-</span><span class='line'>            y | yes)    return 0;;
-</span><span class='line'>            n | no)     return 1;;
-</span><span class='line'>            *)          echo "Answer yes or no please."
-</span><span class='line'>        esac
-</span><span class='line'>    done
-</span><span class='line'>}
+</span><span class='line'><span class="c">#从函数返回一个值</span>
+</span><span class='line'>yes_or_no<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;Is your name $* ?&quot;</span>        <span class="c">#这里的$*是传给函数的所有参数,不是传给shell程序的参数</span>
+</span><span class='line'>    <span class="k">while</span> <span class="nb">true</span>
+</span><span class='line'><span class="nb">    </span><span class="k">do</span>
+</span><span class='line'>        <span class="nb">echo</span> -n <span class="s2">&quot;Enter yes or no: &quot;</span>
+</span><span class='line'>        <span class="nb">read </span>x
 </span><span class='line'>
-</span><span class='line'>if yes_or_no "$1"   #调用函数并传递参数,根据return值判断执行成功还是失败
-</span><span class='line'>then
-</span><span class='line'>    echo "Hi, $1"   #仅当return 0时执行这句
-</span><span class='line'>else
-</span><span class='line'>    echo "Who you are"
-</span><span class='line'>fi
+</span><span class='line'>        <span class="k">case</span> <span class="s2">&quot;$x&quot;</span> in
+</span><span class='line'>            y <span class="p">|</span> yes<span class="o">)</span>    <span class="k">return</span> 0<span class="p">;;</span>
+</span><span class='line'>            n <span class="p">|</span> no<span class="o">)</span>     <span class="k">return</span> 1<span class="p">;;</span>
+</span><span class='line'>            *<span class="o">)</span>          <span class="nb">echo</span> <span class="s2">&quot;Answer yes or no please.&quot;</span>
+</span><span class='line'>        <span class="k">esac</span>
+</span><span class='line'>    <span class="k">done</span>
+</span><span class='line'><span class="o">}</span>
 </span><span class='line'>
-</span><span class='line'>exit 0</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="k">if</span> yes_or_no <span class="s2">&quot;$1&quot;</span>   <span class="c">#调用函数并传递参数,根据return值判断执行成功还是失败</span>
+</span><span class='line'><span class="k">then</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;Hi, $1&quot;</span>   <span class="c">#仅当return 0时执行这句</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;Who you are&quot;</span>
+</span><span class='line'><span class="k">fi</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">exit </span>0
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>7 . command_1.sh</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -2540,97 +3283,100 @@ void main()
 <span class='line-number'>56</span>
 <span class='line-number'>57</span>
 <span class='line-number'>58</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
 </span><span class='line'>
-</span><span class='line'>#
-</span><span class='line'># Shell命令
-</span><span class='line'>#
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># Shell命令</span>
+</span><span class='line'><span class="c">#</span>
 </span><span class='line'>
-</span><span class='line'>#命令1:"break"
-</span><span class='line'>echo ----------------break----------------
+</span><span class='line'><span class="c">#命令1:&quot;break&quot;</span>
+</span><span class='line'><span class="nb">echo</span> ----------------break----------------
 </span><span class='line'>rm -rf fred*
-</span><span class='line'>echo &gt; fred1    #new file
-</span><span class='line'>echo &gt; fred2
-</span><span class='line'>mkdir fred3     #new directory
-</span><span class='line'>echo &gt; fred4
+</span><span class='line'><span class="nb">echo</span> &gt; fred1    <span class="c">#new file</span>
+</span><span class='line'><span class="nb">echo</span> &gt; fred2
+</span><span class='line'>mkdir fred3     <span class="c">#new directory</span>
+</span><span class='line'><span class="nb">echo</span> &gt; fred4
 </span><span class='line'>
-</span><span class='line'>for file in fred*
-</span><span class='line'>do
-</span><span class='line'>    if [ -d "$file" ]; then
-</span><span class='line'>        break;                  #是目录则跳出
-</span><span class='line'>    fi
-</span><span class='line'>done
+</span><span class='line'><span class="k">for</span> file in fred*
+</span><span class='line'><span class="k">do</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">[</span> -d <span class="s2">&quot;$file&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span><span class='line'>        <span class="nb">break</span><span class="p">;</span>                  <span class="c">#是目录则跳出</span>
+</span><span class='line'>    <span class="k">fi</span>
+</span><span class='line'><span class="k">done</span>
 </span><span class='line'>
-</span><span class='line'>echo I got a directory: $file
-</span><span class='line'>
-</span><span class='line'>rm -rf fred*
-</span><span class='line'>
-</span><span class='line'>#命令2:"continue"
-</span><span class='line'>echo ---------------continue--------------
-</span><span class='line'>rm -rf fred*
-</span><span class='line'>echo &gt; fred1    #new file
-</span><span class='line'>echo &gt; fred2
-</span><span class='line'>mkdir fred3     #new directory
-</span><span class='line'>echo &gt; fred4
-</span><span class='line'>
-</span><span class='line'>for file in fred*
-</span><span class='line'>do
-</span><span class='line'>    if [ -d "$file" ]; then
-</span><span class='line'>        continue;                  #是目录则马上进入下一次循环
-</span><span class='line'>    fi
-</span><span class='line'>    echo I got a file: $file
-</span><span class='line'>done
+</span><span class='line'><span class="nb">echo </span>I got a directory: <span class="nv">$file</span>
 </span><span class='line'>
 </span><span class='line'>rm -rf fred*
 </span><span class='line'>
-</span><span class='line'>echo ---------------:-------------------
-</span><span class='line'>#命令3:":"        //一个空命令,相当于true
-</span><span class='line'>if [ -f fred ]; then
+</span><span class='line'><span class="c">#命令2:&quot;continue&quot;</span>
+</span><span class='line'><span class="nb">echo</span> ---------------continue--------------
+</span><span class='line'>rm -rf fred*
+</span><span class='line'><span class="nb">echo</span> &gt; fred1    <span class="c">#new file</span>
+</span><span class='line'><span class="nb">echo</span> &gt; fred2
+</span><span class='line'>mkdir fred3     <span class="c">#new directory</span>
+</span><span class='line'><span class="nb">echo</span> &gt; fred4
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> file in fred*
+</span><span class='line'><span class="k">do</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">[</span> -d <span class="s2">&quot;$file&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span><span class='line'>        <span class="k">continue</span><span class="p">;</span>                  <span class="c">#是目录则马上进入下一次循环</span>
+</span><span class='line'>    <span class="k">fi</span>
+</span><span class='line'>    <span class="nb">echo </span>I got a file: <span class="nv">$file</span>
+</span><span class='line'><span class="k">done</span>
+</span><span class='line'>
+</span><span class='line'>rm -rf fred*
+</span><span class='line'>
+</span><span class='line'><span class="nb">echo</span> ---------------:-------------------
+</span><span class='line'><span class="c">#命令3:&quot;:&quot;        //一个空命令,相当于true</span>
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> -f fred <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
 </span><span class='line'>    :
-</span><span class='line'>else
-</span><span class='line'>    echo "file fred did not exist"
-</span><span class='line'>fi
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;file fred did not exist&quot;</span>
+</span><span class='line'><span class="k">fi</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>echo -------------.---------------------
-</span><span class='line'>#命令4:"."      //在当前shell中执行命令,而不是在子shell中执行(正如source命令,会改变当前环境)
-</span><span class='line'>echo 请在shell下用". ./old_version_set.sh",". ./new_version_set.sh"来查看效果
+</span><span class='line'><span class="nb">echo</span> -------------.---------------------
+</span><span class='line'><span class="c">#命令4:&quot;.&quot;      //在当前shell中执行命令,而不是在子shell中执行(正如source命令,会改变当前环境)</span>
+</span><span class='line'><span class="nb">echo</span> 请在shell下用<span class="s2">&quot;. ./old_version_set.sh&quot;</span>,<span class="s2">&quot;. ./new_version_set.sh&quot;</span>来查看效果
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>exit 0</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="nb">exit </span>0
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>8 . old_version_set.sh</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
 </span><span class='line'>
-</span><span class='line'>version=Old_version
-</span><span class='line'>PS1="Old&gt; "
-</span><span class='line'>PATH=/bin:/usr/bin:/usr/local/Old_bin:.</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="nv">version</span><span class="o">=</span>Old_version
+</span><span class='line'><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;Old&gt; &quot;</span>
+</span><span class='line'><span class="nv">PATH</span><span class="o">=</span>/bin:/usr/bin:/usr/local/Old_bin:.
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>9 . new_version_set.sh</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
 </span><span class='line'>
-</span><span class='line'>version=New_version
-</span><span class='line'>PS1="New&gt; "
-</span><span class='line'>PATH=/bin:/usr/bin:/usr/local/New_bin:.</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="nv">version</span><span class="o">=</span>New_version
+</span><span class='line'><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;New&gt; &quot;</span>
+</span><span class='line'><span class="nv">PATH</span><span class="o">=</span>/bin:/usr/bin:/usr/local/New_bin:.
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>10 . command_2.sh</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -2665,46 +3411,47 @@ void main()
 <span class='line-number'>33</span>
 <span class='line-number'>34</span>
 <span class='line-number'>35</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
 </span><span class='line'>
-</span><span class='line'>#
-</span><span class='line'>#   shell命令
-</span><span class='line'>#
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c">#   shell命令</span>
+</span><span class='line'><span class="c">#</span>
 </span><span class='line'>
-</span><span class='line'>echo ------------echo----------------
-</span><span class='line'>#命令5:"echo"
-</span><span class='line'>#不换行显示
-</span><span class='line'>echo -n "string to output."     #-n代表不输出换行
-</span><span class='line'>echo -e "string to output.\c"   #开启转义,\c代表结束输出(请看:man echo)
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>echo    #换行
-</span><span class='line'>echo ------------eval--------------
-</span><span class='line'>#命令6:"eval"           //对参数求值:像另一个$,它给出一个变量的值的值
-</span><span class='line'>foo=10
-</span><span class='line'>x=foo
-</span><span class='line'>y='$'$x         #y='$foo'
-</span><span class='line'>echo $y
-</span><span class='line'>
-</span><span class='line'>eval y='$'$x    #y=$foo=10
-</span><span class='line'>echo $y
+</span><span class='line'><span class="nb">echo</span> ------------echo----------------
+</span><span class='line'><span class="c">#命令5:&quot;echo&quot;</span>
+</span><span class='line'><span class="c">#不换行显示</span>
+</span><span class='line'><span class="nb">echo</span> -n <span class="s2">&quot;string to output.&quot;</span>     <span class="c">#-n代表不输出换行</span>
+</span><span class='line'><span class="nb">echo</span> -e <span class="s2">&quot;string to output.\c&quot;</span>   <span class="c">#开启转义,\c代表结束输出(请看:man echo)</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>echo ------------exec-------------
-</span><span class='line'>#命令7:"exec"   //exec命令在执行时会把当前的shell进程关闭，然后换到后面的命令继续执行。
-</span><span class='line'>#如:"exec touch afile"      //会关闭shell,并创建文件afile.
+</span><span class='line'><span class="nb">echo</span>    <span class="c">#换行</span>
+</span><span class='line'><span class="nb">echo</span> ------------eval--------------
+</span><span class='line'><span class="c">#命令6:&quot;eval&quot;           //对参数求值:像另一个$,它给出一个变量的值的值</span>
+</span><span class='line'><span class="nv">foo</span><span class="o">=</span>10
+</span><span class='line'><span class="nv">x</span><span class="o">=</span>foo
+</span><span class='line'><span class="nv">y</span><span class="o">=</span><span class="s1">&#39;$&#39;</span><span class="nv">$x</span>         <span class="c">#y=&#39;$foo&#39;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="nv">$y</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">eval </span><span class="nv">y</span><span class="o">=</span><span class="s1">&#39;$&#39;</span><span class="nv">$x</span>    <span class="c">#y=$foo=10</span>
+</span><span class='line'><span class="nb">echo</span> <span class="nv">$y</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>echo -------------exit-------------
-</span><span class='line'>#命令8:"exit"
-</span><span class='line'>exit 0  #成功
-</span><span class='line'>exit 1  # 1-125表错误码
-</span><span class='line'>#126表文件不可执行,127表命令未找到,128及以上表出现一个信号</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="nb">echo</span> ------------exec-------------
+</span><span class='line'><span class="c">#命令7:&quot;exec&quot;   //exec命令在执行时会把当前的shell进程关闭，然后换到后面的命令继续执行。</span>
+</span><span class='line'><span class="c">#如:&quot;exec touch afile&quot;      //会关闭shell,并创建文件afile.</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nb">echo</span> -------------exit-------------
+</span><span class='line'><span class="c">#命令8:&quot;exit&quot;</span>
+</span><span class='line'><span class="nb">exit </span><span class="m">0</span>  <span class="c">#成功</span>
+</span><span class='line'><span class="nb">exit </span><span class="m">1</span>  <span class="c"># 1-125表错误码</span>
+</span><span class='line'><span class="c">#126表文件不可执行,127表命令未找到,128及以上表出现一个信号</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>11 . command_3.sh</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -2752,59 +3499,60 @@ void main()
 <span class='line-number'>46</span>
 <span class='line-number'>47</span>
 <span class='line-number'>48</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
 </span><span class='line'>
-</span><span class='line'>#
-</span><span class='line'># shell命令
-</span><span class='line'>#
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># shell命令</span>
+</span><span class='line'><span class="c">#</span>
 </span><span class='line'>
-</span><span class='line'>echo -------------export--------------
-</span><span class='line'>#命令9:"export"
-</span><span class='line'>foo="The first var"
-</span><span class='line'>export bar="The second var" #被导出
-</span><span class='line'>foo12="The 1.5th var"
+</span><span class='line'><span class="nb">echo</span> -------------export--------------
+</span><span class='line'><span class="c">#命令9:&quot;export&quot;</span>
+</span><span class='line'><span class="nv">foo</span><span class="o">=</span><span class="s2">&quot;The first var&quot;</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">bar</span><span class="o">=</span><span class="s2">&quot;The second var&quot;</span> <span class="c">#被导出</span>
+</span><span class='line'><span class="nv">foo12</span><span class="o">=</span><span class="s2">&quot;The 1.5th var&quot;</span>
 </span><span class='line'>
-</span><span class='line'>#或set -allexport,表示导出后面声明的所有变量
-</span><span class='line'>set -a  
-</span><span class='line'>foo2="The third var"    #被导出
-</span><span class='line'>bar2="The fourth var"   #被导出
+</span><span class='line'><span class="c">#或set -allexport,表示导出后面声明的所有变量</span>
+</span><span class='line'><span class="nb">set</span> -a
+</span><span class='line'><span class="nv">foo2</span><span class="o">=</span><span class="s2">&quot;The third var&quot;</span>    <span class="c">#被导出</span>
+</span><span class='line'><span class="nv">bar2</span><span class="o">=</span><span class="s2">&quot;The fourth var&quot;</span>   <span class="c">#被导出</span>
 </span><span class='line'>
-</span><span class='line'>./another.sh        #调用另一个shell脚本,它只能看见导出的bar变量,而看不到foo
+</span><span class='line'>./another.sh        <span class="c">#调用另一个shell脚本,它只能看见导出的bar变量,而看不到foo</span>
 </span><span class='line'>
-</span><span class='line'>echo -----------expr------------
-</span><span class='line'>#命令10:"expr"      //将它的参数作为一个表达式来求值
-</span><span class='line'>x=3
-</span><span class='line'>echo "$x"
-</span><span class='line'>x=`expr $x + 1`     #可替换为$((...))语法,更有效
-</span><span class='line'>echo "$x"
-</span><span class='line'>x=$(expr $x + 1)
-</span><span class='line'>echo "$x"
+</span><span class='line'><span class="nb">echo</span> -----------expr------------
+</span><span class='line'><span class="c">#命令10:&quot;expr&quot;      //将它的参数作为一个表达式来求值</span>
+</span><span class='line'><span class="nv">x</span><span class="o">=</span>3
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$x&quot;</span>
+</span><span class='line'><span class="nv">x</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$x</span> + 1<span class="sb">`</span>     <span class="c">#可替换为$((...))语法,更有效</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$x&quot;</span>
+</span><span class='line'><span class="nv">x</span><span class="o">=</span><span class="k">$(</span>expr <span class="nv">$x</span> + 1<span class="k">)</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$x&quot;</span>
 </span><span class='line'>
-</span><span class='line'>echo -------------printf------------
-</span><span class='line'>#命令11:"printf"        //较新的版本shell提供该命令产生格式化输出,用来代替echo
-</span><span class='line'>y="you are not you."
-</span><span class='line'>printf "%s:x=%d,y=\"%s\"\n" "info" "$x" "$y"    #$y要用""包围
+</span><span class='line'><span class="nb">echo</span> -------------printf------------
+</span><span class='line'><span class="c">#命令11:&quot;printf&quot;        //较新的版本shell提供该命令产生格式化输出,用来代替echo</span>
+</span><span class='line'><span class="nv">y</span><span class="o">=</span><span class="s2">&quot;you are not you.&quot;</span>
+</span><span class='line'><span class="nb">printf</span> <span class="s2">&quot;%s:x=%d,y=\&quot;%s\&quot;\n&quot;</span> <span class="s2">&quot;info&quot;</span> <span class="s2">&quot;$x&quot;</span> <span class="s2">&quot;$y&quot;</span>    <span class="c">#$y要用&quot;&quot;包围</span>
 </span><span class='line'>
-</span><span class='line'>echo -----------set--------------
-</span><span class='line'>#命令12:"set"           //为shell设置参数变量,就像脚本的参数(命令9用法不太一样)
-</span><span class='line'>set $(date)     #设置参数为date命令的输出(空格分隔的)
-</span><span class='line'>echo $0,$1,$2,$3
-</span><span class='line'>set 1 "go you" 5000
-</span><span class='line'>echo $1,$2,$3
+</span><span class='line'><span class="nb">echo</span> -----------set--------------
+</span><span class='line'><span class="c">#命令12:&quot;set&quot;           //为shell设置参数变量,就像脚本的参数(命令9用法不太一样)</span>
+</span><span class='line'><span class="nb">set</span> <span class="k">$(</span>date<span class="k">)</span>     <span class="c">#设置参数为date命令的输出(空格分隔的)</span>
+</span><span class='line'><span class="nb">echo</span> <span class="nv">$0</span>,<span class="nv">$1</span>,<span class="nv">$2</span>,<span class="nv">$3</span>
+</span><span class='line'><span class="nb">set </span><span class="m">1</span> <span class="s2">&quot;go you&quot;</span> 5000
+</span><span class='line'><span class="nb">echo</span> <span class="nv">$1</span>,<span class="nv">$2</span>,<span class="nv">$3</span>
 </span><span class='line'>
-</span><span class='line'>echo -----------shift-----------
-</span><span class='line'>#命令12:"shift"         //将所有的参数变量左移一个位置:$2变为$1...,注意$0不变
-</span><span class='line'>while [ "$1" != "" ]; do
-</span><span class='line'>    echo "$1"
-</span><span class='line'>    shift
-</span><span class='line'>done
+</span><span class='line'><span class="nb">echo</span> -----------shift-----------
+</span><span class='line'><span class="c">#命令12:&quot;shift&quot;         //将所有的参数变量左移一个位置:$2变为$1...,注意$0不变</span>
+</span><span class='line'><span class="k">while</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> !<span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;$1&quot;</span>
+</span><span class='line'>    <span class="nb">shift</span>
+</span><span class='line'><span class="k">done</span>
 </span><span class='line'>
-</span><span class='line'>exit 0</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="nb">exit </span>0
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>12 . another.sh</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -2813,20 +3561,21 @@ void main()
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
 </span><span class='line'>
-</span><span class='line'>echo "$foo"
-</span><span class='line'>echo "$bar"
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$foo&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$bar&quot;</span>
 </span><span class='line'>
-</span><span class='line'>echo "$foo12"
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$foo12&quot;</span>
 </span><span class='line'>
-</span><span class='line'>echo "$foo2"
-</span><span class='line'>echo "$bar2"</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$foo2&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$bar2&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>13 . command_4.sh</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -2873,58 +3622,59 @@ void main()
 <span class='line-number'>45</span>
 <span class='line-number'>46</span>
 <span class='line-number'>47</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
 </span><span class='line'>
-</span><span class='line'>#
-</span><span class='line'># shell命令
-</span><span class='line'>#
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># shell命令</span>
+</span><span class='line'><span class="c">#</span>
 </span><span class='line'>
-</span><span class='line'>echo --------------unset---------------
-</span><span class='line'>#命令14:"unset"     //从环境中删除变量或函数,但不能删除shell本身定义的只读变量如PATH
-</span><span class='line'>foo="Oh I'am here"
-</span><span class='line'>echo $foo
+</span><span class='line'><span class="nb">echo</span> --------------unset---------------
+</span><span class='line'><span class="c">#命令14:&quot;unset&quot;     //从环境中删除变量或函数,但不能删除shell本身定义的只读变量如PATH</span>
+</span><span class='line'><span class="nv">foo</span><span class="o">=</span><span class="s2">&quot;Oh I&#39;am here&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="nv">$foo</span>
 </span><span class='line'>
-</span><span class='line'>foo=        #将foo设为空,变量仍存在
-</span><span class='line'>echo $foo
+</span><span class='line'><span class="nv">foo</span><span class="o">=</span>        <span class="c">#将foo设为空,变量仍存在</span>
+</span><span class='line'><span class="nb">echo</span> <span class="nv">$foo</span>
 </span><span class='line'>
-</span><span class='line'>foo="Oh i am here again"
-</span><span class='line'>echo $foo
-</span><span class='line'>unset foo   #将foo变量删除掉
-</span><span class='line'>echo $foo
+</span><span class='line'><span class="nv">foo</span><span class="o">=</span><span class="s2">&quot;Oh i am here again&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="nv">$foo</span>
+</span><span class='line'><span class="nb">unset </span>foo   <span class="c">#将foo变量删除掉</span>
+</span><span class='line'><span class="nb">echo</span> <span class="nv">$foo</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>echo --------------trap------------------
-</span><span class='line'>#命令15:"trap"          
-</span><span class='line'>#   trap cmd signal: 当信号signal出现时,执行命令cmd(该命令之后有效)
-</span><span class='line'>#   trap signal: 忽略信号signal
-</span><span class='line'>#   trap - signal: 恢复signal的默认处理
-</span><span class='line'>trap 'rm -f /tmp/my_tmp_file_$$' INT    #可以用trap -l看到INT信号
-</span><span class='line'>echo createing file /tmp/my_tmp_file_$$
-</span><span class='line'>date &gt; /tmp/my_tmp_file_$$
+</span><span class='line'><span class="nb">echo</span> --------------trap------------------
+</span><span class='line'><span class="c">#命令15:&quot;trap&quot;          </span>
+</span><span class='line'><span class="c">#   trap cmd signal: 当信号signal出现时,执行命令cmd(该命令之后有效)</span>
+</span><span class='line'><span class="c">#   trap signal: 忽略信号signal</span>
+</span><span class='line'><span class="c">#   trap - signal: 恢复signal的默认处理</span>
+</span><span class='line'><span class="nb">trap</span> <span class="s1">&#39;rm -f /tmp/my_tmp_file_$$&#39;</span> INT    <span class="c">#可以用trap -l看到INT信号</span>
+</span><span class='line'><span class="nb">echo </span>createing file /tmp/my_tmp_file_<span class="nv">$$</span>
+</span><span class='line'>date &gt; /tmp/my_tmp_file_<span class="nv">$$</span>
 </span><span class='line'>
-</span><span class='line'>echo "press CTRL+C to interrupt ..."
-</span><span class='line'>while [ -f /tmp/my_tmp_file_$$ ]; do
-</span><span class='line'>    echo File exists
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;press CTRL+C to interrupt ...&quot;</span>
+</span><span class='line'><span class="k">while</span> <span class="o">[</span> -f /tmp/my_tmp_file_<span class="nv">$$</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="nb">echo </span>File exists
 </span><span class='line'>    sleep 1
-</span><span class='line'>done
-</span><span class='line'>echo "File no longer exists"
+</span><span class='line'><span class="k">done</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;File no longer exists&quot;</span>
 </span><span class='line'>
-</span><span class='line'>#设置回CTRL+C信号的默认处理:终止程序
-</span><span class='line'>trap INT
-</span><span class='line'>echo createing file /tmp/my_tmp_file_$$
-</span><span class='line'>date &gt; /tmp/my_tmp_file_$$
+</span><span class='line'><span class="c">#设置回CTRL+C信号的默认处理:终止程序</span>
+</span><span class='line'><span class="nb">trap </span>INT
+</span><span class='line'><span class="nb">echo </span>createing file /tmp/my_tmp_file_<span class="nv">$$</span>
+</span><span class='line'>date &gt; /tmp/my_tmp_file_<span class="nv">$$</span>
 </span><span class='line'>
-</span><span class='line'>echo "press CTRL+C to interrupt ..."
-</span><span class='line'>while [ -f /tmp/my_tmp_file_$$ ]; do
-</span><span class='line'>    echo File exists
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;press CTRL+C to interrupt ...&quot;</span>
+</span><span class='line'><span class="k">while</span> <span class="o">[</span> -f /tmp/my_tmp_file_<span class="nv">$$</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="nb">echo </span>File exists
 </span><span class='line'>    sleep 1
-</span><span class='line'>done
-</span><span class='line'>echo "should not reach here"                 </span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="k">done</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;should not reach here&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>14 . command_5.sh</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -2954,41 +3704,42 @@ void main()
 <span class='line-number'>28</span>
 <span class='line-number'>29</span>
 <span class='line-number'>30</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
 </span><span class='line'>
-</span><span class='line'>#
-</span><span class='line'># shell
-</span><span class='line'>#
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># shell</span>
+</span><span class='line'><span class="c">#</span>
 </span><span class='line'>
-</span><span class='line'>echo -----------find------------
-</span><span class='line'>#命令16:"find"
-</span><span class='line'>#find [path] [options] [test] [actions]
+</span><span class='line'><span class="nb">echo</span> -----------find------------
+</span><span class='line'><span class="c">#命令16:&quot;find&quot;</span>
+</span><span class='line'><span class="c">#find [path] [options] [test] [actions]</span>
 </span><span class='line'>find . -name fun*.sh -print
-</span><span class='line'>echo -------
+</span><span class='line'><span class="nb">echo</span> -------
 </span><span class='line'>
-</span><span class='line'>find / -mount -name wish    #-mount不去搜索挂载的其他文件系统
-</span><span class='line'>echo -------
+</span><span class='line'>find / -mount -name wish    <span class="c">#-mount不去搜索挂载的其他文件系统</span>
+</span><span class='line'><span class="nb">echo</span> -------
 </span><span class='line'>
-</span><span class='line'>find . -newer command_2.sh -type f     #搜索比command_2.sh要新的文件,不是目录
-</span><span class='line'>echo -------
+</span><span class='line'>find . -newer command_2.sh -type f     <span class="c">#搜索比command_2.sh要新的文件,不是目录</span>
+</span><span class='line'><span class="nb">echo</span> -------
 </span><span class='line'>
-</span><span class='line'>find . -newer command_2.sh -o -name "v*.sh"   #-o表示或者,-a表示并且,!表非
-</span><span class='line'>echo -------
+</span><span class='line'>find . -newer command_2.sh -o -name <span class="s2">&quot;v*.sh&quot;</span>   <span class="c">#-o表示或者,-a表示并且,!表非</span>
+</span><span class='line'><span class="nb">echo</span> -------
 </span><span class='line'>
-</span><span class='line'>find . -newer command_2.sh -or -name "v*.sh"   #-or表示或者,-and表示并且,-not表非
-</span><span class='line'>echo -------
+</span><span class='line'>find . -newer command_2.sh -or -name <span class="s2">&quot;v*.sh&quot;</span>   <span class="c">#-or表示或者,-and表示并且,-not表非</span>
+</span><span class='line'><span class="nb">echo</span> -------
 </span><span class='line'>
-</span><span class='line'>#用圆括号来组合测试(不用也是成功的)
-</span><span class='line'>find . \( -newer command_2.sh -o -name "v*.sh" \) -type f -print
-</span><span class='line'>echo -------
+</span><span class='line'><span class="c">#用圆括号来组合测试(不用也是成功的)</span>
+</span><span class='line'>find . <span class="se">\(</span> -newer command_2.sh -o -name <span class="s2">&quot;v*.sh&quot;</span> <span class="se">\)</span> -type f -print
+</span><span class='line'><span class="nb">echo</span> -------
 </span><span class='line'>
-</span><span class='line'>#找到匹配的文件后,可以执行指定的动作:
-</span><span class='line'>find . -name "c*" -exec ls -l {} \;     #-exec或-ok命令将后续参数作为他们的参数直到被"\;"终止,魔串"{}"会被当前文件的完整路径取代</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="c">#找到匹配的文件后,可以执行指定的动作:</span>
+</span><span class='line'>find . -name <span class="s2">&quot;c*&quot;</span> -exec ls -l <span class="o">{}</span> <span class="se">\;</span>     <span class="c">#-exec或-ok命令将后续参数作为他们的参数直到被&quot;\;&quot;终止,魔串&quot;{}&quot;会被当前文件的完整路径取代</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>15 . command_6.sh</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -3012,35 +3763,36 @@ void main()
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
 <span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
 </span><span class='line'>
-</span><span class='line'>#
-</span><span class='line'># shell命令
-</span><span class='line'>#
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># shell命令</span>
+</span><span class='line'><span class="c">#</span>
 </span><span class='line'>
-</span><span class='line'>echo ----grep: General Regular Expression Parser----
-</span><span class='line'>#grep [option] pattern [files]
-</span><span class='line'>grep "if" ./condition.sh
+</span><span class='line'><span class="nb">echo</span> ----grep: General Regular Expression Parser----
+</span><span class='line'><span class="c">#grep [option] pattern [files]</span>
+</span><span class='line'>grep <span class="s2">&quot;if&quot;</span> ./condition.sh
 </span><span class='line'>
-</span><span class='line'>echo ----------
-</span><span class='line'>grep -c "if" ./condition.sh ./command_1.sh  #搜索多个文件,只输出匹配行数
+</span><span class='line'><span class="nb">echo</span> ----------
+</span><span class='line'>grep -c <span class="s2">&quot;if&quot;</span> ./condition.sh ./command_1.sh  <span class="c">#搜索多个文件,只输出匹配行数</span>
 </span><span class='line'>
-</span><span class='line'>echo ----------
-</span><span class='line'>grep -v "i" ./condition.sh      #匹配不出现"i"的行
+</span><span class='line'><span class="nb">echo</span> ----------
+</span><span class='line'>grep -v <span class="s2">&quot;i&quot;</span> ./condition.sh      <span class="c">#匹配不出现&quot;i&quot;的行</span>
 </span><span class='line'>
-</span><span class='line'>echo ---------
-</span><span class='line'>grep ^# ./condition.sh      #行首为用'^',行尾用'$'
+</span><span class='line'><span class="nb">echo</span> ---------
+</span><span class='line'>grep ^# ./condition.sh      <span class="c">#行首为用&#39;^&#39;,行尾用&#39;$&#39;</span>
 </span><span class='line'>
-</span><span class='line'>echo -----------
-</span><span class='line'>grep [[:blank:]]echo[[:blank:]] ./condition.sh      #[]中可以使用特殊匹配模式,[:blank:]表示空格或制表符
+</span><span class='line'><span class="nb">echo</span> -----------
+</span><span class='line'>grep <span class="o">[[</span>:blank:<span class="o">]]</span><span class="nb">echo</span><span class="o">[[</span>:blank:<span class="o">]]</span> ./condition.sh      <span class="c">#[]中可以使用特殊匹配模式,[:blank:]表示空格或制表符</span>
 </span><span class='line'>
-</span><span class='line'>echo ------------
-</span><span class='line'>grep -E [a-z]\{5\} ./condition.sh   #-E开启扩展匹配:? * + {n} {n,} {n,m}  //匹配0或1次,0或多次,1或多次,n次,n次及以上,n到m次</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="nb">echo</span> ------------
+</span><span class='line'>grep -E <span class="o">[</span>a-z<span class="o">]</span><span class="se">\{</span>5<span class="se">\}</span> ./condition.sh   <span class="c">#-E开启扩展匹配:? * + {n} {n,} {n,m}  //匹配0或1次,0或多次,1或多次,n次,n次及以上,n到m次</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>16 . command_7.sh</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -3096,67 +3848,68 @@ void main()
 <span class='line-number'>54</span>
 <span class='line-number'>55</span>
 <span class='line-number'>56</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
 </span><span class='line'>
-</span><span class='line'>#
-</span><span class='line'># shell命令的执行
-</span><span class='line'>#
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># shell命令的执行</span>
+</span><span class='line'><span class="c">#</span>
 </span><span class='line'>
-</span><span class='line'># $(cmd)的结果就是cmd命令的输出     //只有需要脚本可移植时才应该用`cmd`(当命令中有特殊字符时要转义)
-</span><span class='line'>echo '------------$(cmd)-------------'
-</span><span class='line'>echo Current user: $(who)
-</span><span class='line'>whoisthere=`who`
-</span><span class='line'>echo Current user: $whoisthere
+</span><span class='line'><span class="c"># $(cmd)的结果就是cmd命令的输出     //只有需要脚本可移植时才应该用`cmd`(当命令中有特殊字符时要转义)</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;------------$(cmd)-------------&#39;</span>
+</span><span class='line'><span class="nb">echo </span>Current user: <span class="k">$(</span>who<span class="k">)</span>
+</span><span class='line'><span class="nv">whoisthere</span><span class="o">=</span><span class="sb">`</span>who<span class="sb">`</span>
+</span><span class='line'><span class="nb">echo </span>Current user: <span class="nv">$whoisthere</span>
 </span><span class='line'>
-</span><span class='line'>echo --------------${var}------------
-</span><span class='line'># 参数扩展: ${var}      //如${i}_tmp会扩展变量i,而$i_tmp会扩展变量i_tmp
-</span><span class='line'>for i in 1 3 5
-</span><span class='line'>do
-</span><span class='line'>    echo cmd_${i}_cmd
-</span><span class='line'>    echo CMD_$i_CMD     #$i_CMD会被扩展为空,不会报错!
-</span><span class='line'>done
+</span><span class='line'><span class="nb">echo</span> --------------<span class="k">${</span><span class="nv">var</span><span class="k">}</span>------------
+</span><span class='line'><span class="c"># 参数扩展: ${var}      //如${i}_tmp会扩展变量i,而$i_tmp会扩展变量i_tmp</span>
+</span><span class='line'><span class="k">for</span> i in <span class="m">1</span> <span class="m">3</span> 5
+</span><span class='line'><span class="k">do</span>
+</span><span class='line'>    <span class="nb">echo </span>cmd_<span class="k">${</span><span class="nv">i</span><span class="k">}</span>_cmd
+</span><span class='line'>    <span class="nb">echo </span>CMD_<span class="nv">$i_CMD</span>     <span class="c">#$i_CMD会被扩展为空,不会报错!</span>
+</span><span class='line'><span class="k">done</span>
 </span><span class='line'>
-</span><span class='line'>echo --------
-</span><span class='line'># ${param:-default}     若param为空,则把扩展为default
-</span><span class='line'># ${#param}             扩展为param的长度
-</span><span class='line'># ${param%word}         在param的尾部删除与word匹配的最短串,返回剩余部分
-</span><span class='line'># ${param%%word}        尾部,删最长匹配
-</span><span class='line'># ${param#word}         头部,删最短匹配
-</span><span class='line'># ${param##word}        头部,删最长匹配
-</span><span class='line'>unset foo
-</span><span class='line'>echo ${foo:-hello you}  #foo为空,扩展为hello you
+</span><span class='line'><span class="nb">echo</span> --------
+</span><span class='line'><span class="c"># ${param:-default}     若param为空,则把扩展为default</span>
+</span><span class='line'><span class="c"># ${#param}             扩展为param的长度</span>
+</span><span class='line'><span class="c"># ${param%word}         在param的尾部删除与word匹配的最短串,返回剩余部分</span>
+</span><span class='line'><span class="c"># ${param%%word}        尾部,删最长匹配</span>
+</span><span class='line'><span class="c"># ${param#word}         头部,删最短匹配</span>
+</span><span class='line'><span class="c"># ${param##word}        头部,删最长匹配</span>
+</span><span class='line'><span class="nb">unset </span>foo
+</span><span class='line'><span class="nb">echo</span> <span class="k">${</span><span class="nv">foo</span><span class="k">:-</span><span class="nv">hello</span><span class="p"> you</span><span class="k">}</span>  <span class="c">#foo为空,扩展为hello you</span>
 </span><span class='line'>
-</span><span class='line'>foo=something
-</span><span class='line'>echo ${foo:-Hello}      #foo不为空,扩展为something
+</span><span class='line'><span class="nv">foo</span><span class="o">=</span>something
+</span><span class='line'><span class="nb">echo</span> <span class="k">${</span><span class="nv">foo</span><span class="k">:-</span><span class="nv">Hello</span><span class="k">}</span>      <span class="c">#foo不为空,扩展为something</span>
 </span><span class='line'>
-</span><span class='line'>foo=/usr/bin/X11/startx
-</span><span class='line'>echo ${foo#*/}          #删去头部/
-</span><span class='line'>echo ${foo##*/}         #删去头部/usr/bin/x11/
+</span><span class='line'><span class="nv">foo</span><span class="o">=</span>/usr/bin/X11/startx
+</span><span class='line'><span class="nb">echo</span> <span class="k">${</span><span class="nv">foo</span><span class="p">#*/</span><span class="k">}</span>          <span class="c">#删去头部/</span>
+</span><span class='line'><span class="nb">echo</span> <span class="k">${</span><span class="nv">foo</span><span class="p">##*/</span><span class="k">}</span>         <span class="c">#删去头部/usr/bin/x11/</span>
 </span><span class='line'>
-</span><span class='line'>bar=/usr/local/etc/local/networks
-</span><span class='line'>echo ${bar%local*}      #删去尾部local/networks
-</span><span class='line'>echo ${bar%%local*}     #删去尾部local/etc/local/networks
+</span><span class='line'><span class="nv">bar</span><span class="o">=</span>/usr/local/etc/local/networks
+</span><span class='line'><span class="nb">echo</span> <span class="k">${</span><span class="nv">bar</span><span class="p">%local*</span><span class="k">}</span>      <span class="c">#删去尾部local/networks</span>
+</span><span class='line'><span class="nb">echo</span> <span class="k">${</span><span class="nv">bar</span><span class="p">%%local*</span><span class="k">}</span>     <span class="c">#删去尾部local/etc/local/networks</span>
 </span><span class='line'>
-</span><span class='line'>echo '-----example for ${ }------'
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;-----example for ${ }------&#39;</span>
 </span><span class='line'>touch 1.gif 2.gif 3.gif
 </span><span class='line'>ls *.gif *.jpg
 </span><span class='line'>
-</span><span class='line'>for image in *.gif
-</span><span class='line'>do
-</span><span class='line'>    mv $image ${image%%gif}jpg      #效果如: mv 1.gif 1.jpg
-</span><span class='line'>done
+</span><span class='line'><span class="k">for</span> image in *.gif
+</span><span class='line'><span class="k">do</span>
+</span><span class='line'>    mv <span class="nv">$image</span> <span class="k">${</span><span class="nv">image</span><span class="p">%%gif</span><span class="k">}</span>jpg      <span class="c">#效果如: mv 1.gif 1.jpg</span>
+</span><span class='line'><span class="k">done</span>
 </span><span class='line'>ls *.gif *.jpg
 </span><span class='line'>rm *.jpg
 </span><span class='line'>
-</span><span class='line'>#另外:
-</span><span class='line'># ${param:+default}     若param不为空,则返回default
-</span><span class='line'># ${param:=default}     若param为空,则赋值为default,再返回;否则直接返回param的值
-</span><span class='line'># ${param:?default}     若param为空,则输出param: default;否则返回param</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="c">#另外:</span>
+</span><span class='line'><span class="c"># ${param:+default}     若param不为空,则返回default</span>
+</span><span class='line'><span class="c"># ${param:=default}     若param为空,则赋值为default,再返回;否则直接返回param的值</span>
+</span><span class='line'><span class="c"># ${param:?default}     若param为空,则输出param: default;否则返回param</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>17 . command_8.sh</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -3206,10 +3959,10 @@ void main()
 <span class='line-number'>48</span>
 <span class='line-number'>49</span>
 <span class='line-number'>50</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
 </span><span class='line'>
-</span><span class='line'># &lt;&lt;TAG 和 TAG中间的内容就好象是标准输入的内容
-</span><span class='line'>echo '--------------&lt;&lt;TAG--------------'
+</span><span class='line'><span class="c"># &lt;&lt;TAG 和 TAG中间的内容就好象是标准输入的内容</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;--------------&lt;&lt;TAG--------------&#39;</span>
 </span><span class='line'>cat &lt;&lt;!SomeText!
 </span><span class='line'>hello you little boy.
 </span><span class='line'>hello you boy.
@@ -3217,50 +3970,51 @@ void main()
 </span><span class='line'>hello.
 </span><span class='line'>!SomeText!
 </span><span class='line'>
-</span><span class='line'>echo -------------
-</span><span class='line'>echo "hello." &gt; hei.txt
-</span><span class='line'>echo "hello you." &gt;&gt; hei.txt
-</span><span class='line'>echo "hello you boy." &gt;&gt; hei.txt
-</span><span class='line'>echo "hello you little boy." &gt;&gt; hei.txt
+</span><span class='line'><span class="nb">echo</span> -------------
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;hello.&quot;</span> &gt; hei.txt
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;hello you.&quot;</span> &gt;&gt; hei.txt
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;hello you boy.&quot;</span> &gt;&gt; hei.txt
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;hello you little boy.&quot;</span> &gt;&gt; hei.txt
 </span><span class='line'>cat ./hei.txt
 </span><span class='line'>
-</span><span class='line'>echo -------------
-</span><span class='line'>#用ed编辑文件hei.txt,编辑命令为1,d,2,...
-</span><span class='line'>#  下面的'$'用'\'转义,为了防止shell对其做解释,因为要解释它的应该是ed
+</span><span class='line'><span class="nb">echo</span> -------------
+</span><span class='line'><span class="c">#用ed编辑文件hei.txt,编辑命令为1,d,2,...</span>
+</span><span class='line'><span class="c">#  下面的&#39;$&#39;用&#39;\&#39;转义,为了防止shell对其做解释,因为要解释它的应该是ed</span>
 </span><span class='line'>ed ./hei.txt &lt;&lt;!SomeOperations!
 </span><span class='line'>1
 </span><span class='line'>d
 </span><span class='line'>2
-</span><span class='line'>\$s/you/me/
+</span><span class='line'><span class="se">\$</span>s/you/me/
 </span><span class='line'>w
 </span><span class='line'>q
 </span><span class='line'>!SomeOperations!
 </span><span class='line'>cat ./hei.txt
 </span><span class='line'>rm ./hei.txt
 </span><span class='line'>
-</span><span class='line'>#调试shell程序
-</span><span class='line'># set -o noexec, 简写set -n, 命令行sh -n foo.sh         //只检查语法,不执行
-</span><span class='line'># set -o verbose, 简写set -v, 命令行sh -v foo.sh        //执行命令前先回显
-</span><span class='line'># set -o xtrace, 简写set -x, 命令行sh -x foo.sh         //执行命令后回显
-</span><span class='line'># set -o nounset, 简写set -u                            //若使用了未定义的变量,给出出错信息
-</span><span class='line'>echo '----------set -v---------'
-</span><span class='line'>set -v
+</span><span class='line'><span class="c">#调试shell程序</span>
+</span><span class='line'><span class="c"># set -o noexec, 简写set -n, 命令行sh -n foo.sh         //只检查语法,不执行</span>
+</span><span class='line'><span class="c"># set -o verbose, 简写set -v, 命令行sh -v foo.sh        //执行命令前先回显</span>
+</span><span class='line'><span class="c"># set -o xtrace, 简写set -x, 命令行sh -x foo.sh         //执行命令后回显</span>
+</span><span class='line'><span class="c"># set -o nounset, 简写set -u                            //若使用了未定义的变量,给出出错信息</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;----------set -v---------&#39;</span>
+</span><span class='line'><span class="nb">set</span> -v
 </span><span class='line'>ls
-</span><span class='line'>set +v          #+v表示关闭verbose选项
+</span><span class='line'><span class="nb">set</span> +v          <span class="c">#+v表示关闭verbose选项</span>
 </span><span class='line'>
-</span><span class='line'>echo '----------set -u---------'
-</span><span class='line'>set -u
-</span><span class='line'>#echo $nodefine  #使用了为定义的变量,给出错误信息
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;----------set -u---------&#39;</span>
+</span><span class='line'><span class="nb">set</span> -u
+</span><span class='line'><span class="c">#echo $nodefine  #使用了为定义的变量,给出错误信息</span>
 </span><span class='line'>
-</span><span class='line'>#捕获退出信号,输出变量值
-</span><span class='line'>echo ------------trap handler signal-----------
-</span><span class='line'>foovar="i'm something important."
-</span><span class='line'>trap 'echo Exiting: foovar= $foovar' EXIT</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="c">#捕获退出信号,输出变量值</span>
+</span><span class='line'><span class="nb">echo</span> ------------trap handler signal-----------
+</span><span class='line'><span class="nv">foovar</span><span class="o">=</span><span class="s2">&quot;i&#39;m something important.&quot;</span>
+</span><span class='line'><span class="nb">trap</span> <span class="s1">&#39;echo Exiting: foovar= $foovar&#39;</span> EXIT
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>18 . dialog.sh</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -3282,33 +4036,34 @@ void main()
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
 </span><span class='line'>
-</span><span class='line'>#dialog命令: linux控制台下的简单GUI程序
-</span><span class='line'>#对话框   标题                  消息框
-</span><span class='line'>dialog --title "Message you" --msgbox "Tell you something you do not know." 8 40
-</span><span class='line'>if [ $? = 0 ]; then
-</span><span class='line'>    dialog --infobox "your choose: OK" 5 20
+</span><span class='line'><span class="c">#dialog命令: linux控制台下的简单GUI程序</span>
+</span><span class='line'><span class="c">#对话框   标题                  消息框</span>
+</span><span class='line'>dialog --title <span class="s2">&quot;Message you&quot;</span> --msgbox <span class="s2">&quot;Tell you something you do not know.&quot;</span> <span class="m">8</span> 40
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="o">=</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span><span class='line'>    dialog --infobox <span class="s2">&quot;your choose: OK&quot;</span> <span class="m">5</span> 20
 </span><span class='line'>    sleep 1
 </span><span class='line'>    dialog --clear
-</span><span class='line'>fi
+</span><span class='line'><span class="k">fi</span>
 </span><span class='line'>
-</span><span class='line'>#对话框   标题                       复选列表    提示        高  宽 选项数 选项编号,文本,状态....                      标准错误重定向(dialog的输出)
-</span><span class='line'>dialog --title "Check box example" --checklist "Pick Number" 15  25   3     1 "one" "off" 2 "two" "on" 3 "three" "off"  2&gt; /tmp/tmp_file_$$.txt
-</span><span class='line'>ret=$?                                  #保存dialog的返回值
-</span><span class='line'>res=$(cat /tmp/tmp_file_$$.txt)         #保存dialog的输出值(用户选择的选项)
-</span><span class='line'>if [ $ret = 0 ]; then
-</span><span class='line'>    dialog --infobox "Your choise: $res" 10 30
-</span><span class='line'>else
-</span><span class='line'>    dialog --infobox "Bad, you canceled!" 10 30
-</span><span class='line'>fi
+</span><span class='line'><span class="c">#对话框   标题                       复选列表    提示        高  宽 选项数 选项编号,文本,状态....                      标准错误重定向(dialog的输出)</span>
+</span><span class='line'>dialog --title <span class="s2">&quot;Check box example&quot;</span> --checklist <span class="s2">&quot;Pick Number&quot;</span> <span class="m">15</span>  <span class="m">25</span>   <span class="m">3</span>     <span class="m">1</span> <span class="s2">&quot;one&quot;</span> <span class="s2">&quot;off&quot;</span> <span class="m">2</span> <span class="s2">&quot;two&quot;</span> <span class="s2">&quot;on&quot;</span> <span class="m">3</span> <span class="s2">&quot;three&quot;</span> <span class="s2">&quot;off&quot;</span>  2&gt; /tmp/tmp_file_<span class="nv">$$</span>.txt
+</span><span class='line'><span class="nv">ret</span><span class="o">=</span><span class="nv">$?</span>                                  <span class="c">#保存dialog的返回值</span>
+</span><span class='line'><span class="nv">res</span><span class="o">=</span><span class="k">$(</span>cat /tmp/tmp_file_<span class="nv">$$</span>.txt<span class="k">)</span>         <span class="c">#保存dialog的输出值(用户选择的选项)</span>
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="nv">$ret</span> <span class="o">=</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span><span class='line'>    dialog --infobox <span class="s2">&quot;Your choise: $res&quot;</span> <span class="m">10</span> 30
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>    dialog --infobox <span class="s2">&quot;Bad, you canceled!&quot;</span> <span class="m">10</span> 30
+</span><span class='line'><span class="k">fi</span>
 </span><span class='line'>
-</span><span class='line'>echo "$res"</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$res&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>19. merge.sh : 合并list.txt中列出的当前目录下的文件</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -3345,43 +4100,44 @@ void main()
 <span class='line-number'>35</span>
 <span class='line-number'>36</span>
 <span class='line-number'>37</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
 </span><span class='line'>
-</span><span class='line'>if [ -f list2.txt ]
-</span><span class='line'>then
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> -f list2.txt <span class="o">]</span>
+</span><span class='line'><span class="k">then</span>
 </span><span class='line'>    rm -f list2.txt
-</span><span class='line'>fi
+</span><span class='line'><span class="k">fi</span>
 </span><span class='line'>
-</span><span class='line'>cat ./list.txt | while read line　　　　　　#读取list.txt的每一行
-</span><span class='line'>do
-</span><span class='line'>    echo ${line#*[[:blank:]]} &gt;&gt; list2.txt      #去掉行首的序号和空白字符
-</span><span class='line'>done
+</span><span class='line'>cat ./list.txt <span class="p">|</span> <span class="k">while</span> <span class="nb">read </span>line　　　　　　#读取list.txt的每一行
+</span><span class='line'><span class="k">do</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="k">${</span><span class="nv">line</span><span class="p">#*[[:</span><span class="nv">blank</span><span class="p">:]]</span><span class="k">}</span> &gt;&gt; list2.txt      <span class="c">#去掉行首的序号和空白字符</span>
+</span><span class='line'><span class="k">done</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>x=0         #文件序号
-</span><span class='line'>if [ -f merged.txt ]
-</span><span class='line'>then
+</span><span class='line'><span class="nv">x</span><span class="o">=</span><span class="m">0</span>         <span class="c">#文件序号</span>
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> -f merged.txt <span class="o">]</span>
+</span><span class='line'><span class="k">then</span>
 </span><span class='line'>    rm -r merged.txt
-</span><span class='line'>fi
+</span><span class='line'><span class="k">fi</span>
 </span><span class='line'>
-</span><span class='line'>cat ./list2.txt | while read line
-</span><span class='line'>do
-</span><span class='line'>    x=$(($x + 1))
-</span><span class='line'>    echo "************** $x . $line : start ************" &gt;&gt; merged.txt
-</span><span class='line'>    cat ./$line &gt;&gt; merged.txt
-</span><span class='line'>    echo "************** $x . $line : end **************" &gt;&gt; merged.txt
-</span><span class='line'>    echo "                                               " &gt;&gt; merged.txt
-</span><span class='line'>    echo "                  @ @                       " &gt;&gt; merged.txt
-</span><span class='line'>    echo "                 ( V )                       " &gt;&gt; merged.txt
-</span><span class='line'>    echo "                  ^ ^                       " &gt;&gt; merged.txt
-</span><span class='line'>    echo "                       .=.=.0             " &gt;&gt; merged.txt
-</span><span class='line'>    echo "                                             " &gt;&gt; merged.txt
-</span><span class='line'>done
+</span><span class='line'>cat ./list2.txt <span class="p">|</span> <span class="k">while</span> <span class="nb">read </span>line
+</span><span class='line'><span class="k">do</span>
+</span><span class='line'>    <span class="nv">x</span><span class="o">=</span><span class="k">$((</span><span class="nv">$x</span> <span class="o">+</span> <span class="m">1</span><span class="k">))</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;************** $x . $line : start ************&quot;</span> &gt;&gt; merged.txt
+</span><span class='line'>    cat ./<span class="nv">$line</span> &gt;&gt; merged.txt
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;************** $x . $line : end **************&quot;</span> &gt;&gt; merged.txt
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;                                               &quot;</span> &gt;&gt; merged.txt
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;                  @ @                       &quot;</span> &gt;&gt; merged.txt
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;                 ( V )                       &quot;</span> &gt;&gt; merged.txt
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;                  ^ ^                       &quot;</span> &gt;&gt; merged.txt
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;                       .=.=.0             &quot;</span> &gt;&gt; merged.txt
+</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;                                             &quot;</span> &gt;&gt; merged.txt
+</span><span class='line'><span class="k">done</span>
 </span><span class='line'>
-</span><span class='line'>if [ -f list2.txt ]
-</span><span class='line'>then
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> -f list2.txt <span class="o">]</span>
+</span><span class='line'><span class="k">then</span>
 </span><span class='line'>    rm -f list2.txt
-</span><span class='line'>fi                                       </span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="k">fi</span>
+</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>

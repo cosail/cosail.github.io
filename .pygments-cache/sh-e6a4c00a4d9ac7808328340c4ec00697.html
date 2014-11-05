@@ -1,0 +1,36 @@
+<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+<span class="c">#</span>
+<span class="c">#   shell命令</span>
+<span class="c">#</span>
+
+<span class="nb">echo</span> ------------echo----------------
+<span class="c">#命令5:&quot;echo&quot;</span>
+<span class="c">#不换行显示</span>
+<span class="nb">echo</span> -n <span class="s2">&quot;string to output.&quot;</span>     <span class="c">#-n代表不输出换行</span>
+<span class="nb">echo</span> -e <span class="s2">&quot;string to output.\c&quot;</span>   <span class="c">#开启转义,\c代表结束输出(请看:man echo)</span>
+
+
+<span class="nb">echo</span>    <span class="c">#换行</span>
+<span class="nb">echo</span> ------------eval--------------
+<span class="c">#命令6:&quot;eval&quot;           //对参数求值:像另一个$,它给出一个变量的值的值</span>
+<span class="nv">foo</span><span class="o">=</span>10
+<span class="nv">x</span><span class="o">=</span>foo
+<span class="nv">y</span><span class="o">=</span><span class="s1">&#39;$&#39;</span><span class="nv">$x</span>         <span class="c">#y=&#39;$foo&#39;</span>
+<span class="nb">echo</span> <span class="nv">$y</span>
+
+<span class="nb">eval </span><span class="nv">y</span><span class="o">=</span><span class="s1">&#39;$&#39;</span><span class="nv">$x</span>    <span class="c">#y=$foo=10</span>
+<span class="nb">echo</span> <span class="nv">$y</span>
+
+
+<span class="nb">echo</span> ------------exec-------------
+<span class="c">#命令7:&quot;exec&quot;   //exec命令在执行时会把当前的shell进程关闭，然后换到后面的命令继续执行。</span>
+<span class="c">#如:&quot;exec touch afile&quot;      //会关闭shell,并创建文件afile.</span>
+
+
+<span class="nb">echo</span> -------------exit-------------
+<span class="c">#命令8:&quot;exit&quot;</span>
+<span class="nb">exit </span><span class="m">0</span>  <span class="c">#成功</span>
+<span class="nb">exit </span><span class="m">1</span>  <span class="c"># 1-125表错误码</span>
+<span class="c">#126表文件不可执行,127表命令未找到,128及以上表出现一个信号</span>
+</pre></div>

@@ -1,0 +1,64 @@
+<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+<span class="c">#</span>
+<span class="c">#Shell函数</span>
+<span class="c">#</span>
+
+func<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">&quot;this&quot;</span>
+    <span class="nb">echo</span> <span class="s2">&quot;that&quot;</span>
+    ls /bin/ls
+    <span class="nb">echo</span> <span class="s2">&quot;result&quot;</span>
+
+    <span class="k">return</span> 0
+<span class="o">}</span>
+
+<span class="c">#直接调用函数</span>
+func
+
+<span class="nb">echo</span> <span class="s2">&quot;-----------------------------&quot;</span>
+
+<span class="c">#res会捕获func()函数echo的字符串</span>
+<span class="nv">res</span><span class="o">=</span><span class="s2">&quot;$(func)&quot;</span>   <span class="c">#调用函数就跟使用其他命令一样</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;func() executed completely:&quot;</span>
+<span class="nb">echo</span> <span class="nv">$res</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;-----------------------------&quot;</span>
+
+<span class="c">#函数内局部变量</span>
+func2<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">res</span><span class="o">=</span><span class="s2">&quot;local res&quot;</span>               <span class="c">#local声明局部变量</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Inside func2(): res=$res&quot;</span>
+<span class="o">}</span>
+
+func2
+<span class="nb">echo</span> <span class="s2">&quot;Outside func2(): res=$res&quot;</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;-----------------------------&quot;</span>
+
+<span class="c">#从函数返回一个值</span>
+yes_or_no<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Is your name $* ?&quot;</span>        <span class="c">#这里的$*是传给函数的所有参数,不是传给shell程序的参数</span>
+    <span class="k">while</span> <span class="nb">true</span>
+<span class="nb">    </span><span class="k">do</span>
+        <span class="nb">echo</span> -n <span class="s2">&quot;Enter yes or no: &quot;</span>
+        <span class="nb">read </span>x
+        
+        <span class="k">case</span> <span class="s2">&quot;$x&quot;</span> in
+            y <span class="p">|</span> yes<span class="o">)</span>    <span class="k">return</span> 0<span class="p">;;</span>
+            n <span class="p">|</span> no<span class="o">)</span>     <span class="k">return</span> 1<span class="p">;;</span>
+            *<span class="o">)</span>          <span class="nb">echo</span> <span class="s2">&quot;Answer yes or no please.&quot;</span>
+        <span class="k">esac</span>
+    <span class="k">done</span>
+<span class="o">}</span>
+
+<span class="k">if</span> yes_or_no <span class="s2">&quot;$1&quot;</span>   <span class="c">#调用函数并传递参数,根据return值判断执行成功还是失败</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Hi, $1&quot;</span>   <span class="c">#仅当return 0时执行这句</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Who you are&quot;</span>
+<span class="k">fi</span>
+
+<span class="nb">exit </span>0
+</pre></div>

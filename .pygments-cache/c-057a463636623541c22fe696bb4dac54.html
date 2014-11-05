@@ -1,0 +1,11 @@
+<div class="highlight"><pre><span class="cm">/* 函数原型 */</span>
+<span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="nf">rb_first</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">tree</span><span class="p">);</span>
+<span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="nf">rb_last</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">tree</span><span class="p">);</span>
+<span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="nf">rb_next</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+<span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="nf">rb_prev</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">node</span><span class="p">);</span>
+
+<span class="cm">/* 遍历红黑树示例代码 */</span>
+<span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">node</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">node</span> <span class="o">=</span> <span class="n">rb_first</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mytree</span><span class="p">);</span> <span class="n">node</span><span class="p">;</span> <span class="n">node</span> <span class="o">=</span> <span class="n">rb_next</span><span class="p">(</span><span class="n">node</span><span class="p">))</span>
+    <span class="n">printk</span><span class="p">(</span><span class="s">&quot;key=%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">rb_entry</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="k">struct</span> <span class="n">mytype</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">keystring</span><span class="p">);</span>
+</pre></div>

@@ -1,0 +1,49 @@
+<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+<span class="c">#</span>
+<span class="c"># shell命令</span>
+<span class="c">#</span>
+
+<span class="nb">echo</span> -------------export--------------
+<span class="c">#命令9:&quot;export&quot;</span>
+<span class="nv">foo</span><span class="o">=</span><span class="s2">&quot;The first var&quot;</span>
+<span class="nb">export </span><span class="nv">bar</span><span class="o">=</span><span class="s2">&quot;The second var&quot;</span> <span class="c">#被导出</span>
+<span class="nv">foo12</span><span class="o">=</span><span class="s2">&quot;The 1.5th var&quot;</span>
+
+<span class="c">#或set -allexport,表示导出后面声明的所有变量</span>
+<span class="nb">set</span> -a  
+<span class="nv">foo2</span><span class="o">=</span><span class="s2">&quot;The third var&quot;</span>    <span class="c">#被导出</span>
+<span class="nv">bar2</span><span class="o">=</span><span class="s2">&quot;The fourth var&quot;</span>   <span class="c">#被导出</span>
+
+./another.sh        <span class="c">#调用另一个shell脚本,它只能看见导出的bar变量,而看不到foo</span>
+
+<span class="nb">echo</span> -----------expr------------
+<span class="c">#命令10:&quot;expr&quot;      //将它的参数作为一个表达式来求值</span>
+<span class="nv">x</span><span class="o">=</span>3
+<span class="nb">echo</span> <span class="s2">&quot;$x&quot;</span>
+<span class="nv">x</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$x</span> + 1<span class="sb">`</span>     <span class="c">#可替换为$((...))语法,更有效</span>
+<span class="nb">echo</span> <span class="s2">&quot;$x&quot;</span>
+<span class="nv">x</span><span class="o">=</span><span class="k">$(</span>expr <span class="nv">$x</span> + 1<span class="k">)</span>
+<span class="nb">echo</span> <span class="s2">&quot;$x&quot;</span>
+
+<span class="nb">echo</span> -------------printf------------
+<span class="c">#命令11:&quot;printf&quot;        //较新的版本shell提供该命令产生格式化输出,用来代替echo</span>
+<span class="nv">y</span><span class="o">=</span><span class="s2">&quot;you are not you.&quot;</span>
+<span class="nb">printf</span> <span class="s2">&quot;%s:x=%d,y=\&quot;%s\&quot;\n&quot;</span> <span class="s2">&quot;info&quot;</span> <span class="s2">&quot;$x&quot;</span> <span class="s2">&quot;$y&quot;</span>    <span class="c">#$y要用&quot;&quot;包围</span>
+
+<span class="nb">echo</span> -----------set--------------
+<span class="c">#命令12:&quot;set&quot;           //为shell设置参数变量,就像脚本的参数(命令9用法不太一样)</span>
+<span class="nb">set</span> <span class="k">$(</span>date<span class="k">)</span>     <span class="c">#设置参数为date命令的输出(空格分隔的)</span>
+<span class="nb">echo</span> <span class="nv">$0</span>,<span class="nv">$1</span>,<span class="nv">$2</span>,<span class="nv">$3</span>
+<span class="nb">set </span><span class="m">1</span> <span class="s2">&quot;go you&quot;</span> 5000
+<span class="nb">echo</span> <span class="nv">$1</span>,<span class="nv">$2</span>,<span class="nv">$3</span>
+
+<span class="nb">echo</span> -----------shift-----------
+<span class="c">#命令12:&quot;shift&quot;         //将所有的参数变量左移一个位置:$2变为$1...,注意$0不变</span>
+<span class="k">while</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> !<span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>
+    <span class="nb">echo</span> <span class="s2">&quot;$1&quot;</span>
+    <span class="nb">shift</span>
+<span class="k">done</span>
+
+<span class="nb">exit </span>0
+</pre></div>

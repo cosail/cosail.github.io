@@ -1,0 +1,11 @@
+<div class="highlight"><pre><span class="cm">/* 删除节点函数原型 */</span>
+<span class="kt">void</span> <span class="nf">rb_erase</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">victim</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">tree</span><span class="p">);</span>
+
+<span class="cm">/* 删除节点示例代码 */</span>
+<span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">mysearch</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mytree</span><span class="p">,</span> <span class="s">&quot;walrus&quot;</span><span class="p">);</span>  <span class="c1">// 查找节点位置</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">rb_erase</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">node</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">mytree</span><span class="p">);</span>  <span class="c1">// 从红黑树删除节点</span>
+	<span class="n">myfree</span><span class="p">(</span><span class="n">data</span><span class="p">);</span> <span class="c1">// 释放结构体内存空间</span>
+<span class="p">}</span>
+</pre></div>

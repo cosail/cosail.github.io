@@ -11,6 +11,14 @@
   </url>
   
   <url>
+    <loc>http://cosail.github.io/blog/2014/11/02/shi-yong-dothui-tu/</loc>
+    
+    <lastmod>2014-11-02T23:20:28+08:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://cosail.github.io/blog/2014/10/31/dotyu-yan/</loc>
     
     <lastmod>2014-10-31T11:02:40+08:00</lastmod>
@@ -54,6 +62,38 @@
     <loc>http://cosail.github.io/blog/2014/10/25/markdownge-shi/</loc>
     
     <lastmod>2014-10-25T21:23:16+08:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://cosail.github.io/blog/2014/10/24/shu-ju-jie-gou-gai-shu/</loc>
+    
+    <lastmod>2014-10-24T20:19:57+08:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://cosail.github.io/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/</loc>
+    
+    <lastmod>2014-10-23T17:09:08+08:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://cosail.github.io/blog/2014/10/23/linux-kernelzhong-de-rbtree/</loc>
+    
+    <lastmod>2014-10-23T15:18:34+08:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://cosail.github.io/blog/2014/10/22/structli-de-number-define/</loc>
+    
+    <lastmod>2014-10-22T22:18:21+08:00</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -117,21 +157,21 @@
   
   <url>
     <loc>http://cosail.github.io/new-page/about_me.html</loc>
-    <lastmod>2014-11-05T20:21:53+08:00</lastmod>
+    <lastmod>2014-11-05T20:24:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://cosail.github.io/blog/archives/</loc>
-    <lastmod>2014-11-05T20:21:53+08:00</lastmod>
+    <lastmod>2014-11-05T20:24:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://cosail.github.io/</loc>
-    <lastmod>2014-11-05T20:21:53+08:00</lastmod>
+    <lastmod>2014-11-05T20:24:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>

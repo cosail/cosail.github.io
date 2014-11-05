@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tools | cosail's blog]]></title>
   <link href="http://cosail.github.io/blog/categories/tools/atom.xml" rel="self"/>
   <link href="http://cosail.github.io/"/>
-  <updated>2014-11-05T20:21:53+08:00</updated>
+  <updated>2014-11-05T20:24:37+08:00</updated>
   <id>http://cosail.github.io/</id>
   <author>
     <name><![CDATA[cosail]]></name>
@@ -14,84 +14,15 @@
 
   
   <entry>
-    <title type="html"><![CDATA[DOT语言]]></title>
-    <link href="http://cosail.github.io/blog/2014/10/31/dotyu-yan/"/>
-    <updated>2014-10-31T11:02:40+08:00</updated>
-    <id>http://cosail.github.io/blog/2014/10/31/dotyu-yan</id>
-    <content type="html"><![CDATA[<p><strong>DOT语言</strong>是一种文本图形描述语言，提供一种方便的描述图形的方法。
-<code>开源的Graphviz软件包包含了一组工具，能够用来绘制DOT语言脚本和描述的图形，也提供了可调用的函数库。</code></p>
+    <title type="html"><![CDATA[使用dot绘图]]></title>
+    <link href="http://cosail.github.io/blog/2014/11/02/shi-yong-dothui-tu/"/>
+    <updated>2014-11-02T23:20:28+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/11/02/shi-yong-dothui-tu</id>
+    <content type="html"><![CDATA[<h3>0 DOT语言简介</h3>
 
-<p>DOT语言文件的后缀名通常为：.gv 或 .dot。</p>
+<p><a href="http://cosail.github.io/blog/2014/10/31/dotyu-yan/">DOT语言</a></p>
 
-<h3>DOT语言的语法</h3>
-
-<p>下面是定义DOT语言的抽象语法：<br/>
-<img src="http://cosail.github.io/images/dot-grammar.jpg" title="" alt="" /></p>
-
-<p><strong>对于上图的几点说明：</strong></p>
-
-<ol>
-<li>粗体为终结符，斜体为非终结符；</li>
-<li>(&hellip;)表示分组，‘|’表示可替换，[&hellip;]表示可选项；</li>
-<li>关键字node, edge, graph, digraph, subgraph, strict用大小写均可；</li>
-<li>compass_pt 为方位点，它们不是关键字；</li>
-<li>node_id 仅仅是一个字符串，形如abc_2，2.34，<html-like>，“with space”；</li>
-</ol>
-
-
-<p><strong>有关语法的其他说明：</strong></p>
-
-<ol>
-<li>DOT语言支持C++风格的注释： /**/ 和 //；</li>
-<li>以‘#’开头的行视为来自C预处理器的输出行，会被丢弃；</li>
-<li>允许被双引号包围的字符串跨越多行，另外也能使用字符串拼接操作符‘+’；</li>
-<li>在 digraph 中，边操作符为 ->；而在 graph 中，边操作符为 &ndash;。</li>
-</ol>
-
-
-<h3>Subgraphs和Clusters</h3>
-
-<p><strong>Subgraphs在graphviz中有三个作用：</strong><br/>
-1.一个subgraph可用来在结构上表示某些节点和边应该被分为一组。另外还可将subgraph置于边操作符的两边，方便地支持快捷表示，如：
-<code>
-A -&gt; {B C}
-</code>
-等价于
-<code>
-A -&gt; B
-A -&gt; C
-</code></p>
-
-<p>2.subgraph可以为属性设置提供一个上下文环境。比如subgraph可以指定其中定义的所有节点的默认颜色为蓝色，如下还可以把某些节点安排在一个层级：
-<code>
-subgraph {
-    rank = same;
-    A -&gt; B; B -&gt; C;
-}
-</code>
-这样，A、B、C三个节点绘制是会被放在同一个层级。</p>
-
-<p>3.如果subgraph的名字以“cluster”开头，Graphviz会把它看作一个特殊的&#8221;cluster subgraph&#8221;。布局引擎在布局时会将属于同一个cluster的节点绘制在一块，整个cluster绘制在一个矩形框内。</p>
-
-<h3>词法和语义说明</h3>
-
-<ol>
-<li>可以使用一个node, edge, 或graph语句，或者通过未附加到节点或边上的属性赋值来定义一个默认属性。这样，后面定义的对象会继承该属性，直到默认属性值被重新设置。</li>
-<li>一个subgraph在其定义时会继承父graph的属性设置，如默认字体等。</li>
-<li>如果一条边属于一个cluster，那么他的端点也属于该cluster。</li>
-<li>graph和subgraph其实是共享同一个命名空间，它们的名字必须唯一。</li>
-</ol>
-
-
-<h3>字符编码</h3>
-
-<p>DOT可接受UTF-8，Latin1(ISO-8859-1)字符集编码。默认为UTF-8。使用其它编码是也许得用到其它程序来转换，如iconv。</p>
-
-<hr />
-
-<hr />
-
-<hr />
+<h3>1 dot命令</h3>
 
 <p>使用如下命令来将.dot文件翻译成.jpg文件：
 <code>
@@ -178,38 +109,104 @@ $ dot -Tjpg hello.dot -o hello.jpg
 
 <p><strong>代码如下：</strong><br/>
 <code>注解：</code><strong>“端口”</strong>表示边和节点的连接位置。<br/>
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>digraph structs {
-</span><span class='line'>    node [shape=record]; //节点的默认形状设为“record”&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;/* 下面"&lt;&gt;"中为节点的端口,两字段的端口名分别为"f0","f1" */
-</span><span class='line'>struct2 [label="&lt;f0&gt; one | &lt;f1&gt; two"];
-</span><span class='line'>/* 形状为圆角record，'\ '为空格 */
-</span><span class='line'>struct1 [shape=Mrecord, label="&lt;f0&gt; left | &lt;f1&gt; mid\ dle | &lt;f2&gt; right"]; 
-</span><span class='line'>/* 用'\n'给标签文本换行，&lt;here&gt;是一个能和边相连的端口 */
-</span><span class='line'>struct3 [label="hello\nworld | { b |{c|&lt;here&gt; d|e}| f} | g | h"]; 
-</span><span class='line'>
-</span><span class='line'>struct1:f1 -&gt; struct2:f0; 
-</span><span class='line'>/* 从节点struct1的端口f2,连接到节点struct3的端口here */
-</span><span class='line'>struct1:f2 -&gt; struct3:here; 
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;}</span></code></pre></td></tr></table></div></figure></p>
+&#8220;`
+digraph structs {
+    node [shape=record]; //节点的默认形状设为“record”</p>
+
+<pre><code>/* 下面"&lt;&gt;"中为节点的端口,两字段的端口名分别为"f0","f1" */
+struct2 [label="&lt;f0&gt; one | &lt;f1&gt; two"];
+/* 形状为圆角record，'\ '为空格 */
+struct1 [shape=Mrecord, label="&lt;f0&gt; left | &lt;f1&gt; mid\ dle | &lt;f2&gt; right"]; 
+/* 用'\n'给标签文本换行，&lt;here&gt;是一个能和边相连的端口 */
+struct3 [label="hello\nworld | { b |{c|&lt;here&gt; d|e}| f} | g | h"]; 
+
+struct1:f1 -&gt; struct2:f0; 
+/* 从节点struct1的端口f2,连接到节点struct3的端口here */
+struct1:f2 -&gt; struct3:here; 
+</code></pre>
+
+<p>}
+&#8220;`</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[DOT语言]]></title>
+    <link href="http://cosail.github.io/blog/2014/10/31/dotyu-yan/"/>
+    <updated>2014-10-31T11:02:40+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/10/31/dotyu-yan</id>
+    <content type="html"><![CDATA[<p><strong>DOT语言</strong>是一种文本图形描述语言，提供一种方便的描述图形的方法。
+<code>开源的Graphviz软件包包含了一组工具，能够用来绘制DOT语言脚本和描述的图形，也提供了可调用的函数库。</code></p>
+
+<p>DOT语言文件的后缀名通常为：.gv 或 .dot。</p>
+
+<h3>DOT语言的语法</h3>
+
+<p>下面是定义DOT语言的抽象语法：<br/>
+<img src="http://cosail.github.io/images/dot-grammar.jpg" title="" alt="" /></p>
+
+<p><strong>对于上图的几点说明：</strong></p>
+
+<ol>
+<li>粗体为终结符，斜体为非终结符；</li>
+<li>(&hellip;)表示分组，‘|’表示可替换，[&hellip;]表示可选项；</li>
+<li>关键字node, edge, graph, digraph, subgraph, strict用大小写均可；</li>
+<li>compass_pt 为方位点，它们不是关键字；</li>
+<li>node_id 仅仅是一个字符串，形如abc_2，2.34，<html-like>，“with space”；</li>
+</ol>
+
+
+<p><strong>有关语法的其他说明：</strong></p>
+
+<ol>
+<li>DOT语言支持C++风格的注释： /**/ 和 //；</li>
+<li>以‘#’开头的行视为来自C预处理器的输出行，会被丢弃；</li>
+<li>允许被双引号包围的字符串跨越多行，另外也能使用字符串拼接操作符‘+’；</li>
+<li>在 digraph 中，边操作符为 ->；而在 graph 中，边操作符为 &ndash;。</li>
+</ol>
+
+
+<h3>Subgraphs和Clusters</h3>
+
+<p><strong>Subgraphs在graphviz中有三个作用：</strong><br/>
+1.一个subgraph可用来在结构上表示某些节点和边应该被分为一组。另外还可将subgraph置于边操作符的两边，方便地支持快捷表示，如：
+<code>
+A -&gt; {B C}
+</code>
+等价于
+<code>
+A -&gt; B
+A -&gt; C
+</code></p>
+
+<p>2.subgraph可以为属性设置提供一个上下文环境。比如subgraph可以指定其中定义的所有节点的默认颜色为蓝色，如下还可以把某些节点安排在一个层级：
+<code>
+subgraph {
+    rank = same;
+    A -&gt; B; B -&gt; C;
+}
+</code>
+这样，A、B、C三个节点绘制是会被放在同一个层级。</p>
+
+<p>3.如果subgraph的名字以“cluster”开头，Graphviz会把它看作一个特殊的&#8221;cluster subgraph&#8221;。布局引擎在布局时会将属于同一个cluster的节点绘制在一块，整个cluster绘制在一个矩形框内。</p>
+
+<h3>词法和语义说明</h3>
+
+<ol>
+<li>可以使用一个node, edge, 或graph语句，或者通过未附加到节点或边上的属性赋值来定义一个默认属性。这样，后面定义的对象会继承该属性，直到默认属性值被重新设置。</li>
+<li>一个subgraph在其定义时会继承父graph的属性设置，如默认字体等。</li>
+<li>如果一条边属于一个cluster，那么他的端点也属于该cluster。</li>
+<li>graph和subgraph其实是共享同一个命名空间，它们的名字必须唯一。</li>
+</ol>
+
+
+<h3>字符编码</h3>
+
+<p>DOT可接受UTF-8，Latin1(ISO-8859-1)字符集编码。默认为UTF-8。使用其它编码是也许得用到其它程序来转换，如iconv。</p>
+
+<h3>dot使用参考</h3>
+
+<p><a href="http://cosail.github.io/blog/2014/11/02/shi-yong-dothui-tu/">使用dot绘图</a></p>
 ]]></content>
   </entry>
   

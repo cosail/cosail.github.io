@@ -9,8 +9,22 @@
   <meta name="author" content="cosail">
 
   
+<<<<<<< HEAD
   <meta name="description" content="以下是阅读《Pro Git》时的记录
 《Pro Git》Scott Chacon 2010, licensed under the Creative Commons Attribution-Non Commercial-Share Alike 3.0 license. 1. 版本控制系统（VCS &hellip;">
+=======
+  <meta name="description" content="有时会看到结构体里有宏定义，如下： 1
+2
+3
+4
+5
+6
+7
+8
+struct rb_node
+{ unsigned long rb_parent_color;
+#define RB_RED 0 #define RB_BLACK 1 struct rb_node *rb_right; &hellip;">
+>>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -28,11 +42,16 @@
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<<<<<<< HEAD
+<!--link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"-->
+<!--link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"-->
+=======
 
 <!--2014.10.28：断网后访问不了下面链接，妨碍本地显示，就给注释掉了
 <link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 &#8211;>
+>>>>>>> db4b36a8fb1155636023438872bd72f8838f4e05
 
 <!-- wuwei: 链接在新标签中打开 -->
 <!-- base target="_blank" --> 
@@ -85,7 +104,11 @@
 
   <header>
     
+<<<<<<< HEAD
       <h1 class="entry-title"><a href="/blog/2014/10/12/git-start/">Git概述及初配置</a></h1>
+=======
+      <h1 class="entry-title"><a href="/blog/2014/10/22/structli-de-number-define/">为什么在struct里定义宏</a></h1>
+>>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
     
 
     
@@ -95,12 +118,21 @@
 
 
 
+<<<<<<< HEAD
 <time class='entry-date' datetime='2014-10-12T20:16:46+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:16 pm</span></time>
         
 		<!-- wuwei,2014.10.7: duoshuo -->
         
            | <a href="/blog/2014/10/12/git-start/#duoshuo_thread"
              data-disqus-identifier="http://cosail.github.io/blog/2014/10/12/git-start/">评论此文章</a>
+=======
+<time class='entry-date' datetime='2014-10-22T22:18:21+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>10:18 pm</span></time>
+        
+		<!-- wuwei,2014.10.7: duoshuo -->
+        
+           | <a href="/blog/2014/10/22/structli-de-number-define/#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io/blog/2014/10/22/structli-de-number-define/">评论此文章</a>
+>>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
         
       </p>
     
@@ -108,6 +140,7 @@
 
 
 
+<<<<<<< HEAD
   <div class="entry-content"><blockquote><p>以下是阅读《Pro Git》时的记录<br/>
 《Pro Git》Scott Chacon 2010, licensed under the Creative Commons Attribution-Non Commercial-Share Alike 3.0 license.</p></blockquote>
 
@@ -244,6 +277,34 @@
 
 
 
+=======
+  <div class="entry-content"><p>有时会看到结构体里有宏定义，如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">rb_node</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">unsigned</span> <span class="kt">long</span>  <span class="n">rb_parent_color</span><span class="p">;</span>
+</span><span class='line'><span class="cp">#define RB_RED      0  </span>
+</span><span class='line'><span class="cp">#define RB_BLACK    1  </span>
+</span><span class='line'>    <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_right</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_left</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span> <span class="n">__attribute__</span><span class="p">((</span><span class="n">aligned</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span><span class="p">))));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这是Linux内核中红黑树节点的定义，其中 rb_parent_color 的第0位用来存储节点的颜色（红/黑）。把两种颜色的宏定义放在结构体定义内，应该是为了增强代码可读性。</p>
+
+<p>因为对宏的处理是在预编译时完成的，而预处理器仅仅作简单的替换。宏从其定义处开始，至文件的尾部或取消宏(#undef)为止是可见的，struct的作用域对宏的定义没影响。</p>
+
+<p>可以用 gcc -E 命令来只做预处理而不编译，来查看宏处理后的程序源代码。</p>
+>>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
 </div>
   
   
@@ -307,13 +368,19 @@
 <section>
     <h1>分类目录</h1>
     <ul id="categories">
+<<<<<<< HEAD
         <li class='category'><a href='/blog/categories/c/'>c (1)</a></li>
+=======
+        <li class='category'><a href='/blog/categories/c/'>c (2)</a></li>
+<li class='category'><a href='/blog/categories/code/'>code (1)</a></li>
+<li class='category'><a href='/blog/categories/data-structure/'>data-structure (1)</a></li>
+>>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
 <li class='category'><a href='/blog/categories/datastruct-tree/'>datastruct-tree (2)</a></li>
 <li class='category'><a href='/blog/categories/git/'>git (3)</a></li>
 <li class='category'><a href='/blog/categories/github/'>github (3)</a></li>
 <li class='category'><a href='/blog/categories/shell/'>shell (1)</a></li>
 <li class='category'><a href='/blog/categories/text-edit/'>text-edit (2)</a></li>
-<li class='category'><a href='/blog/categories/tools/'>tools (1)</a></li>
+<li class='category'><a href='/blog/categories/tools/'>tools (2)</a></li>
 <li class='category'><a href='/blog/categories/ubuntu-faq/'>ubuntu-faq (1)</a></li>
 
     </ul>
@@ -323,7 +390,11 @@
   <ul id="recent_posts">
     
       <li class="post">
+<<<<<<< HEAD
         <a href="/blog/2014/11/05/er-wei-shu-zu-chuan-can/">二维数组如何作为参数传给函数？</a>
+=======
+        <a href="/blog/2014/11/02/shi-yong-dothui-tu/">使用dot绘图</a>
+>>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
       </li>
     
       <li class="post">
@@ -351,17 +422,20 @@
       </li>
     
       <li class="post">
-        <a href="/blog/2014/10/14/gitji-chu-cao-zuo/">Git基础操作</a>
+        <a href="/blog/2014/10/24/shu-ju-jie-gou-gai-shu/">数据结构概述</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/10/14/emacskuai-jie-jian/">Emacs快捷键及命令</a>
+        <a href="/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/">Typeof获取表达式类型</a>
       </li>
     
+<<<<<<< HEAD
+=======
       <li class="post">
-        <a href="/blog/2014/10/13/shellyu-fa/">Shell语法</a>
+        <a href="/blog/2014/10/23/linux-kernelzhong-de-rbtree/">Linux Kernel中的红黑树</a>
       </li>
     
+>>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
   </ul>
 </section>
 

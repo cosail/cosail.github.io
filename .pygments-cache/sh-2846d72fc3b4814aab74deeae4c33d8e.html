@@ -1,0 +1,51 @@
+<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+<span class="c"># &lt;&lt;TAG 和 TAG中间的内容就好象是标准输入的内容</span>
+<span class="nb">echo</span> <span class="s1">&#39;--------------&lt;&lt;TAG--------------&#39;</span>
+cat &lt;&lt;!SomeText!
+hello you little boy.
+hello you boy.
+hello you.
+hello.
+!SomeText!
+
+<span class="nb">echo</span> -------------
+<span class="nb">echo</span> <span class="s2">&quot;hello.&quot;</span> &gt; hei.txt
+<span class="nb">echo</span> <span class="s2">&quot;hello you.&quot;</span> &gt;&gt; hei.txt
+<span class="nb">echo</span> <span class="s2">&quot;hello you boy.&quot;</span> &gt;&gt; hei.txt
+<span class="nb">echo</span> <span class="s2">&quot;hello you little boy.&quot;</span> &gt;&gt; hei.txt
+cat ./hei.txt
+
+<span class="nb">echo</span> -------------
+<span class="c">#用ed编辑文件hei.txt,编辑命令为1,d,2,...</span>
+<span class="c">#  下面的&#39;$&#39;用&#39;\&#39;转义,为了防止shell对其做解释,因为要解释它的应该是ed</span>
+ed ./hei.txt &lt;&lt;!SomeOperations!
+1
+d
+2
+<span class="se">\$</span>s/you/me/
+w
+q
+!SomeOperations!
+cat ./hei.txt
+rm ./hei.txt
+
+<span class="c">#调试shell程序</span>
+<span class="c"># set -o noexec, 简写set -n, 命令行sh -n foo.sh         //只检查语法,不执行</span>
+<span class="c"># set -o verbose, 简写set -v, 命令行sh -v foo.sh        //执行命令前先回显</span>
+<span class="c"># set -o xtrace, 简写set -x, 命令行sh -x foo.sh         //执行命令后回显</span>
+<span class="c"># set -o nounset, 简写set -u                            //若使用了未定义的变量,给出出错信息</span>
+<span class="nb">echo</span> <span class="s1">&#39;----------set -v---------&#39;</span>
+<span class="nb">set</span> -v
+ls
+<span class="nb">set</span> +v          <span class="c">#+v表示关闭verbose选项</span>
+
+<span class="nb">echo</span> <span class="s1">&#39;----------set -u---------&#39;</span>
+<span class="nb">set</span> -u
+<span class="c">#echo $nodefine  #使用了为定义的变量,给出错误信息</span>
+
+<span class="c">#捕获退出信号,输出变量值</span>
+<span class="nb">echo</span> ------------trap handler signal-----------
+<span class="nv">foovar</span><span class="o">=</span><span class="s2">&quot;i&#39;m something important.&quot;</span>
+<span class="nb">trap</span> <span class="s1">&#39;echo Exiting: foovar= $foovar&#39;</span> EXIT
+</pre></div>
