@@ -9,12 +9,17 @@
   <meta name="author" content="cosail">
 
   
-<<<<<<< HEAD
-  <meta name="description" content="octopress本身已经有disqus评论,但是在国内加载速度太慢，所以还是以国内的duoshuo评论替代之。 主要涉及的文件 下面根目录“/”为octopress/目录 /_config.ymlz ：添加多说相关设置变量 /source/_layouts/post.html ： &hellip;">
-=======
-  <meta name="description" content="以下是阅读《Pro Git》时的记录
-《Pro Git》Scott Chacon 2010, licensed under the Creative Commons Attribution-Non Commercial-Share Alike 3.0 license. 1. 取得项目的 Git &hellip;">
->>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
+  <meta name="description" content="有时会看到结构体里有宏定义，如下： 1
+2
+3
+4
+5
+6
+7
+8
+struct rb_node
+{ unsigned long rb_parent_color;
+#define RB_RED 0 #define RB_BLACK 1 struct rb_node *rb_right; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -94,11 +99,7 @@
 
   <header>
     
-<<<<<<< HEAD
-      <h1 class="entry-title"><a href="/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress/">添加duoshuo评论到octopress</a></h1>
-=======
-      <h1 class="entry-title"><a href="/blog/2014/10/14/gitji-chu-cao-zuo/">Git基础操作</a></h1>
->>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
+      <h1 class="entry-title"><a href="/blog/2014/10/22/structli-de-number-define/">为什么在struct里定义宏</a></h1>
     
 
     
@@ -108,21 +109,12 @@
 
 
 
-<<<<<<< HEAD
-<time class='entry-date' datetime='2014-10-08T10:25:36+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:25 am</span></time>
+<time class='entry-date' datetime='2014-10-22T22:18:21+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>10:18 pm</span></time>
         
 		<!-- wuwei,2014.10.7: duoshuo -->
         
-           | <a href="/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress/#duoshuo_thread"
-             data-disqus-identifier="http://cosail.github.io/blog/2014/10/08/tian-jia-duoshuoping-lun-dao-octopress/">评论此文章</a>
-=======
-<time class='entry-date' datetime='2014-10-14T10:34:40+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:34 am</span></time>
-        
-		<!-- wuwei,2014.10.7: duoshuo -->
-        
-           | <a href="/blog/2014/10/14/gitji-chu-cao-zuo/#duoshuo_thread"
-             data-disqus-identifier="http://cosail.github.io/blog/2014/10/14/gitji-chu-cao-zuo/">评论此文章</a>
->>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
+           | <a href="/blog/2014/10/22/structli-de-number-define/#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io/blog/2014/10/22/structli-de-number-define/">评论此文章</a>
         
       </p>
     
@@ -130,578 +122,7 @@
 
 
 
-<<<<<<< HEAD
-  <div class="entry-content"><p>octopress本身已经有disqus评论,但是在国内加载速度太慢，所以还是以国内的duoshuo评论替代之。</p>
-
-<h3>主要涉及的文件</h3>
-
-<p>下面根目录“/”为octopress/目录</p>
-
-<pre><code>/_config.ymlz ：添加多说相关设置变量  
-/source/_layouts/post.html ：为博文页添加duoshuo评论  
-/source/_layouts/page.html ：为普通页面添加duoshuo评论  
-/source/_include/post/duoshuo.html ：duoshuo评论框  
-/source/_include/article.html ：文章上面加一个评论链接  
-/source/_include/asides/duoshuo.html ：duoshuo最新评论显示  
-/source/index.html ：  为首页添加duoshuo评论  
-</code></pre>
-
-<p>  <code>多说评论框把评论提交到多说服务器，多说最新评论显示从服务器拉取评论以显示在我们的页面上。  
-下面一个文件一个文件地添加代码：</code></p>
-
-<h3>编辑文件/_config.ymlz</h3>
-
-<p>添加如下几行：</p>
-
-<pre><code>duoshuo_short_name: yourname #用你自己duoshuo名（需要去多说网站获取）  
-duoshuo_asides_num: 10      # 侧边栏评论显示条目数  
-duoshuo_asides_avatars: 1   # 侧边栏评论是否显示头像  
-duoshuo_asides_time: 1      # 侧边栏评论是否显示时间  
-duoshuo_asides_title: 1     # 侧边栏评论是否显示标题  
-duoshuo_asides_admin: 1     # 侧边栏评论是否显示作者评论  
-duoshuo_asides_length: 18   # 侧边栏评论截取的长度  
-</code></pre>
-
-<h3>编辑文件/source/_layouts/post.html</h3>
-
-<p>在disqus代码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">disqus_short_name</span> <span class="nx">and</span> <span class="nx">page</span><span class="p">.</span><span class="nx">comments</span> <span class="o">==</span> <span class="kc">true</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">section</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Comments</span><span class="o">&lt;</span><span class="err">/h1&gt;  </span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;disqus_thread&quot;</span> <span class="nx">aria</span><span class="o">-</span><span class="nx">live</span><span class="o">=</span><span class="s2">&quot;polite&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="o">%</span> <span class="nx">include</span> <span class="nx">post</span><span class="o">/</span><span class="nx">disqus_thread</span><span class="p">.</span><span class="nx">html</span> <span class="o">%</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;  </span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/section&gt;  </span>
-</span><span class='line'><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>下方添加多说评论框（在文件/source/_include/post/duoshuo.html中实现）：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-=======
-  <div class="entry-content"><blockquote><p>以下是阅读《Pro Git》时的记录<br/>
-《Pro Git》Scott Chacon 2010, licensed under the Creative Commons Attribution-Non Commercial-Share Alike 3.0 license.</p></blockquote>
-
-<h3>1. 取得项目的 Git 仓库</h3>
-
-<p>有两种取得Git仓库的方法：1.对已有项目创建新的Git仓库；2.克隆已有的Git仓库。</p>
-
-<h5>1.1 从项目目录初始化</h5>
-
-<ul>
-<li>开始用Git管理当前项目，在项目目录下执行：</li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git init</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>初始化后会在当前目录下增加 .git 目录，但还没有跟踪项目任何文件。</code></p>
-
-<ul>
-<li>将几个文件纳入版本控制</li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git add *.c
-</span><span class='line'>$ git add README
-</span><span class='line'>$ git commit -m 'initial project version'</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>1.2 从已有仓库克隆</h5>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone git://github.com/user/repo.git</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>在当前目录下创建repo目录，里面装着克隆过来的项目仓库。</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone git://github.com/user/repo.git myrepo</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>和上一条命令一样，但明确指定创建的目录名为myrepo。</code></p>
-
-<p>另外 Git 还支持其他传输协议，如http,https,SSH：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone http://github.com/user/repo.git
-</span><span class='line'>$ git clone user@server:/path/repo.git</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>2. 更新记录到仓库</h3>
-
-<h5>2.1 检查当前文件状态</h5>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git status</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>它会告诉你哪些文件当前处于什么状态。</code></p>
-
-<h5>2.2 跟踪新文件</h5>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git add file</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>使file文件或目录开始被跟踪；它可以接受通配符，如 git add *.c 。</code></p>
-
-<h5>2.3 暂存已修改文件</h5>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git add file</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>被跟踪文件发生变化后，把它放到暂存区还是使用 git add，它是个多用途的命令。</code><br/>
-<code>注意：若文件已暂存后又修改了文件，则提交时不会纳入修改，你需要重新执行 git add 将文件放到暂存区！</code></p>
-
-<h5>2.4 忽略某些无需跟踪的文件</h5>
-
-<p>在项目目录下建立 .gitignore 文件，添加过滤规则：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># 此为注释 
-</span><span class='line'>*.a           # 忽略所有 .a 结尾的文件
-</span><span class='line'>!lib.a        # 但 lib.a 除外
-</span><span class='line'>/TODO     # 仅仅忽略项目根目录下的 TODO 文件,不包括 subdir/TODO
-</span><span class='line'>build/        # 忽略 build/ 目录下的所有文件
-</span><span class='line'>doc/*.txt     # 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>2.5 查看未暂存和已暂存的更新</h5>
-
-<p>git status 仅仅列出了修改过的文件，若要查看工作目录中当前文件和暂存区快照之间的差异：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git diff</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>git diff 会使用文件补丁的格式显示具体添加和删除的行。</code></p>
-
-<p>若要看已经暂存起来的文件和上次提交时的快照之间的差异：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git diff --cached</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>Git 1.6.1及以上版本还可使用 git diff --staged，效果相同但更好记。</code></p>
-
-<h5>2.6 提交更新</h5>
-
-<p><strong><em>在提交前请一定 git status，确认还有什么新建或修改过的文件没有 git add 进来！</em></strong></p>
-
-<p>Git 会调用文本编辑器让你填写“提交说明”（编辑器中显示的注释中会显示更新内容，可用 -v 选项显示修改差异）：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git commit</span></code></pre></td></tr></table></div></figure>
-
-
-<p>也直接在命令行带上“提交说明”：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git commit -m “提交说明”</span></code></pre></td></tr></table></div></figure>
-
-
-<p>若想自动把所有已经跟踪过的文件暂存起来一并提交,从而跳过 git add 步骤，可以加上 -a 选项：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git commit -am “提交说明”</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>2.7 移除文件</h5>
-
-<p>若想从 Git 仓库中移除文件(即从暂存区中移除)，但仍然在工作目录中保留该文件（也许想稍后将文件加入 .gitignore 文件中）：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git rm --cached log/\*.log     #移除 log/ 目录下所有 .log 文件</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>**注意：** Git 有自己的文件模式扩展方式，当我们使用其自己的扩展方式（而不是让Shell来扩展）时，应在特殊字符前加 ’\‘ 。</code></p>
-
-<p>若想从 Git 仓库中移除文件，并且从工作目录中移除该文件：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ rm file                    #从工作目录中移除，但仍然被git跟踪着
-</span><span class='line'>$ git rm file             #从 Git 仓库中移除(不再跟踪)
-</span><span class='line'>或 $ git rm -f file      #若file已被修改且放到暂存区，则需强制选项（防止因误删除文件而丢失修改内容）</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>**注意：** Git 有自己的文件模式扩展方式，当我们使用其自己的扩展方式（而不是让Shell来扩展）时，应在特殊字符前加 ’\‘ 。</code></p>
-
-<h5>2.8 移动(重命名)文件</h5>
-
-<p>若要对 Git 中的文件改名：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git mv file_a file_b</span></code></pre></td></tr></table></div></figure>
-
-
-<p>实际上，上面的命令相当于：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ mv file_a file_b
-</span><span class='line'>$ git rm file_a
-</span><span class='line'>$ git add file_b</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>3. 查看提交历史</h3>
-
-<p>最常用的提交历史输出格式：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git log                #按提交时间列出所有的更新
-</span><span class='line'>$ git log -p          #-p：展开显示每次提交的内容差异（看看别人改了啥）
-</span><span class='line'>$ git log -4          #-4：仅显示最近的4次更新
-</span><span class='line'>$ git log --stat      #--stat：仅显示简要的增改行数统计</span></code></pre></td></tr></table></div></figure>
-
-
-<p>你可能想要更特殊的输出格式：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git log --pretty=oneline（或short,full,fuller） #oneline表示每个提交显示为一行
-</span><span class='line'>$ git log --pretty=format:"%h - %an, %ar : %s"  #定制显示格式(输出便于后期编程提取分析)
-</span><span class='line'>常用的格式占位符及其意义:
-</span><span class='line'>      %H 提交对象(commit)的完整哈希字串
-</span><span class='line'>      %h 提交对象的简短哈希字串
-</span><span class='line'>      %T 树对象(tree)的完整哈希字串
-</span><span class='line'>      %t 树对象的简短哈希字串
-</span><span class='line'>      %P 父对象(parent)的完整哈希字串
-</span><span class='line'>      %p 父对象的简短哈希字串
-</span><span class='line'>      %an 作者(author)的名字
-</span><span class='line'>      %ae 作者的电子邮件地址
-</span><span class='line'>      %ad 作者修订日期(可以用 -date= 选项定制格式)
-</span><span class='line'>      %ar 作者修订日期,按多久以前的方式显示
-</span><span class='line'>      %cn 提交者(committer)的名字
-</span><span class='line'>      %ce 提交者的电子邮件地址
-</span><span class='line'>      %cd 提交日期
-</span><span class='line'>      %cr 提交日期,按多久以前的方式显示
-</span><span class='line'>      %s 提交说明</span></code></pre></td></tr></table></div></figure>
-
-
-<p>也可以用简单的字符图形, 形象地展示了每个提交所在的分支及其分化衍合情况：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git log --pretty=format:"%h %s" --graph</span></code></pre></td></tr></table></div></figure>
-
-
-<p>一些其他常用的选项及其释义:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>--stat 显示每次更新的文件修改统计信息。
-</span><span class='line'>--shortstat 只显示 --stat 中最后的行数修改添加移除统计。
-</span><span class='line'>--name-only 仅在提交信息后显示已修改的文件清单。
-</span><span class='line'>--name-status 显示新增、修改、删除的文件清单。
-</span><span class='line'>--abbrev-commit 仅显示 SHA-1 的前几个字符,而非所有的 40 个字符。
-</span><span class='line'>--relative-date 使用较短的相对时间显示(比如,“2 weeks ago”)。</span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong><em>还可以限制输出的历史记录所在时间段：</em></strong></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git log --since=2.weeks
-</span><span class='line'>$ git log --since=“2008-01-15”</span></code></pre></td></tr></table></div></figure>
-
-
-<p>其他常用的类似选项及说明：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>-(n) 仅显示最近的 n 条提交
-</span><span class='line'>--since, --after 仅显示指定时间之后的提交。
-</span><span class='line'>--until, --before 仅显示指定时间之前的提交。
-</span><span class='line'>--author 仅显示指定作者相关的提交。
-</span><span class='line'>--committer 仅显示指定提交者相关的提交</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>综合示例：</code>查看 Git 仓库中,2008年10月期间, Junio提交的但未合并的测试脚本(位于项目的 t/ 目录下的文件)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git log --pretty="%h:%s" --author=“Junio” --since="2008-10-01" \
-</span><span class='line'>--before="2008-11-01" --no-merges  --  t/</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>4. 撤销操作</h3>
-
-<p><code>注意：有些操作并不总是能撤销的！</code></p>
-
-<h5>4.1 修改最后一次提交</h5>
-
-<p>如果刚才提交时忘了暂存某些修改,可以先补上暂存操作,然后再运行 &ndash;amend 提交:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git commit -m 'initial commit'     #修改提交说明
-</span><span class='line'>$ git add forgotten_file                  #补上暂存操作
-</span><span class='line'>$ git commit --amend</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>--amend提交命令修正了前一个的提交内容。</code></p>
-
-<h5>4.2 取消已暂存的文件</h5>
-
-<p>使已暂存的文件(当然是已修改的文件)回到已修改但未暂存状态:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git reset HEAD &lt;file&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>4.3 取消对文件的修改</h5>
-
-<p>使已修改的文件回到修改前(上一次提交后)状态:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git checkout --  &lt;file&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>其实是把之前版本文件拷贝过来覆盖了当前文件，请慎重！</code></p>
-
-<h3>5. 远程仓库的使用</h3>
-
-<h5>5.1 查看当前远程库</h5>
-
-<p>克隆某个项目后，会有名为origin的远程库，用来表示所克隆的远程仓库。列出远程仓库：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git remote
-</span><span class='line'>$ git remote -v       #-v：显示对应的仓库地址</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>5.2 添加远程仓库</h5>
-
-<p>添加一个新的远程仓库,指定一个简单的名字xiaoming,以便将来引用：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git remote
-</span><span class='line'>$ git remote add xiaoming git://github.com/xiaoming/repo.git</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>5.3 从远程仓库抓取数据</h5>
-
-<p>从远程仓库抓取数据到本地:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git fetch origin master</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>fetch只是将远端的数据拉到本地仓库,并不自动合并到当前工作分支,当你需要是可手工合并。</code></p>
-
-<p>如果想从远程仓库抓取数据，并自动合并到本地仓库当前分支:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git pull origin master</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>5.4 推送数据到远程仓库</h5>
-
-<p><code>如果有其他人在你之前推送了若干更新，那你得先抓取，合并，然后再推送。</code><br/>
-和别人分享劳动成果啦:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git push origin master</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>成功条件：在服务器上有写权限；同一时刻没有别人在推送数据。</code></p>
-
-<h5>5.5 查看远程仓库信息</h5>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git remote show origin</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>它会告诉我们，运行 git pull/push 时缺省拉取/推送的分支是什么，以及分支的同步情况。</code></p>
-
-<h5>5.6 远程仓库的删除和重命名</h5>
-
-<p>修改某个远程仓库的简短名称，如把xiaoming改为xm:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git remote rename xiaoming xm</span></code></pre></td></tr></table></div></figure>
-
-
-<p>若要移除远程仓库xiaoming(仅仅是添加远程仓库的逆操作):</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git remote rm xiaoming xm</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>6. 打标签</h3>
-
-<p>Git 可以对某一时间点的版本打上标签，人们在发布某个软件版本(比如 v1.0)的时候，经常这么做。</p>
-
-<h5>6.1 列出和查看已有的标签</h5>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git tag</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>显示的标签按字母顺序排列。</code></p>
-
-<p>也可以用特定的搜索模式列出符合条件的标签：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git tag -l 'v1.4.2.*'</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>列出 v1.4.2 系列的版本。</code></p>
-
-<p>可以查看某个标签的信息：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git show  v1.4.2.0</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>6.2 新建标签</h5>
-
-<p><code>一般建议使用含附注型的标签，以便保留相关信息；但若只是临时性加注标签或不需要旁注信息，用轻量级标签也行。</code></p>
-
-<ul>
-<li><code>轻量级标签</code>就像是个不会变化的分支，其实只是个指向特定提交对象的引用。新建轻量级标签：</li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git tag v1.0-LW</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li><code>含附注标签</code>实际上是存储在仓库中的一个独立对象，有自身的校验和，包含着标签的名字，电子邮件地址和日期，以及标签说明，标签本身也允许使用 GNU Privacy Guard (GPG) 来签署或验证。</li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git tag -a v1.4 -m 'my version 1.4'    #-m 指定了对应的标签说明</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>签署一个标签：如果你有自己的私钥，还可以用 GPG 来签署标签，只需要把之前的 -a 改为 -s 。</li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git tag -s v1.5 -m 'my signed 1.5 tag'</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>这可能会提示你输入密码啥的。</code></p>
-
-<ul>
-<li>验证一个标签：以下命令会调用 GPG 来验证签名，所以你需要有签署者的公钥，存放在 keyring 中，才能验证。</li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git tag  -v  v1.5</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>后期加注标签</li>
-</ul>
-
-
-<p>你甚至可以在后期对早先的某次提交加注标签，跟上对应提交对象的校验和(或前几位字符)：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git tag -a v1.2 9fceb02</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>分享标签</li>
-</ul>
-
-
-<p>默认情况下，git push 并不会把标签传送到远端服务器上，只有通过显式命令才能分享标签到远端仓库：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git push origin v1.2       #仅推送标签 v1.2
-</span><span class='line'>$ git push origin --tags   #一次推送所有标签上去</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>这样别人也能看到这些标签了。</code></p>
-
-<h3>7. Git 命令别名</h3>
-
-<p>可以为命令设置别名：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
->>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<<<<<<< HEAD
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">duoshuo_short_name</span> <span class="nx">and</span> <span class="nx">page</span><span class="p">.</span><span class="nx">comments</span> <span class="o">!=</span> <span class="kc">false</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'>  <span class="o">&lt;</span><span class="nx">section</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="nx">h3</span><span class="o">&gt;</span><span class="err">多说评论：</span><span class="o">&lt;</span><span class="err">/h3&gt;  </span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;comments&quot;</span> <span class="nx">aria</span><span class="o">-</span><span class="nx">live</span><span class="o">=</span><span class="s2">&quot;polite&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="o">%</span> <span class="nx">include</span> <span class="nx">post</span><span class="o">/</span><span class="nx">duoshuo</span><span class="p">.</span><span class="nx">html</span> <span class="o">%</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;  </span>
-</span><span class='line'>  <span class="o">&lt;</span><span class="err">/section&gt;  </span>
-</span><span class='line'><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>上面是为了使rake new_post["..."]产生的文章页面下包含评论框；若要使用rake new_page["..."]产生的页面下也包含评论框，可以在/source/_layouts/page.html做同样添加。如下：</code></p>
-
-<h3>编辑文件/source/_layouts/page.html</h3>
-
-<p>就如前面index.html中的添加一样，在disqus代码后添加相应代码，这里不赘述了。</p>
-
-<h3>编辑文件/source/_include/post/duoshuo.html</h3>
-
-<p>这个文件需要你新建，然后复制粘贴以下代码：</p>
+  <div class="entry-content"><p>有时会看到结构体里有宏定义，如下：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -711,197 +132,22 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">section</span><span class="o">&gt;</span>
-</span><span class='line'>  <span class="c">&lt;!--</span> <span class="err">在</span><span class="nx">octopress</span><span class="o">/</span><span class="err">目录的</span><span class="nx">_config</span><span class="p">.</span><span class="nx">yml</span><span class="err">中已经定义了</span><span class="nx">duoshuo_short_name</span> <span class="o">--&gt;</span>
-</span><span class='line'>  <span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">duoshuo_short_name</span> <span class="o">!=</span> <span class="kc">false</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'>  <span class="c">&lt;!--</span> <span class="err">多说评论框</span> <span class="nx">start</span> <span class="o">--&gt;</span>
-</span><span class='line'>  <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;ds-thread&quot;</span>  <span class="nx">data</span><span class="o">-</span><span class="nx">title</span><span class="o">=</span><span class="s2">&quot;添加duoshuo评论到octopress&quot;</span> <span class="o">&gt;&lt;</span><span class="err">/div&gt;</span>
-</span><span class='line'>      <span class="c">&lt;!--</span> <span class="err">多说评论框</span> <span class="nx">end</span> <span class="o">--&gt;</span>
-</span><span class='line'>      <span class="c">&lt;!--</span> <span class="err">多说公共</span><span class="nx">JS</span><span class="err">代码</span> <span class="nx">start</span> <span class="p">(</span><span class="err">一个网页只需插入一次</span><span class="p">)</span> <span class="o">--&gt;</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span><span class="o">&gt;</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">duoshuoQuery</span> <span class="o">=</span> <span class="p">{</span><span class="nx">short_name</span><span class="o">:</span><span class="s2">&quot;cosail&quot;</span><span class="p">};</span>
-</span><span class='line'>          <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>              <span class="kd">var</span> <span class="nx">ds</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
-</span><span class='line'>              <span class="nx">ds</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span><span class="nx">ds</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-</span><span class='line'>              <span class="nx">ds</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">==</span> <span class="s1">&#39;https:&#39;</span> <span class="o">?</span> <span class="s1">&#39;https:&#39;</span> <span class="o">:</span> <span class="s1">&#39;http:&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;//static.duoshuo.com/embed.js&#39;</span><span class="p">;</span>
-</span><span class='line'>              <span class="nx">ds</span><span class="p">.</span><span class="nx">charset</span> <span class="o">=</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">;</span>
-</span><span class='line'>              <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-</span><span class='line'>               <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">ds</span><span class="p">);</span>
-</span><span class='line'>          <span class="p">})();</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="err">/script&gt;</span>
-</span><span class='line'>      <span class="c">&lt;!--</span> <span class="err">多说公共</span><span class="nx">JS</span><span class="err">代码</span> <span class="nx">end</span> <span class="o">--&gt;</span>
-</span><span class='line'>  <span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">section</span><span class="o">&gt;</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">rb_node</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">unsigned</span> <span class="kt">long</span>  <span class="n">rb_parent_color</span><span class="p">;</span>
+</span><span class='line'><span class="cp">#define RB_RED      0  </span>
+</span><span class='line'><span class="cp">#define RB_BLACK    1  </span>
+</span><span class='line'>    <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_right</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_left</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span> <span class="n">__attribute__</span><span class="p">((</span><span class="n">aligned</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span><span class="p">))));</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><code>上面就是duoshuo评论框模块了。</code></p>
+<p>这是Linux内核中红黑树节点的定义，其中 rb_parent_color 的第0位用来存储节点的颜色（红/黑）。把两种颜色的宏定义放在结构体定义内，应该是为了增强代码可读性。</p>
 
-<h3>编辑文件/source/_include/article.html</h3>
+<p>因为对宏的处理是在预编译时完成的，而预处理器仅仅作简单的替换。宏从其定义处开始，至文件的尾部或取消宏(#undef)为止是可见的，struct的作用域对宏的定义没影响。</p>
 
-<p>在disqus代码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">disqus_short_name</span> <span class="nx">and</span> <span class="nx">page</span><span class="p">.</span><span class="nx">comments</span> <span class="o">!=</span> <span class="kc">false</span> <span class="nx">and</span> <span class="nx">post</span><span class="p">.</span><span class="nx">comments</span> <span class="o">!=</span> <span class="kc">false</span> <span class="nx">and</span> <span class="nx">site</span><span class="p">.</span><span class="nx">disqus_show_comment_count</span> <span class="o">==</span> <span class="kc">true</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'><span class="o">|</span> <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;#disqus_thread&quot;</span><span class="o">&gt;</span><span class="nx">Comments</span><span class="o">&lt;</span><span class="err">/a&gt;</span>
-</span><span class='line'><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>下方添加duoshuo代码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">duoshuo_short_name</span> <span class="nx">and</span> <span class="nx">page</span><span class="p">.</span><span class="nx">comments</span> <span class="o">!=</span> <span class="kc">false</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'><span class="o">|</span> <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;#comments&quot;</span><span class="o">&gt;</span><span class="nx">Comments</span><span class="o">&lt;</span><span class="err">/a&gt;</span>
-</span><span class='line'><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>这样就在文章上面加上了一个评论链接。</code></p>
-
-<h3>编辑文件/source/_include/asides/duoshuo.html</h3>
-
-<p>这个文件需要你新建，然后复制粘贴以下代码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">section</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="err">最新评论</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">ul</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;ds-recent-comments&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">num</span><span class="o">-</span><span class="nx">items</span><span class="o">=</span><span class="s2">&quot;10&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">show</span><span class="o">-</span><span class="nx">avatars</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">show</span><span class="o">-</span><span class="nx">time</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">show</span><span class="o">-</span><span class="nx">title</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">show</span><span class="o">-</span><span class="nx">admin</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">excerpt</span><span class="o">-</span><span class="nx">length</span><span class="o">=</span><span class="s2">&quot;18&quot;</span><span class="o">&gt;&lt;</span><span class="err">/ul&gt;</span>
-</span><span class='line'><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">index</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'><span class="c">&lt;!--</span><span class="err">多说</span><span class="nx">js</span><span class="err">加载开始，一个页面只需要加载一次</span> <span class="o">--&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span><span class="o">&gt;</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">duoshuoQuery</span> <span class="o">=</span> <span class="p">{</span><span class="nx">short_name</span><span class="o">:</span><span class="s2">&quot;cosail&quot;</span><span class="p">};</span>
-</span><span class='line'>  <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">ds</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="nx">ds</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span><span class="nx">ds</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-</span><span class='line'>    <span class="nx">ds</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;http://static.duoshuo.com/embed.js&#39;</span><span class="p">;</span>
-</span><span class='line'>    <span class="nx">ds</span><span class="p">.</span><span class="nx">charset</span> <span class="o">=</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">ds</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">})();</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/script&gt;</span>
-</span><span class='line'><span class="c">&lt;!--</span><span class="err">多说</span><span class="nx">js</span><span class="err">加载结束，一个页面只需要加载一次</span> <span class="o">--&gt;</span>
-</span><span class='line'><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/section&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>上面的代码是为了在侧边栏里显示最新评论，为了把它添加到侧边栏，还需在_config.yml 文件中的 blog_index_asides 行或 page_asides 行或 post_asides 行中添加：</code></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">asides</span><span class="o">/</span><span class="nx">duoshuo</span><span class="p">.</span><span class="nx">html</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>编辑文件/source/index.html</h3>
-
-<p>在代码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;blog-index&quot;</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="p">...</span><span class="err">省略</span><span class="p">...</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>的<code>&lt;/div&gt;</code>之前添加一段，像下面这样：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;blog-index&quot;</span><span class="o">&gt;</span>
-</span><span class='line'>    <span class="p">...</span><span class="err">省略</span><span class="p">...</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c">&lt;!--</span> <span class="err">增加评论框</span> <span class="o">--&gt;</span>
-</span><span class='line'>    <span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">duoshuo_short_name</span> <span class="nx">and</span> <span class="nx">page</span><span class="p">.</span><span class="nx">comments</span> <span class="o">!=</span> <span class="kc">false</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="nx">section</span><span class="o">&gt;</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;duoshuo_thread&quot;</span> <span class="nx">aria</span><span class="o">-</span><span class="nx">live</span><span class="o">=</span><span class="s2">&quot;polite&quot;</span><span class="o">&gt;</span> <span class="p">{</span><span class="o">%</span> <span class="nx">include</span> <span class="nx">post</span><span class="o">/</span><span class="nx">duoshuo</span><span class="p">.</span><span class="nx">html</span> <span class="o">%</span><span class="p">}</span> <span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span><span class='line'>      <span class="o">&lt;</span><span class="err">/section&gt;</span>
-</span><span class='line'>    <span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>这样就在Blog的开始页面index.html上加入了评论功能。</code></p>
-=======
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git config --global alias.co checkout
-</span><span class='line'>$ git config --global alias.br branch
-</span><span class='line'>$ git config --global alias.ci commit
-</span><span class='line'>$ git config --global alias.st status
-</span><span class='line'>$ git config --global alias.unstage 'reset HEAD --'
-</span><span class='line'>$ git config --global alias.last 'log -1 HEAD'</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>现在若想输入 git commit，只需键入 git ci 即可。</code></p>
-
-<p>若想运行某个外部命令，而非 Git 的附属工具，只需在命令前加上<code>!</code> 就行：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git config --global alias.visual "!gitk"</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>8 命令自动补全</h3>
-
-<p>如果你用的是 Bash shell，可以试试看 Git 提供的<code>自动完成脚本</code>：</p>
-
-<p>下载 Git 的源代码，将contrib/completion/git-completion.bash 文件复制到你自己的用户主目录中：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cp git-completion.bash ∼/.git-completion.bash  </span></code></pre></td></tr></table></div></figure>
-
-
-<p>并把下行添加到你的 .bashrc 文件中:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>source ~/.git-completion.bash</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>要为系统上所有用户都设置默认使用此脚本，Linux 上复制到 /etc/bash_completion.d/ 目录中即可。</code></p>
->>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
+<p>可以用 gcc -E 命令来只做预处理而不编译，来查看宏处理后的程序源代码。</p>
 </div>
   
   
@@ -965,13 +211,9 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
 <section>
     <h1>分类目录</h1>
     <ul id="categories">
-<<<<<<< HEAD
-        <li class='category'><a href='/blog/categories/c/'>c (1)</a></li>
-=======
-        <li class='category'><a href='/blog/categories/c/'>c (2)</a></li>
+        <li class='category'><a href='/blog/categories/c/'>c (3)</a></li>
 <li class='category'><a href='/blog/categories/code/'>code (1)</a></li>
 <li class='category'><a href='/blog/categories/data-structure/'>data-structure (1)</a></li>
->>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
 <li class='category'><a href='/blog/categories/datastruct-tree/'>datastruct-tree (2)</a></li>
 <li class='category'><a href='/blog/categories/git/'>git (3)</a></li>
 <li class='category'><a href='/blog/categories/github/'>github (3)</a></li>
@@ -987,11 +229,11 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
   <ul id="recent_posts">
     
       <li class="post">
-<<<<<<< HEAD
         <a href="/blog/2014/11/05/er-wei-shu-zu-chuan-can/">二维数组如何作为参数传给函数？</a>
-=======
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/11/02/shi-yong-dothui-tu/">使用dot绘图</a>
->>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
       </li>
     
       <li class="post">
@@ -1026,13 +268,6 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
         <a href="/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/">Typeof获取表达式类型</a>
       </li>
     
-<<<<<<< HEAD
-=======
-      <li class="post">
-        <a href="/blog/2014/10/23/linux-kernelzhong-de-rbtree/">Linux Kernel中的红黑树</a>
-      </li>
-    
->>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
   </ul>
 </section>
 

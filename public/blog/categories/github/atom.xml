@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Github | cosail's blog]]></title>
   <link href="http://cosail.github.io/blog/categories/github/atom.xml" rel="self"/>
   <link href="http://cosail.github.io/"/>
-  <updated>2014-11-05T20:24:37+08:00</updated>
+  <updated>2014-11-05T20:25:17+08:00</updated>
   <id>http://cosail.github.io/</id>
   <author>
     <name><![CDATA[cosail]]></name>
@@ -53,22 +53,40 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
 
 <p>在disqus代码：</p>
 
-<pre><code class="javascript">{% if site.disqus_short_name and page.comments == true %}  
-&lt;section&gt;  
-    &lt;h1&gt;Comments&lt;/h1&gt;  
-    &lt;div id="disqus_thread" aria-live="polite"&gt;{% include post/disqus_thread.html %}&lt;/div&gt;  
-&lt;/section&gt;  
-{% endif %}  
+<pre><code class="javascript">  
 </code></pre>
 
 <p>下方添加多说评论框（在文件/source/_include/post/duoshuo.html中实现）：</p>
 
-<pre><code class="javascript">{% if site.duoshuo_short_name and page.comments != false %}  
+<pre><code class="javascript">  
   &lt;section&gt;  
     &lt;h3&gt;多说评论：&lt;/h3&gt;  
-    &lt;div id="comments" aria-live="polite"&gt;{% include post/duoshuo.html %}&lt;/div&gt;  
+    &lt;div id="comments" aria-live="polite"&gt;<!-- wuwei,2014.10.7 -->
+<section>
+	<!-- 我在octopress/目录的_config.yml中定义了duoshuo_enable -->
+	
+	<!-- 多说评论框 start -->
+	<div class="ds-thread"  data-title="Category: github" ></div>
+		<!-- 多说评论框 end -->
+		<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+		<script type="text/javascript">
+		var duoshuoQuery = {short_name:"cosail"};
+			(function() {
+				var ds = document.createElement('script');
+				ds.type = 'text/javascript';ds.async = true;
+				ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+				ds.charset = 'UTF-8';
+				(document.getElementsByTagName('head')[0] 
+				 || document.getElementsByTagName('body')[0]).appendChild(ds);
+			})();
+		</script>
+		<!-- 多说公共JS代码 end -->
+	
+<section>
+
+&lt;/div&gt;  
   &lt;/section&gt;  
-{% endif %}  
+  
 </code></pre>
 
 <p><code>上面是为了使rake new_post["..."]产生的文章页面下包含评论框；若要使用rake new_page["..."]产生的页面下也包含评论框，可以在/source/_layouts/page.html做同样添加。如下：</code></p>
@@ -83,13 +101,13 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
 
 <pre><code class="javascript">&lt;section&gt;
     &lt;!-- 在octopress/目录的_config.yml中已经定义了duoshuo_short_name --&gt;
-    {% if site.duoshuo_short_name != false %}
+    
     &lt;!-- 多说评论框 start --&gt;
-    &lt;div class="ds-thread"  data-title="{{ page.title }}" &gt;&lt;/div&gt;
+    &lt;div class="ds-thread"  data-title="Category: github" &gt;&lt;/div&gt;
         &lt;!-- 多说评论框 end --&gt;
         &lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;
         &lt;script type="text/javascript"&gt;
-        var duoshuoQuery = {short_name:"{{ site.duoshuo_short_name }}"};
+        var duoshuoQuery = {short_name:"cosail"};
             (function() {
                 var ds = document.createElement('script');
                 ds.type = 'text/javascript';ds.async = true;
@@ -100,7 +118,7 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
             })();
         &lt;/script&gt;
         &lt;!-- 多说公共JS代码 end --&gt;
-    {% endif %}
+    
 &lt;section&gt;
 </code></pre>
 
@@ -110,16 +128,14 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
 
 <p>在disqus代码：</p>
 
-<pre><code class="javascript">{% if site.disqus_short_name and page.comments != false and post.comments != false and site.disqus_show_comment_count == true %}
-| &lt;a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#disqus_thread"&gt;Comments&lt;/a&gt;
-{% endif %}
+<pre><code class="javascript">
 </code></pre>
 
 <p>下方添加duoshuo代码：</p>
 
-<pre><code class="javascript">{% if site.duoshuo_short_name and page.comments != false %}
-| &lt;a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#comments"&gt;Comments&lt;/a&gt;
-{% endif %}
+<pre><code class="javascript">
+| &lt;a href="#comments"&gt;Comments&lt;/a&gt;
+
 </code></pre>
 
 <p><code>这样就在文章上面加上了一个评论链接。</code></p>
@@ -134,30 +150,10 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
 <h1>最新评论</h1>
 
 
-<ul class="ds-recent-comments" data-num-items="{{ site.duoshuo_asides_num }}" data-show-avatars="{{ site.duoshuo_asides_avatars }}" data-show-time="{{ site.duoshuo_asides_time }}" data-show-title="{{ site.duoshuo_asides_title }}" data-show-admin="{{ site.duoshuo_asides_admin }}" data-excerpt-length="{{ site.duoshuo_asides_length }}"></ul>
+<ul class="ds-recent-comments" data-num-items="10" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="18"></ul>
 
 
-<p>{% if index %}</p>
-
-<!--多说js加载开始，一个页面只需要加载一次 -->
-
-
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"{{ site.duoshuo_short_name }}"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = 'http://static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script>
-
-
-<!--多说js加载结束，一个页面只需要加载一次 -->
-
-
-<p>{% endif %}
+<p>
 </section>
 &#8220;`</p>
 
@@ -185,11 +181,34 @@ duoshuo_asides_length: 18   # 侧边栏评论截取的长度
     &#8230;省略&#8230;
     
     <!-- 增加评论框 -->
-    {% if site.duoshuo_short_name and page.comments != false %}
+    
       <section>
-        <div id="duoshuo_thread" aria-live="polite"> {% include post/duoshuo.html %} </div>
+        <div id="duoshuo_thread" aria-live="polite"> <!-- wuwei,2014.10.7 -->
+<section>
+	<!-- 我在octopress/目录的_config.yml中定义了duoshuo_enable -->
+	
+	<!-- 多说评论框 start -->
+	<div class="ds-thread"  data-title="Category: github" ></div>
+		<!-- 多说评论框 end -->
+		<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+		<script type="text/javascript">
+		var duoshuoQuery = {short_name:"cosail"};
+			(function() {
+				var ds = document.createElement('script');
+				ds.type = 'text/javascript';ds.async = true;
+				ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+				ds.charset = 'UTF-8';
+				(document.getElementsByTagName('head')[0] 
+				 || document.getElementsByTagName('body')[0]).appendChild(ds);
+			})();
+		</script>
+		<!-- 多说公共JS代码 end -->
+	
+<section>
+
+ </div>
       </section>
-    {% endif %}  
+      
     
 </div>
 

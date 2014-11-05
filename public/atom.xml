@@ -4,11 +4,7 @@
   <title><![CDATA[cosail's blog]]></title>
   <link href="http://cosail.github.io/atom.xml" rel="self"/>
   <link href="http://cosail.github.io/"/>
-<<<<<<< HEAD
-  <updated>2014-11-05T20:21:53+08:00</updated>
-=======
-  <updated>2014-11-02T23:31:28+08:00</updated>
->>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
+  <updated>2014-11-05T20:25:17+08:00</updated>
   <id>http://cosail.github.io/</id>
   <author>
     <name><![CDATA[cosail]]></name>
@@ -18,7 +14,6 @@
 
   
   <entry>
-<<<<<<< HEAD
     <title type="html"><![CDATA[二维数组如何作为参数传给函数？]]></title>
     <link href="http://cosail.github.io/blog/2014/11/05/er-wei-shu-zu-chuan-can/"/>
     <updated>2014-11-05T20:07:14+08:00</updated>
@@ -85,36 +80,11 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[DOT语言]]></title>
-    <link href="http://cosail.github.io/blog/2014/10/31/dotyu-yan/"/>
-    <updated>2014-10-31T11:02:40+08:00</updated>
-    <id>http://cosail.github.io/blog/2014/10/31/dotyu-yan</id>
-    <content type="html"><![CDATA[<p><strong>DOT语言</strong>是一种文本图形描述语言，提供一种方便的描述图形的方法。
-<code>开源的Graphviz软件包包含了一组工具，能够用来绘制DOT语言脚本和描述的图形，也提供了可调用的函数库。</code></p>
-
-<p>DOT语言文件的后缀名通常为：.gv 或 .dot。</p>
-
-<h3>DOT语言的语法</h3>
-
-<p>下面是定义DOT语言的抽象语法：<br/>
-<img src="http://cosail.github.io/images/dot-grammar.jpg" title="" alt="" /></p>
-
-<p><strong>对于上图的几点说明：</strong></p>
-
-<ol>
-<li>粗体为终结符，斜体为非终结符；</li>
-<li>(&hellip;)表示分组，‘|’表示可替换，[&hellip;]表示可选项；</li>
-<li>关键字node, edge, graph, digraph, subgraph, strict用大小写均可；</li>
-<li>compass_pt 为方位点，它们不是关键字；</li>
-<li>node_id 仅仅是一个字符串，形如abc_2，2.34，<html-like>，“with space”；</li>
-</ol>
-=======
     <title type="html"><![CDATA[使用dot绘图]]></title>
     <link href="http://cosail.github.io/blog/2014/11/02/shi-yong-dothui-tu/"/>
     <updated>2014-11-02T23:20:28+08:00</updated>
     <id>http://cosail.github.io/blog/2014/11/02/shi-yong-dothui-tu</id>
     <content type="html"><![CDATA[<h3>0 DOT语言简介</h3>
->>>>>>> 5c9fc475fc1c0f6447427a3e06ddfbe07b976a42
 
 <p><a href="http://cosail.github.io/blog/2014/10/31/dotyu-yan/">DOT语言</a></p>
 

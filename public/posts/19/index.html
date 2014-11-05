@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>二维数组如何作为参数传给函数？ - cosail&#8217;s blog</title>
+  <title>cosail&#8217;s blog</title>
   <meta name="author" content="cosail">
 
   
-  <meta name="description" content="二维数组传参 有一个二维数组: 1 int array[3][3]; 想把它传给函数 func() 当参数，容易习惯性的写出下面这两种错误的定义： 1
-2 void func(int **array) {} void func(int array[][]) {} &hellip;">
+  <meta name="description" content="生成SSH key, 设置github 见github帮助:Generating SSH keys 注意最下面一行有个链接,说明如何改变一个已存在仓库的URL,如我们要使用SSH访问方式,这样就可以避免老是要输入帐户名和密码了:Changing a remote&rsquo;s URL. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cosail.github.io/blog/2014/11/05/er-wei-shu-zu-chuan-can">
+  <link rel="canonical" href="http://cosail.github.io/posts/19">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="cosail's blog" type="application/atom+xml">
@@ -81,13 +80,16 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div>
-<article class="hentry" role="article">
+      <div class="blog-index">
   
+  
+  
+    <article>
+      
 
   <header>
     
-      <h1 class="entry-title">二维数组如何作为参数传给函数？</h1>
+      <h1 class="entry-title"><a href="/blog/2014/10/04/ssh_key_for_github/">生成SSH Key,并设置github</a></h1>
     
 
     
@@ -97,12 +99,12 @@
 
 
 
-<time class='entry-date' datetime='2014-11-05T20:07:14+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:07 pm</span></time>
+<time class='entry-date' datetime='2014-10-04T16:35:07+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:35 pm</span></time>
         
 		<!-- wuwei,2014.10.7: duoshuo -->
         
-           | <a href="#duoshuo_thread"
-             data-disqus-identifier="http://cosail.github.io">评论此文章</a>
+           | <a href="/blog/2014/10/04/ssh_key_for_github/#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io/blog/2014/10/04/ssh_key_for_github/">评论此文章</a>
         
       </p>
     
@@ -110,122 +112,46 @@
 
 
 
-<div class="entry-content"><h3>二维数组传参</h3>
+  <div class="entry-content"><h3>生成SSH key, 设置github</h3>
 
-<p>有一个二维数组:</p>
+<p><a href="https://help.github.com/articles/generating-ssh-keys/">见github帮助:Generating SSH keys</a></p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'>  <span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">3</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
+<p><code>注意最下面一行有个链接,说明如何改变一个已存在仓库的URL,如我们要使用SSH访问方式,这样就可以避免老是要输入帐户名和密码了:</code><a href="https://help.github.com/articles/changing-a-remote-s-url/">Changing a remote&rsquo;s URL.</a></p>
 
+<h3>如果通过HTTPS访问,也可以让github记住你的用户名和密码(记住一段时间)</h3>
 
-<p>想把它传给函数 func() 当参数，容易习惯性的写出下面这两种错误的定义：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'>  <span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="o">**</span><span class="n">array</span><span class="p">)</span> <span class="p">{}</span>
-</span><span class='line'>  <span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">array</span><span class="p">[][])</span> <span class="p">{}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>参数array在前一个定义中类型为<code>int *(*)</code>；而后一个array类型是错误的，连编译器也不认识。</p>
-
-<p>正确的定义应该如下面这样：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'>  <span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">array</span><span class="p">[][</span><span class="mi">3</span><span class="p">])</span> <span class="p">{}</span>
-</span><span class='line'>  <span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">array</span><span class="p">)[</span><span class="mi">3</span><span class="p">])</span> <span class="p">{}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>也就是说，上面的两个array参数表示的是同一种类型<code>int (*)[3]</code>。</p>
-
-<p>二维数组其实只是一个<strong>指向一维数组的指针</strong>，而二级指针是<strong>指向指针的指针</strong>，二者并不是相容的类型。</p>
-
-<h3>三维或更高维</h3>
-
-<p>对于三维或更高维的数组如何作为参数传递呢?除了第一维，其它维度都需要显式指定。如4维数组传参：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'>  <span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">array</span><span class="p">[][</span><span class="mi">3</span><span class="p">][</span><span class="mi">3</span><span class="p">][</span><span class="mi">3</span><span class="p">])</span> <span class="p">{}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>数组和指针的差别</h3>
-
-<p>数组和指针的差别在下面例子中有所体现：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'>  <span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">arr</span><span class="p">;</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="n">lenp</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>     <span class="c1">//lenp值为4</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="n">lenarr</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span>     <span class="c1">//lenarr值为12</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
+<p><a href="https://help.github.com/articles/caching-your-github-password-in-git/">Caching your GitHub password in Git</a><br/>
+<code>比较: SSH访问是通过SSH key, 而不是用户名和密码来认证.</code></p>
 </div>
-
-
-
-
-
-  <footer>
-    <p class="meta">
-      
+  
   
 
 
 
-<span class="byline author vcard">Posted by <span class="fn">cosail</span></span>
 
 
-      
-
-
-
-
-<time class='entry-date' datetime='2014-11-05T20:07:14+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:07 pm</span></time>
-      
-
-<span class="categories">
+    </article>
   
-    <a class='category' href='/blog/categories/c/'>c</a>
+
+
   
-</span>
-
-
-    </p>
+  <div class="pagination"><font color="green">
     
-      <div class="sharing">
-  
-  
-  
-</div>
-
+    <a href="/blog/archives">博客所有文章</a>
     
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2014/11/02/shi-yong-dothui-tu/" title="Previous Post: 使用dot绘图">&laquo; 使用dot绘图</a>
-      
-      
-    </p>
-  </footer>
-</article>
+    <a class="next" href="/posts/18">后一篇文章 &rarr;</a>
+    </font>
+  </div>
 
-<!-- wuwei,2014.10.8: duoshuo -->
-
-  <section>
-    <div id="duoshuo_thread" aria-live="polite"><!-- wuwei,2014.10.7 -->
+	<!-- wuwei,2014.10.8: duoshuo -->
+	
+	  <section>
+		<div id="duoshuo_thread" aria-live="polite"><!-- wuwei,2014.10.7 -->
 <section>
 	<!-- 我在octopress/目录的_config.yml中定义了duoshuo_enable -->
 	
 	<!-- 多说评论框 start -->
-	<div class="ds-thread"  data-title="二维数组如何作为参数传给函数？" ></div>
+	<div class="ds-thread"  data-title="" ></div>
 		<!-- 多说评论框 end -->
 		<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 		<script type="text/javascript">
@@ -244,7 +170,8 @@
 <section>
 
 </div>
-  </section>
+	  </section>
+	  
 
 </div>
 
