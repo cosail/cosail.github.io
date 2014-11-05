@@ -4,7 +4,7 @@
   <title><![CDATA[cosail's blog]]></title>
   <link href="http://cosail.github.io/atom.xml" rel="self"/>
   <link href="http://cosail.github.io/"/>
-  <updated>2014-11-05T20:25:17+08:00</updated>
+  <updated>2014-11-05T22:55:06+08:00</updated>
   <id>http://cosail.github.io/</id>
   <author>
     <name><![CDATA[cosail]]></name>
@@ -818,7 +818,7 @@ void main()
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Typeof获取表达式类型]]></title>
+    <title type="html"><![CDATA[用typeof获取表达式类型]]></title>
     <link href="http://cosail.github.io/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/"/>
     <updated>2014-10-23T17:09:08+08:00</updated>
     <id>http://cosail.github.io/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing</id>
@@ -1460,7 +1460,7 @@ linux-source-3.13.0/lib/rbtree.c</p></blockquote>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[为什么在struct里定义宏]]></title>
+    <title type="html"><![CDATA[为什么在struct里定义宏？]]></title>
     <link href="http://cosail.github.io/blog/2014/10/22/structli-de-number-define/"/>
     <updated>2014-10-22T22:18:21+08:00</updated>
     <id>http://cosail.github.io/blog/2014/10/22/structli-de-number-define</id>
