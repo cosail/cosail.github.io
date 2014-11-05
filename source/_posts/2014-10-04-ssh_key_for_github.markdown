@@ -3,7 +3,7 @@ layout: post
 title: "生成SSH key,并设置github"
 date: 2014-10-04 16:35:07 +0800
 comments: true
-categories: github
+categories: git
 ---
 
 ### 生成SSH key, 设置github

@@ -3,7 +3,7 @@ layout: post
 title: "添加duoshuo评论到octopress"
 date: 2014-10-08 10:25:36 +0800
 comments: true
-categories: github
+categories: git
 ---
 
 octopress本身已经有disqus评论,但是在国内加载速度太慢，所以还是以国内的duoshuo评论替代之。

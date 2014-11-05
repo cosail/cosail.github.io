@@ -3,7 +3,7 @@ layout: post
 title: "使用octopress部署github博客"
 date: 2014-10-04 16:41:42 +0800
 comments: true
-categories: github
+categories: git
 ---
 
 ### 依赖

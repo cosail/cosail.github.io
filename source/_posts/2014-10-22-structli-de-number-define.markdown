@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "为什么在struct里定义宏"
+title: "为什么在struct里定义宏？"
 date: 2014-10-22 22:18:21 +0800
 comments: true
 categories: C

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "typeof获取表达式类型"
+title: "用typeof获取表达式类型"
 date: 2014-10-23 17:09:08 +0800
 comments: true
 categories: c
