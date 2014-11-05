@@ -9,7 +9,10 @@
   <meta name="author" content="cosail">
 
   
-  <meta name="description" content="下面只是“《Linux程序设计》第二章 Shell程序设计” 中的示例代码，我把它们写在若干个文件里： 0 . list.txt 1
+  <meta name="description" content="主要内容来自：这里，由 CC BY-NC-SA 3.0协议 授权 按键缩写:
+C = Ctrl
+M = Meta = Alt | Esc
+Del = Backspace 基本快捷键(Basic) 1
 2
 3
 4
@@ -19,18 +22,7 @@
 8
 9
 10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-1. variable.sh：
-2. condition.sh：
-3. &hellip;">
+C-x C-f "find"文件, 即在缓冲区打开/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -110,7 +102,7 @@
 
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/10/13/shellyu-fa/">Shell语法</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/10/14/emacskuai-jie-jian/">Emacs快捷键及命令</a></h1>
     
 
     
@@ -120,12 +112,12 @@
 
 
 
-<time class='entry-date' datetime='2014-10-13T23:32:17+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:32 pm</span></time>
+<time class='entry-date' datetime='2014-10-14T00:15:21+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:15 am</span></time>
         
 		<!-- wuwei,2014.10.7: duoshuo -->
         
-           | <a href="/blog/2014/10/13/shellyu-fa/#duoshuo_thread"
-             data-disqus-identifier="http://cosail.github.io/blog/2014/10/13/shellyu-fa/">评论此文章</a>
+           | <a href="/blog/2014/10/14/emacskuai-jie-jian/#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io/blog/2014/10/14/emacskuai-jie-jian/">评论此文章</a>
         
       </p>
     
@@ -133,9 +125,74 @@
 
 
 
-  <div class="entry-content"><p>下面只是“《Linux程序设计》第二章 Shell程序设计” 中的示例代码，我把它们写在若干个文件里：</p>
+  <div class="entry-content"><blockquote><p>主要内容来自：<a href="http://aifreedom.com/technology/112">这里</a>，由 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.zh"><code>CC BY-NC-SA 3.0协议</code></a> 授权</p></blockquote>
 
-<h4>0 . list.txt</h4>
+<p><strong><em>按键缩写:</em></strong><br/>
+<code>C</code> = Ctrl<br/>
+<code>M</code> = Meta = Alt | Esc<br/>
+<code>Del</code> = Backspace</p>
+
+<h4>基本快捷键(Basic)</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>C-x C-f "find"文件, 即在缓冲区打开/新建一个文件
+</span><span class='line'>C-x C-s 保存文件
+</span><span class='line'>C-x C-w 使用其他文件名另存为文件
+</span><span class='line'>C-x C-v 关闭当前缓冲区文件并打开新文件
+</span><span class='line'>C-x i 在当前光标处插入文件
+</span><span class='line'>C-x b 新建/切换缓冲区
+</span><span class='line'>C-x C-b 显示缓冲区列表
+</span><span class='line'>C-x k 关闭当前缓冲区
+</span><span class='line'>C-z 挂起emacs
+</span><span class='line'>C-x C-c 关闭emacs</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>光标移动基本快捷键(Basic Movement)</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>M-g g 或 M-x goto-line 跳到指定行
+</span><span class='line'>M-x goto-char 跳到指定字符
+</span><span class='line'>M-{ 上一段
+</span><span class='line'>M-} 下一段
+</span><span class='line'>C-f 后一个字符
+</span><span class='line'>C-b 前一个字符
+</span><span class='line'>C-p 上一行
+</span><span class='line'>C-n 下一行
+</span><span class='line'>M-f 后一个单词
+</span><span class='line'>M-b 前一个单词
+</span><span class='line'>C-a 行首
+</span><span class='line'>C-e 行尾
+</span><span class='line'>C-v 向下翻一页
+</span><span class='line'>M-v 向上翻一页
+</span><span class='line'>M-&lt; 到文件开头
+</span><span class='line'>M-&gt; 到文件末尾</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>编辑(Editint)</h4>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -156,30 +213,186 @@
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>1. variable.sh：
-</span><span class='line'>2. condition.sh：
-</span><span class='line'>3. control.sh：
-</span><span class='line'>4. AndOr.sh：
-</span><span class='line'>5. statementBlock.sh：
-</span><span class='line'>6. function.sh：
-</span><span class='line'>7. command_1.sh：
-</span><span class='line'>8. old_version_set.sh：
-</span><span class='line'>9. new_version_set.sh：
-</span><span class='line'>10. command_2.sh：
-</span><span class='line'>11. command_3.sh：
-</span><span class='line'>12. another.sh：
-</span><span class='line'>13. command_4.sh：
-</span><span class='line'>14. command_5.sh：
-</span><span class='line'>15. command_6.sh：
-</span><span class='line'>16. command_7.sh：
-</span><span class='line'>17. command_8.sh：
-</span><span class='line'>18. dialog.sh：
-</span><span class='line'>19. merge.sh：</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>M-n 重复执行后一个命令n次
+</span><span class='line'>C-u 重复执行后一个命令4次
+</span><span class='line'>C-u n 重复执行后一个命令n次
+</span><span class='line'>C-d 删除(delete)后一个字符
+</span><span class='line'>M-d 删除后一个单词
+</span><span class='line'>Del 删除前一个字符
+</span><span class='line'>M-Del 删除前一个单词
+</span><span class='line'>C-k 移除(kill)一行
+</span><span class='line'>  
+</span><span class='line'>C-Space 或 C-@ 开始标记
+</span><span class='line'>M-h 标记整个段落
+</span><span class='line'>C-x h 全选
+</span><span class='line'>
+</span><span class='line'>C-w 移除(kill)标记区域的内容
+</span><span class='line'>M-w 复制标记区域的内容
+</span><span class='line'>C-y 召回(yank)复制/移除的区域/行
+</span><span class='line'>M-y 召回更早的内容 (在kill缓冲区内循环)
+</span><span class='line'>C-x C-x 交换光标和标记
+</span><span class='line'>  
+</span><span class='line'>C-t 交换两个字符的位置
+</span><span class='line'>M-t 交换两个单词的位置
+</span><span class='line'>C-x C-t 交换两行的位置
+</span><span class='line'>M-u 使从光标位置到单词结尾处的字母变成大写
+</span><span class='line'>M-l 与M-u相反
+</span><span class='line'>M-c 使从光标位置开始的单词的首字母变为大写</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>1 . variable.sh</h4>
+<h4>重要快捷键(Important)</h4>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>C-g 停止当前运行/输入的命令
+</span><span class='line'>C-x u 撤销前一个命令
+</span><span class='line'>M-x global-linum-mode 显示行号
+</span><span class='line'>M-x linum-mode 只在当前buffer显示行号
+</span><span class='line'>C-u M-! date 插入当前日期和时间
+</span><span class='line'>C-u M-! &lt;cmd&gt; 插入&lt;cmd&gt;命令结果
+</span><span class='line'>M-x revert-buffer RETURN (照着这个输入)撤销上次存盘后所有改动
+</span><span class='line'>M-x recover-file RETURN 从自动存盘文件恢复
+</span><span class='line'>M-x recover-session RETURN 如果你编辑了几个文件, 用这个恢复</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>在线帮助(Online-Help)</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>C-h c 显示快捷键绑定的命令
+</span><span class='line'>C-h k 显示快捷键绑定的命令和它的作用
+</span><span class='line'>C-h l 显示最后100个键入的内容
+</span><span class='line'>C-h w 显示命令被绑定到哪些快捷键上
+</span><span class='line'>C-h f 显示函数的功能
+</span><span class='line'>C-h v 显示变量的含义和值
+</span><span class='line'>C-h b 显示当前缓冲区所有可用的快捷键
+</span><span class='line'>C-h t 打开emacs教程
+</span><span class='line'>C-h i 打开info阅读器
+</span><span class='line'>C-h C-f 显示emacs FAQ
+</span><span class='line'>C-h p 显示本机Elisp包的信息</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>搜索/替换(Seach/Replace)</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>C-s 向后搜索
+</span><span class='line'>C-r 向前搜索
+</span><span class='line'>C-g 回到搜索开始前的位置(如果你仍然在搜索模式中)
+</span><span class='line'>M-% 询问并替换(query replace)
+</span><span class='line'>  
+</span><span class='line'>Space或y 替换当前匹配
+</span><span class='line'>Del或n 不要替换当前匹配
+</span><span class='line'>. 仅仅替换当前匹配并退出(替换)
+</span><span class='line'>, 替换并暂停(按Space或y继续)
+</span><span class='line'>! 替换以下所有匹配
+</span><span class='line'>^ 回到上一个匹配位置
+</span><span class='line'>RETURN或q 退出替换</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>使用正则表达式(Regular expression)搜索/替换</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>可在正则表达式中使用的符号:
+</span><span class='line'>^ 行首
+</span><span class='line'>$ 行尾
+</span><span class='line'>. 单个字符
+</span><span class='line'>.* 任意多个(包括没有)字符
+</span><span class='line'>\&lt; 单词开头
+</span><span class='line'>\&gt; 单词结尾
+</span><span class='line'>[] 括号中的任意一个字符(例如[a-z]表示所有的小写字母)
+</span><span class='line'>  
+</span><span class='line'>C-M-s 使用正则表达式向后搜索(可能和ubuntu下快捷键冲突)
+</span><span class='line'>C-M-r 使用正则表达式向前搜索
+</span><span class='line'>C-s 增量搜索
+</span><span class='line'>C-s 重复增量搜索
+</span><span class='line'>C-r 向前增量搜索
+</span><span class='line'>C-r 重复向前增量搜索
+</span><span class='line'>M-x query-replace-regexp 使用正则表达式搜索并替换</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>窗口命令(Window Commands)</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>C-x o 切换至其他窗口
+</span><span class='line'>C-x 2 水平分割窗格
+</span><span class='line'>C-x 3 垂直分割窗格
+</span><span class='line'>C-x o 切换至其他窗格
+</span><span class='line'>C-x 0 关闭窗格
+</span><span class='line'>C-x 1 关闭除了光标所在窗格外所有窗格
+</span><span class='line'>C-x ^ 扩大窗格
+</span><span class='line'>M-x shrink-window 缩小窗格
+</span><span class='line'>M C-v 滚动其他窗格内容
+</span><span class='line'>C-x 4 f 在其他窗格中打开文件
+</span><span class='line'>C-x 4 0 关闭当前缓冲区和窗格
+</span><span class='line'>C-x 5 2 新建窗口(frame)
+</span><span class='line'>C-x 5 1 删除其它所有窗口
+</span><span class='line'>C-x 5 f 在新窗口中打开文件</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>书签命令(Bookmark commands)</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -200,411 +413,60 @@
 <span class='line-number'>19</span>
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/sh</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>C-x r m 在光标当前位置创建书签
+</span><span class='line'>C-x r b 转到书签
+</span><span class='line'>M-x bookmark-rename 重命名书签
+</span><span class='line'>M-x bookmark-delete 删除书签
+</span><span class='line'>M-x bookmark-save 保存书签
 </span><span class='line'>
-</span><span class='line'><span class="c"># Shell变量,环境变量</span>
-</span><span class='line'><span class="c"># 运行时带几个参数： ./variable.sh you me her him them it</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> ---------普通变量------------
-</span><span class='line'><span class="nv">myvar</span><span class="o">=</span><span class="s2">&quot;Hi there!&quot;</span>
-</span><span class='line'><span class="nb">echo</span> <span class="nv">$myvar</span>         <span class="c">#打印变量值</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$myvar&quot;</span>       <span class="c">#双引号可避免空格问题，但不抑制变量解析</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;$myvar&#39;</span>       <span class="c">#单引号抑制变量解析</span>
-</span><span class='line'><span class="nb">echo</span> <span class="se">\$</span>myvar        <span class="c">#&#39;$&#39;被&#39;\&#39;转义</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo </span>Please enter some text:
-</span><span class='line'><span class="nb">read </span>myvar          <span class="c">#键盘输入</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;$myvar&#39;</span> now equals : <span class="nv">$myvar</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> ---------环境变量------------
-</span><span class='line'><span class="nb">echo</span> <span class="o">[</span><span class="nv">$IFS</span><span class="o">]</span>         <span class="c">#Input Field Separator</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;$0:&#39;</span> <span class="nv">$0</span>        <span class="c">#shell程序文件名</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;$$:&#39;</span> <span class="nv">$$</span>        <span class="c">#进程ID</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;$?:&#39;</span> <span class="nv">$?</span>        <span class="c">#最后运行的命令的结束代码（返回值）</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;$*:&#39;</span><span class="nv">$*</span>        <span class="c">#所有参数</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;$@:&#39;</span><span class="nv">$@</span>        <span class="c">#所有参数，但不使用$IFS</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;$#:&#39;</span><span class="nv">$# </span>       <span class="c">#参数个数</span>
-</span><span class='line'><span class="nb">echo </span>args: <span class="nv">$1</span>,<span class="nv">$2</span>,<span class="nv">$3</span>,<span class="nv">$4</span>,<span class="nv">$5</span>   <span class="c">#第1到第5个参数</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">set</span> -o verbose      <span class="c">#在命令执行前在屏幕上回显命令</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;$-:&#39;</span><span class="nv">$-</span>        <span class="c">#使用Set命令设定的Flag一览</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">exit </span>0
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>C-x r l 列出书签清单
+</span><span class='line'>    d 标记等待删除
+</span><span class='line'>    Del 取消删除标记
+</span><span class='line'>    x 删除被标记的书签
+</span><span class='line'>    r 重命名
+</span><span class='line'>    s 保存列表内所有书签
+</span><span class='line'>    f 转到当前书签指向的位置
+</span><span class='line'>    m 标记在多窗口中打开
+</span><span class='line'>    v 显示被标记的书签(或者光标当前位置的书签)
+</span><span class='line'>    t 切换是否显示路径列表
+</span><span class='line'>    w 显示当前文件路径
+</span><span class='line'>    q 退出书签列表
+</span><span class='line'>      
+</span><span class='line'>M-x bookmark-write 将所有书签导出至指定文件
+</span><span class='line'>M-x bookmark-load 从指定文件导入书签</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>2 . condition.sh</h4>
+<h4>输入特殊字符</h4>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>C-x 8 C-h 得到特殊字符列表，如
+</span><span class='line'>C-x 8 R 输入字符®
+</span><span class='line'>C-x 8 o 输入字符°</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Shell</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c"># Shell脚本条件测试:用test或[都可  (&#39;[&#39;也是一个命令，位于/usr/bin/)</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#字符串比较</span>
-</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;you&quot;</span> <span class="o">=</span> <span class="s2">&quot;me&quot;</span> <span class="o">]</span>     <span class="c">#&#39;!=&#39;表字符串判不等</span>
-</span><span class='line'><span class="k">then</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;you = me&quot;</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;you != me&quot;</span>
-</span><span class='line'><span class="k">fi</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="o">[</span> -z <span class="s2">&quot;&quot;</span> <span class="o">]</span>            <span class="c">#&#39;-n&#39;表不为空</span>
-</span><span class='line'><span class="k">then</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;string is NULL&quot;</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;string is not NULL&quot;</span>
-</span><span class='line'><span class="k">fi</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#算术比较</span>
-</span><span class='line'><span class="k">if</span> <span class="nb">test </span><span class="m">3</span> -eq <span class="m">4</span>         <span class="c">#-ne (这里的3,4可以是更复杂的表达式)</span>
-</span><span class='line'><span class="k">then</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;3 = 4&quot;</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;3 != 4&quot;</span>
-</span><span class='line'><span class="k">fi</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="m">5</span> -gt <span class="m">6</span> <span class="o">]</span>          <span class="c">#-ge, -lt, -le, !</span>
-</span><span class='line'><span class="k">then</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;5 &gt; 6&quot;</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;5 &lt;= 6&quot;</span>
-</span><span class='line'><span class="k">fi</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#文件条件测试</span>
-</span><span class='line'><span class="c">#文件存在:通常用&#39;-f&#39;代替，因为&#39;-e&#39;可能不可移植</span>
-</span><span class='line'><span class="k">if</span> <span class="nb">test</span> -e fred.c<span class="p">;</span> <span class="k">then</span>     <span class="c">#then也可以放在这，但要&#39;;&#39;分隔</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;fred.c is exist&quot;</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;no file fred.c&quot;</span>
-</span><span class='line'><span class="k">fi</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#是普通文件</span>
-</span><span class='line'><span class="k">if</span> <span class="o">[</span> -f fred.c <span class="o">]</span>            <span class="c">#&#39;[&#39;与测试内容之间必须有空格，因为&#39;[&#39;是个命令名</span>
-</span><span class='line'><span class="k">then</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;fred.c is a general file&quot;</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;fred.c is not a general file&quot;</span>
-</span><span class='line'><span class="k">fi</span>
-</span><span class='line'>
-</span><span class='line'><span class="c"># -d 是一个目录</span>
-</span><span class='line'><span class="c"># -r,-w,-x 文件可读，写，执行</span>
-</span><span class='line'><span class="c"># -u,-g 文件的SUID，SGID被设置</span>
-</span><span class='line'><span class="c"># -s 文件的长度不为0</span>
-</span><span class='line'><span class="nb">exit </span>0
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>M-x shell/esh 打开shell模式
+</span><span class='line'>    C-c C-c 类似unix里的C-c(停止正在运行的程序)
+</span><span class='line'>    C-d 删除光标后一个字符
+</span><span class='line'>    C-c C-d 发送EOF
+</span><span class='line'>    C-c C-z 挂起程序(unix下的C-z)
+</span><span class='line'>    M-p 显示前一条命令
+</span><span class='line'>    M-n 显示后一条命令</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>3 . control.sh</h4>
+<h4>DIRectory EDitor (dired)</h4>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c"># Shell的控制语句</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#if</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;Is it morning? Please answer yes or no:&quot;</span>
-</span><span class='line'><span class="nb">read </span>timeofday
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$timeofday&quot;</span> <span class="o">=</span> <span class="s2">&quot;yes&quot;</span> <span class="o">]</span>  <span class="c">#若$timeofday不加双引号，且为空(未输入，直接按回车)的话,会产生语法错误：if [ = &quot;yes&quot; ]</span>
-</span><span class='line'><span class="k">then</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;Good morning!&quot;</span>
-</span><span class='line'><span class="k">elif</span> <span class="o">[</span> <span class="s2">&quot;$timeofday&quot;</span> <span class="o">=</span> <span class="s2">&quot;no&quot;</span> <span class="o">]</span>
-</span><span class='line'><span class="k">then</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;Good afternoon!&quot;</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;Sorry, it&#39;s not recognized: \&quot;$timeofday\&quot;&quot;</span>
-</span><span class='line'>    <span class="nb">exit </span>1
-</span><span class='line'><span class="k">fi</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#for</span>
-</span><span class='line'><span class="k">for</span> var in bar fud <span class="m">45</span> <span class="s2">&quot;hehe you sob&quot;</span>      <span class="c">#Shell认为所有变量包含的都是字符串，如这里的45</span>
-</span><span class='line'><span class="k">do</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="nv">$var</span>
-</span><span class='line'><span class="k">done</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> file in <span class="k">$(</span>ls *.sh<span class="k">)</span><span class="p">;</span> <span class="k">do</span>      <span class="c">#$(cmd)</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="nv">$file</span>
-</span><span class='line'><span class="k">done</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#while</span>
-</span><span class='line'><span class="nv">foo</span><span class="o">=</span>1
-</span><span class='line'><span class="k">while</span> <span class="o">[</span> <span class="s2">&quot;$foo&quot;</span> -le <span class="m">20</span> <span class="o">]</span>
-</span><span class='line'><span class="k">do</span>
-</span><span class='line'>    <span class="nb">echo</span> -n <span class="s2">&quot;foo = $foo,&quot;</span>        <span class="c">#-n是bash的echo带的去换行参数,不是所有shell都有</span>
-</span><span class='line'>    <span class="nv">foo</span><span class="o">=</span><span class="k">$((</span><span class="nv">$foo</span><span class="o">+</span><span class="m">1</span><span class="k">))</span>         <span class="c">#$(())结构为算数扩展，替换会里面的表达式的值</span>
-</span><span class='line'><span class="k">done</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#until</span>
-</span><span class='line'><span class="c">#若是该shell脚本的第一个参数指定的用户登录，则发警报</span>
-</span><span class='line'><span class="k">until</span> who <span class="p">|</span> grep <span class="s2">&quot;$1&quot;</span> &gt; /dev/null   <span class="c">#who列出已登陆的用户</span>
-</span><span class='line'><span class="k">do</span>
-</span><span class='line'>    sleep 5
-</span><span class='line'><span class="k">done</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> -e <span class="se">\\</span>a         <span class="c">#响铃(我机器上没有声音?)</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;**** $1 has just logged in ! ****&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#case: case结构会使用第一个匹配的模式,即使后面的模式更精确</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;is it morning ? Please answer yes or no:&quot;</span>
-</span><span class='line'><span class="nb">read </span>timeofday
-</span><span class='line'>
-</span><span class='line'><span class="k">case</span> <span class="s2">&quot;$timeofday&quot;</span> in
-</span><span class='line'>    <span class="o">[</span>Yy<span class="o">][</span>Ee<span class="o">][</span>Ss<span class="o">]</span> <span class="p">|</span> <span class="o">[</span>Yy<span class="o">])</span>    <span class="nb">echo</span> <span class="s2">&quot;Good morning&quot;</span><span class="p">;;</span>       <span class="c">#每个模式之后以&quot;;;&quot;结尾,可放置多条语句</span>
-</span><span class='line'>    no <span class="p">|</span> n<span class="o">)</span>
-</span><span class='line'>        <span class="nb">echo</span> <span class="s2">&quot;you say no or n&quot;</span>
-</span><span class='line'>        <span class="nb">echo</span> <span class="s2">&quot;Good afternoon&quot;</span><span class="p">;;</span>
-</span><span class='line'>    *<span class="o">)</span>  <span class="nb">echo</span> <span class="s2">&quot;Soory, answer not recognized&quot;</span>  <span class="c">#*通配符匹配所有</span>
-</span><span class='line'>        <span class="nb">echo</span> <span class="s2">&quot;please answer yes or no&quot;</span>
-</span><span class='line'>        <span class="nb">exit </span>1
-</span><span class='line'>        <span class="p">;;</span>      <span class="c">#esac前的;;可省略</span>
-</span><span class='line'><span class="k">esac</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">exit </span>0
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>4 . AndOr.sh</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'>
-</span><span class='line'>touch file_one
-</span><span class='line'>rm -f file_two
-</span><span class='line'>
-</span><span class='line'><span class="c">#AND列表:&amp;&amp;</span>
-</span><span class='line'><span class="c">#[ -f file_two ]测试失败,echo &quot; two&quot;不会执行</span>
-</span><span class='line'><span class="k">if</span> <span class="o">[</span> -f file_one <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;one&quot;</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> -f file_two <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot; two&quot;</span>
-</span><span class='line'><span class="k">then</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;true&quot;</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;false&quot;</span>
-</span><span class='line'><span class="k">fi</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="c">#OR列表:||</span>
-</span><span class='line'>rm -f file_one
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="o">[</span> -f file_one <span class="o">]</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&quot;one&quot;</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&quot;One&quot;</span>
-</span><span class='line'><span class="k">then</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;true&quot;</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;false&quot;</span>
-</span><span class='line'><span class="k">fi</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="c">#混用AND和OR列表: 这里没有用if</span>
-</span><span class='line'><span class="c">#如果测试为真执行命令1, 为假执行命令2</span>
-</span><span class='line'><span class="o">[</span> -f file_one <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;test for true: cmd1&quot;</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&quot;test for false: cmd2&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">exit </span>0
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>5 . statementBlock.sh</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#语句块: {}</span>
-</span><span class='line'><span class="k">if</span> <span class="o">{</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;We in block&quot;</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;You in block&quot;</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;They in block&quot;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="k">then</span> <span class="o">{</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;true&quot;</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;I said true&quot;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;false&quot;</span>
-</span><span class='line'><span class="k">fi</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>6 . function.sh</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -641,101 +503,105 @@
 <span class='line-number'>35</span>
 <span class='line-number'>36</span>
 <span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c">#Shell函数</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'>
-</span><span class='line'>func<span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;this&quot;</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;that&quot;</span>
-</span><span class='line'>    ls /bin/ls
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;result&quot;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">return</span> 0
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#直接调用函数</span>
-</span><span class='line'>func
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;-----------------------------&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#res会捕获func()函数echo的字符串</span>
-</span><span class='line'><span class="nv">res</span><span class="o">=</span><span class="s2">&quot;$(func)&quot;</span>   <span class="c">#调用函数就跟使用其他命令一样</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;func() executed completely:&quot;</span>
-</span><span class='line'><span class="nb">echo</span> <span class="nv">$res</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;-----------------------------&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#函数内局部变量</span>
-</span><span class='line'>func2<span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="nb">local </span><span class="nv">res</span><span class="o">=</span><span class="s2">&quot;local res&quot;</span>               <span class="c">#local声明局部变量</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;Inside func2(): res=$res&quot;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>func2
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;Outside func2(): res=$res&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;-----------------------------&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#从函数返回一个值</span>
-</span><span class='line'>yes_or_no<span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;Is your name $* ?&quot;</span>        <span class="c">#这里的$*是传给函数的所有参数,不是传给shell程序的参数</span>
-</span><span class='line'>    <span class="k">while</span> <span class="nb">true</span>
-</span><span class='line'><span class="nb">    </span><span class="k">do</span>
-</span><span class='line'>        <span class="nb">echo</span> -n <span class="s2">&quot;Enter yes or no: &quot;</span>
-</span><span class='line'>        <span class="nb">read </span>x
-</span><span class='line'>
-</span><span class='line'>        <span class="k">case</span> <span class="s2">&quot;$x&quot;</span> in
-</span><span class='line'>            y <span class="p">|</span> yes<span class="o">)</span>    <span class="k">return</span> 0<span class="p">;;</span>
-</span><span class='line'>            n <span class="p">|</span> no<span class="o">)</span>     <span class="k">return</span> 1<span class="p">;;</span>
-</span><span class='line'>            *<span class="o">)</span>          <span class="nb">echo</span> <span class="s2">&quot;Answer yes or no please.&quot;</span>
-</span><span class='line'>        <span class="k">esac</span>
-</span><span class='line'>    <span class="k">done</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> yes_or_no <span class="s2">&quot;$1&quot;</span>   <span class="c">#调用函数并传递参数,根据return值判断执行成功还是失败</span>
-</span><span class='line'><span class="k">then</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;Hi, $1&quot;</span>   <span class="c">#仅当return 0时执行这句</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;Who you are&quot;</span>
-</span><span class='line'><span class="k">fi</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">exit </span>0
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>C-x d 打开dired
+</span><span class='line'>    C(大写C) 复制
+</span><span class='line'>    d 标记等待删除
+</span><span class='line'>    D 立即删除
+</span><span class='line'>    e或f 打开文件或目录
+</span><span class='line'>    g 刷新当前目录
+</span><span class='line'>    G 改变文件所属组(chgrp)
+</span><span class='line'>    k 从屏幕上的列表里删除一行(不是真的删除)
+</span><span class='line'>    m 用*标记
+</span><span class='line'>    n 光标移动到下一行
+</span><span class='line'>    o 在另一个窗格打开文件并移动光标
+</span><span class='line'>    C-o 在另一个窗格打开文件但不移动光标
+</span><span class='line'>    P 打印文件
+</span><span class='line'>    q 退出dired
+</span><span class='line'>    Q 在标记的文件中替换
+</span><span class='line'>    R 重命名文件
+</span><span class='line'>    u 移除标记
+</span><span class='line'>    v 显示文件内容
+</span><span class='line'>    x 删除有D标记的文件
+</span><span class='line'>    Z 压缩/解压缩文件
+</span><span class='line'>    M-Del 移除标记(默认为所有类型的标记)
+</span><span class='line'>    ~ 标记备份文件(文件名有~的文件)等待删除
+</span><span class='line'>    # 标记自动保存文件(文件名形如#name#)等待删除
+</span><span class='line'>    */ 用*标记所有文件夹(用C-u */n移除标记)
+</span><span class='line'>    = 将当前文件和标记文件(使用C-@标记而不是dired的m标记)比较
+</span><span class='line'>    M-= 将当前文件和它的备份比较
+</span><span class='line'>    ! 对当前文件应用shell命令
+</span><span class='line'>    M-} 移动光标至下一个用*或D标记的文件
+</span><span class='line'>    M-{ 移动光标至上一个用*或D标记的文件
+</span><span class='line'>    % d 使用正则表达式标记文件等待删除
+</span><span class='line'>    % m 使用正则表达式标记文件为*
+</span><span class='line'>    + 新建文件夹
+</span><span class='line'>    &gt; 移动光标至后一个文件夹
+</span><span class='line'>    &lt; 移动光标至前一个文件夹
+</span><span class='line'>    s 切换排序模式(按文件名/日期)
+</span><span class='line'>      
+</span><span class='line'>M-x speedbar 打开一个独立的目录显示窗口</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>7 . command_1.sh</h4>
+<h4>Telnet</h4>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>M-x telnet 打开telnet模式
+</span><span class='line'>    C-d 删除后一个字符或发送EOF
+</span><span class='line'>    C-c C-c 停止正在运行的程序(和unix下的C-c类似)
+</span><span class='line'>    C-c C-d 发送EOF
+</span><span class='line'>    C-c C-o 清除最后一个命令的输出
+</span><span class='line'>    C-c C-z 挂起正在运行的命令
+</span><span class='line'>    C-c C-u 移除前一行
+</span><span class='line'>    M-p 显示前一条命令</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>emacs daemon</h4>
+
+<p>关于Emacs有一个很著名的笑话，就是Emacs = Emacs Makes A Computer Slow。<br/>
+如何为Emacs加速？在后台运行一个emacs daemon服务端，然后你就可以在使用emacsclient打开任何文件，真正的处理交给emacs daemon。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>先启动emacs deamon：
+</span><span class='line'>    $ emacs --deamon
+</span><span class='line'>然后运行emacs：
+</span><span class='line'>    $ emacsclient -t   #从终端启动
+</span><span class='line'>    $ emacsclient -c   #从X启动</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>只要在启动服务器时运行初始化脚本，客户端启动无需运行脚本；不必每次打开一次Emacs，都要加载半天插件了。</code></p>
+
+<h4>宏命令(Macro-commands)</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>C-x ( 开始定义宏
+</span><span class='line'>C-x ) 结束定义宏
+</span><span class='line'>C-x e 运行最近定义的宏
+</span><span class='line'>M-n C-x e 运行最近定义的宏n次
+</span><span class='line'>M-x name-last-kbd-macro 给最近定义的宏命名(用来保存)
+</span><span class='line'>M-x insert-kbd-macro 将已命名的宏保存到文件
+</span><span class='line'>M-x load-file 载入宏</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>编程(Programming)</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -755,138 +621,37 @@
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
 <span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c"># Shell命令</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#命令1:&quot;break&quot;</span>
-</span><span class='line'><span class="nb">echo</span> ----------------break----------------
-</span><span class='line'>rm -rf fred*
-</span><span class='line'><span class="nb">echo</span> &gt; fred1    <span class="c">#new file</span>
-</span><span class='line'><span class="nb">echo</span> &gt; fred2
-</span><span class='line'>mkdir fred3     <span class="c">#new directory</span>
-</span><span class='line'><span class="nb">echo</span> &gt; fred4
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> file in fred*
-</span><span class='line'><span class="k">do</span>
-</span><span class='line'>    <span class="k">if</span> <span class="o">[</span> -d <span class="s2">&quot;$file&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-</span><span class='line'>        <span class="nb">break</span><span class="p">;</span>                  <span class="c">#是目录则跳出</span>
-</span><span class='line'>    <span class="k">fi</span>
-</span><span class='line'><span class="k">done</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo </span>I got a directory: <span class="nv">$file</span>
-</span><span class='line'>
-</span><span class='line'>rm -rf fred*
-</span><span class='line'>
-</span><span class='line'><span class="c">#命令2:&quot;continue&quot;</span>
-</span><span class='line'><span class="nb">echo</span> ---------------continue--------------
-</span><span class='line'>rm -rf fred*
-</span><span class='line'><span class="nb">echo</span> &gt; fred1    <span class="c">#new file</span>
-</span><span class='line'><span class="nb">echo</span> &gt; fred2
-</span><span class='line'>mkdir fred3     <span class="c">#new directory</span>
-</span><span class='line'><span class="nb">echo</span> &gt; fred4
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> file in fred*
-</span><span class='line'><span class="k">do</span>
-</span><span class='line'>    <span class="k">if</span> <span class="o">[</span> -d <span class="s2">&quot;$file&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-</span><span class='line'>        <span class="k">continue</span><span class="p">;</span>                  <span class="c">#是目录则马上进入下一次循环</span>
-</span><span class='line'>    <span class="k">fi</span>
-</span><span class='line'>    <span class="nb">echo </span>I got a file: <span class="nv">$file</span>
-</span><span class='line'><span class="k">done</span>
-</span><span class='line'>
-</span><span class='line'>rm -rf fred*
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> ---------------:-------------------
-</span><span class='line'><span class="c">#命令3:&quot;:&quot;        //一个空命令,相当于true</span>
-</span><span class='line'><span class="k">if</span> <span class="o">[</span> -f fred <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-</span><span class='line'>    :
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;file fred did not exist&quot;</span>
-</span><span class='line'><span class="k">fi</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> -------------.---------------------
-</span><span class='line'><span class="c">#命令4:&quot;.&quot;      //在当前shell中执行命令,而不是在子shell中执行(正如source命令,会改变当前环境)</span>
-</span><span class='line'><span class="nb">echo</span> 请在shell下用<span class="s2">&quot;. ./old_version_set.sh&quot;</span>,<span class="s2">&quot;. ./new_version_set.sh&quot;</span>来查看效果
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nb">exit </span>0
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>M C-\ 自动缩进光标和标记间的区域
+</span><span class='line'>M-m 移动光标到行首第一个(非空格)字符
+</span><span class='line'>M-^ 将当前行接到上一行末尾处
+</span><span class='line'>M-; 添加缩进并格式化的注释
+</span><span class='line'>C, C++和Java模式
+</span><span class='line'>M-a 移动光标到声明的开始处
+</span><span class='line'>M-e 移动光标到声明的结尾处
+</span><span class='line'>M C-a 移动光标到函数的开始处
+</span><span class='line'>M C-e 移动光标到函数的结尾处
+</span><span class='line'>C-c RETURN 将光标移动到函数的开始处并标记到结尾处
+</span><span class='line'>C-c C-q 根据缩进风格缩进整个函数
+</span><span class='line'>C-c C-a 切换自动换行功能
+</span><span class='line'>C-c C-d 一次性删除光标后的一串空格(greedy delete)
+</span><span class='line'>  
+</span><span class='line'>为了实现下面的一些技术, 你需要在保存源代码的目录里运行"etags
+</span><span class='line'>*.c *.h *.cpp"(或者源代码的其他的扩展名)
+</span><span class='line'>M-.(点) 搜索标签
+</span><span class='line'>M-x tags-search ENTER 在所有标签里搜索(使用正则表达式)
+</span><span class='line'>M-,(逗号) 在tags-search里跳至下一个匹配处
+</span><span class='line'>M-x tags-query-replace 在设置过标签的所有文件里替换文本</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>8 . old_version_set.sh</h4>
+<h4>GDB(调试器)</h4>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="nv">version</span><span class="o">=</span>Old_version
-</span><span class='line'><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;Old&gt; &quot;</span>
-</span><span class='line'><span class="nv">PATH</span><span class="o">=</span>/bin:/usr/bin:/usr/local/Old_bin:.
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>M-x gdb 在另一个的窗格中打开gdb</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>9 . new_version_set.sh</h4>
+<h4>版本控制(Version Control)</h4>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="nv">version</span><span class="o">=</span>New_version
-</span><span class='line'><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;New&gt; &quot;</span>
-</span><span class='line'><span class="nv">PATH</span><span class="o">=</span>/bin:/usr/bin:/usr/local/New_bin:.
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>10 . command_2.sh</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -896,758 +661,18 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c">#   shell命令</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> ------------echo----------------
-</span><span class='line'><span class="c">#命令5:&quot;echo&quot;</span>
-</span><span class='line'><span class="c">#不换行显示</span>
-</span><span class='line'><span class="nb">echo</span> -n <span class="s2">&quot;string to output.&quot;</span>     <span class="c">#-n代表不输出换行</span>
-</span><span class='line'><span class="nb">echo</span> -e <span class="s2">&quot;string to output.\c&quot;</span>   <span class="c">#开启转义,\c代表结束输出(请看:man echo)</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span>    <span class="c">#换行</span>
-</span><span class='line'><span class="nb">echo</span> ------------eval--------------
-</span><span class='line'><span class="c">#命令6:&quot;eval&quot;           //对参数求值:像另一个$,它给出一个变量的值的值</span>
-</span><span class='line'><span class="nv">foo</span><span class="o">=</span>10
-</span><span class='line'><span class="nv">x</span><span class="o">=</span>foo
-</span><span class='line'><span class="nv">y</span><span class="o">=</span><span class="s1">&#39;$&#39;</span><span class="nv">$x</span>         <span class="c">#y=&#39;$foo&#39;</span>
-</span><span class='line'><span class="nb">echo</span> <span class="nv">$y</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">eval </span><span class="nv">y</span><span class="o">=</span><span class="s1">&#39;$&#39;</span><span class="nv">$x</span>    <span class="c">#y=$foo=10</span>
-</span><span class='line'><span class="nb">echo</span> <span class="nv">$y</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> ------------exec-------------
-</span><span class='line'><span class="c">#命令7:&quot;exec&quot;   //exec命令在执行时会把当前的shell进程关闭，然后换到后面的命令继续执行。</span>
-</span><span class='line'><span class="c">#如:&quot;exec touch afile&quot;      //会关闭shell,并创建文件afile.</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> -------------exit-------------
-</span><span class='line'><span class="c">#命令8:&quot;exit&quot;</span>
-</span><span class='line'><span class="nb">exit </span><span class="m">0</span>  <span class="c">#成功</span>
-</span><span class='line'><span class="nb">exit </span><span class="m">1</span>  <span class="c"># 1-125表错误码</span>
-</span><span class='line'><span class="c">#126表文件不可执行,127表命令未找到,128及以上表出现一个信号</span>
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>C-x v d 显示当前目录下所有注册过的文件(show all registered files in this dir)
+</span><span class='line'>C-x v = 比较不同版本间的差异(show diff between versions)
+</span><span class='line'>C-x v u 移除上次提交之后的更改(remove all changes since last checkin)
+</span><span class='line'>C-x v ~ 在不同窗格中显示某个版本(show certain version in different window)
+</span><span class='line'>C-x v l 打印日志(print log)
+</span><span class='line'>C-x v i 标记文件等待添加版本控制(mark file for version control add)
+</span><span class='line'>C-x v h 给文件添加版本控制文件头(insert version control header into file)
+</span><span class='line'>C-x v r 获取命名过的快照(check out named snapshot)
+</span><span class='line'>C-x v s 创建命名的快照(create named snapshot)
+</span><span class='line'>C-x v a 创建gnu风格的更改日志(create changelog file in gnu-style)</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>11 . command_3.sh</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c"># shell命令</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> -------------export--------------
-</span><span class='line'><span class="c">#命令9:&quot;export&quot;</span>
-</span><span class='line'><span class="nv">foo</span><span class="o">=</span><span class="s2">&quot;The first var&quot;</span>
-</span><span class='line'><span class="nb">export </span><span class="nv">bar</span><span class="o">=</span><span class="s2">&quot;The second var&quot;</span> <span class="c">#被导出</span>
-</span><span class='line'><span class="nv">foo12</span><span class="o">=</span><span class="s2">&quot;The 1.5th var&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#或set -allexport,表示导出后面声明的所有变量</span>
-</span><span class='line'><span class="nb">set</span> -a
-</span><span class='line'><span class="nv">foo2</span><span class="o">=</span><span class="s2">&quot;The third var&quot;</span>    <span class="c">#被导出</span>
-</span><span class='line'><span class="nv">bar2</span><span class="o">=</span><span class="s2">&quot;The fourth var&quot;</span>   <span class="c">#被导出</span>
-</span><span class='line'>
-</span><span class='line'>./another.sh        <span class="c">#调用另一个shell脚本,它只能看见导出的bar变量,而看不到foo</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> -----------expr------------
-</span><span class='line'><span class="c">#命令10:&quot;expr&quot;      //将它的参数作为一个表达式来求值</span>
-</span><span class='line'><span class="nv">x</span><span class="o">=</span>3
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$x&quot;</span>
-</span><span class='line'><span class="nv">x</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$x</span> + 1<span class="sb">`</span>     <span class="c">#可替换为$((...))语法,更有效</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$x&quot;</span>
-</span><span class='line'><span class="nv">x</span><span class="o">=</span><span class="k">$(</span>expr <span class="nv">$x</span> + 1<span class="k">)</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$x&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> -------------printf------------
-</span><span class='line'><span class="c">#命令11:&quot;printf&quot;        //较新的版本shell提供该命令产生格式化输出,用来代替echo</span>
-</span><span class='line'><span class="nv">y</span><span class="o">=</span><span class="s2">&quot;you are not you.&quot;</span>
-</span><span class='line'><span class="nb">printf</span> <span class="s2">&quot;%s:x=%d,y=\&quot;%s\&quot;\n&quot;</span> <span class="s2">&quot;info&quot;</span> <span class="s2">&quot;$x&quot;</span> <span class="s2">&quot;$y&quot;</span>    <span class="c">#$y要用&quot;&quot;包围</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> -----------set--------------
-</span><span class='line'><span class="c">#命令12:&quot;set&quot;           //为shell设置参数变量,就像脚本的参数(命令9用法不太一样)</span>
-</span><span class='line'><span class="nb">set</span> <span class="k">$(</span>date<span class="k">)</span>     <span class="c">#设置参数为date命令的输出(空格分隔的)</span>
-</span><span class='line'><span class="nb">echo</span> <span class="nv">$0</span>,<span class="nv">$1</span>,<span class="nv">$2</span>,<span class="nv">$3</span>
-</span><span class='line'><span class="nb">set </span><span class="m">1</span> <span class="s2">&quot;go you&quot;</span> 5000
-</span><span class='line'><span class="nb">echo</span> <span class="nv">$1</span>,<span class="nv">$2</span>,<span class="nv">$3</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> -----------shift-----------
-</span><span class='line'><span class="c">#命令12:&quot;shift&quot;         //将所有的参数变量左移一个位置:$2变为$1...,注意$0不变</span>
-</span><span class='line'><span class="k">while</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> !<span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;$1&quot;</span>
-</span><span class='line'>    <span class="nb">shift</span>
-</span><span class='line'><span class="k">done</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">exit </span>0
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>12 . another.sh</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$foo&quot;</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$bar&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$foo12&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$foo2&quot;</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$bar2&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>13 . command_4.sh</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c"># shell命令</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> --------------unset---------------
-</span><span class='line'><span class="c">#命令14:&quot;unset&quot;     //从环境中删除变量或函数,但不能删除shell本身定义的只读变量如PATH</span>
-</span><span class='line'><span class="nv">foo</span><span class="o">=</span><span class="s2">&quot;Oh I&#39;am here&quot;</span>
-</span><span class='line'><span class="nb">echo</span> <span class="nv">$foo</span>
-</span><span class='line'>
-</span><span class='line'><span class="nv">foo</span><span class="o">=</span>        <span class="c">#将foo设为空,变量仍存在</span>
-</span><span class='line'><span class="nb">echo</span> <span class="nv">$foo</span>
-</span><span class='line'>
-</span><span class='line'><span class="nv">foo</span><span class="o">=</span><span class="s2">&quot;Oh i am here again&quot;</span>
-</span><span class='line'><span class="nb">echo</span> <span class="nv">$foo</span>
-</span><span class='line'><span class="nb">unset </span>foo   <span class="c">#将foo变量删除掉</span>
-</span><span class='line'><span class="nb">echo</span> <span class="nv">$foo</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> --------------trap------------------
-</span><span class='line'><span class="c">#命令15:&quot;trap&quot;          </span>
-</span><span class='line'><span class="c">#   trap cmd signal: 当信号signal出现时,执行命令cmd(该命令之后有效)</span>
-</span><span class='line'><span class="c">#   trap signal: 忽略信号signal</span>
-</span><span class='line'><span class="c">#   trap - signal: 恢复signal的默认处理</span>
-</span><span class='line'><span class="nb">trap</span> <span class="s1">&#39;rm -f /tmp/my_tmp_file_$$&#39;</span> INT    <span class="c">#可以用trap -l看到INT信号</span>
-</span><span class='line'><span class="nb">echo </span>createing file /tmp/my_tmp_file_<span class="nv">$$</span>
-</span><span class='line'>date &gt; /tmp/my_tmp_file_<span class="nv">$$</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;press CTRL+C to interrupt ...&quot;</span>
-</span><span class='line'><span class="k">while</span> <span class="o">[</span> -f /tmp/my_tmp_file_<span class="nv">$$</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="nb">echo </span>File exists
-</span><span class='line'>    sleep 1
-</span><span class='line'><span class="k">done</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;File no longer exists&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#设置回CTRL+C信号的默认处理:终止程序</span>
-</span><span class='line'><span class="nb">trap </span>INT
-</span><span class='line'><span class="nb">echo </span>createing file /tmp/my_tmp_file_<span class="nv">$$</span>
-</span><span class='line'>date &gt; /tmp/my_tmp_file_<span class="nv">$$</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;press CTRL+C to interrupt ...&quot;</span>
-</span><span class='line'><span class="k">while</span> <span class="o">[</span> -f /tmp/my_tmp_file_<span class="nv">$$</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="nb">echo </span>File exists
-</span><span class='line'>    sleep 1
-</span><span class='line'><span class="k">done</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;should not reach here&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>14 . command_5.sh</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c"># shell</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> -----------find------------
-</span><span class='line'><span class="c">#命令16:&quot;find&quot;</span>
-</span><span class='line'><span class="c">#find [path] [options] [test] [actions]</span>
-</span><span class='line'>find . -name fun*.sh -print
-</span><span class='line'><span class="nb">echo</span> -------
-</span><span class='line'>
-</span><span class='line'>find / -mount -name wish    <span class="c">#-mount不去搜索挂载的其他文件系统</span>
-</span><span class='line'><span class="nb">echo</span> -------
-</span><span class='line'>
-</span><span class='line'>find . -newer command_2.sh -type f     <span class="c">#搜索比command_2.sh要新的文件,不是目录</span>
-</span><span class='line'><span class="nb">echo</span> -------
-</span><span class='line'>
-</span><span class='line'>find . -newer command_2.sh -o -name <span class="s2">&quot;v*.sh&quot;</span>   <span class="c">#-o表示或者,-a表示并且,!表非</span>
-</span><span class='line'><span class="nb">echo</span> -------
-</span><span class='line'>
-</span><span class='line'>find . -newer command_2.sh -or -name <span class="s2">&quot;v*.sh&quot;</span>   <span class="c">#-or表示或者,-and表示并且,-not表非</span>
-</span><span class='line'><span class="nb">echo</span> -------
-</span><span class='line'>
-</span><span class='line'><span class="c">#用圆括号来组合测试(不用也是成功的)</span>
-</span><span class='line'>find . <span class="se">\(</span> -newer command_2.sh -o -name <span class="s2">&quot;v*.sh&quot;</span> <span class="se">\)</span> -type f -print
-</span><span class='line'><span class="nb">echo</span> -------
-</span><span class='line'>
-</span><span class='line'><span class="c">#找到匹配的文件后,可以执行指定的动作:</span>
-</span><span class='line'>find . -name <span class="s2">&quot;c*&quot;</span> -exec ls -l <span class="o">{}</span> <span class="se">\;</span>     <span class="c">#-exec或-ok命令将后续参数作为他们的参数直到被&quot;\;&quot;终止,魔串&quot;{}&quot;会被当前文件的完整路径取代</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>15 . command_6.sh</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c"># shell命令</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> ----grep: General Regular Expression Parser----
-</span><span class='line'><span class="c">#grep [option] pattern [files]</span>
-</span><span class='line'>grep <span class="s2">&quot;if&quot;</span> ./condition.sh
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> ----------
-</span><span class='line'>grep -c <span class="s2">&quot;if&quot;</span> ./condition.sh ./command_1.sh  <span class="c">#搜索多个文件,只输出匹配行数</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> ----------
-</span><span class='line'>grep -v <span class="s2">&quot;i&quot;</span> ./condition.sh      <span class="c">#匹配不出现&quot;i&quot;的行</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> ---------
-</span><span class='line'>grep ^# ./condition.sh      <span class="c">#行首为用&#39;^&#39;,行尾用&#39;$&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> -----------
-</span><span class='line'>grep <span class="o">[[</span>:blank:<span class="o">]]</span><span class="nb">echo</span><span class="o">[[</span>:blank:<span class="o">]]</span> ./condition.sh      <span class="c">#[]中可以使用特殊匹配模式,[:blank:]表示空格或制表符</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> ------------
-</span><span class='line'>grep -E <span class="o">[</span>a-z<span class="o">]</span><span class="se">\{</span>5<span class="se">\}</span> ./condition.sh   <span class="c">#-E开启扩展匹配:? * + {n} {n,} {n,m}  //匹配0或1次,0或多次,1或多次,n次,n次及以上,n到m次</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>16 . command_7.sh</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c"># shell命令的执行</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'>
-</span><span class='line'><span class="c"># $(cmd)的结果就是cmd命令的输出     //只有需要脚本可移植时才应该用`cmd`(当命令中有特殊字符时要转义)</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;------------$(cmd)-------------&#39;</span>
-</span><span class='line'><span class="nb">echo </span>Current user: <span class="k">$(</span>who<span class="k">)</span>
-</span><span class='line'><span class="nv">whoisthere</span><span class="o">=</span><span class="sb">`</span>who<span class="sb">`</span>
-</span><span class='line'><span class="nb">echo </span>Current user: <span class="nv">$whoisthere</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> --------------<span class="k">${</span><span class="nv">var</span><span class="k">}</span>------------
-</span><span class='line'><span class="c"># 参数扩展: ${var}      //如${i}_tmp会扩展变量i,而$i_tmp会扩展变量i_tmp</span>
-</span><span class='line'><span class="k">for</span> i in <span class="m">1</span> <span class="m">3</span> 5
-</span><span class='line'><span class="k">do</span>
-</span><span class='line'>    <span class="nb">echo </span>cmd_<span class="k">${</span><span class="nv">i</span><span class="k">}</span>_cmd
-</span><span class='line'>    <span class="nb">echo </span>CMD_<span class="nv">$i_CMD</span>     <span class="c">#$i_CMD会被扩展为空,不会报错!</span>
-</span><span class='line'><span class="k">done</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> --------
-</span><span class='line'><span class="c"># ${param:-default}     若param为空,则把扩展为default</span>
-</span><span class='line'><span class="c"># ${#param}             扩展为param的长度</span>
-</span><span class='line'><span class="c"># ${param%word}         在param的尾部删除与word匹配的最短串,返回剩余部分</span>
-</span><span class='line'><span class="c"># ${param%%word}        尾部,删最长匹配</span>
-</span><span class='line'><span class="c"># ${param#word}         头部,删最短匹配</span>
-</span><span class='line'><span class="c"># ${param##word}        头部,删最长匹配</span>
-</span><span class='line'><span class="nb">unset </span>foo
-</span><span class='line'><span class="nb">echo</span> <span class="k">${</span><span class="nv">foo</span><span class="k">:-</span><span class="nv">hello</span><span class="p"> you</span><span class="k">}</span>  <span class="c">#foo为空,扩展为hello you</span>
-</span><span class='line'>
-</span><span class='line'><span class="nv">foo</span><span class="o">=</span>something
-</span><span class='line'><span class="nb">echo</span> <span class="k">${</span><span class="nv">foo</span><span class="k">:-</span><span class="nv">Hello</span><span class="k">}</span>      <span class="c">#foo不为空,扩展为something</span>
-</span><span class='line'>
-</span><span class='line'><span class="nv">foo</span><span class="o">=</span>/usr/bin/X11/startx
-</span><span class='line'><span class="nb">echo</span> <span class="k">${</span><span class="nv">foo</span><span class="p">#*/</span><span class="k">}</span>          <span class="c">#删去头部/</span>
-</span><span class='line'><span class="nb">echo</span> <span class="k">${</span><span class="nv">foo</span><span class="p">##*/</span><span class="k">}</span>         <span class="c">#删去头部/usr/bin/x11/</span>
-</span><span class='line'>
-</span><span class='line'><span class="nv">bar</span><span class="o">=</span>/usr/local/etc/local/networks
-</span><span class='line'><span class="nb">echo</span> <span class="k">${</span><span class="nv">bar</span><span class="p">%local*</span><span class="k">}</span>      <span class="c">#删去尾部local/networks</span>
-</span><span class='line'><span class="nb">echo</span> <span class="k">${</span><span class="nv">bar</span><span class="p">%%local*</span><span class="k">}</span>     <span class="c">#删去尾部local/etc/local/networks</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;-----example for ${ }------&#39;</span>
-</span><span class='line'>touch 1.gif 2.gif 3.gif
-</span><span class='line'>ls *.gif *.jpg
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> image in *.gif
-</span><span class='line'><span class="k">do</span>
-</span><span class='line'>    mv <span class="nv">$image</span> <span class="k">${</span><span class="nv">image</span><span class="p">%%gif</span><span class="k">}</span>jpg      <span class="c">#效果如: mv 1.gif 1.jpg</span>
-</span><span class='line'><span class="k">done</span>
-</span><span class='line'>ls *.gif *.jpg
-</span><span class='line'>rm *.jpg
-</span><span class='line'>
-</span><span class='line'><span class="c">#另外:</span>
-</span><span class='line'><span class="c"># ${param:+default}     若param不为空,则返回default</span>
-</span><span class='line'><span class="c"># ${param:=default}     若param为空,则赋值为default,再返回;否则直接返回param的值</span>
-</span><span class='line'><span class="c"># ${param:?default}     若param为空,则输出param: default;否则返回param</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>17 . command_8.sh</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="c"># &lt;&lt;TAG 和 TAG中间的内容就好象是标准输入的内容</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;--------------&lt;&lt;TAG--------------&#39;</span>
-</span><span class='line'>cat &lt;&lt;!SomeText!
-</span><span class='line'>hello you little boy.
-</span><span class='line'>hello you boy.
-</span><span class='line'>hello you.
-</span><span class='line'>hello.
-</span><span class='line'>!SomeText!
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> -------------
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;hello.&quot;</span> &gt; hei.txt
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;hello you.&quot;</span> &gt;&gt; hei.txt
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;hello you boy.&quot;</span> &gt;&gt; hei.txt
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;hello you little boy.&quot;</span> &gt;&gt; hei.txt
-</span><span class='line'>cat ./hei.txt
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> -------------
-</span><span class='line'><span class="c">#用ed编辑文件hei.txt,编辑命令为1,d,2,...</span>
-</span><span class='line'><span class="c">#  下面的&#39;$&#39;用&#39;\&#39;转义,为了防止shell对其做解释,因为要解释它的应该是ed</span>
-</span><span class='line'>ed ./hei.txt &lt;&lt;!SomeOperations!
-</span><span class='line'>1
-</span><span class='line'>d
-</span><span class='line'>2
-</span><span class='line'><span class="se">\$</span>s/you/me/
-</span><span class='line'>w
-</span><span class='line'>q
-</span><span class='line'>!SomeOperations!
-</span><span class='line'>cat ./hei.txt
-</span><span class='line'>rm ./hei.txt
-</span><span class='line'>
-</span><span class='line'><span class="c">#调试shell程序</span>
-</span><span class='line'><span class="c"># set -o noexec, 简写set -n, 命令行sh -n foo.sh         //只检查语法,不执行</span>
-</span><span class='line'><span class="c"># set -o verbose, 简写set -v, 命令行sh -v foo.sh        //执行命令前先回显</span>
-</span><span class='line'><span class="c"># set -o xtrace, 简写set -x, 命令行sh -x foo.sh         //执行命令后回显</span>
-</span><span class='line'><span class="c"># set -o nounset, 简写set -u                            //若使用了未定义的变量,给出出错信息</span>
-</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;----------set -v---------&#39;</span>
-</span><span class='line'><span class="nb">set</span> -v
-</span><span class='line'>ls
-</span><span class='line'><span class="nb">set</span> +v          <span class="c">#+v表示关闭verbose选项</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;----------set -u---------&#39;</span>
-</span><span class='line'><span class="nb">set</span> -u
-</span><span class='line'><span class="c">#echo $nodefine  #使用了为定义的变量,给出错误信息</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#捕获退出信号,输出变量值</span>
-</span><span class='line'><span class="nb">echo</span> ------------trap handler signal-----------
-</span><span class='line'><span class="nv">foovar</span><span class="o">=</span><span class="s2">&quot;i&#39;m something important.&quot;</span>
-</span><span class='line'><span class="nb">trap</span> <span class="s1">&#39;echo Exiting: foovar= $foovar&#39;</span> EXIT
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>18 . dialog.sh</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#dialog命令: linux控制台下的简单GUI程序</span>
-</span><span class='line'><span class="c">#对话框   标题                  消息框</span>
-</span><span class='line'>dialog --title <span class="s2">&quot;Message you&quot;</span> --msgbox <span class="s2">&quot;Tell you something you do not know.&quot;</span> <span class="m">8</span> 40
-</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="o">=</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-</span><span class='line'>    dialog --infobox <span class="s2">&quot;your choose: OK&quot;</span> <span class="m">5</span> 20
-</span><span class='line'>    sleep 1
-</span><span class='line'>    dialog --clear
-</span><span class='line'><span class="k">fi</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#对话框   标题                       复选列表    提示        高  宽 选项数 选项编号,文本,状态....                      标准错误重定向(dialog的输出)</span>
-</span><span class='line'>dialog --title <span class="s2">&quot;Check box example&quot;</span> --checklist <span class="s2">&quot;Pick Number&quot;</span> <span class="m">15</span>  <span class="m">25</span>   <span class="m">3</span>     <span class="m">1</span> <span class="s2">&quot;one&quot;</span> <span class="s2">&quot;off&quot;</span> <span class="m">2</span> <span class="s2">&quot;two&quot;</span> <span class="s2">&quot;on&quot;</span> <span class="m">3</span> <span class="s2">&quot;three&quot;</span> <span class="s2">&quot;off&quot;</span>  2&gt; /tmp/tmp_file_<span class="nv">$$</span>.txt
-</span><span class='line'><span class="nv">ret</span><span class="o">=</span><span class="nv">$?</span>                                  <span class="c">#保存dialog的返回值</span>
-</span><span class='line'><span class="nv">res</span><span class="o">=</span><span class="k">$(</span>cat /tmp/tmp_file_<span class="nv">$$</span>.txt<span class="k">)</span>         <span class="c">#保存dialog的输出值(用户选择的选项)</span>
-</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="nv">$ret</span> <span class="o">=</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-</span><span class='line'>    dialog --infobox <span class="s2">&quot;Your choise: $res&quot;</span> <span class="m">10</span> 30
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>    dialog --infobox <span class="s2">&quot;Bad, you canceled!&quot;</span> <span class="m">10</span> 30
-</span><span class='line'><span class="k">fi</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$res&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>19. merge.sh : 合并list.txt中列出的当前目录下的文件</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="o">[</span> -f list2.txt <span class="o">]</span>
-</span><span class='line'><span class="k">then</span>
-</span><span class='line'>    rm -f list2.txt
-</span><span class='line'><span class="k">fi</span>
-</span><span class='line'>
-</span><span class='line'>cat ./list.txt <span class="p">|</span> <span class="k">while</span> <span class="nb">read </span>line　　　　　　#读取list.txt的每一行
-</span><span class='line'><span class="k">do</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="k">${</span><span class="nv">line</span><span class="p">#*[[:</span><span class="nv">blank</span><span class="p">:]]</span><span class="k">}</span> &gt;&gt; list2.txt      <span class="c">#去掉行首的序号和空白字符</span>
-</span><span class='line'><span class="k">done</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nv">x</span><span class="o">=</span><span class="m">0</span>         <span class="c">#文件序号</span>
-</span><span class='line'><span class="k">if</span> <span class="o">[</span> -f merged.txt <span class="o">]</span>
-</span><span class='line'><span class="k">then</span>
-</span><span class='line'>    rm -r merged.txt
-</span><span class='line'><span class="k">fi</span>
-</span><span class='line'>
-</span><span class='line'>cat ./list2.txt <span class="p">|</span> <span class="k">while</span> <span class="nb">read </span>line
-</span><span class='line'><span class="k">do</span>
-</span><span class='line'>    <span class="nv">x</span><span class="o">=</span><span class="k">$((</span><span class="nv">$x</span> <span class="o">+</span> <span class="m">1</span><span class="k">))</span>
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;************** $x . $line : start ************&quot;</span> &gt;&gt; merged.txt
-</span><span class='line'>    cat ./<span class="nv">$line</span> &gt;&gt; merged.txt
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;************** $x . $line : end **************&quot;</span> &gt;&gt; merged.txt
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;                                               &quot;</span> &gt;&gt; merged.txt
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;                  @ @                       &quot;</span> &gt;&gt; merged.txt
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;                 ( V )                       &quot;</span> &gt;&gt; merged.txt
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;                  ^ ^                       &quot;</span> &gt;&gt; merged.txt
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;                       .=.=.0             &quot;</span> &gt;&gt; merged.txt
-</span><span class='line'>    <span class="nb">echo</span> <span class="s2">&quot;                                             &quot;</span> &gt;&gt; merged.txt
-</span><span class='line'><span class="k">done</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="o">[</span> -f list2.txt <span class="o">]</span>
-</span><span class='line'><span class="k">then</span>
-</span><span class='line'>    rm -f list2.txt
-</span><span class='line'><span class="k">fi</span>
-</span></code></pre></td></tr></table></div></figure>
 
 </div>
   
@@ -1712,7 +737,7 @@
 <section>
     <h1>分类目录</h1>
     <ul id="categories">
-        <li class='category'><a href='/blog/categories/c/'>c (2)</a></li>
+        <li class='category'><a href='/blog/categories/c/'>c (3)</a></li>
 <li class='category'><a href='/blog/categories/code/'>code (1)</a></li>
 <li class='category'><a href='/blog/categories/data-structure/'>data-structure (1)</a></li>
 <li class='category'><a href='/blog/categories/datastruct-tree/'>datastruct-tree (2)</a></li>
@@ -1728,6 +753,10 @@
 <section>
   <h1>最近发布</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/05/er-wei-shu-zu-chuan-can/">二维数组如何作为参数传给函数？</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/11/02/shi-yong-dothui-tu/">使用dot绘图</a>
@@ -1763,10 +792,6 @@
     
       <li class="post">
         <a href="/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/">Typeof获取表达式类型</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/23/linux-kernelzhong-de-rbtree/">Linux Kernel中的红黑树</a>
       </li>
     
   </ul>

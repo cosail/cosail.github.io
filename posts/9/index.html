@@ -9,9 +9,9 @@
   <meta name="author" content="cosail">
 
   
-  <meta name="description" content="typeof 关键字 typeof是 C 语言的一个新扩展，它告诉编译器你要使用某个表达式的类型（而不需要显示的指明该类型），如： 1
-typeof( x[0](1) ) var; 上面定义了一个变量var，它的类型为：函数指针数组 也可以用类型而不是表达式，如： 1
-typeof( int &hellip;">
+  <meta name="description" content="&hellip; Tree RB-Tree 红黑树本质上就是一棵查找二叉树，能用查找二叉树做的事情也就能用红黑树来做。
+不同的是红黑树会自动调整，让自己保持树的平衡状态，从而保证每次查找，插入，删除操作在 O（lg n) 的时间内完成。 变形：用红黑树可以实现区间树。 &hellip;
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -91,7 +91,7 @@ typeof( int &hellip;">
 
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/">Typeof获取表达式类型</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/10/24/shu-ju-jie-gou-gai-shu/">数据结构概述</a></h1>
     
 
     
@@ -101,12 +101,12 @@ typeof( int &hellip;">
 
 
 
-<time class='entry-date' datetime='2014-10-23T17:09:08+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>5:09 pm</span></time>
+<time class='entry-date' datetime='2014-10-24T20:19:57+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:19 pm</span></time>
         
 		<!-- wuwei,2014.10.7: duoshuo -->
         
-           | <a href="/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/#duoshuo_thread"
-             data-disqus-identifier="http://cosail.github.io/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/">评论此文章</a>
+           | <a href="/blog/2014/10/24/shu-ju-jie-gou-gai-shu/#duoshuo_thread"
+             data-disqus-identifier="http://cosail.github.io/blog/2014/10/24/shu-ju-jie-gou-gai-shu/">评论此文章</a>
         
       </p>
     
@@ -114,100 +114,18 @@ typeof( int &hellip;">
 
 
 
-  <div class="entry-content"><h3>typeof 关键字</h3>
+  <div class="entry-content"><h3>&hellip;</h3>
 
-<p><code>typeof</code>是 C 语言的一个新扩展，它告诉编译器你要使用某个表达式的类型（而不需要显示的指明该类型），如：</p>
+<h3>Tree</h3>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typeof</span><span class="p">(</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span>  <span class="n">var</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
+<h5>RB-Tree</h5>
 
+<p>红黑树本质上就是一棵查找二叉树，能用查找二叉树做的事情也就能用红黑树来做。<br/>
+不同的是红黑树会自动调整，让自己保持树的平衡状态，从而保证每次查找，插入，删除操作在 O（lg n) 的时间内完成。</p>
 
-<p><code>上面定义了一个变量var，它的类型为：函数指针数组</code></p>
+<p><code>变形</code>：用红黑树可以实现<strong>区间树</strong>。</p>
 
-<p>也可以用类型而不是表达式，如：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typeof</span><span class="p">(</span> <span class="kt">int</span> <span class="o">*</span> <span class="p">)</span>  <span class="n">var</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>变量 var 的类型为： int *。这个好像用处不大？</code></p>
-
-<p>一般情况下用<code>typeof</code>，如果要于ISO C兼容的话，用双下划线的形式<code>__typeof__</code>。</p>
-
-<p>你可以在能用 typedef 的所有地方使用 typeof，如：类型声明，类型转换，或 sizeof()，typeof()中。例如：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typeof</span> <span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="n">y</span><span class="p">;</span>      <span class="c1">// y 的类型为：指针 x 指向的类型  </span>
-</span><span class='line'><span class="n">typeof</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="n">y</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>  <span class="c1">// 指针 x 指向的类型的数组类型  </span>
-</span><span class='line'><span class="n">typeof</span> <span class="p">(</span><span class="n">typeof</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)[</span><span class="mi">4</span><span class="p">])</span> <span class="n">y</span><span class="p">;</span>  <span class="c1">// 字符指针数组类型</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果想把T定义成一个表达式的类型：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typdef</span> <span class="n">typeof</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="n">T</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>限制</h3>
-
-<p>typeof 中的类型名不能包含 extern 或 static，不过允许包含类型限定符 const 或 volatile。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">typeof</span><span class="p">(</span><span class="k">extern</span> <span class="kt">int</span><span class="p">)</span> <span class="n">a</span><span class="p">;</span>       <span class="c1">// 不可以</span>
-</span><span class='line'><span class="k">extern</span> <span class="n">typeof</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span><span class="p">)</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>  <span class="c1">// 可以</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>应用</h3>
-
-<p>gcc 编译器支持该扩展，在linux内核中应用非常广泛，如 linux-source-3.13.0/include/linux/kernel.h 文件中的两个宏：</p>
-
-<p>下面定义一个安全的 max 宏，避免参数被多次展开的错误。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#define max(x, y) ({                         \</span>
-</span><span class='line'><span class="cp">    typeof(x) _max1 = (x);                  \</span>
-</span><span class='line'><span class="cp">    typeof(y) _max2 = (y);                  \</span>
-</span><span class='line'><span class="cp">    (void) (&amp;_max1 == &amp;_max2);              \</span>
-</span><span class='line'><span class="cp">    _max1 &gt; _max2 ? _max1 : _max2; })</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>下面第2行获取结构体（类型名为 type）中的成员（成员变量名为 member）相对结构体<br/>
-起始地址的偏移量，第3行由成员的起始地址（ptr）减去其偏移量得到结构体的起始地址：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#define container_of(ptr, type, member) ({         \</span>
-</span><span class='line'><span class="cp"> const typeof( ((type *)0)-&gt;member ) *__mptr = (ptr); \</span>
-</span><span class='line'><span class="cp"> (type *)( (char *)__mptr - offsetof(type,member) );})</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>类似的__auto_type</h3>
-
-<p>可以在 gnu c 中使用<code>__auto_type</code>来声明一个变量的类型，如</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-</span><span class='line'><span class="n">__auto_type</span>  <span class="n">var</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>   <span class="c1">// 类似C++里的 auto</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="https://gcc.gnu.org/onlinedocs/gcc/Typeof.html">参考</a></p>
+<h3>&hellip;</h3>
 </div>
   
   
@@ -271,7 +189,7 @@ typeof( int &hellip;">
 <section>
     <h1>分类目录</h1>
     <ul id="categories">
-        <li class='category'><a href='/blog/categories/c/'>c (2)</a></li>
+        <li class='category'><a href='/blog/categories/c/'>c (3)</a></li>
 <li class='category'><a href='/blog/categories/code/'>code (1)</a></li>
 <li class='category'><a href='/blog/categories/data-structure/'>data-structure (1)</a></li>
 <li class='category'><a href='/blog/categories/datastruct-tree/'>datastruct-tree (2)</a></li>
@@ -287,6 +205,10 @@ typeof( int &hellip;">
 <section>
   <h1>最近发布</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/05/er-wei-shu-zu-chuan-can/">二维数组如何作为参数传给函数？</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/11/02/shi-yong-dothui-tu/">使用dot绘图</a>
@@ -322,10 +244,6 @@ typeof( int &hellip;">
     
       <li class="post">
         <a href="/blog/2014/10/23/typeofhuo-qu-biao-da-shi-lei-xing/">Typeof获取表达式类型</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/23/linux-kernelzhong-de-rbtree/">Linux Kernel中的红黑树</a>
       </li>
     
   </ul>

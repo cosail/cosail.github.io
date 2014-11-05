@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C | cosail's blog]]></title>
   <link href="http://cosail.github.io/blog/categories/c/atom.xml" rel="self"/>
   <link href="http://cosail.github.io/"/>
-  <updated>2014-11-02T23:31:28+08:00</updated>
+  <updated>2014-11-05T20:25:17+08:00</updated>
   <id>http://cosail.github.io/</id>
   <author>
     <name><![CDATA[cosail]]></name>
@@ -12,6 +12,52 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[二维数组如何作为参数传给函数？]]></title>
+    <link href="http://cosail.github.io/blog/2014/11/05/er-wei-shu-zu-chuan-can/"/>
+    <updated>2014-11-05T20:07:14+08:00</updated>
+    <id>http://cosail.github.io/blog/2014/11/05/er-wei-shu-zu-chuan-can</id>
+    <content type="html"><![CDATA[<h3>二维数组传参</h3>
+
+<p>有一个二维数组:
+<code>c
+  int array[3][3];
+</code>
+想把它传给函数 func() 当参数，容易习惯性的写出下面这两种错误的定义：
+<code>c
+  void func(int **array) {}
+  void func(int array[][]) {}
+</code>
+参数array在前一个定义中类型为<code>int *(*)</code>；而后一个array类型是错误的，连编译器也不认识。</p>
+
+<p>正确的定义应该如下面这样：<br/>
+<code>c
+  void func(int array[][3]) {}
+  void func(int (*array)[3]) {}
+</code>
+也就是说，上面的两个array参数表示的是同一种类型<code>int (*)[3]</code>。</p>
+
+<p>二维数组其实只是一个<strong>指向一维数组的指针</strong>，而二级指针是<strong>指向指针的指针</strong>，二者并不是相容的类型。</p>
+
+<h3>三维或更高维</h3>
+
+<p>对于三维或更高维的数组如何作为参数传递呢?除了第一维，其它维度都需要显式指定。如4维数组传参：<br/>
+<code>
+  void func(int array[][3][3][3]) {}
+</code></p>
+
+<h3>数组和指针的差别</h3>
+
+<p>数组和指针的差别在下面例子中有所体现：<br/>
+<code>c
+  int arr[3];
+  int *p = arr;
+  int lenp = sizeof(p);     //lenp值为4
+  int lenarr = sizeof(arr);     //lenarr值为12
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Typeof获取表达式类型]]></title>

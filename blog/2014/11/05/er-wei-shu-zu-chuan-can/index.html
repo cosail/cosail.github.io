@@ -5,21 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>为什么在struct里定义宏 - cosail&#8217;s blog</title>
+  <title>二维数组如何作为参数传给函数？ - cosail&#8217;s blog</title>
   <meta name="author" content="cosail">
 
   
-  <meta name="description" content="有时会看到结构体里有宏定义，如下： 1
-2
-3
-4
-5
-6
-7
-8
-struct rb_node
-{ unsigned long rb_parent_color;
-#define RB_RED 0 #define RB_BLACK 1 struct rb_node *rb_right; &hellip;">
+  <meta name="description" content="二维数组传参 有一个二维数组: 1 int array[3][3]; 想把它传给函数 func() 当参数，容易习惯性的写出下面这两种错误的定义： 1
+2 void func(int **array) {} void func(int array[][]) {} &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -28,7 +19,7 @@ struct rb_node
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cosail.github.io/blog/2014/10/22/structli-de-number-define">
+  <link rel="canonical" href="http://cosail.github.io/blog/2014/11/05/er-wei-shu-zu-chuan-can">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="cosail's blog" type="application/atom+xml">
@@ -96,7 +87,7 @@ struct rb_node
 
   <header>
     
-      <h1 class="entry-title">为什么在struct里定义宏</h1>
+      <h1 class="entry-title">二维数组如何作为参数传给函数？</h1>
     
 
     
@@ -106,7 +97,7 @@ struct rb_node
 
 
 
-<time class='entry-date' datetime='2014-10-22T22:18:21+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>10:18 pm</span></time>
+<time class='entry-date' datetime='2014-11-05T20:07:14+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:07 pm</span></time>
         
 		<!-- wuwei,2014.10.7: duoshuo -->
         
@@ -119,32 +110,64 @@ struct rb_node
 
 
 
-<div class="entry-content"><p>有时会看到结构体里有宏定义，如下：</p>
+<div class="entry-content"><h3>二维数组传参</h3>
+
+<p>有一个二维数组:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'>  <span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">3</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>想把它传给函数 func() 当参数，容易习惯性的写出下面这两种错误的定义：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'>  <span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="o">**</span><span class="n">array</span><span class="p">)</span> <span class="p">{}</span>
+</span><span class='line'>  <span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">array</span><span class="p">[][])</span> <span class="p">{}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>参数array在前一个定义中类型为<code>int *(*)</code>；而后一个array类型是错误的，连编译器也不认识。</p>
+
+<p>正确的定义应该如下面这样：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'>  <span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">array</span><span class="p">[][</span><span class="mi">3</span><span class="p">])</span> <span class="p">{}</span>
+</span><span class='line'>  <span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">array</span><span class="p">)[</span><span class="mi">3</span><span class="p">])</span> <span class="p">{}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>也就是说，上面的两个array参数表示的是同一种类型<code>int (*)[3]</code>。</p>
+
+<p>二维数组其实只是一个<strong>指向一维数组的指针</strong>，而二级指针是<strong>指向指针的指针</strong>，二者并不是相容的类型。</p>
+
+<h3>三维或更高维</h3>
+
+<p>对于三维或更高维的数组如何作为参数传递呢?除了第一维，其它维度都需要显式指定。如4维数组传参：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'>  <span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">array</span><span class="p">[][</span><span class="mi">3</span><span class="p">][</span><span class="mi">3</span><span class="p">][</span><span class="mi">3</span><span class="p">])</span> <span class="p">{}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>数组和指针的差别</h3>
+
+<p>数组和指针的差别在下面例子中有所体现：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">rb_node</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="kt">unsigned</span> <span class="kt">long</span>  <span class="n">rb_parent_color</span><span class="p">;</span>
-</span><span class='line'><span class="cp">#define RB_RED      0  </span>
-</span><span class='line'><span class="cp">#define RB_BLACK    1  </span>
-</span><span class='line'>    <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_right</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">rb_left</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span> <span class="n">__attribute__</span><span class="p">((</span><span class="n">aligned</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span><span class="p">))));</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'>  <span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">arr</span><span class="p">;</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">lenp</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>     <span class="c1">//lenp值为4</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">lenarr</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span>     <span class="c1">//lenarr值为12</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>这是Linux内核中红黑树节点的定义，其中 rb_parent_color 的第0位用来存储节点的颜色（红/黑）。把两种颜色的宏定义放在结构体定义内，应该是为了增强代码可读性。</p>
 
-<p>因为对宏的处理是在预编译时完成的，而预处理器仅仅作简单的替换。宏从其定义处开始，至文件的尾部或取消宏(#undef)为止是可见的，struct的作用域对宏的定义没影响。</p>
-
-<p>可以用 gcc -E 命令来只做预处理而不编译，来查看宏处理后的程序源代码。</p>
 </div>
 
 
@@ -166,7 +189,7 @@ struct rb_node
 
 
 
-<time class='entry-date' datetime='2014-10-22T22:18:21+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>10:18 pm</span></time>
+<time class='entry-date' datetime='2014-11-05T20:07:14+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:07 pm</span></time>
       
 
 <span class="categories">
@@ -187,10 +210,8 @@ struct rb_node
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/10/14/gitji-chu-cao-zuo/" title="Previous Post: git基础操作">&laquo; git基础操作</a>
+        <a class="basic-alignment left" href="/blog/2014/11/02/shi-yong-dothui-tu/" title="Previous Post: 使用dot绘图">&laquo; 使用dot绘图</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/10/23/linux-kernelzhong-de-rbtree/" title="Next Post: Linux kernel中的红黑树">Linux kernel中的红黑树 &raquo;</a>
       
     </p>
   </footer>
@@ -204,7 +225,7 @@ struct rb_node
 	<!-- 我在octopress/目录的_config.yml中定义了duoshuo_enable -->
 	
 	<!-- 多说评论框 start -->
-	<div class="ds-thread"  data-title="为什么在struct里定义宏" ></div>
+	<div class="ds-thread"  data-title="二维数组如何作为参数传给函数？" ></div>
 		<!-- 多说评论框 end -->
 		<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 		<script type="text/javascript">
